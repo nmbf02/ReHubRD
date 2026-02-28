@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rehub-primary: #0D9488;
+  --rehub-secondary: #0F766E;
+  --rehub-accent: #14B8A6;
+  --rehub-dark: #134E4A;
+  --rehub-light: #CCFBF1;
+}
+
+body {
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

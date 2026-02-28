@@ -10,6 +10,7 @@ import {
   IconBook,
 } from "@/components/ui/Icons";
 import { getPerfilInicial, calcularProgreso } from "@/lib/perfil-store";
+import SugerenciasRecordatorios from "@/components/dashboard/SugerenciasRecordatorios";
 import { getDatosCuenta } from "@/lib/cuenta-store";
 
 const FLUJO_PASOS = [
@@ -167,6 +168,8 @@ export function InicioDashboard({ userName, userId }: Props) {
         <span className="text-slate-300">·</span>
         <a href="tel:8092001400" className="text-sm font-semibold text-rehub-primary hover:underline">809-200-1400</a>
       </div>
+
+      <SugerenciasRecordatorios progreso={progreso} userId={userId} />
 
       {/* Flujo de recuperación (4 pasos) */}
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">

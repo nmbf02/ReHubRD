@@ -25,6 +25,7 @@ async function validateCredentials(
 }
 
 export const authOptions: NextAuthOptions = {
+  debug: process.env.NODE_ENV !== "production",
   providers: [
     CredentialsProvider({
       name: "Credenciales",

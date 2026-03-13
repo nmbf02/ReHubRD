@@ -7,7 +7,7 @@ const Register: React.FC<registerProps> = () => {
       <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-to-b from-rehub-light/30 to-white">
         <div className="max-w-md w-full text-center">
           <h1 className="text-2xl font-bold text-rehub-dark mb-4">
-            Registro próximamente
+            <p>Registro próximamente</p>
           </h1>
           <p className="text-rehub-dark/70 mb-8">
             Estamos preparando el sistema de registro. Mientras tanto, puedes

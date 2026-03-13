@@ -1,10 +1,10 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { CuentaForm } from "@/components/dashboard/CuentaForm";
+import { AccountForm } from "@/components/dashboard/CuentaForm";
 import { Suspense } from "react";
 
-export default async function CuentaPage() {
+export default async function AccountPage() {
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {
@@ -30,7 +30,7 @@ export default async function CuentaPage() {
           <div className="w-8 h-8 border-2 border-rehub-primary border-t-transparent rounded-full animate-spin" />
         </div>
       }>
-        <CuentaForm user={userData} />
+        <AccountForm user={userData} />
       </Suspense>
     </div>
   );

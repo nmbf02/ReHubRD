@@ -98,7 +98,7 @@ export function InicioDashboard({ userName, userId }: Props) {
   }, [mounted, userId ?? undefined]);
 
   const displayName =
-    (mounted && getDatosCuenta(userId ?? undefined)?.nombreMostrar) ||
+    (mounted && getDatosCuenta(userId ?? undefined)?.showName) ||
     userName ||
     "Usuario";
 

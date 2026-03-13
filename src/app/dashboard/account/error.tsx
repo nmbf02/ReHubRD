@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-export default function CuentaError({
+export default function AccountError({
   error,
   reset,
 }: {

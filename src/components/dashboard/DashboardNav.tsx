@@ -28,7 +28,7 @@ export function DashboardNav({ user }: Props) {
   useEffect(() => {
     const update = () => {
       const datos = getDatosCuenta(user?.id);
-      setNombreMostrar(datos?.nombreMostrar ?? null);
+      setNombreMostrar(datos?.showName ?? null);
     };
     update();
     window.addEventListener("rehub-cuenta-updated", update);

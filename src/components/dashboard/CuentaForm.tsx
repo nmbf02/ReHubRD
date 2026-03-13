@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getDatosCuenta, saveDatosCuenta } from "@/lib/cuenta-store";
+import { getDatosCuenta as getAccountData, saveDatosCuenta } from "@/lib/cuenta-store";
 
 interface UserData {
   id?: string;
@@ -14,16 +14,16 @@ interface Props {
   user: UserData | null | undefined;
 }
 
-export function CuentaForm({ user }: Props) {
+export function AccountForm({ user }: Props) {
   const safeUser: { email?: string | null; name?: string | null; id?: string | null } = user ?? {};
 
-  const [nombreMostrar, setNombreMostrar] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [correoContacto, setCorreoContacto] = useState("");
+  const [showName, setShowName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [errores, setErrores] = useState<{ correo?: string; guardado?: string }>({});
+  const [errores, setErrores] = useState<{ email?: string; save?: string }>({});
 
   useEffect(() => {
     setMounted(true);
@@ -32,37 +32,37 @@ export function CuentaForm({ user }: Props) {
   useEffect(() => {
     if (!mounted) return;
     try {
-      const datos = getDatosCuenta(safeUser?.id ?? undefined);
-      setNombreMostrar(datos?.nombreMostrar ?? safeUser?.name ?? "");
-      setTelefono(datos?.telefono ?? "");
-      setCorreoContacto(datos?.correoContacto ?? "");
+      const datos = getAccountData(safeUser?.id ?? undefined);
+      setShowName(datos?.showName ?? safeUser?.name ?? "");
+      setPhoneNumber(datos?.phoneNumber ?? "");
+      setContactEmail(datos?.contactEmail ?? "");
     } catch {
-      setNombreMostrar(safeUser?.name ?? "");
+      setShowName(safeUser?.name ?? "");
     }
   }, [mounted, safeUser?.id, safeUser?.name]);
 
-  function validarEmail(email: string): boolean {
+  function validateEmail(email: string): boolean {
     if (!email.trim()) return true;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const err: { correo?: string } = {};
-    if (correoContacto.trim() && !validarEmail(correoContacto)) {
-      err.correo = "Ingresa un correo válido.";
+    const err: { email?: string } = {};
+    if (contactEmail.trim() && !validateEmail(contactEmail)) {
+      err.email = "Ingresa un correo válido.";
     }
     setErrores(err);
     if (Object.keys(err).length > 0) return;
 
     setIsSaving(true);
-    setErrores((prev) => ({ ...prev, guardado: undefined }));
+    setErrores((prev) => ({ ...prev, save: undefined }));
     try {
       saveDatosCuenta(
         {
-          nombreMostrar: nombreMostrar.trim(),
-          telefono: telefono.trim(),
-          correoContacto: correoContacto.trim(),
+          showName: showName.trim(),
+          phoneNumber: phoneNumber.trim(),
+          contactEmail: contactEmail.trim(),
         },
         safeUser?.id || undefined
       );
@@ -70,7 +70,7 @@ export function CuentaForm({ user }: Props) {
       setTimeout(() => setSaved(false), 3000);
     } catch (e) {
       const msg = e instanceof Error ? e.message : "No se pudo guardar. Revisa que el almacenamiento local esté habilitado.";
-      setErrores((prev) => ({ ...prev, guardado: msg }));
+      setErrores((prev) => ({ ...prev, save: msg }));
     } finally {
       setIsSaving(false);
     }
@@ -99,8 +99,8 @@ export function CuentaForm({ user }: Props) {
             <input
               id="nombreMostrar"
               type="text"
-              value={nombreMostrar}
-              onChange={(e) => setNombreMostrar(e.target.value)}
+              value={showName}
+              onChange={(e) => setShowName(e.target.value)}
               placeholder="Tu nombre"
               className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
             />
@@ -115,8 +115,8 @@ export function CuentaForm({ user }: Props) {
             <input
               id="telefono"
               type="tel"
-              value={telefono}
-              onChange={(e) => setTelefono(e.target.value)}
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               placeholder="809-000-0000"
               className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
             />
@@ -128,25 +128,25 @@ export function CuentaForm({ user }: Props) {
             <input
               id="correoContacto"
               type="email"
-              value={correoContacto}
+              value={contactEmail}
               onChange={(ev) => {
-                setCorreoContacto(ev.target.value);
-                if (errores.correo) setErrores((prev) => ({ ...prev, correo: undefined }));
+                setContactEmail(ev.target.value);
+                if (errores.email) setErrores((prev) => ({ ...prev, correo: undefined }));
               }}
               placeholder="otro@correo.com"
               className={`w-full px-4 py-3 rounded-xl border focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none ${
-                errores.correo ? "border-red-300" : "border-rehub-dark/20"
+                errores.email ? "border-red-300" : "border-rehub-dark/20"
               }`}
             />
-            {errores.correo && (
-              <p className="mt-1 text-sm text-red-600" role="alert">{errores.correo}</p>
+            {errores.email && (
+              <p className="mt-1 text-sm text-red-600" role="alert">{errores.email}</p>
             )}
             <p className="mt-1 text-xs text-rehub-dark/60">
               Para recibir comunicaciones en una dirección distinta a la de tu cuenta.
             </p>
           </div>
-          {errores.guardado && (
-            <p className="text-sm text-red-600" role="alert">{errores.guardado}</p>
+          {errores.save && (
+            <p className="text-sm text-red-600" role="alert">{errores.save}</p>
           )}
           <button
             type="submit"
@@ -173,13 +173,13 @@ export function CuentaForm({ user }: Props) {
               No se puede modificar. Usa «Correo de contacto» arriba para otra dirección.
             </p>
           </div>
-          {getDatosCuenta(safeUser?.id ?? undefined)?.correoContacto && (
+          {getAccountData(safeUser?.id ?? undefined)?.contactEmail && (
             <div>
               <dt className="text-sm font-medium text-rehub-dark/70 mb-1">
                 Correo de contacto
               </dt>
               <dd className="text-rehub-dark font-medium">
-                {getDatosCuenta(safeUser?.id ?? undefined)?.correoContacto}
+                {getAccountData(safeUser?.id ?? undefined)?.contactEmail}
               </dd>
             </div>
           )}

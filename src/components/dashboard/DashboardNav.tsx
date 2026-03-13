@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import type { Session } from "next-auth";
 import { IconHome, IconUser, IconClipboard, IconRefresh, IconBook, IconSettings } from "@/components/ui/Icons";
-import { getDatosCuenta } from "@/lib/cuenta-store";
+import { getAccountData } from "@/lib/account-store";
 
 const navItems = [
   { href: "/dashboard", label: "Inicio", Icon: IconHome },
@@ -27,7 +27,7 @@ export function DashboardNav({ user }: Props) {
 
   useEffect(() => {
     const update = () => {
-      const datos = getDatosCuenta(user?.id);
+      const datos = getAccountData(user?.id);
       setNombreMostrar(datos?.showName ?? null);
     };
     update();

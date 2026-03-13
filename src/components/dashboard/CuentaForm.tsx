@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getDatosCuenta as getAccountData, saveDatosCuenta } from "@/lib/cuenta-store";
+import { getAccountData as getAccountData, saveAccountData } from "@/lib/account-store";
 
 interface UserData {
   id?: string;
@@ -58,7 +58,7 @@ export function AccountForm({ user }: Props) {
     setIsSaving(true);
     setErrores((prev) => ({ ...prev, save: undefined }));
     try {
-      saveDatosCuenta(
+      saveAccountData(
         {
           showName: showName.trim(),
           phoneNumber: phoneNumber.trim(),

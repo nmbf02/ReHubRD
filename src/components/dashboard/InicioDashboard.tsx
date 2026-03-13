@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/Icons";
 import { getPerfilInicial, calcularProgreso } from "@/lib/perfil-store";
 import SugerenciasRecordatorios from "@/components/dashboard/SugerenciasRecordatorios";
-import { getDatosCuenta } from "@/lib/cuenta-store";
+import { getAccountData } from "@/lib/account-store";
 
 const FLUJO_PASOS = [
   {
@@ -98,7 +98,7 @@ export function InicioDashboard({ userName, userId }: Props) {
   }, [mounted, userId ?? undefined]);
 
   const displayName =
-    (mounted && getDatosCuenta(userId ?? undefined)?.showName) ||
+    (mounted && getAccountData(userId ?? undefined)?.showName) ||
     userName ||
     "Usuario";
 

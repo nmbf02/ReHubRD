@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { PerfilForm } from "@/components/dashboard/PerfilForm";
+import { PerfilForm } from "@/components/dashboard/ProfileForm";
 
 export default async function PerfilPage() {
   const session = await getServerSession(authOptions);

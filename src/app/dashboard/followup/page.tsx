@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { SeguimientoView } from "@/components/dashboard/SeguimientoView";
+import { SeguimientoView } from "@/components/dashboard/FollowupView";
 
 export default async function SeguimientoPage() {
   const session = await getServerSession(authOptions);

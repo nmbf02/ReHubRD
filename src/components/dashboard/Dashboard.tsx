@@ -10,7 +10,7 @@ import {
   IconBook,
 } from "@/components/ui/Icons";
 import { getPerfilInicial, calcularProgreso } from "@/lib/perfil-store";
-import SugerenciasRecordatorios from "@/components/dashboard/SugerenciasRecordatorios";
+import SugerenciasRecordatorios from "@/components/dashboard/SuggestionsAndRecommendations";
 import { getAccountData } from "@/lib/account-store";
 
 const FLUJO_PASOS = [

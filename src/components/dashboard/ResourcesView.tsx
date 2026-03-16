@@ -8,7 +8,7 @@ import {
   SECCIONES_RECURSOS,
 } from "@/lib/recursos-guias";
 import { ESCENARIOS } from "@/lib/flujos-escenarios";
-import { SitiosCercanosView } from "./SitiosCercanosView";
+import { SitiosCercanosView } from "./ClosePlacesView";
 
 interface Props {
   userId?: string | null;

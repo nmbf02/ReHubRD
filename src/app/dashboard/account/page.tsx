@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { AccountForm } from "@/components/dashboard/CuentaForm";
+import { AccountForm } from "@/components/dashboard/AccountForm";
 import { Suspense } from "react";
 
 export default async function AccountPage() {

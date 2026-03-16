@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { RecursosView } from "@/components/dashboard/RecursosView";
+import { RecursosView } from "@/components/dashboard/ResourcesView";
 
 export default async function RecursosPage() {
   const session = await getServerSession(authOptions);

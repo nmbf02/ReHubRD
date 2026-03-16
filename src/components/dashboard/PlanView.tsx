@@ -21,8 +21,8 @@ import {
   identificarEscenarioDesdePerfil,
   type FlujoEscenario,
 } from "@/lib/flujos-escenarios";
-import { NecesidadesSelector } from "./NecesidadesSelector";
-import { FlujoPersonalizadoView } from "./FlujoPersonalizadoView";
+import { NecesidadesSelector } from "./NeedsSelector";
+import { FlujoPersonalizadoView } from "./CustomFlowView";
 
 interface Props {
   userId?: string | null;

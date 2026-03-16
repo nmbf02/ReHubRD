@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { InicioDashboard } from "@/components/dashboard/InicioDashboard";
-import { FlujoPersonalizadoView } from "@/components/dashboard/FlujoPersonalizadoView";
+import { InicioDashboard } from "@/components/dashboard/Dashboard";
+import { FlujoPersonalizadoView } from "@/components/dashboard/CustomFlowView";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);

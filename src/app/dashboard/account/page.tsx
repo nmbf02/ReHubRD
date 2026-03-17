@@ -4,6 +4,12 @@ import { redirect } from "next/navigation";
 import { AccountForm } from "@/components/dashboard/AccountForm";
 import { Suspense } from "react";
 
+type userDataProps = {
+  id: string;
+  email: string | null;
+  name: string | null;
+};
+
 export default async function AccountPage() {
   const session = await getServerSession(authOptions);
 
@@ -11,7 +17,7 @@ export default async function AccountPage() {
     redirect("/login?callbackUrl=/dashboard/cuenta");
   }
 
-  const userData = {
+  const userData: userDataProps = {
     id: session.user.id ?? "",
     email: session.user.email ?? null,
     name: session.user.name ?? null,
@@ -25,11 +31,13 @@ export default async function AccountPage() {
       <p className="text-rehub-dark/70 mb-8">
         Información de tu cuenta y preferencias.
       </p>
-      <Suspense fallback={
-        <div className="flex justify-center py-12">
-          <div className="w-8 h-8 border-2 border-rehub-primary border-t-transparent rounded-full animate-spin" />
-        </div>
-      }>
+      <Suspense
+        fallback={
+          <div className="flex justify-center py-12">
+            <div className="w-8 h-8 border-2 border-rehub-primary border-t-transparent rounded-full animate-spin" />
+          </div>
+        }
+      >
         <AccountForm user={userData} />
       </Suspense>
     </div>

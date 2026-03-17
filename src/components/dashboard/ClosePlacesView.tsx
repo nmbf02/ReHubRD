@@ -5,9 +5,9 @@ import {
   obtenerSitiosCercanos,
   type SitioCercano,
   type TipoSitio,
-} from "@/lib/sitios-cercanos";
-import { getPerfilInicial } from "@/lib/perfil-store";
-import { getNecesidadesSeleccionadas } from "@/lib/opciones-necesidades";
+} from "@/lib/nearby-places";
+import { getPerfilInicial } from "@/lib/profile-store";
+import { getNecesidadesSeleccionadas } from "@/lib/needs-options";
 import { OPCIONES_PROVINCIA } from "@/types/perfil";
 import type { ProvinciaRD } from "@/types/perfil";
 

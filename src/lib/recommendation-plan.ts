@@ -1,4 +1,4 @@
-import type { NecesidadPrioritaria } from "./perfil-necesidades";
+import type { NecesidadPrioritaria } from "./profile-needs";
 import type { PerfilRecuperacion, TipoAccidente } from "@/types/perfil";
 
 export interface Recomendacion {

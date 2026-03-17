@@ -9,7 +9,7 @@ import {
   IconRefresh,
   IconBook,
 } from "@/components/ui/Icons";
-import { getPerfilInicial, calcularProgreso } from "@/lib/perfil-store";
+import { getPerfilInicial, calcularProgreso } from "@/lib/profile-store";
 import SugerenciasRecordatorios from "@/components/dashboard/SuggestionsAndRecommendations";
 import { getAccountData } from "@/lib/account-store";
 

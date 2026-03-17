@@ -23,8 +23,8 @@ import {
   OPCIONES_TIPO_SEGURO,
   OPCIONES_PROVINCIA,
 } from "@/types/perfil";
-import { getPerfilInicial, savePerfil, calcularProgreso } from "@/lib/perfil-store";
-import { identificarNecesidades } from "@/lib/perfil-necesidades";
+import { getPerfilInicial, savePerfil, calcularProgreso } from "@/lib/profile-store";
+import { identificarNecesidades } from "@/lib/profile-needs";
 import { FormField } from "./FormField";
 import { IconUser, IconBuilding, IconChart, IconUsers, IconNote } from "@/components/ui/Icons";
 

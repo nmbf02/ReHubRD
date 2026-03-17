@@ -6,7 +6,7 @@ import {
   OPCIONES_NECESIDADES,
   getNecesidadesSeleccionadas,
   saveNecesidadesSeleccionadas,
-} from "@/lib/opciones-necesidades";
+} from "@/lib/needs-options";
 
 interface Props {
   userId?: string | null;

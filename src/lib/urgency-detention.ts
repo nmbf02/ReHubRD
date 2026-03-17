@@ -4,7 +4,7 @@
  */
 
 import type { PerfilRecuperacion } from "@/types/perfil";
-import type { CheckIn } from "./seguimiento-store";
+import type { CheckIn } from "./followup-store";
 
 export type NivelUrgencia = "urgente" | "alta" | "normal";
 

@@ -8,19 +8,19 @@ import {
   IconRefresh,
   IconBook,
 } from "@/components/ui/Icons";
-import { getPerfilInicial, calcularProgreso } from "@/lib/perfil-store";
-import { identificarNecesidades } from "@/lib/perfil-necesidades";
+import { getPerfilInicial, calcularProgreso } from "@/lib/profile-store";
+import { identificarNecesidades } from "@/lib/profile-needs";
 import {
   obtenerRecomendaciones,
   RECOMENDACIONES_UNIVERSALES,
   RECORDATORIOS_SUGERIDOS,
   CHECKLIST_PRIORITARIO,
   type Recomendacion,
-} from "@/lib/plan-recomendaciones";
+} from "@/lib/recommendation-plan";
 import {
   identificarEscenarioDesdePerfil,
   type FlujoEscenario,
-} from "@/lib/flujos-escenarios";
+} from "@/lib/scenary-workflow";
 import { NecesidadesSelector } from "./NeedsSelector";
 import { FlujoPersonalizadoView } from "./CustomFlowView";
 

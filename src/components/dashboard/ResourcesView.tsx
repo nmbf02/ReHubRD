@@ -6,8 +6,8 @@ import { IconClipboard, IconRefresh } from "@/components/ui/Icons";
 import {
   GUIAS_APOYO,
   SECCIONES_RECURSOS,
-} from "@/lib/recursos-guias";
-import { ESCENARIOS } from "@/lib/flujos-escenarios";
+} from "@/lib/resources-guide";
+import { ESCENARIOS } from "@/lib/scenary-workflow";
 import { SitiosCercanosView } from "./ClosePlacesView";
 
 interface Props {

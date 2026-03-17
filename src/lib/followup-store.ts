@@ -5,7 +5,7 @@ import type {
   NivelMovilidad,
   EstadoEmocional,
 } from "@/types/perfil";
-import { savePerfil } from "./perfil-store";
+import { savePerfil } from "./profile-store";
 import type { PerfilRecuperacion } from "@/types/perfil";
 
 export type AccesoMedicamentos = "si" | "no" | "parcial" | "no_se";

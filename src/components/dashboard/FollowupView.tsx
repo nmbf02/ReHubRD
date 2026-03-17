@@ -8,16 +8,16 @@ import {
   IconBook,
   IconUser,
 } from "@/components/ui/Icons";
-import { getPerfilInicial } from "@/lib/perfil-store";
+import { getPerfilInicial } from "@/lib/profile-store";
 import {
   getCheckIns,
   saveCheckInAndUpdatePerfil,
   type AccesoMedicamentos,
-} from "@/lib/seguimiento-store";
+} from "@/lib/followup-store";
 import {
   identificarEscenario,
   type FlujoEscenario,
-} from "@/lib/flujos-escenarios";
+} from "@/lib/scenary-workflow";
 import type { EstadoFisico, NivelMovilidad, EstadoEmocional } from "@/types/perfil";
 import {
   OPCIONES_ESTADO_FISICO,

@@ -5,8 +5,8 @@ import {
   getNecesidadesSeleccionadas,
   buildGuiasParaFlujo,
   type GuiaInline,
-} from "@/lib/opciones-necesidades";
-import { GUIAS_APOYO } from "@/lib/recursos-guias";
+} from "@/lib/needs-options";
+import { GUIAS_APOYO } from "@/lib/resources-guide";
 
 interface Props {
   userId?: string | null;

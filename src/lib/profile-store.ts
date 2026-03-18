@@ -89,8 +89,8 @@ export function getPerfil(userId?: string): PerfilRecuperacion | null {
 export function savePerfil(
   perfil: {
     datosPersonales?: PerfilRecuperacion["datosPersonales"];
-    situacionAccidente: Partial<PerfilRecuperacion["situacionAccidente"]>;
-    estadoActual: Partial<PerfilRecuperacion["estadoActual"]>;
+    accidentState: Partial<PerfilRecuperacion["situacionAccidente"]>;
+    overallCondition: Partial<PerfilRecuperacion["estadoActual"]>;
     contextoSocial: Partial<PerfilRecuperacion["contextoSocial"]>;
     notas?: string;
   },
@@ -106,8 +106,8 @@ export function savePerfil(
   const completo: PerfilRecuperacion = {
     version: VERSION_ACTUAL,
     datosPersonales: perfil.datosPersonales ?? existente?.datosPersonales,
-    situacionAccidente: { ...situacionBase, ...perfil.situacionAccidente },
-    estadoActual: { ...estadoBase, ...perfil.estadoActual },
+    situacionAccidente: { ...situacionBase, ...perfil.accidentState },
+    estadoActual: { ...estadoBase, ...perfil.overallCondition },
     contextoSocial: { ...contextoBase, ...perfil.contextoSocial },
     notas: perfil.notas ?? existente?.notas,
     creadoEn: existente?.creadoEn ?? ahora,

@@ -1,30 +1,30 @@
 "use client";
 
 import type {
-  EstadoFisico,
-  NivelMovilidad,
-  EstadoEmocional,
+  PhysicalState,
+  MobilityLevel,
+  EmotionalState,
 } from "@/types/perfil";
 import { savePerfil } from "./profile-store";
 import type { PerfilRecuperacion } from "@/types/perfil";
 
-export type AccesoMedicamentos = "si" | "no" | "parcial" | "no_se";
+export type HasAccessToMedication = "si" | "no" | "parcial" | "no_se";
 
 export interface CheckIn {
   id: string;
-  fecha: string;
-  estadoFisico: EstadoFisico;
-  nivelMovilidad: NivelMovilidad;
-  estadoEmocional: EstadoEmocional;
-  bienestar: number;
-  notas?: string;
+  date: string;
+  physicalState: PhysicalState;
+  movilityLevel: MobilityLevel;
+  emotionalState: EmotionalState;
+  wellBeing: number;
+  notes?: string;
   /** ¿Tienes acceso a tus medicamentos actualmente? */
-  accesoMedicamentos?: AccesoMedicamentos;
+  hasAccessToMedication?: HasAccessToMedication;
 }
 
 const STORAGE_KEY = "rehub-seguimiento";
 const MAX_CHECKINS = 30;
-
+// should check here, this undefined doesn't look right.  TODO: Felix
 export function getCheckIns(userId?: string): CheckIn[] {
   if (typeof window === "undefined") return [];
   const key = userId ? `${STORAGE_KEY}-${userId}` : STORAGE_KEY;
@@ -46,7 +46,7 @@ export function addCheckIn(
   const nuevo: CheckIn = {
     ...checkIn,
     id: `ci-${Date.now()}`,
-    fecha: ahora,
+    date: ahora,
   };
   const existentes = getCheckIns(userId);
   const todos = [nuevo, ...existentes].slice(0, MAX_CHECKINS);
@@ -60,21 +60,21 @@ export function addCheckIn(
 
 export function saveCheckInAndUpdatePerfil(
   checkIn: Omit<CheckIn, "id" | "fecha">,
-  perfil: PerfilRecuperacion,
+  profile: PerfilRecuperacion,
   userId?: string
 ): CheckIn {
-  const guardado = addCheckIn(checkIn, userId);
+  const saved = addCheckIn(checkIn, userId);
   savePerfil(
     {
-      situacionAccidente: {},
-      estadoActual: {
-        estadoFisico: checkIn.estadoFisico,
-        nivelMovilidad: checkIn.nivelMovilidad,
-        estadoEmocional: checkIn.estadoEmocional,
+      accidentState: {},
+      overallCondition: {
+        estadoFisico: checkIn.physicalState,
+        nivelMovilidad: checkIn.movilityLevel,
+        estadoEmocional: checkIn.emotionalState,
       },
       contextoSocial: {},
     },
     userId
   );
-  return guardado;
+  return saved;
 }

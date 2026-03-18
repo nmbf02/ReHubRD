@@ -10,7 +10,7 @@ export type TipoAccidente =
   | "deportivo"
   | "otro";
 
-export type EstadoFisico =
+export type PhysicalState =
   | "estable"
   | "recuperacion"
   | "limitado"
@@ -29,13 +29,13 @@ export type RedApoyo =
   | "limitada"
   | "ninguna";
 
-export type NivelMovilidad =
+export type MobilityLevel =
   | "sin_limitaciones"
   | "leves"
   | "moderadas"
   | "graves";
 
-export type EstadoEmocional =
+export type EmotionalState =
   | "bien"
   | "ansiedad"
   | "tristeza"
@@ -76,9 +76,9 @@ export interface SituacionAccidente {
 }
 
 export interface EstadoActual {
-  estadoFisico: EstadoFisico;
-  nivelMovilidad: NivelMovilidad;
-  estadoEmocional: EstadoEmocional;
+  estadoFisico: PhysicalState;
+  nivelMovilidad: MobilityLevel;
+  estadoEmocional: EmotionalState;
   tratamientosActuales?: string;
 }
 
@@ -119,7 +119,7 @@ export const OPCIONES_TIPO_ACCIDENTE: Record<TipoAccidente, string> = {
   otro: "Otro",
 };
 
-export const OPCIONES_ESTADO_FISICO: Record<EstadoFisico, string> = {
+export const OPCIONES_ESTADO_FISICO: Record<PhysicalState, string> = {
   estable: "Estable",
   recuperacion: "En recuperación",
   limitado: "Limitado",
@@ -141,20 +141,21 @@ export const OPCIONES_RED_APOYO: Record<RedApoyo, string> = {
   ninguna: "Ninguna o escasa",
 };
 
-export const OPCIONES_NIVEL_MOVILIDAD: Record<NivelMovilidad, string> = {
+export const OPCIONES_NIVEL_MOVILIDAD: Record<MobilityLevel, string> = {
   sin_limitaciones: "Sin limitaciones",
   leves: "Leves",
   moderadas: "Moderadas",
   graves: "Graves",
 };
 
-export const OPCIONES_ESTADO_EMOCIONAL: Record<EstadoEmocional, string> = {
+export const OPCIONES_ESTADO_EMOCIONAL: Record<EmotionalState, string> = {
   bien: "Bien / Estable",
   ansiedad: "Ansiedad",
   tristeza: "Tristeza",
   estres: "Estrés",
   otro: "Otro",
 };
+
 
 export const OPCIONES_TIPO_SEGURO: Record<TipoSeguro, string> = {
   publico: "Público (ARS)",

@@ -42,7 +42,7 @@ export function detectarSituacion(
   const { estadoActual, contextoSocial } = perfil;
 
   // Bienestar muy bajo en último check-in
-  const bienestarBajo = ultimoCheckIn && ultimoCheckIn.bienestar <= 2;
+  const bienestarBajo = ultimoCheckIn && ultimoCheckIn.wellBeing <= 2;
   if (bienestarBajo) {
     motivos.push("Bienestar muy bajo en tu último registro");
     necesidades.push("apoyo_emocional");
@@ -88,7 +88,7 @@ export function detectarSituacion(
     if (!necesidades.includes(n)) necesidades.push(n);
   });
 
-  const notas = ultimoCheckIn?.notas?.toLowerCase() ?? "";
+  const notas = ultimoCheckIn?.notes?.toLowerCase() ?? "";
   if (notas.includes("medicamento") || notas.includes("medicamentos")) {
     if (!necesidades.includes("medicamentos")) necesidades.push("medicamentos");
   }

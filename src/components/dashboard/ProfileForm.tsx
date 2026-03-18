@@ -5,11 +5,11 @@ import Link from "next/link";
 import type {
   PerfilRecuperacion,
   TipoAccidente,
-  EstadoFisico,
+  PhysicalState,
   SituacionLaboral,
   RedApoyo,
-  NivelMovilidad,
-  EstadoEmocional,
+  MobilityLevel,
+  EmotionalState,
   TipoSeguro,
   ProvinciaRD,
 } from "@/types/perfil";
@@ -105,8 +105,8 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
       savePerfil(
         {
           datosPersonales: perfil.datosPersonales,
-          situacionAccidente: perfil.situacionAccidente,
-          estadoActual: perfil.estadoActual,
+          accidentState: perfil.situacionAccidente,
+          overallCondition: perfil.estadoActual,
           contextoSocial: perfil.contextoSocial,
           notas: perfil.notas,
         },
@@ -356,7 +356,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                           actualizar(
                             "estadoActual",
                             "estadoFisico",
-                            e.target.value as EstadoFisico
+                            e.target.value as PhysicalState
                           )
                         }
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
@@ -378,7 +378,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                           actualizar(
                             "estadoActual",
                             "nivelMovilidad",
-                            e.target.value as NivelMovilidad
+                            e.target.value as MobilityLevel
                           )
                         }
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
@@ -402,7 +402,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                           actualizar(
                             "estadoActual",
                             "estadoEmocional",
-                            e.target.value as EstadoEmocional
+                            e.target.value as EmotionalState
                           )
                         }
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"

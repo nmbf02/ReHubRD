@@ -12,13 +12,13 @@ import { getPerfilInicial } from "@/lib/profile-store";
 import {
   getCheckIns,
   saveCheckInAndUpdatePerfil,
-  type AccesoMedicamentos,
+  type HasAccessToMedication,
 } from "@/lib/followup-store";
 import {
   identificarEscenario,
   type FlujoEscenario,
 } from "@/lib/scenary-workflow";
-import type { EstadoFisico, NivelMovilidad, EstadoEmocional } from "@/types/perfil";
+import type { PhysicalState, MobilityLevel, EmotionalState } from "@/types/perfil";
 import {
   OPCIONES_ESTADO_FISICO,
   OPCIONES_NIVEL_MOVILIDAD,
@@ -54,11 +54,11 @@ const LABEL_BIENESTAR: Record<number, string> = {
 
 export function SeguimientoView({ userId }: Props) {
   const [mounted, setMounted] = useState(false);
-  const [estadoFisico, setEstadoFisico] = useState<EstadoFisico>("recuperacion");
-  const [nivelMovilidad, setNivelMovilidad] = useState<NivelMovilidad>("leves");
-  const [estadoEmocional, setEstadoEmocional] = useState<EstadoEmocional>("estres");
+  const [estadoFisico, setEstadoFisico] = useState<PhysicalState>("recuperacion");
+  const [nivelMovilidad, setNivelMovilidad] = useState<MobilityLevel>("leves");
+  const [estadoEmocional, setEstadoEmocional] = useState<EmotionalState>("estres");
   const [bienestar, setBienestar] = useState(3);
-  const [accesoMedicamentos, setAccesoMedicamentos] = useState<AccesoMedicamentos | "">("");
+  const [accesoMedicamentos, setAccesoMedicamentos] = useState<HasAccessToMedication | "">("");
   const [notas, setNotas] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -81,11 +81,11 @@ export function SeguimientoView({ userId }: Props) {
     if (cis.length > 0) {
       const ultimo = cis[0]!;
       const escenario = identificarEscenario({
-        bienestar: ultimo.bienestar,
-        nivelMovilidad: ultimo.nivelMovilidad,
-        accesoMedicamentos: ultimo.accesoMedicamentos,
+        bienestar: ultimo.wellBeing,
+        nivelMovilidad: ultimo.movilityLevel,
+        accesoMedicamentos: ultimo.hasAccessToMedication,
         redApoyo: perfil.contextoSocial?.redApoyo,
-        estadoEmocional: ultimo.estadoEmocional,
+        estadoEmocional: ultimo.emotionalState,
       });
       setFlujoRecomendado(escenario);
     }
@@ -221,7 +221,7 @@ export function SeguimientoView({ userId }: Props) {
             </label>
             <select
               value={estadoFisico}
-              onChange={(e) => setEstadoFisico(e.target.value as EstadoFisico)}
+              onChange={(e) => setEstadoFisico(e.target.value as PhysicalState)}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
             >
               {Object.entries(OPCIONES_ESTADO_FISICO).map(([k, v]) => (
@@ -238,7 +238,7 @@ export function SeguimientoView({ userId }: Props) {
             </label>
             <select
               value={nivelMovilidad}
-              onChange={(e) => setNivelMovilidad(e.target.value as NivelMovilidad)}
+              onChange={(e) => setNivelMovilidad(e.target.value as MobilityLevel)}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
             >
               {Object.entries(OPCIONES_NIVEL_MOVILIDAD).map(([k, v]) => (
@@ -255,7 +255,7 @@ export function SeguimientoView({ userId }: Props) {
             </label>
             <select
               value={estadoEmocional}
-              onChange={(e) => setEstadoEmocional(e.target.value as EstadoEmocional)}
+              onChange={(e) => setEstadoEmocional(e.target.value as EmotionalState)}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
             >
               {Object.entries(OPCIONES_ESTADO_EMOCIONAL).map(([k, v]) => (
@@ -272,7 +272,7 @@ export function SeguimientoView({ userId }: Props) {
             </label>
             <select
               value={accesoMedicamentos}
-              onChange={(e) => setAccesoMedicamentos(e.target.value as AccesoMedicamentos | "")}
+              onChange={(e) => setAccesoMedicamentos(e.target.value as HasAccessToMedication | "")}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
             >
               <option value="">No aplica / No tomo medicamentos</option>
@@ -408,30 +408,30 @@ export function SeguimientoView({ userId }: Props) {
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <span className="text-sm font-medium text-rehub-dark">
-                      {formatFecha(ci.fecha)}
+                      {formatFecha(ci.date)}
                     </span>
                     <span className="text-sm font-semibold text-rehub-primary">
-                      Bienestar: {ci.bienestar}/5
+                      Bienestar: {ci.wellBeing}/5
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-2 text-xs text-rehub-dark/70">
-                    <span>{OPCIONES_ESTADO_FISICO[ci.estadoFisico]}</span>
+                    <span>{OPCIONES_ESTADO_FISICO[ci.physicalState]}</span>
                     <span>·</span>
-                    <span>{OPCIONES_NIVEL_MOVILIDAD[ci.nivelMovilidad]}</span>
+                    <span>{OPCIONES_NIVEL_MOVILIDAD[ci.movilityLevel]}</span>
                     <span>·</span>
-                    <span>{OPCIONES_ESTADO_EMOCIONAL[ci.estadoEmocional]}</span>
-                    {ci.accesoMedicamentos && (
+                    <span>{OPCIONES_ESTADO_EMOCIONAL[ci.emotionalState]}</span>
+                    {ci.hasAccessToMedication && (
                       <>
                         <span>·</span>
                         <span>
-                          Medicamentos: {ci.accesoMedicamentos === "si" ? "Sí" : ci.accesoMedicamentos === "no" ? "No" : ci.accesoMedicamentos === "parcial" ? "Parcial" : "N/A"}
+                          Medicamentos: {ci.hasAccessToMedication === "si" ? "Sí" : ci.hasAccessToMedication === "no" ? "No" : ci.hasAccessToMedication === "parcial" ? "Parcial" : "N/A"}
                         </span>
                       </>
                     )}
                   </div>
-                  {ci.notas && (
+                  {ci.notes && (
                     <p className="mt-2 text-sm text-rehub-dark/80 border-t border-slate-100 pt-2">
-                      {ci.notas}
+                      {ci.notes}
                     </p>
                   )}
                 </li>

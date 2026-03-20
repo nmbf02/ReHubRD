@@ -76,9 +76,9 @@ export interface SituacionAccidente {
 }
 
 export interface EstadoActual {
-  estadoFisico: PhysicalState;
-  nivelMovilidad: MobilityLevel;
-  estadoEmocional: EmotionalState;
+  physicalState: PhysicalState;
+  mobilityLevel: MobilityLevel;
+  emotionalState: EmotionalState;
   tratamientosActuales?: string;
 }
 

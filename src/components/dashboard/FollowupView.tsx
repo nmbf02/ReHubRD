@@ -72,9 +72,9 @@ export function SeguimientoView({ userId }: Props) {
   useEffect(() => {
     if (!mounted) return;
     const perfil = getPerfilInicial(userId ?? undefined);
-    setEstadoFisico(perfil.estadoActual.estadoFisico ?? "recuperacion");
-    setNivelMovilidad(perfil.estadoActual.nivelMovilidad ?? "leves");
-    setEstadoEmocional(perfil.estadoActual.estadoEmocional ?? "estres");
+    setEstadoFisico(perfil.estadoActual.physicalState ?? "recuperacion");
+    setNivelMovilidad(perfil.estadoActual.mobilityLevel ?? "leves");
+    setEstadoEmocional(perfil.estadoActual.emotionalState ?? "estres");
     const cis = getCheckIns(userId ?? undefined);
     setCheckIns(cis);
     // Mostrar flujo recomendado según último check-in si existe

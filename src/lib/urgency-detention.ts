@@ -50,15 +50,15 @@ export function detectarSituacion(
 
   // No puede caminar / movilidad grave
   const movilidadGrave =
-    estadoActual.nivelMovilidad === "graves" ||
-    estadoActual.nivelMovilidad === "moderadas";
+    estadoActual.mobilityLevel === "graves" ||
+    estadoActual.mobilityLevel === "moderadas";
   if (movilidadGrave) {
     motivos.push("Movilidad reducida");
     if (!necesidades.includes("transporte")) necesidades.push("transporte");
   }
 
   // Requiere asistencia
-  const requiereAsistencia = estadoActual.estadoFisico === "requiere_asistencia";
+  const requiereAsistencia = estadoActual.physicalState === "requiere_asistencia";
   if (requiereAsistencia) {
     motivos.push("Requiere asistencia");
     necesidades.push("asistencia");
@@ -66,9 +66,9 @@ export function detectarSituacion(
 
   // Estado emocional negativo
   const emocionalMal =
-    estadoActual.estadoEmocional === "ansiedad" ||
-    estadoActual.estadoEmocional === "estres" ||
-    estadoActual.estadoEmocional === "tristeza";
+    estadoActual.emotionalState === "ansiedad" ||
+    estadoActual.emotionalState === "estres" ||
+    estadoActual.emotionalState === "tristeza";
   if (emocionalMal && !necesidades.includes("apoyo_emocional")) {
     necesidades.push("apoyo_emocional");
   }

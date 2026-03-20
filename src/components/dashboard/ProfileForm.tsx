@@ -76,13 +76,13 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
     if (!perfil.situacionAccidente.tipoAccidente) {
       err.tipoAccidente = "Indica el tipo de accidente.";
     }
-    if (!perfil.estadoActual.estadoFisico) {
+    if (!perfil.estadoActual.physicalState) {
       err.estadoFisico = "Indica tu estado físico.";
     }
-    if (!perfil.estadoActual.nivelMovilidad) {
+    if (!perfil.estadoActual.mobilityLevel) {
       err.nivelMovilidad = "Indica tu nivel de movilidad.";
     }
-    if (!perfil.estadoActual.estadoEmocional) {
+    if (!perfil.estadoActual.emotionalState) {
       err.estadoEmocional = "Indica tu estado emocional.";
     }
     if (!perfil.contextoSocial.situacionLaboral) {
@@ -107,7 +107,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
           datosPersonales: perfil.datosPersonales,
           accidentState: perfil.situacionAccidente,
           overallCondition: perfil.estadoActual,
-          contextoSocial: perfil.contextoSocial,
+          socialContext: perfil.contextoSocial,
           notas: perfil.notas,
         },
         userId
@@ -351,7 +351,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                       error={errores.estadoFisico}
                     >
                       <select
-                        value={perfil.estadoActual.estadoFisico ?? ""}
+                        value={perfil.estadoActual.physicalState ?? ""}
                         onChange={(e) =>
                           actualizar(
                             "estadoActual",
@@ -373,7 +373,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                       error={errores.nivelMovilidad}
                     >
                       <select
-                        value={perfil.estadoActual.nivelMovilidad ?? ""}
+                        value={perfil.estadoActual.mobilityLevel ?? ""}
                         onChange={(e) =>
                           actualizar(
                             "estadoActual",
@@ -397,7 +397,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                       error={errores.estadoEmocional}
                     >
                       <select
-                        value={perfil.estadoActual.estadoEmocional ?? ""}
+                        value={perfil.estadoActual.emotionalState ?? ""}
                         onChange={(e) =>
                           actualizar(
                             "estadoActual",

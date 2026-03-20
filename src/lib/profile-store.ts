@@ -11,9 +11,9 @@ const PERFIL_VACIO: Omit<PerfilRecuperacion, "creadoEn" | "actualizadoEn"> = {
     tipoAccidente: "transito",
   },
   estadoActual: {
-    estadoFisico: "recuperacion",
-    nivelMovilidad: "leves",
-    estadoEmocional: "estres",
+    physicalState: "recuperacion",
+    mobilityLevel: "leves",
+    emotionalState: "estres",
   },
   contextoSocial: {
     situacionLaboral: "incapacidad_temporal",
@@ -35,9 +35,9 @@ function migrarPerfil(raw: unknown): PerfilRecuperacion | null {
         tipoSeguro: undefined,
       },
       estadoActual: {
-        estadoFisico: (viejo.estadoFisico as PerfilRecuperacion["estadoActual"]["estadoFisico"]) ?? "recuperacion",
-        nivelMovilidad: (viejo.nivelMovilidad as PerfilRecuperacion["estadoActual"]["nivelMovilidad"]) ?? "leves",
-        estadoEmocional: (viejo.estadoEmocional as PerfilRecuperacion["estadoActual"]["estadoEmocional"]) ?? "estres",
+        physicalState: (viejo.estadoFisico as PerfilRecuperacion["estadoActual"]["physicalState"]) ?? "recuperacion",
+        mobilityLevel: (viejo.nivelMovilidad as PerfilRecuperacion["estadoActual"]["mobilityLevel"]) ?? "leves",
+        emotionalState: (viejo.estadoEmocional as PerfilRecuperacion["estadoActual"]["emotionalState"]) ?? "estres",
       },
       contextoSocial: {
         situacionLaboral: (viejo.situacionLaboral as PerfilRecuperacion["contextoSocial"]["situacionLaboral"]) ?? "incapacidad_temporal",
@@ -91,7 +91,7 @@ export function savePerfil(
     datosPersonales?: PerfilRecuperacion["datosPersonales"];
     accidentState: Partial<PerfilRecuperacion["situacionAccidente"]>;
     overallCondition: Partial<PerfilRecuperacion["estadoActual"]>;
-    contextoSocial: Partial<PerfilRecuperacion["contextoSocial"]>;
+    socialContext: Partial<PerfilRecuperacion["contextoSocial"]>;
     notas?: string;
   },
   userId?: string
@@ -108,7 +108,7 @@ export function savePerfil(
     datosPersonales: perfil.datosPersonales ?? existente?.datosPersonales,
     situacionAccidente: { ...situacionBase, ...perfil.accidentState },
     estadoActual: { ...estadoBase, ...perfil.overallCondition },
-    contextoSocial: { ...contextoBase, ...perfil.contextoSocial },
+    contextoSocial: { ...contextoBase, ...perfil.socialContext },
     notas: perfil.notas ?? existente?.notas,
     creadoEn: existente?.creadoEn ?? ahora,
     actualizadoEn: ahora,
@@ -144,9 +144,9 @@ export function calcularProgreso(perfil: PerfilRecuperacion): number {
   if (perfil.situacionAccidente.tipoAccidente) completados++;
   if (perfil.situacionAccidente.fechaAltaMedica) completados++;
   if (perfil.situacionAccidente.tipoSeguro) completados++;
-  if (perfil.estadoActual.estadoFisico) completados++;
-  if (perfil.estadoActual.nivelMovilidad) completados++;
-  if (perfil.estadoActual.estadoEmocional) completados++;
+  if (perfil.estadoActual.physicalState) completados++;
+  if (perfil.estadoActual.mobilityLevel) completados++;
+  if (perfil.estadoActual.emotionalState) completados++;
   if (perfil.contextoSocial.situacionLaboral) completados++;
   if (perfil.contextoSocial.redApoyo) completados++;
   if (perfil.contextoSocial.contactoEmergencia || perfil.contextoSocial.telefonoEmergencia) completados++;

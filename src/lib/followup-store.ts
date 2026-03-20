@@ -24,7 +24,7 @@ export interface CheckIn {
 
 const STORAGE_KEY = "rehub-seguimiento";
 const MAX_CHECKINS = 30;
-// should check here, this undefined doesn't look right.  TODO: Felix
+// should check here, this undefined doesn't look right. neither the userId as type string wtf xd TODO: Felix
 export function getCheckIns(userId?: string): CheckIn[] {
   if (typeof window === "undefined") return [];
   const key = userId ? `${STORAGE_KEY}-${userId}` : STORAGE_KEY;
@@ -43,19 +43,19 @@ export function addCheckIn(
   userId?: string
 ): CheckIn {
   const ahora = new Date().toISOString();
-  const nuevo: CheckIn = {
+  const newUser: CheckIn = {
     ...checkIn,
     id: `ci-${Date.now()}`,
     date: ahora,
   };
-  const existentes = getCheckIns(userId);
-  const todos = [nuevo, ...existentes].slice(0, MAX_CHECKINS);
+  const existentUsers = getCheckIns(userId);
+  const allUsers = [newUser, ...existentUsers].slice(0, MAX_CHECKINS);
   const key = userId ? `${STORAGE_KEY}-${userId}` : STORAGE_KEY;
   if (typeof window !== "undefined") {
-    localStorage.setItem(key, JSON.stringify(todos));
+    localStorage.setItem(key, JSON.stringify(allUsers));
     window.dispatchEvent(new CustomEvent("rehub-seguimiento-updated"));
   }
-  return nuevo;
+  return newUser;
 }
 
 export function saveCheckInAndUpdatePerfil(
@@ -68,11 +68,11 @@ export function saveCheckInAndUpdatePerfil(
     {
       accidentState: {},
       overallCondition: {
-        estadoFisico: checkIn.physicalState,
-        nivelMovilidad: checkIn.movilityLevel,
-        estadoEmocional: checkIn.emotionalState,
+        physicalState: checkIn.physicalState,
+        mobilityLevel: checkIn.movilityLevel,
+        emotionalState: checkIn.emotionalState,
       },
-      contextoSocial: {},
+      socialContext: {},
     },
     userId
   );

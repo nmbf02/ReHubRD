@@ -18,7 +18,7 @@ export function identificarNecesidades(
   const necesidades: NecesidadPrioritaria[] = [];
 
   // Estado emocional
-  if (estadoActual.estadoEmocional === "ansiedad" || estadoActual.estadoEmocional === "estres") {
+  if (estadoActual.emotionalState === "ansiedad" || estadoActual.emotionalState === "estres") {
     necesidades.push({
       id: "emocional-ansiedad",
       titulo: "Apoyo emocional",
@@ -26,7 +26,7 @@ export function identificarNecesidades(
       prioridad: "alta",
     });
   }
-  if (estadoActual.estadoEmocional === "tristeza") {
+  if (estadoActual.emotionalState === "tristeza") {
     necesidades.push({
       id: "emocional-tristeza",
       titulo: "Apoyo emocional",
@@ -36,7 +36,7 @@ export function identificarNecesidades(
   }
 
   // Movilidad
-  if (estadoActual.nivelMovilidad === "graves" || estadoActual.nivelMovilidad === "moderadas") {
+  if (estadoActual.mobilityLevel === "graves" || estadoActual.mobilityLevel === "moderadas") {
     necesidades.push({
       id: "movilidad",
       titulo: "Orientación logística y accesibilidad",
@@ -44,7 +44,7 @@ export function identificarNecesidades(
       prioridad: "alta",
     });
   }
-  if (estadoActual.nivelMovilidad === "leves") {
+  if (estadoActual.mobilityLevel === "leves") {
     necesidades.push({
       id: "movilidad-leve",
       titulo: "Seguimiento de movilidad",
@@ -82,7 +82,7 @@ export function identificarNecesidades(
   }
 
   // Estado físico
-  if (estadoActual.estadoFisico === "requiere_asistencia") {
+  if (estadoActual.physicalState === "requiere_asistencia") {
     necesidades.push({
       id: "asistencia",
       titulo: "Cuidados y asistencia",

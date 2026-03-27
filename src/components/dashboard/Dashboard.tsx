@@ -18,7 +18,7 @@ const FLUJO_PASOS = [
     paso: 1,
     titulo: "Mi perfil",
     descripcion: "Tu situación, accidente, ubicación y contexto para un plan personalizado.",
-    href: "/dashboard/perfil",
+    href: "/dashboard/profile",
     Icon: IconUser,
   },
   {
@@ -32,14 +32,14 @@ const FLUJO_PASOS = [
     paso: 3,
     titulo: "Seguimiento",
     descripcion: "Check-ins semanales para que el plan se adapte a tu evolución.",
-    href: "/dashboard/seguimiento",
+    href: "/dashboard/followup",
     Icon: IconRefresh,
   },
   {
     paso: 4,
     titulo: "Recursos",
     descripcion: "24 guías: transporte, medicamentos, apoyo sola/o, trámites, ayuda gratuita.",
-    href: "/dashboard/recursos",
+    href: "/dashboard/resources",
     Icon: IconBook,
   },
 ];
@@ -48,7 +48,7 @@ const CARDS_ACCESO = [
   {
     title: "Mi perfil",
     desc: "Situación, necesidades y contexto.",
-    href: "/dashboard/perfil",
+    href: "/dashboard/profile",
     Icon: IconUser,
   },
   {
@@ -60,13 +60,13 @@ const CARDS_ACCESO = [
   {
     title: "Seguimiento",
     desc: "Registra cómo te sientes esta semana.",
-    href: "/dashboard/seguimiento",
+    href: "/dashboard/followup",
     Icon: IconRefresh,
   },
   {
     title: "Recursos",
     desc: "24 guías, ayuda gratuita y planes de acogida.",
-    href: "/dashboard/recursos",
+    href: "/dashboard/resources",
     Icon: IconBook,
   },
 ];
@@ -106,10 +106,10 @@ export function InicioDashboard({ userName, userId }: Props) {
   const pasoActualData = FLUJO_PASOS[pasoEnCurso - 1];
   const accionSugerida =
     progreso < 25
-      ? { href: "/dashboard/perfil", label: "Completar perfil" }
+      ? { href: "/dashboard/profile", label: "Completar perfil" }
       : progreso < 75
         ? { href: "/dashboard/plan", label: "Ver mi plan" }
-        : { href: "/dashboard/seguimiento", label: "Actualizar seguimiento" };
+        : { href: "/dashboard/followup", label: "Actualizar seguimiento" };
 
   return (
     <div className="space-y-8">
@@ -238,8 +238,8 @@ export function InicioDashboard({ userName, userId }: Props) {
               href={href}
               className="group flex flex-col gap-3 p-5 bg-white rounded-xl border border-slate-200/80 hover:border-rehub-primary/30 hover:shadow-lg transition-all duration-200"
             >
-              <span className="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-slate-100 text-slate-600 group-hover:bg-rehub-primary/10 group-hover:text-rehub-primary transition-colors">
-                <Icon className="w-6 h-6" />
+              <span className="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-slate-100 text-slate-600 group-hover:bg-rehub-primary/10 group-hover:text-rehub-primary transition-colors [&_svg]:h-6 [&_svg]:w-6">
+                <Icon />
               </span>
               <div>
                 <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary transition-colors">
@@ -252,7 +252,7 @@ export function InicioDashboard({ userName, userId }: Props) {
         </div>
         <div className="mt-4 grid sm:grid-cols-2 gap-4">
           <Link
-            href="/dashboard/recursos#ayuda-gratuita"
+            href="/dashboard/resources#ayuda-gratuita"
             className="flex items-center gap-4 p-5 rounded-xl border border-emerald-200 bg-emerald-50/60 hover:bg-emerald-50 transition-colors group"
           >
             <span className="text-2xl">🎁</span>
@@ -262,7 +262,7 @@ export function InicioDashboard({ userName, userId }: Props) {
             </div>
           </Link>
           <Link
-            href="/dashboard/recursos#planes-acogida"
+            href="/dashboard/resources#planes-acogida"
             className="flex items-center gap-4 p-5 rounded-xl border border-slate-200 bg-slate-50/80 hover:bg-slate-50 transition-colors group"
           >
             <span className="text-2xl">🏠</span>

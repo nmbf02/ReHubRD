@@ -7,7 +7,7 @@ export default async function SeguimientoPage() {
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {
-    redirect("/login?callbackUrl=/dashboard/seguimiento");
+    redirect("/login?callbackUrl=/dashboard/followup");
   }
 
   return (

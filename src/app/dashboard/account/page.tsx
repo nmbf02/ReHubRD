@@ -14,7 +14,7 @@ export default async function AccountPage() {
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {
-    redirect("/login?callbackUrl=/dashboard/cuenta");
+    redirect("/login?callbackUrl=/dashboard/account");
   }
 
   const userData: userDataProps = {

@@ -4,6 +4,8 @@
  * ReHub te ofrece un plan y seguimiento adaptados.
  */
 
+import type { PerfilRecuperacion } from "@/types/profile";
+
 export type AccesoMedicamentos = "si" | "no" | "parcial" | "no_se";
 
 export interface CondicionesCheckIn {
@@ -55,7 +57,7 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 2,
         titulo: "Conseguir medicamentos",
         descripcion: "Promese/CAL y hospitales públicos ofrecen medicamentos gratuitos. Pregunta en tu centro de salud más cercano.",
-        href: "/dashboard/recursos?guia=ayudaPagarMedicamentos",
+        href: "/dashboard/resources?guia=ayudaPagarMedicamentos",
         accion: "Ver guía medicamentos",
         urgente: true,
       },
@@ -63,21 +65,21 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 3,
         titulo: "Transporte y acompañamiento",
         descripcion: "Si estás sola o solo: Movep, familia, vecinos. Pide ayuda para llegar al centro de salud o farmacia.",
-        href: "/dashboard/recursos?guia=sola",
+        href: "/dashboard/resources?guia=sola",
         accion: "Ver guía estoy sola/o",
       },
       {
         orden: 4,
         titulo: "Ayuda gratuita",
         descripcion: "Revisa programas sin costo: 811, Promese/CAL, ADR, comedores económicos.",
-        href: "/dashboard/recursos#ayuda-gratuita",
+        href: "/dashboard/resources#ayuda-gratuita",
         accion: "Ver ayuda gratuita",
       },
       {
         orden: 5,
         titulo: "Próximo check-in",
         descripcion: "Registra tu estado en 2-3 días para ajustar el plan.",
-        href: "/dashboard/seguimiento",
+        href: "/dashboard/followup",
         accion: "Actualizar seguimiento",
       },
     ],
@@ -107,21 +109,21 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 2,
         titulo: "Medicamentos sin costo",
         descripcion: "Promese/CAL, programas en hospitales públicos. Pregunta en tu centro de salud.",
-        href: "/dashboard/recursos?guia=ayudaPagarMedicamentos",
+        href: "/dashboard/resources?guia=ayudaPagarMedicamentos",
         accion: "Ver guía",
       },
       {
         orden: 3,
         titulo: "Ayuda gratuita",
         descripcion: "Recursos sin costo en República Dominicana.",
-        href: "/dashboard/recursos#ayuda-gratuita",
+        href: "/dashboard/resources#ayuda-gratuita",
         accion: "Ver recursos",
       },
       {
         orden: 4,
         titulo: "Seguimiento",
         descripcion: "Actualiza en unos días.",
-        href: "/dashboard/seguimiento",
+        href: "/dashboard/followup",
         accion: "Registrar check-in",
       },
     ],
@@ -145,21 +147,21 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 2,
         titulo: "Transporte",
         descripcion: "Movep, OMSA, familia. Planifica traslados con anticipación.",
-        href: "/dashboard/recursos?guia=transporte",
+        href: "/dashboard/resources?guia=transporte",
         accion: "Ver guía transporte",
       },
       {
         orden: 3,
         titulo: "Accesibilidad en casa",
         descripcion: "Barras de apoyo, iluminación, eliminar obstáculos.",
-        href: "/dashboard/recursos?guia=accesibilidad",
+        href: "/dashboard/resources?guia=accesibilidad",
         accion: "Ver guía accesibilidad",
       },
       {
         orden: 4,
         titulo: "Planes de acogida",
         descripcion: "Programas de acompañamiento y reinserción.",
-        href: "/dashboard/recursos#planes-acogida",
+        href: "/dashboard/resources#planes-acogida",
         accion: "Ver planes",
       },
     ],
@@ -176,21 +178,21 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 1,
         titulo: "Ayuda para pagar medicamentos",
         descripcion: "Promese/CAL, centros de salud, programas sociales.",
-        href: "/dashboard/recursos?guia=ayudaPagarMedicamentos",
+        href: "/dashboard/resources?guia=ayudaPagarMedicamentos",
         accion: "Ver guía",
       },
       {
         orden: 2,
         titulo: "Opciones de delivery",
         descripcion: "PedidosYa, farmacias con envío a domicilio.",
-        href: "/dashboard/recursos?guia=medicamentos",
+        href: "/dashboard/resources?guia=medicamentos",
         accion: "Ver guía medicamentos",
       },
       {
         orden: 3,
         titulo: "Seguimiento",
         descripcion: "Actualiza cuando consigas o si cambia tu situación.",
-        href: "/dashboard/seguimiento",
+        href: "/dashboard/followup",
         accion: "Registrar check-in",
       },
     ],
@@ -215,14 +217,14 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 2,
         titulo: "Apoyo emocional",
         descripcion: "Recursos y técnicas para manejar ansiedad, estrés, tristeza.",
-        href: "/dashboard/recursos?guia=apoyoEmocional",
+        href: "/dashboard/resources?guia=apoyoEmocional",
         accion: "Ver guía",
       },
       {
         orden: 3,
         titulo: "Seguimiento",
         descripcion: "Actualiza en unos días para ajustar el plan.",
-        href: "/dashboard/seguimiento",
+        href: "/dashboard/followup",
         accion: "Registrar check-in",
       },
     ],
@@ -247,21 +249,21 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 2,
         titulo: "Guía: Estoy sola o solo",
         descripcion: "Recursos, vecinos, organizaciones comunitarias.",
-        href: "/dashboard/recursos?guia=sola",
+        href: "/dashboard/resources?guia=sola",
         accion: "Ver guía",
       },
       {
         orden: 3,
         titulo: "Contacto de emergencia",
         descripcion: "Registra una persona de confianza en tu perfil.",
-        href: "/dashboard/perfil",
+        href: "/dashboard/profile",
         accion: "Completar perfil",
       },
       {
         orden: 4,
         titulo: "Planes de acogida",
         descripcion: "Programas de acompañamiento.",
-        href: "/dashboard/recursos#planes-acogida",
+        href: "/dashboard/resources#planes-acogida",
         accion: "Ver planes",
       },
     ],
@@ -278,21 +280,21 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 1,
         titulo: "Consulta con tu médico",
         descripcion: "Revisar tratamiento. Segunda opinión si lo necesitas.",
-        href: "/dashboard/recursos?guia=segundoDiagnostico",
+        href: "/dashboard/resources?guia=segundoDiagnostico",
         accion: "Ver guía",
       },
       {
         orden: 2,
         titulo: "Guía: Dolor crónico",
         descripcion: "Opciones y recursos para manejar el dolor.",
-        href: "/dashboard/recursos?guia=dolorCronico",
+        href: "/dashboard/resources?guia=dolorCronico",
         accion: "Ver guía",
       },
       {
         orden: 3,
         titulo: "Fisioterapia y rehabilitación",
         descripcion: "ADR y centros de salud pueden ayudar.",
-        href: "/dashboard/recursos?guia=fisioterapia",
+        href: "/dashboard/resources?guia=fisioterapia",
         accion: "Ver recursos",
       },
     ],
@@ -316,14 +318,14 @@ const ESCENARIOS: FlujoEscenario[] = [
         orden: 2,
         titulo: "Recursos",
         descripcion: "24 guías para distintas situaciones.",
-        href: "/dashboard/recursos",
+        href: "/dashboard/resources",
         accion: "Explorar recursos",
       },
       {
         orden: 3,
         titulo: "Seguimiento",
         descripcion: "Actualiza tu estado regularmente.",
-        href: "/dashboard/seguimiento",
+        href: "/dashboard/followup",
         accion: "Registrar check-in",
       },
     ],
@@ -382,17 +384,10 @@ export function identificarEscenario(
 /**
  * Identifica escenario solo con perfil (sin check-in reciente).
  */
-export function identificarEscenarioDesdePerfil(perfil: {
-  estadoActual?: {
-    nivelMovilidad?: string;
-    estadoEmocional?: string;
-    estadoFisico?: string;
-  };
-  contextoSocial?: { redApoyo?: string };
-}): FlujoEscenario {
-  const nivelMovilidad = perfil.estadoActual?.nivelMovilidad ?? "leves";
+export function identificarEscenarioDesdePerfil(perfil: PerfilRecuperacion): FlujoEscenario {
+  const nivelMovilidad = perfil.estadoActual?.mobilityLevel ?? "leves";
   const redApoyo = perfil.contextoSocial?.redApoyo ?? "moderada";
-  const estadoEmocional = perfil.estadoActual?.estadoEmocional ?? "bien";
+  const estadoEmocional = perfil.estadoActual?.emotionalState ?? "bien";
 
   // Emocional bajo + movilidad limitada
   if (

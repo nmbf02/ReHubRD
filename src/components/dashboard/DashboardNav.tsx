@@ -7,14 +7,15 @@ import { signOut } from "next-auth/react";
 import type { Session } from "next-auth";
 import { IconHome, IconUser, IconClipboard, IconRefresh, IconBook, IconSettings } from "@/components/ui/Icons";
 import { getAccountData } from "@/lib/account-store";
+import { ROUTES } from "@/lib/routes";
 
 const navItems = [
-  { href: "/dashboard", label: "Inicio", Icon: IconHome },
-  { href: "/dashboard/perfil", label: "Mi perfil", Icon: IconUser },
-  { href: "/dashboard/plan", label: "Mi plan", Icon: IconClipboard },
-  { href: "/dashboard/seguimiento", label: "Seguimiento", Icon: IconRefresh },
-  { href: "/dashboard/recursos", label: "Recursos", Icon: IconBook },
-  { href: "/dashboard/cuenta", label: "Cuenta", Icon: IconSettings },
+  { href: ROUTES.dashboard, label: "Inicio", Icon: IconHome },
+  { href: ROUTES.profile, label: "Mi perfil", Icon: IconUser },
+  { href: ROUTES.plan, label: "Mi plan", Icon: IconClipboard },
+  { href: ROUTES.followup, label: "Seguimiento", Icon: IconRefresh },
+  { href: ROUTES.resources, label: "Recursos", Icon: IconBook },
+  { href: ROUTES.account, label: "Cuenta", Icon: IconSettings },
 ];
 
 interface Props {
@@ -41,12 +42,12 @@ export function DashboardNav({ user }: Props) {
     <>
       {/* Mobile header */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-40 h-16 bg-white border-b border-rehub-light/50 flex items-center justify-between px-4">
-        <Link href="/dashboard" className="text-xl font-bold text-rehub-primary">
+        <Link href={ROUTES.dashboard} className="text-xl font-bold text-rehub-primary">
           ReHub
         </Link>
         <div className="flex items-center gap-2">
           <Link
-            href="/dashboard/cuenta"
+            href={ROUTES.account}
             className="text-sm text-rehub-dark/70 truncate max-w-[120px] hover:text-rehub-primary"
           >
             {displayName ?? "Usuario"}
@@ -63,7 +64,7 @@ export function DashboardNav({ user }: Props) {
       {/* Sidebar - desktop */}
       <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-rehub-light/50 flex-col z-40 overflow-hidden">
         <div className="p-6 border-b border-rehub-light/50 shrink-0">
-          <Link href="/dashboard" className="flex items-center gap-2">
+          <Link href={ROUTES.dashboard} className="flex items-center gap-2">
             <span className="text-2xl font-bold text-rehub-primary">ReHub</span>
           </Link>
           <p className="text-xs text-rehub-dark/60 mt-1">Centro de Recuperación</p>

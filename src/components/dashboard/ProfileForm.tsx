@@ -213,7 +213,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         se gestionan en la sección de cuenta.
                       </p>
                       <Link
-                        href="/dashboard/cuenta"
+                        href="/dashboard/account"
                         className="inline-flex items-center gap-1 mt-2 text-rehub-primary font-medium hover:underline"
                       >
                         Ir a Cuenta →

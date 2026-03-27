@@ -24,3 +24,5 @@ const Register: React.FC<registerProps> = () => {
     </section>
   );
 };
+
+export default Register;

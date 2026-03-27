@@ -130,7 +130,7 @@ export function detectarSituacion(
   // Guías recomendadas según necesidades detectadas
   const guiasRecomendadas = [...new Set(necesidades)].map((n) => ({
     ...GUIAS_POR_NECESIDAD[n],
-    href: `/dashboard/recursos?guia=${GUIAS_POR_NECESIDAD[n].id}`,
+    href: `/dashboard/resources?guia=${GUIAS_POR_NECESIDAD[n].id}`,
   }));
 
   return {

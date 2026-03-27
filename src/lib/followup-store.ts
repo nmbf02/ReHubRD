@@ -39,7 +39,7 @@ export function getCheckIns(userId?: string): CheckIn[] {
 }
 
 export function addCheckIn(
-  checkIn: Omit<CheckIn, "id" | "fecha">,
+  checkIn: Omit<CheckIn, "id" | "date">,
   userId?: string
 ): CheckIn {
   const ahora = new Date().toISOString();
@@ -59,7 +59,7 @@ export function addCheckIn(
 }
 
 export function saveCheckInAndUpdatePerfil(
-  checkIn: Omit<CheckIn, "id" | "fecha">,
+  checkIn: Omit<CheckIn, "id" | "date">,
   profile: PerfilRecuperacion,
   userId?: string
 ): CheckIn {

@@ -101,7 +101,7 @@ export function PlanView({ userId }: Props) {
             tu situación. Completa al menos el 25% de tu perfil de recuperación.
           </p>
           <Link
-            href="/dashboard/perfil"
+            href="/dashboard/profile"
             className="inline-flex items-center gap-2 px-6 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors"
           >
             <IconUser className="w-5 h-5" />
@@ -124,7 +124,7 @@ export function PlanView({ userId }: Props) {
         <div className="p-6 lg:p-8">
           <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <Link
-              href="/dashboard/perfil"
+              href="/dashboard/profile"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconUser className="w-4 h-4" />
@@ -137,7 +137,7 @@ export function PlanView({ userId }: Props) {
             </span>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
-              href="/dashboard/seguimiento"
+              href="/dashboard/followup"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconRefresh className="w-4 h-4" />
@@ -145,7 +145,7 @@ export function PlanView({ userId }: Props) {
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
-              href="/dashboard/recursos"
+              href="/dashboard/resources"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconBook className="w-4 h-4" />
@@ -184,7 +184,7 @@ export function PlanView({ userId }: Props) {
             {flujoPorSituacion.pasos.slice(0, 3).map((paso) => (
               <Link
                 key={paso.orden}
-                href={paso.href ?? "/dashboard/recursos"}
+                href={paso.href ?? "/dashboard/resources"}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rehub-primary/10 text-rehub-primary hover:bg-rehub-primary/20 text-sm font-medium transition-colors"
               >
                 {paso.orden}. {paso.titulo}
@@ -193,7 +193,7 @@ export function PlanView({ userId }: Props) {
             ))}
           </div>
           <Link
-            href="/dashboard/seguimiento"
+            href="/dashboard/followup"
             className="inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline"
           >
             Actualizar seguimiento para plan detallado
@@ -301,7 +301,7 @@ export function PlanView({ userId }: Props) {
                     </p>
                   </div>
                   <Link
-                    href={r.href ?? "/dashboard/recursos"}
+                    href={r.href ?? "/dashboard/resources"}
                     className="shrink-0 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-rehub-primary border border-rehub-primary/30 rounded-lg hover:bg-rehub-primary/5 transition-colors"
                   >
                     {r.accion ?? "Ver más"}
@@ -346,7 +346,7 @@ export function PlanView({ userId }: Props) {
                     </p>
                   </div>
                   <Link
-                    href={r.href ?? "/dashboard/recursos"}
+                    href={r.href ?? "/dashboard/resources"}
                     className="shrink-0 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-rehub-primary border border-rehub-primary/30 rounded-lg hover:bg-rehub-primary/5 transition-colors"
                   >
                     {r.accion ?? "Ver más"}
@@ -393,7 +393,7 @@ export function PlanView({ userId }: Props) {
               </p>
             </div>
             <Link
-              href="/dashboard/recursos"
+              href="/dashboard/resources"
               className="inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline"
             >
               Ver guía completa de trámites
@@ -457,7 +457,7 @@ export function PlanView({ userId }: Props) {
         <div className="p-6 lg:p-8">
           <div className="grid sm:grid-cols-2 gap-4">
             <Link
-              href="/dashboard/recursos#ayuda-gratuita"
+              href="/dashboard/resources#ayuda-gratuita"
               className="flex items-start gap-4 p-5 rounded-xl border border-emerald-200 bg-emerald-50/50 hover:bg-emerald-50 hover:border-rehub-primary/40 transition-all group"
             >
               <span className="text-2xl">🎁</span>
@@ -472,7 +472,7 @@ export function PlanView({ userId }: Props) {
               </div>
             </Link>
             <Link
-              href="/dashboard/recursos#planes-acogida"
+              href="/dashboard/resources#planes-acogida"
               className="flex items-start gap-4 p-5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-rehub-primary/5 hover:border-rehub-primary/30 transition-all group"
             >
               <span className="text-2xl">🏠</span>
@@ -487,7 +487,7 @@ export function PlanView({ userId }: Props) {
               </div>
             </Link>
             <Link
-              href="/dashboard/recursos#sitios-cercanos"
+              href="/dashboard/resources#sitios-cercanos"
               className="flex items-start gap-4 p-5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-rehub-primary/5 hover:border-rehub-primary/30 transition-all group"
             >
               <span className="text-2xl">📍</span>
@@ -510,21 +510,21 @@ export function PlanView({ userId }: Props) {
         <h3 className="font-semibold text-rehub-dark mb-4">Próximos pasos</h3>
         <div className="flex flex-col sm:flex-row flex-wrap gap-4">
           <Link
-            href="/dashboard/seguimiento"
+            href="/dashboard/followup"
             className="inline-flex items-center gap-2 px-5 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors"
           >
             <IconRefresh className="w-5 h-5" />
             Actualizar seguimiento
           </Link>
           <Link
-            href="/dashboard/recursos"
+            href="/dashboard/resources"
             className="inline-flex items-center gap-2 px-5 py-3 border border-rehub-primary/30 text-rehub-primary rounded-xl font-medium hover:bg-rehub-primary/5 transition-colors"
           >
             <IconBook className="w-5 h-5" />
             Ver recursos
           </Link>
           <Link
-            href="/dashboard/perfil"
+            href="/dashboard/profile"
             className="inline-flex items-center gap-2 px-5 py-3 border border-slate-300 text-rehub-dark rounded-xl font-medium hover:bg-slate-50 transition-colors"
           >
             <IconUser className="w-5 h-5" />

@@ -33,7 +33,7 @@ export function RecursosView({ userId }: Props) {
         <div className="p-6 lg:p-8">
           <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <Link
-              href="/dashboard/perfil"
+              href="/dashboard/profile"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               1. Mi perfil
@@ -47,7 +47,7 @@ export function RecursosView({ userId }: Props) {
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
-              href="/dashboard/seguimiento"
+              href="/dashboard/followup"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               3. Seguimiento
@@ -86,7 +86,7 @@ export function RecursosView({ userId }: Props) {
             {ESCENARIOS.filter((e) => e.id !== "general").map((esc) => (
               <Link
                 key={esc.id}
-                href="/dashboard/seguimiento"
+                href="/dashboard/followup"
                 className={`flex flex-col p-5 rounded-xl border text-left transition-all hover:shadow-md ${
                   esc.prioridad === "urgente"
                     ? "bg-red-50/60 border-red-200 hover:border-red-300"
@@ -109,7 +109,7 @@ export function RecursosView({ userId }: Props) {
           </div>
           <div className="mt-6 p-4 rounded-xl bg-slate-100/80 border border-slate-200/80">
             <p className="text-sm text-rehub-dark/80">
-              <strong>¿Cómo funciona?</strong> En <Link href="/dashboard/seguimiento" className="text-rehub-primary hover:underline">Seguimiento</Link> indicas cómo te sientes (1-5), tu movilidad y si tienes acceso a medicamentos.
+              <strong>¿Cómo funciona?</strong> En <Link href="/dashboard/followup" className="text-rehub-primary hover:underline">Seguimiento</Link> indicas cómo te sientes (1-5), tu movilidad y si tienes acceso a medicamentos.
               ReHub detecta tu situación y te muestra un plan con pasos concretos (llamar 811, ver guías, etc.) y la frecuencia de check-in sugerida.
             </p>
           </div>
@@ -131,8 +131,8 @@ export function RecursosView({ userId }: Props) {
             {SECCIONES_RECURSOS.map((sec) => {
               const isActive = guiaSeleccionada === sec.id;
               const href = isActive
-                ? "/dashboard/recursos"
-                : `/dashboard/recursos?guia=${sec.id}`;
+                ? "/dashboard/resources"
+                : `/dashboard/resources?guia=${sec.id}`;
               return (
                 <Link
                   key={sec.id}
@@ -161,7 +161,7 @@ export function RecursosView({ userId }: Props) {
         <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
             <Link
-              href="/dashboard/recursos"
+              href="/dashboard/resources"
               className="text-sm text-rehub-primary hover:underline"
             >
               ← Ver todas las opciones
@@ -401,7 +401,7 @@ export function RecursosView({ userId }: Props) {
           Ver mi plan
         </Link>
         <Link
-          href="/dashboard/seguimiento"
+          href="/dashboard/followup"
           className="inline-flex items-center gap-2 px-5 py-3 border border-rehub-primary/30 text-rehub-primary rounded-xl font-medium hover:bg-rehub-primary/5 transition-colors"
         >
           <IconRefresh className="w-5 h-5" />

@@ -105,12 +105,12 @@ export function SeguimientoView({ userId }: Props) {
     setFlujoRecomendado(null);
     const perfil = getPerfilInicial(userId ?? undefined);
     const datosCheckIn = {
-      estadoFisico,
-      nivelMovilidad,
-      estadoEmocional,
-      bienestar,
-      notas: notas.trim() || undefined,
-      accesoMedicamentos: accesoMedicamentos || undefined,
+      physicalState: estadoFisico,
+      movilityLevel: nivelMovilidad,
+      emotionalState: estadoEmocional,
+      wellBeing: bienestar,
+      notes: notas.trim() || undefined,
+      hasAccessToMedication: accesoMedicamentos || undefined,
     };
     saveCheckInAndUpdatePerfil(datosCheckIn, perfil, userId ?? undefined);
     const escenario = identificarEscenario({
@@ -148,7 +148,7 @@ export function SeguimientoView({ userId }: Props) {
         <div className="p-6 lg:p-8">
           <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <Link
-              href="/dashboard/perfil"
+              href="/dashboard/profile"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconUser className="w-4 h-4" />
@@ -169,7 +169,7 @@ export function SeguimientoView({ userId }: Props) {
             </span>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
-              href="/dashboard/recursos"
+              href="/dashboard/resources"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconBook className="w-4 h-4" />
@@ -373,7 +373,7 @@ export function SeguimientoView({ userId }: Props) {
               ))}
             </ol>
             <Link
-              href="/dashboard/recursos#flujos-guia"
+              href="/dashboard/resources#flujos-guia"
               className="inline-block mt-4 text-sm font-medium text-rehub-primary hover:underline"
             >
               Ver guía completa de flujos por situación →
@@ -454,7 +454,7 @@ export function SeguimientoView({ userId }: Props) {
         <div className="p-6 lg:p-8">
           <div className="grid sm:grid-cols-2 gap-4">
             <Link
-              href="/dashboard/recursos#ayuda-gratuita"
+              href="/dashboard/resources#ayuda-gratuita"
               className="flex items-start gap-4 p-5 rounded-xl border border-emerald-200 bg-emerald-50/50 hover:bg-emerald-50 hover:border-rehub-primary/40 transition-all group"
             >
               <span className="text-2xl">🎁</span>
@@ -469,7 +469,7 @@ export function SeguimientoView({ userId }: Props) {
               </div>
             </Link>
             <Link
-              href="/dashboard/recursos#planes-acogida"
+              href="/dashboard/resources#planes-acogida"
               className="flex items-start gap-4 p-5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-rehub-primary/5 hover:border-rehub-primary/30 transition-all group"
             >
               <span className="text-2xl">🏠</span>
@@ -499,7 +499,7 @@ export function SeguimientoView({ userId }: Props) {
             Ver mi plan
           </Link>
           <Link
-            href="/dashboard/recursos"
+            href="/dashboard/resources"
             className="inline-flex items-center gap-2 px-5 py-3 border border-rehub-primary/30 text-rehub-primary rounded-xl font-medium hover:bg-rehub-primary/5 transition-colors"
           >
             <IconBook className="w-5 h-5" />

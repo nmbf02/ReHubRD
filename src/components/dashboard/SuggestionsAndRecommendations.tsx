@@ -49,11 +49,11 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
 
   // default items (toma hasta 5)
   const defaultItems: Item[] = [
-    { label: "Mi perfil", href: "/dashboard/perfil", Icon: IconClipboard },
+    { label: "Mi perfil", href: "/dashboard/profile", Icon: IconClipboard },
     { label: "Mi plan", href: "/dashboard/plan", Icon: IconClipboard },
-    { label: "Seguimiento", href: "/dashboard/seguimiento", Icon: IconRefresh },
-    { label: "Recursos", href: "/dashboard/recursos", Icon: IconCalendar },
-    { label: "Ayuda gratuita", href: "/dashboard/recursos#ayuda-gratuita", Icon: IconCalendar },
+    { label: "Seguimiento", href: "/dashboard/followup", Icon: IconRefresh },
+    { label: "Recursos", href: "/dashboard/resources", Icon: IconCalendar },
+    { label: "Ayuda gratuita", href: "/dashboard/resources#ayuda-gratuita", Icon: IconCalendar },
   ];
 
   const itemsToShow = (propsItems?: Item[]) => {

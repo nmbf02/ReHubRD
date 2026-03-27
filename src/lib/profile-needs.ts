@@ -1,4 +1,4 @@
-import type { PerfilRecuperacion } from "@/types/perfil";
+import type { PerfilRecuperacion } from "@/types/profile";
 
 export interface NecesidadPrioritaria {
   id: string;

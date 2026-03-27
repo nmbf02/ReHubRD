@@ -3,7 +3,7 @@
  * Evalúa qué lugares pueden ayudar según ubicación y necesidades.
  */
 
-import type { ProvinciaRD } from "@/types/perfil";
+import type { ProvinciaRD } from "@/types/profile";
 
 export type TipoSitio =
   | "emergencia"

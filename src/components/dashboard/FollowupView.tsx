@@ -18,12 +18,12 @@ import {
   identificarEscenario,
   type FlujoEscenario,
 } from "@/lib/scenary-workflow";
-import type { PhysicalState, MobilityLevel, EmotionalState } from "@/types/perfil";
+import type { PhysicalState, MobilityLevel, EmotionalState } from "@/types/profile";
 import {
   OPCIONES_ESTADO_FISICO,
   OPCIONES_NIVEL_MOVILIDAD,
   OPCIONES_ESTADO_EMOCIONAL,
-} from "@/types/perfil";
+} from "@/types/profile";
 
 interface Props {
   userId?: string | null;

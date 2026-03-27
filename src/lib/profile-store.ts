@@ -1,6 +1,6 @@
 "use client";
 
-import type { PerfilRecuperacion } from "@/types/perfil";
+import type { PerfilRecuperacion } from "@/types/profile";
 
 const STORAGE_KEY = "rehub-perfil";
 const VERSION_ACTUAL = 1;
@@ -86,7 +86,7 @@ export function getPerfil(userId?: string): PerfilRecuperacion | null {
   }
 }
 
-export function savePerfil(
+export function saveProfile(
   perfil: {
     datosPersonales?: PerfilRecuperacion["datosPersonales"];
     accidentState: Partial<PerfilRecuperacion["situacionAccidente"]>;

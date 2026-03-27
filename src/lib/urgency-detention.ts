@@ -3,7 +3,7 @@
  * Casos: me siento mal + no puedo caminar + no tengo medicamentos, etc.
  */
 
-import type { PerfilRecuperacion } from "@/types/perfil";
+import type { PerfilRecuperacion } from "@/types/profile";
 import type { CheckIn } from "./followup-store";
 
 export type NivelUrgencia = "urgente" | "alta" | "normal";

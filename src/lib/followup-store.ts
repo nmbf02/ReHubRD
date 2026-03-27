@@ -4,9 +4,9 @@ import type {
   PhysicalState,
   MobilityLevel,
   EmotionalState,
-} from "@/types/perfil";
-import { savePerfil } from "./profile-store";
-import type { PerfilRecuperacion } from "@/types/perfil";
+} from "@/types/profile";
+import { saveProfile } from "./profile-store";
+import type { PerfilRecuperacion } from "@/types/profile";
 
 export type HasAccessToMedication = "si" | "no" | "parcial" | "no_se";
 
@@ -64,7 +64,7 @@ export function saveCheckInAndUpdatePerfil(
   userId?: string
 ): CheckIn {
   const saved = addCheckIn(checkIn, userId);
-  savePerfil(
+  saveProfile(
     {
       accidentState: {},
       overallCondition: {

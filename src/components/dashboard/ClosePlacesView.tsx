@@ -8,8 +8,8 @@ import {
 } from "@/lib/nearby-places";
 import { getPerfilInicial } from "@/lib/profile-store";
 import { getNecesidadesSeleccionadas } from "@/lib/needs-options";
-import { OPCIONES_PROVINCIA } from "@/types/perfil";
-import type { ProvinciaRD } from "@/types/perfil";
+import { OPCIONES_PROVINCIA } from "@/types/profile";
+import type { ProvinciaRD } from "@/types/profile";
 
 interface Props {
   userId?: string | null;

@@ -12,7 +12,7 @@ import type {
   EmotionalState,
   TipoSeguro,
   ProvinciaRD,
-} from "@/types/perfil";
+} from "@/types/profile";
 import {
   OPCIONES_TIPO_ACCIDENTE,
   OPCIONES_ESTADO_FISICO,
@@ -22,8 +22,8 @@ import {
   OPCIONES_ESTADO_EMOCIONAL,
   OPCIONES_TIPO_SEGURO,
   OPCIONES_PROVINCIA,
-} from "@/types/perfil";
-import { getPerfilInicial, savePerfil, calcularProgreso } from "@/lib/profile-store";
+} from "@/types/profile";
+import { getPerfilInicial, saveProfile, calcularProgreso } from "@/lib/profile-store";
 import { identificarNecesidades } from "@/lib/profile-needs";
 import { FormField } from "./FormField";
 import { IconUser, IconBuilding, IconChart, IconUsers, IconNote } from "@/components/ui/Icons";
@@ -102,7 +102,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
 
     setIsSaving(true);
     try {
-      savePerfil(
+      saveProfile(
         {
           datosPersonales: perfil.datosPersonales,
           accidentState: perfil.situacionAccidente,

@@ -12,34 +12,35 @@ import {
 import { getPerfilInicial, calcularProgreso } from "@/lib/profile-store";
 import SugerenciasRecordatorios from "@/components/dashboard/SuggestionsAndRecommendations";
 import { getAccountData } from "@/lib/account-store";
+import { ROUTES, hrefResourcesHash } from "@/lib/routes";
 
 const FLUJO_PASOS = [
   {
     paso: 1,
     titulo: "Mi perfil",
     descripcion: "Tu situación, accidente, ubicación y contexto para un plan personalizado.",
-    href: "/dashboard/profile",
+    href: ROUTES.profile,
     Icon: IconUser,
   },
   {
     paso: 2,
     titulo: "Mi plan",
     descripcion: "Recomendaciones, checklist y recordatorios según tus necesidades.",
-    href: "/dashboard/plan",
+    href: ROUTES.plan,
     Icon: IconClipboard,
   },
   {
     paso: 3,
     titulo: "Seguimiento",
     descripcion: "Check-ins semanales para que el plan se adapte a tu evolución.",
-    href: "/dashboard/followup",
+    href: ROUTES.followup,
     Icon: IconRefresh,
   },
   {
     paso: 4,
     titulo: "Recursos",
     descripcion: "24 guías: transporte, medicamentos, apoyo sola/o, trámites, ayuda gratuita.",
-    href: "/dashboard/resources",
+    href: ROUTES.resources,
     Icon: IconBook,
   },
 ];
@@ -48,25 +49,25 @@ const CARDS_ACCESO = [
   {
     title: "Mi perfil",
     desc: "Situación, necesidades y contexto.",
-    href: "/dashboard/profile",
+    href: ROUTES.profile,
     Icon: IconUser,
   },
   {
     title: "Mi plan",
     desc: "Recomendaciones y orientación adaptada.",
-    href: "/dashboard/plan",
+    href: ROUTES.plan,
     Icon: IconClipboard,
   },
   {
     title: "Seguimiento",
     desc: "Registra cómo te sientes esta semana.",
-    href: "/dashboard/followup",
+    href: ROUTES.followup,
     Icon: IconRefresh,
   },
   {
     title: "Recursos",
     desc: "24 guías, ayuda gratuita y planes de acogida.",
-    href: "/dashboard/resources",
+    href: ROUTES.resources,
     Icon: IconBook,
   },
 ];
@@ -106,10 +107,10 @@ export function InicioDashboard({ userName, userId }: Props) {
   const pasoActualData = FLUJO_PASOS[pasoEnCurso - 1];
   const accionSugerida =
     progreso < 25
-      ? { href: "/dashboard/profile", label: "Completar perfil" }
+      ? { href: ROUTES.profile, label: "Completar perfil" }
       : progreso < 75
-        ? { href: "/dashboard/plan", label: "Ver mi plan" }
-        : { href: "/dashboard/followup", label: "Actualizar seguimiento" };
+        ? { href: ROUTES.plan, label: "Ver mi plan" }
+        : { href: ROUTES.followup, label: "Actualizar seguimiento" };
 
   return (
     <div className="space-y-8">
@@ -252,7 +253,7 @@ export function InicioDashboard({ userName, userId }: Props) {
         </div>
         <div className="mt-4 grid sm:grid-cols-2 gap-4">
           <Link
-            href="/dashboard/resources#ayuda-gratuita"
+            href={hrefResourcesHash("ayuda-gratuita")}
             className="flex items-center gap-4 p-5 rounded-xl border border-emerald-200 bg-emerald-50/60 hover:bg-emerald-50 transition-colors group"
           >
             <span className="text-2xl">🎁</span>
@@ -262,7 +263,7 @@ export function InicioDashboard({ userName, userId }: Props) {
             </div>
           </Link>
           <Link
-            href="/dashboard/resources#planes-acogida"
+            href={hrefResourcesHash("planes-acogida")}
             className="flex items-center gap-4 p-5 rounded-xl border border-slate-200 bg-slate-50/80 hover:bg-slate-50 transition-colors group"
           >
             <span className="text-2xl">🏠</span>

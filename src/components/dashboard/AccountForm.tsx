@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
 import { getAccountData as getAccountData, saveAccountData } from "@/lib/account-store";
 
@@ -203,7 +204,7 @@ export function AccountForm({ user }: Props) {
           en Mi perfil.
         </p>
         <Link
-          href="/dashboard/profile"
+          href={ROUTES.profile}
           className="inline-flex items-center gap-2 px-4 py-2 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors text-sm"
         >
           Ir a Mi perfil

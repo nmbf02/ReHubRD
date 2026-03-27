@@ -2,12 +2,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { PlanView } from "@/components/dashboard/PlanView";
+import { ROUTES, hrefLoginCallback } from "@/lib/routes";
 
 export default async function PlanPage() {
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {
-    redirect("/login?callbackUrl=/dashboard/plan");
+    redirect(hrefLoginCallback(ROUTES.plan));
   }
 
   return (

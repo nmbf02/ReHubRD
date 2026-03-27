@@ -7,3 +7,18 @@ export const ROUTES = {
   plan: "/dashboard/plan",
   resources: "/dashboard/resources",
 } as const;
+
+/** `/dashboard/resources?guia=…` */
+export function hrefResourcesGuide(guideId: string): string {
+  return `${ROUTES.resources}?guia=${guideId}`;
+}
+
+/** `/dashboard/resources#…` */
+export function hrefResourcesHash(fragment: string): string {
+  return `${ROUTES.resources}#${fragment}`;
+}
+
+/** NextAuth-style return URL after login */
+export function hrefLoginCallback(returnPath: string): string {
+  return `/login?callbackUrl=${encodeURIComponent(returnPath)}`;
+}

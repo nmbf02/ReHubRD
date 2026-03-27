@@ -18,6 +18,7 @@ import {
   identificarEscenario,
   type FlujoEscenario,
 } from "@/lib/scenary-workflow";
+import { ROUTES, hrefResourcesHash } from "@/lib/routes";
 import type { PhysicalState, MobilityLevel, EmotionalState } from "@/types/profile";
 import {
   OPCIONES_ESTADO_FISICO,
@@ -148,7 +149,7 @@ export function SeguimientoView({ userId }: Props) {
         <div className="p-6 lg:p-8">
           <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <Link
-              href="/dashboard/profile"
+              href={ROUTES.profile}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconUser className="w-4 h-4" />
@@ -156,7 +157,7 @@ export function SeguimientoView({ userId }: Props) {
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
-              href="/dashboard/plan"
+              href={ROUTES.plan}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconClipboard className="w-4 h-4" />
@@ -169,7 +170,7 @@ export function SeguimientoView({ userId }: Props) {
             </span>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
-              href="/dashboard/resources"
+              href={ROUTES.resources}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconBook className="w-4 h-4" />
@@ -373,7 +374,7 @@ export function SeguimientoView({ userId }: Props) {
               ))}
             </ol>
             <Link
-              href="/dashboard/resources#flujos-guia"
+              href={hrefResourcesHash("flujos-guia")}
               className="inline-block mt-4 text-sm font-medium text-rehub-primary hover:underline"
             >
               Ver guía completa de flujos por situación →
@@ -454,7 +455,7 @@ export function SeguimientoView({ userId }: Props) {
         <div className="p-6 lg:p-8">
           <div className="grid sm:grid-cols-2 gap-4">
             <Link
-              href="/dashboard/resources#ayuda-gratuita"
+              href={hrefResourcesHash("ayuda-gratuita")}
               className="flex items-start gap-4 p-5 rounded-xl border border-emerald-200 bg-emerald-50/50 hover:bg-emerald-50 hover:border-rehub-primary/40 transition-all group"
             >
               <span className="text-2xl">🎁</span>
@@ -469,7 +470,7 @@ export function SeguimientoView({ userId }: Props) {
               </div>
             </Link>
             <Link
-              href="/dashboard/resources#planes-acogida"
+              href={hrefResourcesHash("planes-acogida")}
               className="flex items-start gap-4 p-5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-rehub-primary/5 hover:border-rehub-primary/30 transition-all group"
             >
               <span className="text-2xl">🏠</span>
@@ -492,14 +493,14 @@ export function SeguimientoView({ userId }: Props) {
         <h3 className="font-semibold text-rehub-dark mb-4">Relacionado</h3>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
-            href="/dashboard/plan"
+            href={ROUTES.plan}
             className="inline-flex items-center gap-2 px-5 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors"
           >
             <IconClipboard className="w-5 h-5" />
             Ver mi plan
           </Link>
           <Link
-            href="/dashboard/resources"
+            href={ROUTES.resources}
             className="inline-flex items-center gap-2 px-5 py-3 border border-rehub-primary/30 text-rehub-primary rounded-xl font-medium hover:bg-rehub-primary/5 transition-colors"
           >
             <IconBook className="w-5 h-5" />

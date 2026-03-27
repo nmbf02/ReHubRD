@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { IconRefresh, IconClipboard, IconCalendar } from "@/components/ui/Icons";
+import { ROUTES, hrefResourcesHash } from "@/lib/routes";
 
 interface Item {
   label: string;
@@ -49,11 +50,11 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
 
   // default items (toma hasta 5)
   const defaultItems: Item[] = [
-    { label: "Mi perfil", href: "/dashboard/profile", Icon: IconClipboard },
-    { label: "Mi plan", href: "/dashboard/plan", Icon: IconClipboard },
-    { label: "Seguimiento", href: "/dashboard/followup", Icon: IconRefresh },
-    { label: "Recursos", href: "/dashboard/resources", Icon: IconCalendar },
-    { label: "Ayuda gratuita", href: "/dashboard/resources#ayuda-gratuita", Icon: IconCalendar },
+    { label: "Mi perfil", href: ROUTES.profile, Icon: IconClipboard },
+    { label: "Mi plan", href: ROUTES.plan, Icon: IconClipboard },
+    { label: "Seguimiento", href: ROUTES.followup, Icon: IconRefresh },
+    { label: "Recursos", href: ROUTES.resources, Icon: IconCalendar },
+    { label: "Ayuda gratuita", href: hrefResourcesHash("ayuda-gratuita"), Icon: IconCalendar },
   ];
 
   const itemsToShow = (propsItems?: Item[]) => {

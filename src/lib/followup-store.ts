@@ -10,6 +10,15 @@ import type { PerfilRecuperacion } from "@/types/profile";
 
 export type HasAccessToMedication = "si" | "no" | "parcial" | "no_se";
 
+/** Immediate needs flagged in a check-in (aligns with urgency-detention). */
+export type CheckInImmediateNeed =
+  | "medicamentos"
+  | "transporte"
+  | "apoyo_emocional"
+  | "estoy_sola"
+  | "asistencia"
+  | "dolor";
+
 export interface CheckIn {
   id: string;
   date: string;
@@ -20,6 +29,8 @@ export interface CheckIn {
   notes?: string;
   /** ¿Tienes acceso a tus medicamentos actualmente? */
   hasAccessToMedication?: HasAccessToMedication;
+  /** When the follow-up form collects explicit need tags */
+  necesidadesAhora?: CheckInImmediateNeed[];
 }
 
 const STORAGE_KEY = "rehub-seguimiento";

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ROUTES } from "@/lib/routes";
 
 export default function AccountError({
   error,
@@ -26,7 +27,7 @@ export default function AccountError({
             Reintentar
           </button>
           <Link
-            href="/dashboard"
+            href={ROUTES.dashboard}
             className="px-4 py-2 border border-red-300 text-red-700 rounded-xl font-medium hover:bg-red-50"
           >
             Volver al inicio

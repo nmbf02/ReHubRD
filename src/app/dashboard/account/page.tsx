@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { AccountForm } from "@/components/dashboard/AccountForm";
 import { Suspense } from "react";
+import { ROUTES, hrefLoginCallback } from "@/lib/routes";
 
 type userDataProps = {
   id: string;
@@ -14,7 +15,7 @@ export default async function AccountPage() {
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {
-    redirect("/login?callbackUrl=/dashboard/account");
+    redirect(hrefLoginCallback(ROUTES.account));
   }
 
   const userData: userDataProps = {

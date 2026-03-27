@@ -2,12 +2,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { SeguimientoView } from "@/components/dashboard/FollowupView";
+import { ROUTES, hrefLoginCallback } from "@/lib/routes";
 
 export default async function SeguimientoPage() {
   const session = await getServerSession(authOptions);
 
   if (!session?.user) {
-    redirect("/login?callbackUrl=/dashboard/followup");
+    redirect(hrefLoginCallback(ROUTES.followup));
   }
 
   return (

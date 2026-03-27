@@ -8,6 +8,7 @@ import {
   SECCIONES_RECURSOS,
 } from "@/lib/resources-guide";
 import { ESCENARIOS } from "@/lib/scenary-workflow";
+import { ROUTES, hrefResourcesGuide } from "@/lib/routes";
 import { SitiosCercanosView } from "./ClosePlacesView";
 
 interface Props {
@@ -33,21 +34,21 @@ export function RecursosView({ userId }: Props) {
         <div className="p-6 lg:p-8">
           <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <Link
-              href="/dashboard/profile"
+              href={ROUTES.profile}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               1. Mi perfil
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
-              href="/dashboard/plan"
+              href={ROUTES.plan}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               2. Mi plan
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
-              href="/dashboard/followup"
+              href={ROUTES.followup}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               3. Seguimiento
@@ -86,7 +87,7 @@ export function RecursosView({ userId }: Props) {
             {ESCENARIOS.filter((e) => e.id !== "general").map((esc) => (
               <Link
                 key={esc.id}
-                href="/dashboard/followup"
+                href={ROUTES.followup}
                 className={`flex flex-col p-5 rounded-xl border text-left transition-all hover:shadow-md ${
                   esc.prioridad === "urgente"
                     ? "bg-red-50/60 border-red-200 hover:border-red-300"
@@ -109,7 +110,7 @@ export function RecursosView({ userId }: Props) {
           </div>
           <div className="mt-6 p-4 rounded-xl bg-slate-100/80 border border-slate-200/80">
             <p className="text-sm text-rehub-dark/80">
-              <strong>¿Cómo funciona?</strong> En <Link href="/dashboard/followup" className="text-rehub-primary hover:underline">Seguimiento</Link> indicas cómo te sientes (1-5), tu movilidad y si tienes acceso a medicamentos.
+              <strong>¿Cómo funciona?</strong> En <Link href={ROUTES.followup} className="text-rehub-primary hover:underline">Seguimiento</Link> indicas cómo te sientes (1-5), tu movilidad y si tienes acceso a medicamentos.
               ReHub detecta tu situación y te muestra un plan con pasos concretos (llamar 811, ver guías, etc.) y la frecuencia de check-in sugerida.
             </p>
           </div>
@@ -131,8 +132,8 @@ export function RecursosView({ userId }: Props) {
             {SECCIONES_RECURSOS.map((sec) => {
               const isActive = guiaSeleccionada === sec.id;
               const href = isActive
-                ? "/dashboard/resources"
-                : `/dashboard/resources?guia=${sec.id}`;
+                ? ROUTES.resources
+                : hrefResourcesGuide(sec.id);
               return (
                 <Link
                   key={sec.id}
@@ -161,7 +162,7 @@ export function RecursosView({ userId }: Props) {
         <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
             <Link
-              href="/dashboard/resources"
+              href={ROUTES.resources}
               className="text-sm text-rehub-primary hover:underline"
             >
               ← Ver todas las opciones
@@ -330,7 +331,7 @@ export function RecursosView({ userId }: Props) {
               <p className="text-sm text-rehub-dark/70 mt-2">
                 ReHub te acompaña con un plan personalizado (Mi plan), check-ins de seguimiento y guías por situación. Tu centro de salud puede indicar citas de control y rehabilitación.
               </p>
-              <Link href="/dashboard/plan" className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline">
+              <Link href={ROUTES.plan} className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline">
                 Ver mi plan en ReHub →
               </Link>
             </div>
@@ -394,14 +395,14 @@ export function RecursosView({ userId }: Props) {
       {/* Enlaces a otras secciones */}
       <section className="flex flex-wrap gap-4">
         <Link
-          href="/dashboard/plan"
+          href={ROUTES.plan}
           className="inline-flex items-center gap-2 px-5 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors"
         >
           <IconClipboard className="w-5 h-5" />
           Ver mi plan
         </Link>
         <Link
-          href="/dashboard/followup"
+          href={ROUTES.followup}
           className="inline-flex items-center gap-2 px-5 py-3 border border-rehub-primary/30 text-rehub-primary rounded-xl font-medium hover:bg-rehub-primary/5 transition-colors"
         >
           <IconRefresh className="w-5 h-5" />

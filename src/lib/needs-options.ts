@@ -3,6 +3,8 @@
  * El usuario elige sus necesidades y ReHub genera un plan adaptado.
  */
 
+import { hrefResourcesHash } from "@/lib/routes";
+
 export interface OpcionNecesidad {
   id: string;
   titulo: string;
@@ -23,7 +25,7 @@ export const OPCIONES_NECESIDADES: OpcionNecesidad[] = [
   { id: "estoy-sola", titulo: "Estoy sola o solo", emoji: "🤝", necesidadId: "red-apoyo", guiaId: "sola" },
   { id: "transporte", titulo: "Necesito transporte", emoji: "🚗", guiaId: "transporte" },
   { id: "medicamentos-delivery", titulo: "Necesito conseguir medicamentos", emoji: "💊", guiaId: "medicamentos" },
-  { id: "fisioterapia", titulo: "Fisioterapia o rehabilitación", emoji: "🦿", guiaId: "fisioterapia", hrefDirecto: "/dashboard/resources#planes-acogida" },
+  { id: "fisioterapia", titulo: "Fisioterapia o rehabilitación", emoji: "🦿", guiaId: "fisioterapia", hrefDirecto: hrefResourcesHash("planes-acogida") },
   { id: "tramites", titulo: "Trámites y documentos", emoji: "📋", necesidadId: "tramites", guiaId: "tramites" },
   { id: "accesibilidad", titulo: "Accesibilidad en casa", emoji: "🏠", necesidadId: "movilidad", guiaId: "accesibilidad" },
   { id: "derechos-laborales", titulo: "Derechos laborales", emoji: "⚖️", necesidadId: "laboral-tramites", guiaId: "derechosLaborales" },
@@ -32,8 +34,8 @@ export const OPCIONES_NECESIDADES: OpcionNecesidad[] = [
   { id: "volver-trabajo", titulo: "Quiero volver al trabajo", emoji: "💼", necesidadId: "laboral-reinsercion", guiaId: "volverTrabajo" },
   { id: "cuidador", titulo: "Necesito un cuidador", emoji: "👩‍⚕️", necesidadId: "asistencia", guiaId: "cuidador" },
   { id: "miedo-conducir", titulo: "Miedo a salir o conducir", emoji: "🚙", guiaId: "miedoConducir" },
-  { id: "ayuda-gratuita", titulo: "Ayuda gratuita", emoji: "🎁", hrefDirecto: "/dashboard/resources#ayuda-gratuita" },
-  { id: "planes-acogida", titulo: "Planes de acogida", emoji: "🏠", hrefDirecto: "/dashboard/resources#planes-acogida" },
+  { id: "ayuda-gratuita", titulo: "Ayuda gratuita", emoji: "🎁", hrefDirecto: hrefResourcesHash("ayuda-gratuita") },
+  { id: "planes-acogida", titulo: "Planes de acogida", emoji: "🏠", hrefDirecto: hrefResourcesHash("planes-acogida") },
   { id: "asesoria-legal", titulo: "Asesoría legal", emoji: "⚖️", guiaId: "asesoriaLegal" },
   { id: "segunda-opinion", titulo: "Segunda opinión médica", emoji: "🩺", guiaId: "segundoDiagnostico" },
   { id: "problemas-dormir", titulo: "Problemas para dormir", emoji: "😴", guiaId: "problemasDormir" },

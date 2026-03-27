@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { ROUTES } from "@/lib/routes";
 
 const navLinks = [
   { href: "#problema", label: "El Problema" },
@@ -46,7 +47,7 @@ export function Header() {
             ) : session ? (
               <>
               <Link
-                href="/dashboard"
+                href={ROUTES.dashboard}
                 className="text-sm font-medium text-rehub-dark hover:text-rehub-primary transition-colors"
               >
                 Ir al sistema
@@ -96,7 +97,7 @@ export function Header() {
                           </p>
                         </div>
                         <Link
-                          href="/dashboard"
+                          href={ROUTES.dashboard}
                           onClick={() => setUserMenuOpen(false)}
                           className="block px-4 py-2 text-sm text-rehub-dark hover:bg-rehub-light/50"
                         >
@@ -186,7 +187,7 @@ export function Header() {
                 {session ? (
                   <div className="pt-4 border-t border-rehub-light/50">
                     <Link
-                      href="/dashboard"
+                      href={ROUTES.dashboard}
                       onClick={() => setIsOpen(false)}
                       className="block py-2 text-rehub-primary font-medium"
                     >

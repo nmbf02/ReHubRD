@@ -24,6 +24,7 @@ import {
   OPCIONES_PROVINCIA,
 } from "@/types/profile";
 import { getPerfilInicial, saveProfile, calcularProgreso } from "@/lib/profile-store";
+import { ROUTES } from "@/lib/routes";
 import { identificarNecesidades } from "@/lib/profile-needs";
 import { FormField } from "./FormField";
 import { IconUser, IconBuilding, IconChart, IconUsers, IconNote } from "@/components/ui/Icons";
@@ -213,7 +214,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         se gestionan en la sección de cuenta.
                       </p>
                       <Link
-                        href="/dashboard/account"
+                        href={ROUTES.account}
                         className="inline-flex items-center gap-1 mt-2 text-rehub-primary font-medium hover:underline"
                       >
                         Ir a Cuenta →

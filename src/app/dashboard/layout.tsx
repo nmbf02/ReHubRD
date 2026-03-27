@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { DashboardNav } from "@/components/dashboard/DashboardNav";
+import { ROUTES, hrefLoginCallback } from "@/lib/routes";
 
 export default async function DashboardLayout({
   children,
@@ -11,7 +12,7 @@ export default async function DashboardLayout({
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    redirect("/login?callbackUrl=/dashboard");
+    redirect(hrefLoginCallback(ROUTES.dashboard));
   }
 
   return (

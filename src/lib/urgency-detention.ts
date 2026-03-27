@@ -5,6 +5,7 @@
 
 import type { PerfilRecuperacion } from "@/types/profile";
 import type { CheckIn } from "./followup-store";
+import { hrefResourcesGuide } from "@/lib/routes";
 
 export type NivelUrgencia = "urgente" | "alta" | "normal";
 
@@ -128,15 +129,15 @@ export function detectarSituacion(
   }
 
   // Guías recomendadas según necesidades detectadas
-  const guiasRecomendadas = [...new Set(necesidades)].map((n) => ({
+  const guiasRecomendadas = Array.from(new Set(necesidades)).map((n) => ({
     ...GUIAS_POR_NECESIDAD[n],
-    href: `/dashboard/resources?guia=${GUIAS_POR_NECESIDAD[n].id}`,
+    href: hrefResourcesGuide(GUIAS_POR_NECESIDAD[n].id),
   }));
 
   return {
     nivel,
-    motivos: [...new Set(motivos)],
-    necesidadesInmediatas: [...new Set(necesidades)],
+    motivos: Array.from(new Set(motivos)),
+    necesidadesInmediatas: Array.from(new Set(necesidades)),
     accionesPrimeras,
     guiasRecomendadas,
   };

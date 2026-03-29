@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import {
   getNecesidadesSeleccionadas,
   buildGuiasParaFlujo,
@@ -89,16 +90,12 @@ function BloqueGuia({ guia }: { guia: GuiaInline }) {
 
 export function FlujoPersonalizadoView({ userId }: Props) {
   const [seleccionados, setSeleccionados] = useState<string[]>([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClientMounted();
 
   useEffect(() => {
     if (!mounted) return;
     setSeleccionados(getNecesidadesSeleccionadas(userId ?? undefined));
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -106,7 +103,7 @@ export function FlujoPersonalizadoView({ userId }: Props) {
       setSeleccionados(getNecesidadesSeleccionadas(userId ?? undefined));
     window.addEventListener("rehub-necesidades-updated", handler);
     return () => window.removeEventListener("rehub-necesidades-updated", handler);
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   const guiasMap: Record<string, { descripcion: string; pasos?: string[]; contactos?: { nombre: string; valor: string; tipo: "tel" | "web" | "otros" }[]; nota?: string }> = {};
   for (const [id, g] of Object.entries(GUIAS_APOYO)) {

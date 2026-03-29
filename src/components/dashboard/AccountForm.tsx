@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
 import { getAccountData as getAccountData, saveAccountData } from "@/lib/account-store";
@@ -23,12 +24,8 @@ export function AccountForm({ user }: Props) {
   const [contactEmail, setContactEmail] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClientMounted();
   const [errores, setErrores] = useState<{ email?: string; save?: string }>({});
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!mounted) return;

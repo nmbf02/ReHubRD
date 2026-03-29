@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import Link from "next/link";
 import {
   IconRefresh,
@@ -54,7 +55,7 @@ const LABEL_BIENESTAR: Record<number, string> = {
 };
 
 export function SeguimientoView({ userId }: Props) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClientMounted();
   const [estadoFisico, setEstadoFisico] = useState<PhysicalState>("recuperacion");
   const [nivelMovilidad, setNivelMovilidad] = useState<MobilityLevel>("leves");
   const [estadoEmocional, setEstadoEmocional] = useState<EmotionalState>("estres");
@@ -65,10 +66,6 @@ export function SeguimientoView({ userId }: Props) {
   const [saved, setSaved] = useState(false);
   const [flujoRecomendado, setFlujoRecomendado] = useState<FlujoEscenario | null>(null);
   const [checkIns, setCheckIns] = useState<ReturnType<typeof getCheckIns>>([]);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!mounted) return;
@@ -90,14 +87,14 @@ export function SeguimientoView({ userId }: Props) {
       });
       setFlujoRecomendado(escenario);
     }
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   useEffect(() => {
     if (!mounted) return;
     const handler = () => setCheckIns(getCheckIns(userId ?? undefined));
     window.addEventListener("rehub-seguimiento-updated", handler);
     return () => window.removeEventListener("rehub-seguimiento-updated", handler);
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

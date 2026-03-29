@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import {
   obtenerSitiosCercanos,
   type SitioCercano,
@@ -38,20 +39,16 @@ const EMOJI_TIPO: Record<TipoSitio, string> = {
 };
 
 export function SitiosCercanosView({ userId }: Props) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClientMounted();
   const [provincia, setProvincia] = useState<ProvinciaRD | undefined>();
   const [necesidades, setNecesidades] = useState<string[]>([]);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!mounted) return;
     const perfil = getPerfilInicial(userId ?? undefined);
     setProvincia(perfil?.datosPersonales?.provincia);
     setNecesidades(getNecesidadesSeleccionadas(userId ?? undefined));
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -59,7 +56,7 @@ export function SitiosCercanosView({ userId }: Props) {
       setNecesidades(getNecesidadesSeleccionadas(userId ?? undefined));
     window.addEventListener("rehub-necesidades-updated", handler);
     return () => window.removeEventListener("rehub-necesidades-updated", handler);
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   const sitios = obtenerSitiosCercanos(provincia, necesidades);
 

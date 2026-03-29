@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -85,18 +86,14 @@ function pasoActual(progreso: number): number {
 }
 
 export function InicioDashboard({ userName, userId }: Props) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClientMounted();
   const [progreso, setProgreso] = useState(0);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!mounted) return;
     const perfil = getPerfilInicial(userId ?? undefined);
     setProgreso(calcularProgreso(perfil));
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   const displayName =
     (mounted && getAccountData(userId ?? undefined)?.showName) ||

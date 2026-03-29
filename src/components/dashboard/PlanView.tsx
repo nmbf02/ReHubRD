@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import Link from "next/link";
 import {
   IconUser,
@@ -51,18 +52,14 @@ function agruparPorPrioridad(recs: Recomendacion[]) {
 }
 
 export function PlanView({ userId }: Props) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useIsClientMounted();
   const [progreso, setProgreso] = useState(0);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!mounted) return;
     const perfil = getPerfilInicial(userId ?? undefined);
     setProgreso(calcularProgreso(perfil));
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   if (!mounted) {
     return (

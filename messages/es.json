@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "title": "ReHub | Centro de Recuperación Post-Accidente",
+    "description": "Plataforma de acompañamiento continuo para personas en proceso de recuperación post-accidente en República Dominicana.",
+    "keywords": [
+      "recuperación",
+      "post-accidente",
+      "rehabilitación",
+      "República Dominicana",
+      "acompañamiento",
+      "reintegración"
+    ]
+  },
+  "common": {
+    "brand": "ReHub",
+    "userFallback": "Usuario"
+  },
+  "login": {
+    "heroTitle": "Tu centro de recuperación post-accidente",
+    "heroSubtitle": "Accede a tu plan personalizado, seguimiento adaptativo y recursos de acompañamiento.",
+    "heroFooter": "Re · Recovery · Hub · Centro",
+    "title": "Iniciar sesión",
+    "subtitle": "Ingresa tus credenciales para acceder a tu cuenta.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "tu@correo.com",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Entrar",
+    "submitting": "Ingresando...",
+    "noAccount": "¿No tienes cuenta?",
+    "registerLink": "Regístrate",
+    "demoHint": "Demo: demo@rehub.do / demo123",
+    "errorUrl": "Error al iniciar sesión. Verifica tus credenciales.",
+    "validationRequired": "Ingresa tu correo y contraseña.",
+    "errorNoResponse": "No se recibió respuesta. Intenta de nuevo.",
+    "errorUnexpected": "Error inesperado. Intenta de nuevo.",
+    "errorNetwork": "Ocurrió un error. Intenta de nuevo.",
+    "errors": {
+      "CredentialsSignin": "Correo o contraseña incorrectos.",
+      "CallbackRouteError": "Error de configuración. Verifica NEXTAUTH_URL y NEXTAUTH_SECRET.",
+      "Default": "Error al iniciar sesión. Intenta de nuevo."
+    }
+  },
+  "dashboard": {
+    "nav": {
+      "home": "Inicio",
+      "profile": "Mi perfil",
+      "plan": "Mi plan",
+      "followup": "Seguimiento",
+      "resources": "Recursos",
+      "account": "Cuenta"
+    },
+    "tagline": "Centro de Recuperación",
+    "signOutMobile": "Salir",
+    "signOutDesktop": "Cerrar sesión"
+  }
+}

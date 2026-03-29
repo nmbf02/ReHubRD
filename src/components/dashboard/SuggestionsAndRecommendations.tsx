@@ -102,7 +102,7 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
       Object.values(timers.current).forEach((id) => clearTimeout(id));
       timers.current = {};
     };
-  }, [recordatorios]);
+  }, [recordatorios, userId]);
 
   function scheduleQuick(label: string, href?: string, msDelay = 10000) {
     const when = Date.now() + msDelay;

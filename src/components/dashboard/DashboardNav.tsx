@@ -1,22 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import type { Session } from "next-auth";
+import { useTranslations } from "next-intl";
 import { IconHome, IconUser, IconClipboard, IconRefresh, IconBook, IconSettings } from "@/components/ui/Icons";
 import { getAccountData } from "@/lib/account-store";
 import { ROUTES } from "@/lib/routes";
-
-const navItems = [
-  { href: ROUTES.dashboard, label: "Inicio", Icon: IconHome },
-  { href: ROUTES.profile, label: "Mi perfil", Icon: IconUser },
-  { href: ROUTES.plan, label: "Mi plan", Icon: IconClipboard },
-  { href: ROUTES.followup, label: "Seguimiento", Icon: IconRefresh },
-  { href: ROUTES.resources, label: "Recursos", Icon: IconBook },
-  { href: ROUTES.account, label: "Cuenta", Icon: IconSettings },
-];
 
 interface Props {
   user: Session["user"];
@@ -24,6 +16,23 @@ interface Props {
 
 export function DashboardNav({ user }: Props) {
   const pathname = usePathname();
+  const t = useTranslations("dashboard.nav");
+  const tDash = useTranslations("dashboard");
+  const tCommon = useTranslations("common");
+
+  const navItems = useMemo(
+    () =>
+      [
+        { href: ROUTES.dashboard, key: "home" as const, Icon: IconHome },
+        { href: ROUTES.profile, key: "profile" as const, Icon: IconUser },
+        { href: ROUTES.plan, key: "plan" as const, Icon: IconClipboard },
+        { href: ROUTES.followup, key: "followup" as const, Icon: IconRefresh },
+        { href: ROUTES.resources, key: "resources" as const, Icon: IconBook },
+        { href: ROUTES.account, key: "account" as const, Icon: IconSettings },
+      ] as const,
+    []
+  );
+
   const [nombreMostrar, setNombreMostrar] = useState<string | null>(null);
 
   useEffect(() => {
@@ -40,34 +49,32 @@ export function DashboardNav({ user }: Props) {
 
   return (
     <>
-      {/* Mobile header */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-40 h-16 bg-white border-b border-rehub-light/50 flex items-center justify-between px-4">
         <Link href={ROUTES.dashboard} className="text-xl font-bold text-rehub-primary">
-          ReHub
+          {tCommon("brand")}
         </Link>
         <div className="flex items-center gap-2">
           <Link
             href={ROUTES.account}
             className="text-sm text-rehub-dark/70 truncate max-w-[120px] hover:text-rehub-primary"
           >
-            {displayName ?? "Usuario"}
+            {displayName ?? tCommon("userFallback")}
           </Link>
           <button
             onClick={() => signOut({ callbackUrl: "/", redirect: true })}
             className="text-sm text-red-600 hover:underline"
           >
-            Salir
+            {tDash("signOutMobile")}
           </button>
         </div>
       </header>
 
-      {/* Sidebar - desktop */}
       <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-rehub-light/50 flex-col z-40 overflow-hidden">
         <div className="p-6 border-b border-rehub-light/50 shrink-0">
           <Link href={ROUTES.dashboard} className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-rehub-primary">ReHub</span>
+            <span className="text-2xl font-bold text-rehub-primary">{tCommon("brand")}</span>
           </Link>
-          <p className="text-xs text-rehub-dark/60 mt-1">Centro de Recuperación</p>
+          <p className="text-xs text-rehub-dark/60 mt-1">{tDash("tagline")}</p>
         </div>
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto min-h-0">
@@ -84,7 +91,7 @@ export function DashboardNav({ user }: Props) {
                 }`}
               >
                 <item.Icon />
-                <span className="font-medium">{item.label}</span>
+                <span className="font-medium">{t(item.key)}</span>
               </Link>
             );
           })}
@@ -93,7 +100,7 @@ export function DashboardNav({ user }: Props) {
         <div className="p-4 border-t border-rehub-light/50 shrink-0">
           <div className="px-4 py-2 mb-2">
             <p className="text-sm font-medium text-rehub-dark truncate">
-              {displayName ?? "Usuario"}
+              {displayName ?? tCommon("userFallback")}
             </p>
             <p className="text-xs text-rehub-dark/60 truncate">{user?.email}</p>
           </div>
@@ -101,12 +108,11 @@ export function DashboardNav({ user }: Props) {
             onClick={() => signOut({ callbackUrl: "/", redirect: true })}
             className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
           >
-            Cerrar sesión
+            {tDash("signOutDesktop")}
           </button>
         </div>
       </aside>
 
-      {/* Mobile nav - bottom */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-rehub-light/50 flex justify-around py-2 safe-area-pb overflow-x-auto">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
@@ -119,7 +125,7 @@ export function DashboardNav({ user }: Props) {
               }`}
             >
               <item.Icon />
-              <span className="text-xs font-medium">{item.label}</span>
+              <span className="text-xs font-medium">{t(item.key)}</span>
             </Link>
           );
         })}

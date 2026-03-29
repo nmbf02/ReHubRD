@@ -1,5 +1,8 @@
 /** Dashboard URL paths (English segments, match `src/app/dashboard/*`). */
 export const ROUTES = {
+  home: "/",
+  login: "/login",
+  register: "/register",
   dashboard: "/dashboard",
   profile: "/dashboard/profile",
   account: "/dashboard/account",

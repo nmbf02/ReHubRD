@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import Link from "next/link";
 import {
   OPCIONES_NECESIDADES,
@@ -14,16 +15,12 @@ interface Props {
 
 export function NecesidadesSelector({ userId }: Props) {
   const [seleccionados, setSeleccionados] = useState<string[]>([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useIsClientMounted();
 
   useEffect(() => {
     if (!mounted) return;
     setSeleccionados(getNecesidadesSeleccionadas(userId ?? undefined));
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -31,7 +28,7 @@ export function NecesidadesSelector({ userId }: Props) {
       setSeleccionados(getNecesidadesSeleccionadas(userId ?? undefined));
     window.addEventListener("rehub-necesidades-updated", handler);
     return () => window.removeEventListener("rehub-necesidades-updated", handler);
-  }, [mounted, userId ?? undefined]);
+  }, [mounted, userId]);
 
   function toggle(id: string) {
     const next = seleccionados.includes(id)

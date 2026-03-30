@@ -4,19 +4,23 @@ import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { ROUTES } from "@/lib/routes";
 
-const navLinks = [
-  { href: "#problema", label: "El Problema" },
-  { href: "#solucion", label: "La Solución" },
-  { href: "#funcionamiento", label: "Cómo Funciona" },
-  { href: "#contacto", label: "Contacto" },
+const NAV_KEYS = [
+  { href: "#problema", key: "problem" as const },
+  { href: "#solucion", key: "solution" as const },
+  { href: "#funcionamiento", key: "howItWorks" as const },
+  { href: "#contacto", key: "contact" as const },
 ];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { data: session, status } = useSession();
+  const tNav = useTranslations("landing.nav");
+  const tHeader = useTranslations("landing.header");
+  const common = useTranslations("common");
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-rehub-light/50">
@@ -24,22 +28,22 @@ export function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link href="/" className="flex items-center gap-2 group">
             <span className="text-2xl font-bold text-rehub-primary group-hover:text-rehub-secondary transition-colors">
-              ReHub
+              {common("brand")}
             </span>
             <span className="text-xs text-rehub-dark/70 hidden sm:inline">
-              Centro de Recuperación
+              {common("tagline")}
             </span>
           </Link>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {NAV_KEYS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-rehub-dark hover:text-rehub-primary transition-colors"
               >
-                {link.label}
+                {tNav(link.key)}
               </a>
             ))}
             {status === "loading" ? (
@@ -50,7 +54,7 @@ export function Header() {
                 href={ROUTES.dashboard}
                 className="text-sm font-medium text-rehub-dark hover:text-rehub-primary transition-colors"
               >
-                Ir al sistema
+                {tHeader("goToApp")}
               </Link>
               <div className="relative">
                 <button
@@ -101,13 +105,13 @@ export function Header() {
                           onClick={() => setUserMenuOpen(false)}
                           className="block px-4 py-2 text-sm text-rehub-dark hover:bg-rehub-light/50"
                         >
-                          Ir al sistema
+                          {tHeader("goToApp")}
                         </Link>
                         <button
                           onClick={() => signOut({ callbackUrl: "/", redirect: true })}
                           className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
                         >
-                          Cerrar sesión
+                          {tHeader("signOut")}
                         </button>
                       </motion.div>
                     </>
@@ -118,16 +122,16 @@ export function Header() {
             ) : (
               <>
                 <Link
-                  href="/login"
+                  href={ROUTES.login}
                   className="text-sm font-medium text-rehub-dark hover:text-rehub-primary transition-colors"
                 >
-                  Iniciar sesión
+                  {tHeader("signIn")}
                 </Link>
                 <Link
-                  href="/login"
+                  href={ROUTES.login}
                   className="px-4 py-2 bg-rehub-primary text-white rounded-lg font-medium hover:bg-rehub-secondary transition-colors"
                 >
-                  Comenzar
+                  {tHeader("getStarted")}
                 </Link>
               </>
             )}
@@ -137,7 +141,7 @@ export function Header() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 rounded-lg text-rehub-dark hover:bg-rehub-light/50"
-            aria-label="Menú"
+            aria-label={tHeader("menuAria")}
           >
             <svg
               className="w-6 h-6"
@@ -174,14 +178,14 @@ export function Header() {
               className="md:hidden overflow-hidden"
             >
               <div className="py-4 space-y-2">
-                {navLinks.map((link) => (
+                {NAV_KEYS.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className="block py-2 text-rehub-dark hover:text-rehub-primary"
                   >
-                    {link.label}
+                    {tNav(link.key)}
                   </a>
                 ))}
                 {session ? (
@@ -191,7 +195,7 @@ export function Header() {
                       onClick={() => setIsOpen(false)}
                       className="block py-2 text-rehub-primary font-medium"
                     >
-                      Ir al sistema
+                      {tHeader("goToApp")}
                     </Link>
                     <p className="text-sm text-rehub-dark/70 mb-2 truncate">
                       {session.user?.email}
@@ -203,16 +207,16 @@ export function Header() {
                       }}
                       className="block w-full py-2 text-left text-red-600 font-medium"
                     >
-                      Cerrar sesión
+                      {tHeader("signOut")}
                     </button>
                   </div>
                 ) : (
                   <Link
-                    href="/login"
+                    href={ROUTES.login}
                     onClick={() => setIsOpen(false)}
                     className="block py-3 mt-4 text-center bg-rehub-primary text-white rounded-lg font-medium"
                   >
-                    Iniciar sesión
+                    {tHeader("signIn")}
                   </Link>
                 )}
               </div>

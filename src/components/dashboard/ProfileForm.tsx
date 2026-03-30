@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import type {
   PerfilRecuperacion,
   TipoAccidente,
@@ -38,6 +39,7 @@ interface Props {
 type ErroresForm = Partial<Record<string, string>>;
 
 export function PerfilForm({ userId, userName, userEmail }: Props) {
+  const tp = useTranslations("dashboard.profileForm");
   const [perfil, setPerfil] = useState<PerfilRecuperacion | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -75,22 +77,22 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
     if (!perfil) return false;
 
     if (!perfil.situacionAccidente.tipoAccidente) {
-      err.tipoAccidente = "Indica el tipo de accidente.";
+      err.tipoAccidente = tp("validation.tipoAccidente");
     }
     if (!perfil.estadoActual.physicalState) {
-      err.estadoFisico = "Indica tu estado físico.";
+      err.estadoFisico = tp("validation.estadoFisico");
     }
     if (!perfil.estadoActual.mobilityLevel) {
-      err.nivelMovilidad = "Indica tu nivel de movilidad.";
+      err.nivelMovilidad = tp("validation.nivelMovilidad");
     }
     if (!perfil.estadoActual.emotionalState) {
-      err.estadoEmocional = "Indica tu estado emocional.";
+      err.estadoEmocional = tp("validation.estadoEmocional");
     }
     if (!perfil.contextoSocial.situacionLaboral) {
-      err.situacionLaboral = "Indica tu situación laboral.";
+      err.situacionLaboral = tp("validation.situacionLaboral");
     }
     if (!perfil.contextoSocial.redApoyo) {
-      err.redApoyo = "Indica tu red de apoyo.";
+      err.redApoyo = tp("validation.redApoyo");
     }
 
     setErrores(err);
@@ -116,7 +118,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch {
-      setErrores({ general: "No se pudo guardar. Intenta de nuevo." });
+      setErrores({ general: tp("errors.saveFailed") });
     } finally {
       setIsSaving(false);
     }
@@ -134,11 +136,11 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
   const necesidades = identificarNecesidades(perfil);
 
   const secciones = [
-    { id: "datos", titulo: "Ubicación", Icon: IconUser },
-    { id: "accidente", titulo: "Situación del accidente", Icon: IconBuilding },
-    { id: "estado", titulo: "Estado actual", Icon: IconChart },
-    { id: "contexto", titulo: "Contexto social", Icon: IconUsers },
-    { id: "notas", titulo: "Notas adicionales", Icon: IconNote },
+    { id: "datos", titulo: tp("sections.datos"), Icon: IconUser },
+    { id: "accidente", titulo: tp("sections.accidente"), Icon: IconBuilding },
+    { id: "estado", titulo: tp("sections.estado"), Icon: IconChart },
+    { id: "contexto", titulo: tp("sections.contexto"), Icon: IconUsers },
+    { id: "notas", titulo: tp("sections.notas"), Icon: IconNote },
   ];
 
   return (
@@ -147,7 +149,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
       <div className="bg-white rounded-2xl border border-rehub-light/50 p-6">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium text-rehub-dark">
-            Completitud del perfil
+            {tp("completitud")}
           </span>
           <span className="text-sm font-semibold text-rehub-primary">
             {progreso}%
@@ -210,17 +212,19 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                   <>
                     <div className="p-4 rounded-xl bg-rehub-light/30 border border-rehub-light/50 text-sm text-rehub-dark/80">
                       <p>
-                        Tu <strong>nombre</strong>, <strong>teléfono</strong> y correo de contacto
-                        se gestionan en la sección de cuenta.
+                        {tp.rich("accountHint", {
+                          name: (chunks) => <strong>{chunks}</strong>,
+                          phone: (chunks) => <strong>{chunks}</strong>,
+                        })}
                       </p>
                       <Link
                         href={ROUTES.account}
                         className="inline-flex items-center gap-1 mt-2 text-rehub-primary font-medium hover:underline"
                       >
-                        Ir a Cuenta →
+                        {tp("goAccount")}
                       </Link>
                     </div>
-                    <FormField label="Provincia" optional id="provincia">
+                    <FormField label={tp("provincia")} optional id="provincia">
                       <select
                         id="provincia"
                         value={perfil.datosPersonales?.provincia ?? ""}
@@ -236,7 +240,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         }
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
                       >
-                        <option value="">Selecciona provincia</option>
+                        <option value="">{tp("selectProvincia")}</option>
                         {Object.entries(OPCIONES_PROVINCIA).map(([k, v]) => (
                           <option key={k} value={k}>
                             {v}
@@ -244,7 +248,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         ))}
                       </select>
                     </FormField>
-                    <FormField label="Municipio o ciudad" optional id="municipio">
+                    <FormField label={tp("municipio")} optional id="municipio">
                       <input
                         id="municipio"
                         type="text"
@@ -258,7 +262,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                             },
                           })
                         }
-                        placeholder="Ej: Santo Domingo Este, Santiago"
+                        placeholder={tp("municipioPh")}
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
                       />
                     </FormField>
@@ -268,7 +272,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                 {sec.id === "accidente" && (
                   <>
                     <FormField
-                      label="Tipo de accidente"
+                      label={tp("tipoAccidente")}
                       error={errores.tipoAccidente}
                       id="tipoAccidente"
                     >
@@ -291,7 +295,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         ))}
                       </select>
                     </FormField>
-                    <FormField label="Fecha de alta médica" optional>
+                    <FormField label={tp("fechaAlta")} optional>
                       <input
                         type="date"
                         value={
@@ -307,7 +311,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
                       />
                     </FormField>
-                    <FormField label="Centro de salud" optional>
+                    <FormField label={tp("centroSalud")} optional>
                       <input
                         type="text"
                         value={perfil.situacionAccidente.centroSalud ?? ""}
@@ -318,11 +322,11 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                             e.target.value || undefined
                           )
                         }
-                        placeholder="Nombre del hospital o centro"
+                        placeholder={tp("centroSaludPh")}
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
                       />
                     </FormField>
-                    <FormField label="Tipo de seguro" optional>
+                    <FormField label={tp("tipoSeguro")} optional>
                       <select
                         value={perfil.situacionAccidente.tipoSeguro ?? ""}
                         onChange={(e) =>
@@ -334,7 +338,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         }
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
                       >
-                        <option value="">Selecciona</option>
+                        <option value="">{tp("selectOption")}</option>
                         {Object.entries(OPCIONES_TIPO_SEGURO).map(([k, v]) => (
                           <option key={k} value={k}>
                             {v}
@@ -348,7 +352,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                 {sec.id === "estado" && (
                   <>
                     <FormField
-                      label="Estado físico general"
+                      label={tp("estadoFisico")}
                       error={errores.estadoFisico}
                     >
                       <select
@@ -370,7 +374,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                       </select>
                     </FormField>
                     <FormField
-                      label="Nivel de movilidad"
+                      label={tp("nivelMovilidad")}
                       error={errores.nivelMovilidad}
                     >
                       <select
@@ -394,7 +398,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                       </select>
                     </FormField>
                     <FormField
-                      label="Estado emocional percibido"
+                      label={tp("estadoEmocional")}
                       error={errores.estadoEmocional}
                     >
                       <select
@@ -417,7 +421,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         )}
                       </select>
                     </FormField>
-                    <FormField label="Tratamientos actuales" optional>
+                    <FormField label={tp("tratamientos")} optional>
                       <input
                         type="text"
                         value={perfil.estadoActual.tratamientosActuales ?? ""}
@@ -428,7 +432,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                             e.target.value || undefined
                           )
                         }
-                        placeholder="Fisioterapia, medicación, etc."
+                        placeholder={tp("tratamientosPh")}
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
                       />
                     </FormField>
@@ -438,7 +442,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                 {sec.id === "contexto" && (
                   <>
                     <FormField
-                      label="Situación laboral"
+                      label={tp("situacionLaboral")}
                       error={errores.situacionLaboral}
                     >
                       <select
@@ -462,7 +466,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                       </select>
                     </FormField>
                     <FormField
-                      label="Red de apoyo familiar / social"
+                      label={tp("redApoyo")}
                       error={errores.redApoyo}
                     >
                       <select
@@ -483,7 +487,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         ))}
                       </select>
                     </FormField>
-                    <FormField label="Contacto de emergencia" optional>
+                    <FormField label={tp("contactoEmergencia")} optional>
                       <input
                         type="text"
                         value={perfil.contextoSocial.contactoEmergencia ?? ""}
@@ -494,11 +498,11 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                             e.target.value || undefined
                           )
                         }
-                        placeholder="Nombre de la persona"
+                        placeholder={tp("contactoEmergenciaPh")}
                         className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
                       />
                     </FormField>
-                    <FormField label="Teléfono de emergencia" optional>
+                    <FormField label={tp("telefonoEmergencia")} optional>
                       <input
                         type="tel"
                         value={perfil.contextoSocial.telefonoEmergencia ?? ""}
@@ -517,7 +521,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                 )}
 
                 {sec.id === "notas" && (
-                  <FormField label="Notas adicionales" optional>
+                  <FormField label={tp("notas")} optional>
                     <textarea
                       value={perfil.notas ?? ""}
                       onChange={(e) =>
@@ -527,7 +531,7 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                         })
                       }
                       rows={4}
-                      placeholder="Cualquier información relevante sobre tu situación, necesidades especiales, etc."
+                      placeholder={tp("notasPh")}
                       className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none resize-none"
                     />
                   </FormField>
@@ -544,10 +548,10 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
             className="w-full py-4 bg-rehub-primary text-white rounded-xl font-semibold hover:bg-rehub-secondary transition-colors disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-rehub-primary/20"
           >
             {isSaving
-              ? "Guardando..."
+              ? tp("saveSaving")
               : saved
-              ? "✓ Guardado correctamente"
-              : "Guardar perfil"}
+              ? tp("saveSaved")
+              : tp("saveSubmit")}
           </button>
         </div>
       </form>
@@ -556,10 +560,10 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
       {necesidades.length > 0 && (
         <div className="bg-white rounded-2xl border border-rehub-light/50 p-6 lg:p-8">
           <h2 className="text-lg font-semibold text-rehub-dark mb-2">
-            Necesidades prioritarias identificadas
+            {tp("needsTitle")}
           </h2>
           <p className="text-sm text-rehub-dark/70 mb-6">
-            Según tu perfil, estas son las áreas donde ReHub te puede acompañar.
+            {tp("needsSub")}
           </p>
           <div className="space-y-4">
             {necesidades.map((n) => (
@@ -584,10 +588,10 @@ export function PerfilForm({ userId, userName, userEmail }: Props) {
                     }`}
                   >
                     {n.prioridad === "alta"
-                      ? "Alta"
+                      ? tp("priorityHigh")
                       : n.prioridad === "media"
-                      ? "Media"
-                      : "Baja"}
+                      ? tp("priorityMedium")
+                      : tp("priorityLow")}
                   </span>
                   <div>
                     <h3 className="font-medium text-rehub-dark">{n.titulo}</h3>

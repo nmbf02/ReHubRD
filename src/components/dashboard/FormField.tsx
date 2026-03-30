@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 interface Props {
   label: string;
   optional?: boolean;
@@ -9,6 +11,8 @@ interface Props {
 }
 
 export function FormField({ label, optional, error, children, id }: Props) {
+  const t = useTranslations("common");
+
   return (
     <div className="space-y-2">
       <label
@@ -17,7 +21,9 @@ export function FormField({ label, optional, error, children, id }: Props) {
       >
         {label}
         {optional && (
-          <span className="text-rehub-dark/50 font-normal"> (opcional)</span>
+          <span className="text-rehub-dark/50 font-normal">
+            {t("optionalMarker")}
+          </span>
         )}
       </label>
       {children}

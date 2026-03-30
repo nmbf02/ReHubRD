@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import { getTranslations } from "next-intl/server";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { AccountForm } from "@/components/dashboard/AccountForm";
@@ -13,6 +14,7 @@ type userDataProps = {
 
 export default async function AccountPage() {
   const session = await getServerSession(authOptions);
+  const t = await getTranslations("dashboard.pages.account");
 
   if (!session?.user) {
     redirect(hrefLoginCallback(ROUTES.account));
@@ -26,12 +28,8 @@ export default async function AccountPage() {
 
   return (
     <div className="p-6 lg:p-8 pb-24 lg:pb-8 min-h-[50vh]">
-      <h1 className="text-2xl font-bold text-rehub-dark mb-2">
-        Configuración de cuenta
-      </h1>
-      <p className="text-rehub-dark/70 mb-8">
-        Información de tu cuenta y preferencias.
-      </p>
+      <h1 className="text-2xl font-bold text-rehub-dark mb-2">{t("title")}</h1>
+      <p className="text-rehub-dark/70 mb-8">{t("description")}</p>
       <Suspense
         fallback={
           <div className="flex justify-center py-12">

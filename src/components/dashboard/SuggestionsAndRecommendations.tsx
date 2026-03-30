@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { IconRefresh, IconClipboard, IconCalendar } from "@/components/ui/Icons";
 import { ROUTES, hrefResourcesHash } from "@/lib/routes";
 
@@ -14,14 +15,14 @@ interface Item {
 interface Props {
   progreso: number;
   userId?: string | null;
-  items?: Item[]; // opcional: lista de items para los que crear recordatorios (máx 5)
+  items?: Item[];
 }
 
 type Recordatorio = {
   id: string;
   label: string;
   href?: string;
-  when: number; // timestamp
+  when: number;
   createdAt: number;
 };
 
@@ -47,19 +48,22 @@ function notify(title: string, body?: string, href?: string) {
 export default function SugerenciasRecordatorios({ progreso, userId, items }: Props) {
   const [recordatorios, setRecordatorios] = useState<Recordatorio[]>([]);
   const timers = useRef<Record<string, number>>({});
+  const t = useTranslations("dashboard.suggestions");
+  const tNav = useTranslations("dashboard.nav");
 
-  // default items (toma hasta 5)
-  const defaultItems: Item[] = [
-    { label: "Mi perfil", href: ROUTES.profile, Icon: IconClipboard },
-    { label: "Mi plan", href: ROUTES.plan, Icon: IconClipboard },
-    { label: "Seguimiento", href: ROUTES.followup, Icon: IconRefresh },
-    { label: "Recursos", href: ROUTES.resources, Icon: IconCalendar },
-    { label: "Ayuda gratuita", href: hrefResourcesHash("ayuda-gratuita"), Icon: IconCalendar },
-  ];
+  const defaultItems: Item[] = useMemo(
+    () => [
+      { label: tNav("profile"), href: ROUTES.profile, Icon: IconClipboard },
+      { label: tNav("plan"), href: ROUTES.plan, Icon: IconClipboard },
+      { label: tNav("followup"), href: ROUTES.followup, Icon: IconRefresh },
+      { label: tNav("resources"), href: ROUTES.resources, Icon: IconCalendar },
+      { label: t("freeHelp"), href: hrefResourcesHash("ayuda-gratuita"), Icon: IconCalendar },
+    ],
+    [t, tNav]
+  );
 
   const itemsToShow = (propsItems?: Item[]) => {
     if (propsItems && propsItems.length > 0) return propsItems.slice(0, 5);
-    // adaptación según progreso: prioriza elementos relevantes
     if (progreso < 25) return defaultItems.slice(0, 5);
     if (progreso < 75) return defaultItems.slice(0, 5);
     return defaultItems.slice(0, 5);
@@ -72,37 +76,40 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
       const raw = sessionStorage.getItem(storageKey(userId ?? undefined));
       const list: Recordatorio[] = raw ? JSON.parse(raw) : [];
       setRecordatorios(list.filter((r) => r.when > Date.now()));
-    } catch (e) {
+    } catch {
       setRecordatorios([]);
     }
   }, [userId]);
 
   useEffect(() => {
-    // schedule timers for current reminders
     for (const r of recordatorios) {
       if (timers.current[r.id]) continue;
       const delay = Math.max(0, r.when - Date.now());
-      const t = window.setTimeout(() => {
-        notify("Recordatorio: " + r.label, "Haz click para abrir", r.href);
-        // remove from storage after firing
-        setRecordatorios((prev) => prev.filter((x) => x.id !== r.id));
-        const stored = sessionStorage.getItem(storageKey(userId ?? undefined));
+      const reminderLabel = r.label;
+      const reminderHref = r.href;
+      const notifyTitleText = t("notifyTitle", { label: reminderLabel });
+      const notifyBodyText = t("notifyBody");
+      const tUserId = userId;
+      const tId = r.id;
+      const timeoutId = window.setTimeout(() => {
+        notify(notifyTitleText, notifyBodyText, reminderHref);
+        setRecordatorios((prev) => prev.filter((x) => x.id !== tId));
+        const stored = sessionStorage.getItem(storageKey(tUserId ?? undefined));
         const list: Recordatorio[] = stored ? JSON.parse(stored) : [];
         sessionStorage.setItem(
-          storageKey(userId ?? undefined),
-          JSON.stringify(list.filter((x) => x.id !== r.id))
+          storageKey(tUserId ?? undefined),
+          JSON.stringify(list.filter((x) => x.id !== tId))
         );
-        delete timers.current[r.id];
+        delete timers.current[tId];
       }, delay);
-      timers.current[r.id] = t;
+      timers.current[r.id] = timeoutId;
     }
 
     return () => {
-      // clear timers when unmounting
       Object.values(timers.current).forEach((id) => clearTimeout(id));
       timers.current = {};
     };
-  }, [recordatorios, userId]);
+  }, [recordatorios, userId, t]);
 
   function scheduleQuick(label: string, href?: string, msDelay = 10000) {
     const when = Date.now() + msDelay;
@@ -132,8 +139,8 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
   return (
     <section className="mt-6 bg-white rounded-2xl border border-slate-200/80 p-5">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-rehub-dark">Recordatorios sugeridos</h3>
-        <p className="text-xs text-rehub-dark/60">Sugerencias rápidas basadas en tu progreso</p>
+        <h3 className="text-sm font-semibold text-rehub-dark">{t("title")}</h3>
+        <p className="text-xs text-rehub-dark/60">{t("hint")}</p>
       </div>
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
         {sugerencias.map((s) => (
@@ -143,20 +150,20 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
             </span>
             <div className="flex-1">
               <p className="text-sm font-medium text-rehub-dark">{s.label}</p>
-              <p className="text-xs text-rehub-dark/60">Añadir o ajustar recordatorios rápidamente</p>
+              <p className="text-xs text-rehub-dark/60">{t("rowHint")}</p>
             </div>
             <div className="flex gap-2">
               <button
                 onClick={() => scheduleQuick(s.label, s.href, 10000)}
                 className="text-xs px-3 py-1 bg-rehub-primary/10 text-rehub-primary rounded-md"
               >
-                Recordarme en 10s
+                {t("remind10s")}
               </button>
               <button
                 onClick={() => scheduleQuick(s.label, s.href, 60 * 60 * 1000)}
                 className="text-xs px-3 py-1 bg-slate-100 rounded-md"
               >
-                En 1h
+                {t("remind1h")}
               </button>
             </div>
           </div>
@@ -165,7 +172,7 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
 
       {recordatorios.length > 0 && (
         <div className="mt-4">
-          <h4 className="text-sm font-semibold text-rehub-dark/80 mb-2">Recordatorios programados</h4>
+          <h4 className="text-sm font-semibold text-rehub-dark/80 mb-2">{t("scheduledTitle")}</h4>
           <ul className="space-y-2">
             {recordatorios.map((r) => (
               <li key={r.id} className="flex items-center justify-between p-3 rounded-lg border border-slate-100">
@@ -176,10 +183,10 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
                 <div className="flex items-center gap-2">
                   {r.href && (
                     <Link href={r.href} className="text-xs text-rehub-primary underline">
-                      Ir
+                      {t("go")}
                     </Link>
                   )}
-                  <button onClick={() => removeReminder(r.id)} className="text-xs text-red-600">Cancelar</button>
+                  <button onClick={() => removeReminder(r.id)} className="text-xs text-red-600">{t("cancel")}</button>
                 </div>
               </li>
             ))}

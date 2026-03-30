@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import {
   getNecesidadesSeleccionadas,
@@ -14,6 +15,8 @@ interface Props {
 }
 
 function BloqueGuia({ guia }: { guia: GuiaInline }) {
+  const t = useTranslations("dashboard.customFlow");
+
   return (
     <div className="p-5 rounded-xl border border-rehub-primary/20 bg-white">
       <div className="flex items-start gap-3 mb-4">
@@ -32,7 +35,7 @@ function BloqueGuia({ guia }: { guia: GuiaInline }) {
       {guia.pasos.length > 0 && (
         <div className="mt-4">
           <h4 className="text-sm font-semibold text-rehub-dark/80 mb-2">
-            Pasos y opciones
+            {t("stepsHeading")}
           </h4>
           <ol className="space-y-2">
             {guia.pasos.map((paso, i) => (
@@ -53,7 +56,7 @@ function BloqueGuia({ guia }: { guia: GuiaInline }) {
       {guia.contactos && guia.contactos.length > 0 && (
         <div className="mt-4">
           <h4 className="text-sm font-semibold text-rehub-dark/80 mb-2">
-            Contactos útiles
+            {t("contactsHeading")}
           </h4>
           <div className="flex flex-wrap gap-2">
             {guia.contactos.map((c) => {
@@ -80,7 +83,7 @@ function BloqueGuia({ guia }: { guia: GuiaInline }) {
       {guia.nota && (
         <div className="mt-4 p-3 rounded-lg bg-amber-50 border border-amber-200">
           <p className="text-sm text-amber-900">
-            <strong>Nota:</strong> {guia.nota}
+            <strong>{t("notePrefix")}</strong> {guia.nota}
           </p>
         </div>
       )}
@@ -91,6 +94,7 @@ function BloqueGuia({ guia }: { guia: GuiaInline }) {
 export function FlujoPersonalizadoView({ userId }: Props) {
   const [seleccionados, setSeleccionados] = useState<string[]>([]);
   const mounted = useIsClientMounted();
+  const t = useTranslations("dashboard.customFlow");
 
   useEffect(() => {
     if (!mounted) return;
@@ -122,12 +126,8 @@ export function FlujoPersonalizadoView({ userId }: Props) {
   return (
     <section className="bg-gradient-to-r from-rehub-primary/5 to-rehub-accent/5 rounded-2xl border border-rehub-primary/20 overflow-hidden">
       <div className="px-6 lg:px-8 py-6 border-b border-rehub-primary/20">
-        <h2 className="text-lg font-semibold text-rehub-dark">
-          Tu guía personalizada
-        </h2>
-        <p className="mt-1 text-sm text-rehub-dark/60">
-          Todo el contenido aquí, según lo que seleccionaste. No necesitas ir a otra página.
-        </p>
+        <h2 className="text-lg font-semibold text-rehub-dark">{t("title")}</h2>
+        <p className="mt-1 text-sm text-rehub-dark/60">{t("subtitle")}</p>
       </div>
       <div className="p-6 lg:p-8 space-y-6">
         {guias.map((guia) => (

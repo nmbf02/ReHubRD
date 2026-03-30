@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
   IconUser,
   IconClipboard,
@@ -14,64 +15,6 @@ import { getPerfilInicial, calcularProgreso } from "@/lib/profile-store";
 import SugerenciasRecordatorios from "@/components/dashboard/SuggestionsAndRecommendations";
 import { getAccountData } from "@/lib/account-store";
 import { ROUTES, hrefResourcesHash } from "@/lib/routes";
-
-const FLUJO_PASOS = [
-  {
-    paso: 1,
-    titulo: "Mi perfil",
-    descripcion: "Tu situación, accidente, ubicación y contexto para un plan personalizado.",
-    href: ROUTES.profile,
-    Icon: IconUser,
-  },
-  {
-    paso: 2,
-    titulo: "Mi plan",
-    descripcion: "Recomendaciones, checklist y recordatorios según tus necesidades.",
-    href: ROUTES.plan,
-    Icon: IconClipboard,
-  },
-  {
-    paso: 3,
-    titulo: "Seguimiento",
-    descripcion: "Check-ins semanales para que el plan se adapte a tu evolución.",
-    href: ROUTES.followup,
-    Icon: IconRefresh,
-  },
-  {
-    paso: 4,
-    titulo: "Recursos",
-    descripcion: "24 guías: transporte, medicamentos, apoyo sola/o, trámites, ayuda gratuita.",
-    href: ROUTES.resources,
-    Icon: IconBook,
-  },
-];
-
-const CARDS_ACCESO = [
-  {
-    title: "Mi perfil",
-    desc: "Situación, necesidades y contexto.",
-    href: ROUTES.profile,
-    Icon: IconUser,
-  },
-  {
-    title: "Mi plan",
-    desc: "Recomendaciones y orientación adaptada.",
-    href: ROUTES.plan,
-    Icon: IconClipboard,
-  },
-  {
-    title: "Seguimiento",
-    desc: "Registra cómo te sientes esta semana.",
-    href: ROUTES.followup,
-    Icon: IconRefresh,
-  },
-  {
-    title: "Recursos",
-    desc: "24 guías, ayuda gratuita y planes de acogida.",
-    href: ROUTES.resources,
-    Icon: IconBook,
-  },
-];
 
 interface Props {
   userName?: string | null;
@@ -88,6 +31,72 @@ function pasoActual(progreso: number): number {
 export function InicioDashboard({ userName, userId }: Props) {
   const mounted = useIsClientMounted();
   const [progreso, setProgreso] = useState(0);
+  const t = useTranslations("dashboard.inicio");
+  const tCommon = useTranslations("common");
+
+  const FLUJO_PASOS = useMemo(
+    () => [
+      {
+        paso: 1,
+        titulo: t("steps.profile.title"),
+        descripcion: t("steps.profile.desc"),
+        href: ROUTES.profile,
+        Icon: IconUser,
+      },
+      {
+        paso: 2,
+        titulo: t("steps.plan.title"),
+        descripcion: t("steps.plan.desc"),
+        href: ROUTES.plan,
+        Icon: IconClipboard,
+      },
+      {
+        paso: 3,
+        titulo: t("steps.followup.title"),
+        descripcion: t("steps.followup.desc"),
+        href: ROUTES.followup,
+        Icon: IconRefresh,
+      },
+      {
+        paso: 4,
+        titulo: t("steps.resources.title"),
+        descripcion: t("steps.resources.desc"),
+        href: ROUTES.resources,
+        Icon: IconBook,
+      },
+    ],
+    [t]
+  );
+
+  const CARDS_ACCESO = useMemo(
+    () => [
+      {
+        title: t("cards.profile.title"),
+        desc: t("cards.profile.desc"),
+        href: ROUTES.profile,
+        Icon: IconUser,
+      },
+      {
+        title: t("cards.plan.title"),
+        desc: t("cards.plan.desc"),
+        href: ROUTES.plan,
+        Icon: IconClipboard,
+      },
+      {
+        title: t("cards.followup.title"),
+        desc: t("cards.followup.desc"),
+        href: ROUTES.followup,
+        Icon: IconRefresh,
+      },
+      {
+        title: t("cards.resources.title"),
+        desc: t("cards.resources.desc"),
+        href: ROUTES.resources,
+        Icon: IconBook,
+      },
+    ],
+    [t]
+  );
 
   useEffect(() => {
     if (!mounted) return;
@@ -98,36 +107,32 @@ export function InicioDashboard({ userName, userId }: Props) {
   const displayName =
     (mounted && getAccountData(userId ?? undefined)?.showName) ||
     userName ||
-    "Usuario";
+    tCommon("userFallback");
 
   const pasoEnCurso = pasoActual(progreso);
   const pasoActualData = FLUJO_PASOS[pasoEnCurso - 1];
   const accionSugerida =
     progreso < 25
-      ? { href: ROUTES.profile, label: "Completar perfil" }
+      ? { href: ROUTES.profile, label: t("actionCompleteProfile") }
       : progreso < 75
-        ? { href: ROUTES.plan, label: "Ver mi plan" }
-        : { href: ROUTES.followup, label: "Actualizar seguimiento" };
+        ? { href: ROUTES.plan, label: t("actionViewPlan") }
+        : { href: ROUTES.followup, label: t("actionUpdateFollowup") };
 
   return (
     <div className="space-y-8">
-      {/* Hero y progreso */}
       <div className="rounded-2xl bg-gradient-to-br from-rehub-primary/10 via-rehub-accent/5 to-transparent border border-rehub-primary/20 p-6 lg:p-8">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div>
             <h1 className="text-2xl lg:text-3xl font-bold text-rehub-dark tracking-tight">
-              Hola, {displayName}
+              {t("greeting", { name: displayName })}
             </h1>
-            <p className="mt-2 text-rehub-dark/80 text-base max-w-xl">
-              ReHub te acompaña después del accidente. Guías para transporte, medicamentos,
-              apoyo cuando estás sola o solo, trámites, ayuda gratuita y planes de acogida.
-            </p>
+            <p className="mt-2 text-rehub-dark/80 text-base max-w-xl">{t("heroSub")}</p>
           </div>
           {mounted && (
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 shrink-0">
               <div className="min-w-[200px]">
                 <p className="text-xs font-medium text-rehub-dark/60 uppercase tracking-wider mb-2">
-                  Progreso del perfil
+                  {t("progressLabel")}
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="flex-1 h-3 bg-slate-200/80 rounded-full overflow-hidden">
@@ -157,27 +162,21 @@ export function InicioDashboard({ userName, userId }: Props) {
         </div>
       </div>
 
-      {/* ¿Necesitas ayuda ahora? */}
       <div className="flex flex-wrap gap-3 items-center p-4 rounded-xl bg-slate-100/80 border border-slate-200/80">
-        <span className="text-sm font-medium text-rehub-dark/80">¿Necesitas ayuda ahora?</span>
+        <span className="text-sm font-medium text-rehub-dark/80">{t("quickHelp")}</span>
         <a href="tel:911" className="text-sm font-semibold text-red-600 hover:underline">911</a>
         <span className="text-slate-300">·</span>
-        <a href="tel:811" className="text-sm font-semibold text-rehub-primary hover:underline">811 salud mental</a>
+        <a href="tel:811" className="text-sm font-semibold text-rehub-primary hover:underline">{t("mentalHealthLine")}</a>
         <span className="text-slate-300">·</span>
         <a href="tel:8092001400" className="text-sm font-semibold text-rehub-primary hover:underline">809-200-1400</a>
       </div>
 
       <SugerenciasRecordatorios progreso={progreso} userId={userId} />
 
-      {/* Flujo de recuperación (4 pasos) */}
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
-          <h2 className="text-lg font-semibold text-rehub-dark">
-            Tu flujo de recuperación
-          </h2>
-          <p className="mt-1 text-sm text-rehub-dark/60">
-            4 pasos: Perfil → Plan → Seguimiento → Recursos
-          </p>
+          <h2 className="text-lg font-semibold text-rehub-dark">{t("flowTitle")}</h2>
+          <p className="mt-1 text-sm text-rehub-dark/60">{t("flowSubtitle")}</p>
         </div>
         <div className="p-6 lg:p-8">
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -216,7 +215,7 @@ export function InicioDashboard({ userName, userId }: Props) {
                 href={pasoActualData.href}
                 className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:text-rehub-secondary"
               >
-                Ir a este paso
+                {t("goToStep")}
                 <span aria-hidden>→</span>
               </Link>
             </div>
@@ -224,10 +223,9 @@ export function InicioDashboard({ userName, userId }: Props) {
         </div>
       </section>
 
-      {/* Accesos rápidos + Ayuda gratuita */}
       <section>
         <h2 className="text-sm font-semibold text-rehub-dark/80 uppercase tracking-wider mb-4">
-          Accesos rápidos
+          {t("quickAccessTitle")}
         </h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {CARDS_ACCESO.map(({ title, desc, href, Icon }) => (
@@ -255,8 +253,8 @@ export function InicioDashboard({ userName, userId }: Props) {
           >
             <span className="text-2xl">🎁</span>
             <div>
-              <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary">Ayuda gratuita</h3>
-              <p className="text-sm text-rehub-dark/70">Líneas 811, 809-200-1400, medicamentos, ADR, programas sociales</p>
+              <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary">{t("freeHelpTitle")}</h3>
+              <p className="text-sm text-rehub-dark/70">{t("freeHelpDesc")}</p>
             </div>
           </Link>
           <Link
@@ -265,8 +263,8 @@ export function InicioDashboard({ userName, userId }: Props) {
           >
             <span className="text-2xl">🏠</span>
             <div>
-              <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary">Planes de acogida</h3>
-              <p className="text-sm text-rehub-dark/70">ADR, seguimiento post-alta, grupos de apoyo, reinserción</p>
+              <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary">{t("shelterTitle")}</h3>
+              <p className="text-sm text-rehub-dark/70">{t("shelterDesc")}</p>
             </div>
           </Link>
         </div>

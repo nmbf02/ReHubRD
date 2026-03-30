@@ -13,7 +13,9 @@
   },
   "common": {
     "brand": "ReHub",
-    "userFallback": "Usuario"
+    "tagline": "Centro de Recuperación",
+    "userFallback": "Usuario",
+    "optionalMarker": " (opcional)"
   },
   "login": {
     "heroTitle": "Tu centro de recuperación post-accidente",
@@ -41,6 +43,128 @@
       "Default": "Error al iniciar sesión. Intenta de nuevo."
     }
   },
+  "register": {
+    "title": "Registro próximamente",
+    "body": "Estamos preparando el sistema de registro. Mientras tanto, puedes usar las credenciales de demostración para explorar la plataforma.",
+    "goToLogin": "Ir a iniciar sesión"
+  },
+  "landing": {
+    "nav": {
+      "problem": "El Problema",
+      "solution": "La Solución",
+      "howItWorks": "Cómo Funciona",
+      "contact": "Contacto"
+    },
+    "header": {
+      "goToApp": "Ir al sistema",
+      "signIn": "Iniciar sesión",
+      "getStarted": "Comenzar",
+      "signOut": "Cerrar sesión",
+      "menuAria": "Menú"
+    },
+    "hero": {
+      "badge": "Plataforma piloto en República Dominicana",
+      "titlePrefix": "Tu centro de",
+      "titleHighlight": "recuperación",
+      "titleSuffix": "post-accidente",
+      "subtitle": "ReHub te guía después del alta: cómo ir a un lugar, conseguir medicamentos, apoyo cuando estás sola o solo, trámites y más.",
+      "ctaPrimary": "Comenzar mi recuperación",
+      "ctaSecondary": "Cómo funciona",
+      "cards": {
+        "profile": {
+          "title": "Perfil de recuperación",
+          "desc": "Identificamos tus necesidades prioritarias"
+        },
+        "plan": {
+          "title": "Plan personalizado",
+          "desc": "Recordatorios, trámites y recursos adaptados"
+        },
+        "followup": {
+          "title": "Seguimiento adaptativo",
+          "desc": "Check-ins que se ajustan a tu evolución"
+        }
+      }
+    },
+    "problem": {
+      "title": "El vacío que ReHub viene a llenar",
+      "intro": "En República Dominicana, una vez que la persona sale del hospital, enfrenta su recuperación física, emocional y social sin un sistema de acompañamiento continuo.",
+      "postDischarge": {
+        "title": "Vacío post-alta",
+        "desc": "La atención se concentra en emergencia y hospitalización. Al salir del centro de salud, la persona queda sin acompañamiento estructurado."
+      },
+      "misinformation": {
+        "title": "Desinformación",
+        "desc": "Falta de orientación sobre trámites, rehabilitación, seguros y reintegración laboral genera estrés y confusión."
+      },
+      "treatmentDropout": {
+        "title": "Abandono de tratamientos",
+        "desc": "Sin seguimiento continuo, muchas personas abandonan tratamientos o pierden el rumbo en su recuperación."
+      },
+      "emotionalIsolation": {
+        "title": "Aislamiento emocional",
+        "desc": "La adaptación a una nueva realidad personal requiere apoyo psicológico y social que no siempre está disponible."
+      }
+    },
+    "solution": {
+      "title": "Una solución digital centrada en la persona",
+      "intro": "ReHub funciona como sistema de orientación, acompañamiento y canalización. Accesible, estructurado y diseñado para crecer contigo.",
+      "structured": {
+        "title": "Orientación estructurada",
+        "desc": "Información clara sobre trámites, rehabilitación y recursos comunitarios."
+      },
+      "plan": {
+        "title": "Plan personalizado",
+        "desc": "Recordatorios, recomendaciones y sugerencias adaptadas a tu perfil de recuperación."
+      },
+      "followup": {
+        "title": "Seguimiento adaptativo",
+        "desc": "Check-ins periódicos que se ajustan según tu evolución y necesidades."
+      },
+      "professional": {
+        "title": "Canalización profesional",
+        "desc": "ReHub no sustituye a profesionales; te orienta y canaliza cuando lo necesitas."
+      }
+    },
+    "flow": {
+      "title": "Cómo funciona ReHub",
+      "intro": "Un flujo progresivo y adaptativo, diseñado para acompañarte en cada etapa de tu recuperación.",
+      "step1": {
+        "title": "Registro y perfil",
+        "desc": "Te registras tras el alta médica. El sistema recopila información sobre tu situación: tipo de accidente, estado físico, situación laboral, red de apoyo y estado emocional."
+      },
+      "step2": {
+        "title": "Diagnóstico social inicial",
+        "desc": "Con tu información, construimos un perfil de recuperación e identificamos tus necesidades prioritarias."
+      },
+      "step3": {
+        "title": "Plan personalizado",
+        "desc": "Se activa un plan adaptado: recordatorios, recomendaciones prácticas, orientación sobre trámites, apoyo emocional y recursos comunitarios."
+      },
+      "step4": {
+        "title": "Seguimiento periódico",
+        "desc": "Check-ins semanales o quincenales donde actualizas tu estado y reportas dificultades."
+      },
+      "step5": {
+        "title": "Ajustes dinámicos",
+        "desc": "Según tus respuestas, el sistema prioriza: si reportas ansiedad → recursos emocionales; si hay limitaciones de movilidad → orientación logística."
+      },
+      "step6": {
+        "title": "Reintegración y cierre",
+        "desc": "Cuando alcanzas un nivel estable de reintegración, el sistema reduce la frecuencia o finaliza el acompañamiento."
+      }
+    },
+    "cta": {
+      "title": "¿Listo para comenzar tu proceso de recuperación?",
+      "body": "ReHub está en fase piloto. Regístrate para recibir información sobre el lanzamiento y ser parte de los primeros usuarios.",
+      "contact": "Contactar",
+      "registerSoon": "Próximamente: Registrarse",
+      "disclaimer": "ReHub no sustituye profesionales de la salud. Funciona como sistema de orientación, acompañamiento y canalización."
+    },
+    "footer": {
+      "copyright": "© {year} ReHub. Proyecto piloto en República Dominicana.",
+      "tagline": "Re · Recovery, Rehabilitación, Reintegración · Hub · Centro, Núcleo"
+    }
+  },
   "dashboard": {
     "nav": {
       "home": "Inicio",
@@ -52,6 +176,177 @@
     },
     "tagline": "Centro de Recuperación",
     "signOutMobile": "Salir",
-    "signOutDesktop": "Cerrar sesión"
+    "signOutDesktop": "Cerrar sesión",
+    "pages": {
+      "profile": {
+        "title": "Mi perfil",
+        "description": "Completa la información sobre tu situación para que ReHub pueda identificar tus necesidades prioritarias y ofrecerte un acompañamiento adaptado."
+      },
+      "account": {
+        "title": "Configuración de cuenta",
+        "description": "Información de tu cuenta y preferencias."
+      },
+      "plan": {
+        "title": "Mi plan",
+        "description": "Recordatorios, recomendaciones prácticas y orientación adaptada a tu situación."
+      },
+      "followup": {
+        "title": "Seguimiento",
+        "description": "Check-ins periódicos para que el sistema ajuste tu acompañamiento según tu evolución."
+      },
+      "resources": {
+        "title": "Recursos y guías",
+        "description": "Orientación concreta para ir a un lugar, conseguir medicamentos, apoyo cuando estás sola o solo, y más."
+      }
+    },
+    "inicio": {
+      "greeting": "Hola, {name}",
+      "heroSub": "ReHub te acompaña después del accidente. Guías para transporte, medicamentos, apoyo cuando estás sola o solo, trámites, ayuda gratuita y planes de acogida.",
+      "progressLabel": "Progreso del perfil",
+      "actionCompleteProfile": "Completar perfil",
+      "actionViewPlan": "Ver mi plan",
+      "actionUpdateFollowup": "Actualizar seguimiento",
+      "quickHelp": "¿Necesitas ayuda ahora?",
+      "mentalHealthLine": "811 salud mental",
+      "flowTitle": "Tu flujo de recuperación",
+      "flowSubtitle": "4 pasos: Perfil → Plan → Seguimiento → Recursos",
+      "goToStep": "Ir a este paso",
+      "quickAccessTitle": "Accesos rápidos",
+      "freeHelpTitle": "Ayuda gratuita",
+      "freeHelpDesc": "Líneas 811, 809-200-1400, medicamentos, ADR, programas sociales",
+      "shelterTitle": "Planes de acogida",
+      "shelterDesc": "ADR, seguimiento post-alta, grupos de apoyo, reinserción",
+      "steps": {
+        "profile": {
+          "title": "Mi perfil",
+          "desc": "Tu situación, accidente, ubicación y contexto para un plan personalizado."
+        },
+        "plan": {
+          "title": "Mi plan",
+          "desc": "Recomendaciones, checklist y recordatorios según tus necesidades."
+        },
+        "followup": {
+          "title": "Seguimiento",
+          "desc": "Check-ins semanales para que el plan se adapte a tu evolución."
+        },
+        "resources": {
+          "title": "Recursos",
+          "desc": "24 guías: transporte, medicamentos, apoyo sola/o, trámites, ayuda gratuita."
+        }
+      },
+      "cards": {
+        "profile": {
+          "title": "Mi perfil",
+          "desc": "Situación, necesidades y contexto."
+        },
+        "plan": {
+          "title": "Mi plan",
+          "desc": "Recomendaciones y orientación adaptada."
+        },
+        "followup": {
+          "title": "Seguimiento",
+          "desc": "Registra cómo te sientes esta semana."
+        },
+        "resources": {
+          "title": "Recursos",
+          "desc": "24 guías, ayuda gratuita y planes de acogida."
+        }
+      }
+    },
+    "customFlow": {
+      "title": "Tu guía personalizada",
+      "subtitle": "Todo el contenido aquí, según lo que seleccionaste. No necesitas ir a otra página.",
+      "stepsHeading": "Pasos y opciones",
+      "contactsHeading": "Contactos útiles",
+      "notePrefix": "Nota:"
+    },
+    "suggestions": {
+      "title": "Recordatorios sugeridos",
+      "hint": "Sugerencias rápidas basadas en tu progreso",
+      "rowHint": "Añadir o ajustar recordatorios rápidamente",
+      "remind10s": "Recordarme en 10s",
+      "remind1h": "En 1h",
+      "scheduledTitle": "Recordatorios programados",
+      "go": "Ir",
+      "cancel": "Cancelar",
+      "freeHelp": "Ayuda gratuita",
+      "notifyTitle": "Recordatorio: {label}",
+      "notifyBody": "Haz clic para abrir"
+    },
+    "profileForm": {
+      "validation": {
+        "tipoAccidente": "Indica el tipo de accidente.",
+        "estadoFisico": "Indica tu estado físico.",
+        "nivelMovilidad": "Indica tu nivel de movilidad.",
+        "estadoEmocional": "Indica tu estado emocional.",
+        "situacionLaboral": "Indica tu situación laboral.",
+        "redApoyo": "Indica tu red de apoyo."
+      },
+      "errors": {
+        "saveFailed": "No se pudo guardar. Intenta de nuevo."
+      },
+      "sections": {
+        "datos": "Ubicación",
+        "accidente": "Situación del accidente",
+        "estado": "Estado actual",
+        "contexto": "Contexto social",
+        "notas": "Notas adicionales"
+      },
+      "completitud": "Completitud del perfil",
+      "accountHint": "Tu <name>nombre</name>, <phone>teléfono</phone> y correo de contacto se gestionan en la sección de cuenta.",
+      "goAccount": "Ir a Cuenta →",
+      "provincia": "Provincia",
+      "selectProvincia": "Selecciona provincia",
+      "municipio": "Municipio o ciudad",
+      "municipioPh": "Ej: Santo Domingo Este, Santiago",
+      "tipoAccidente": "Tipo de accidente",
+      "fechaAlta": "Fecha de alta médica",
+      "centroSalud": "Centro de salud",
+      "centroSaludPh": "Nombre del hospital o centro",
+      "tipoSeguro": "Tipo de seguro",
+      "selectOption": "Selecciona",
+      "estadoFisico": "Estado físico general",
+      "nivelMovilidad": "Nivel de movilidad",
+      "estadoEmocional": "Estado emocional percibido",
+      "tratamientos": "Tratamientos actuales",
+      "tratamientosPh": "Fisioterapia, medicación, etc.",
+      "situacionLaboral": "Situación laboral",
+      "redApoyo": "Red de apoyo familiar / social",
+      "contactoEmergencia": "Contacto de emergencia",
+      "contactoEmergenciaPh": "Nombre de la persona",
+      "telefonoEmergencia": "Teléfono de emergencia",
+      "notas": "Notas adicionales",
+      "notasPh": "Cualquier información relevante sobre tu situación, necesidades especiales, etc.",
+      "saveSaving": "Guardando...",
+      "saveSaved": "✓ Guardado correctamente",
+      "saveSubmit": "Guardar perfil",
+      "needsTitle": "Necesidades prioritarias identificadas",
+      "needsSub": "Según tu perfil, estas son las áreas donde ReHub te puede acompañar.",
+      "priorityHigh": "Alta",
+      "priorityMedium": "Media",
+      "priorityLow": "Baja"
+    },
+    "accountForm": {
+      "emailInvalid": "Ingresa un correo válido.",
+      "saveFailed": "No se pudo guardar. Revisa que el almacenamiento local esté habilitado.",
+      "editTitle": "Editar datos de cuenta",
+      "displayName": "Nombre para mostrar",
+      "displayNamePh": "Tu nombre",
+      "displayNameHint": "Se mostrará en el menú y mensajes de bienvenida.",
+      "phone": "Teléfono de contacto",
+      "contactEmail": "Correo de contacto",
+      "contactEmailPh": "otro@correo.com",
+      "contactEmailHint": "Para recibir comunicaciones en una dirección distinta a la de tu cuenta.",
+      "saveSaving": "Guardando...",
+      "saveSaved": "✓ Guardado",
+      "saveSubmit": "Guardar cambios",
+      "sessionTitle": "Información de la cuenta",
+      "loginEmail": "Correo de inicio de sesión",
+      "loginEmailHint": "No se puede modificar. Usa «Correo de contacto» arriba para otra dirección.",
+      "userId": "ID de usuario",
+      "profileBoxTitle": "Datos del perfil de recuperación",
+      "profileBoxBody": "Tipo de accidente, estado físico, situación laboral y más se configuran en Mi perfil.",
+      "goProfile": "Ir a Mi perfil"
+    }
   }
 }

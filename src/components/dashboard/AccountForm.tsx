@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
@@ -17,6 +18,8 @@ interface Props {
 }
 
 export function AccountForm({ user }: Props) {
+  const ta = useTranslations("dashboard.accountForm");
+  const tCommon = useTranslations("common");
   const safeUser: { email?: string | null; name?: string | null; id?: string | null } = user ?? {};
 
   const [showName, setShowName] = useState("");
@@ -48,7 +51,7 @@ export function AccountForm({ user }: Props) {
     e.preventDefault();
     const err: { email?: string } = {};
     if (contactEmail.trim() && !validateEmail(contactEmail)) {
-      err.email = "Ingresa un correo válido.";
+      err.email = ta("emailInvalid");
     }
     setErrores(err);
     if (Object.keys(err).length > 0) return;
@@ -67,7 +70,7 @@ export function AccountForm({ user }: Props) {
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (e) {
-      const msg = e instanceof Error ? e.message : "No se pudo guardar. Revisa que el almacenamiento local esté habilitado.";
+      const msg = e instanceof Error ? e.message : ta("saveFailed");
       setErrores((prev) => ({ ...prev, save: msg }));
     } finally {
       setIsSaving(false);
@@ -87,28 +90,28 @@ export function AccountForm({ user }: Props) {
       {/* Datos editables */}
       <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-rehub-light/50 p-6 lg:p-8">
         <h2 className="text-lg font-semibold text-rehub-dark mb-6">
-          Editar datos de cuenta
+          {ta("editTitle")}
         </h2>
         <div className="space-y-6">
           <div>
             <label htmlFor="nombreMostrar" className="block text-sm font-medium text-rehub-dark mb-2">
-              Nombre para mostrar
+              {ta("displayName")}
             </label>
             <input
               id="nombreMostrar"
               type="text"
               value={showName}
               onChange={(e) => setShowName(e.target.value)}
-              placeholder="Tu nombre"
+              placeholder={ta("displayNamePh")}
               className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
             />
             <p className="mt-1 text-xs text-rehub-dark/60">
-              Se mostrará en el menú y mensajes de bienvenida.
+              {ta("displayNameHint")}
             </p>
           </div>
           <div>
             <label htmlFor="telefono" className="block text-sm font-medium text-rehub-dark mb-2">
-              Teléfono de contacto
+              {ta("phone")}
             </label>
             <input
               id="telefono"
@@ -121,7 +124,8 @@ export function AccountForm({ user }: Props) {
           </div>
           <div>
             <label htmlFor="correoContacto" className="block text-sm font-medium text-rehub-dark mb-2">
-              Correo de contacto <span className="text-rehub-dark/50 font-normal">(opcional)</span>
+              {ta("contactEmail")}
+              <span className="text-rehub-dark/50 font-normal">{tCommon("optionalMarker")}</span>
             </label>
             <input
               id="correoContacto"
@@ -131,7 +135,7 @@ export function AccountForm({ user }: Props) {
                 setContactEmail(ev.target.value);
                 if (errores.email) setErrores((prev) => ({ ...prev, correo: undefined }));
               }}
-              placeholder="otro@correo.com"
+              placeholder={ta("contactEmailPh")}
               className={`w-full px-4 py-3 rounded-xl border focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none ${
                 errores.email ? "border-red-300" : "border-rehub-dark/20"
               }`}
@@ -140,7 +144,7 @@ export function AccountForm({ user }: Props) {
               <p className="mt-1 text-sm text-red-600" role="alert">{errores.email}</p>
             )}
             <p className="mt-1 text-xs text-rehub-dark/60">
-              Para recibir comunicaciones en una dirección distinta a la de tu cuenta.
+              {ta("contactEmailHint")}
             </p>
           </div>
           {errores.save && (
@@ -151,7 +155,7 @@ export function AccountForm({ user }: Props) {
             disabled={isSaving}
             className="px-6 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors disabled:opacity-70"
           >
-            {isSaving ? "Guardando..." : saved ? "✓ Guardado" : "Guardar cambios"}
+            {isSaving ? ta("saveSaving") : saved ? ta("saveSaved") : ta("saveSubmit")}
           </button>
         </div>
       </form>
@@ -159,22 +163,22 @@ export function AccountForm({ user }: Props) {
       {/* Información de sesión (solo lectura) */}
       <div className="bg-white rounded-2xl border border-rehub-light/50 p-6 lg:p-8">
         <h2 className="text-lg font-semibold text-rehub-dark mb-6">
-          Información de la cuenta
+          {ta("sessionTitle")}
         </h2>
         <dl className="space-y-6">
           <div>
             <dt className="text-sm font-medium text-rehub-dark/70 mb-1">
-              Correo de inicio de sesión
+              {ta("loginEmail")}
             </dt>
             <dd className="text-rehub-dark font-medium">{safeUser?.email ?? "—"}</dd>
             <p className="mt-1 text-xs text-rehub-dark/60">
-              No se puede modificar. Usa «Correo de contacto» arriba para otra dirección.
+              {ta("loginEmailHint")}
             </p>
           </div>
           {getAccountData(safeUser?.id ?? undefined)?.contactEmail && (
             <div>
               <dt className="text-sm font-medium text-rehub-dark/70 mb-1">
-                Correo de contacto
+                {ta("contactEmail")}
               </dt>
               <dd className="text-rehub-dark font-medium">
                 {getAccountData(safeUser?.id ?? undefined)?.contactEmail}
@@ -183,7 +187,7 @@ export function AccountForm({ user }: Props) {
           )}
           <div>
             <dt className="text-sm font-medium text-rehub-dark/70 mb-1">
-              ID de usuario
+              {ta("userId")}
             </dt>
             <dd className="text-sm text-rehub-dark/60 font-mono">
               {safeUser?.id ?? "—"}
@@ -194,17 +198,16 @@ export function AccountForm({ user }: Props) {
 
       <div className="bg-rehub-light/30 rounded-2xl border border-rehub-primary/10 p-6 lg:p-8">
         <h2 className="text-lg font-semibold text-rehub-dark mb-2">
-          Datos del perfil de recuperación
+          {ta("profileBoxTitle")}
         </h2>
         <p className="text-sm text-rehub-dark/70 mb-4">
-          Tipo de accidente, estado físico, situación laboral y más se configuran
-          en Mi perfil.
+          {ta("profileBoxBody")}
         </p>
         <Link
           href={ROUTES.profile}
           className="inline-flex items-center gap-2 px-4 py-2 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors text-sm"
         >
-          Ir a Mi perfil
+          {ta("goProfile")}
         </Link>
       </div>
     </div>

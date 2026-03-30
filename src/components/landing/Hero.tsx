@@ -2,11 +2,20 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { ROUTES } from "@/lib/routes";
 
 export function Hero() {
+  const t = useTranslations("landing.hero");
+
+  const cards = [
+    { icon: "🩺", titleKey: "cards.profile.title", descKey: "cards.profile.desc" },
+    { icon: "📋", titleKey: "cards.plan.title", descKey: "cards.plan.desc" },
+    { icon: "🔄", titleKey: "cards.followup.title", descKey: "cards.followup.desc" },
+  ] as const;
+
   return (
     <section className="relative pt-24 lg:pt-32 pb-20 lg:pb-32 overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-rehub-light/30 via-white to-rehub-accent/5" />
       <div className="absolute top-20 right-0 w-96 h-96 bg-rehub-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-rehub-accent/10 rounded-full blur-3xl" />
@@ -21,7 +30,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rehub-primary/10 text-rehub-primary text-sm font-medium mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-rehub-primary animate-pulse" />
-              Plataforma piloto en República Dominicana
+              {t("badge")}
             </motion.div>
 
             <motion.h1
@@ -30,9 +39,9 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-rehub-dark leading-tight"
             >
-              Tu centro de{" "}
-              <span className="text-rehub-primary">recuperación</span>{" "}
-              post-accidente
+              {t("titlePrefix")}{" "}
+              <span className="text-rehub-primary">{t("titleHighlight")}</span>{" "}
+              {t("titleSuffix")}
             </motion.h1>
 
             <motion.p
@@ -41,8 +50,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-6 text-lg text-rehub-dark/80 max-w-xl"
             >
-              ReHub te guía después del alta: cómo ir a un lugar, conseguir
-              medicamentos, apoyo cuando estás sola o solo, trámites y más.
+              {t("subtitle")}
             </motion.p>
 
             <motion.div
@@ -52,16 +60,16 @@ export function Hero() {
               className="mt-10 flex flex-col sm:flex-row gap-4"
             >
               <Link
-                href="/login"
+                href={ROUTES.login}
                 className="inline-flex items-center justify-center px-8 py-4 bg-rehub-primary text-white rounded-xl font-semibold hover:bg-rehub-secondary transition-all shadow-lg shadow-rehub-primary/25 hover:shadow-rehub-primary/40"
               >
-                Comenzar mi recuperación
+                {t("ctaPrimary")}
               </Link>
               <a
                 href="#funcionamiento"
                 className="inline-flex items-center justify-center px-8 py-4 border-2 border-rehub-primary text-rehub-primary rounded-xl font-semibold hover:bg-rehub-primary/5 transition-all"
               >
-                Cómo funciona
+                {t("ctaSecondary")}
               </a>
             </motion.div>
           </div>
@@ -74,31 +82,15 @@ export function Hero() {
           >
             <div className="aspect-square max-w-md mx-auto lg:max-w-none rounded-2xl bg-gradient-to-br from-rehub-primary/20 to-rehub-accent/20 p-8 flex flex-col justify-center">
               <div className="space-y-6">
-                {[
-                  {
-                    icon: "🩺",
-                    title: "Perfil de recuperación",
-                    desc: "Identificamos tus necesidades prioritarias",
-                  },
-                  {
-                    icon: "📋",
-                    title: "Plan personalizado",
-                    desc: "Recordatorios, trámites y recursos adaptados",
-                  },
-                  {
-                    icon: "🔄",
-                    title: "Seguimiento adaptativo",
-                    desc: "Check-ins que se ajustan a tu evolución",
-                  },
-                ].map((item, i) => (
+                {cards.map((item, i) => (
                   <div
                     key={i}
                     className="flex gap-4 p-4 bg-white/80 rounded-xl backdrop-blur"
                   >
                     <span className="text-2xl">{item.icon}</span>
                     <div>
-                      <p className="font-semibold text-rehub-dark">{item.title}</p>
-                      <p className="text-sm text-rehub-dark/70">{item.desc}</p>
+                      <p className="font-semibold text-rehub-dark">{t(item.titleKey)}</p>
+                      <p className="text-sm text-rehub-dark/70">{t(item.descKey)}</p>
                     </div>
                   </div>
                 ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import Link from "next/link";
 import {
@@ -30,14 +31,6 @@ interface Props {
   userId?: string | null;
 }
 
-const ETIQUETA_CATEGORIA: Record<string, string> = {
-  fisico: "Físico",
-  emocional: "Emocional",
-  laboral: "Laboral",
-  logístico: "Trámites y logística",
-  universal: "General",
-};
-
 function agruparPorPrioridad(recs: Recomendacion[]) {
   const alta: Recomendacion[] = [];
   const media: Recomendacion[] = [];
@@ -51,9 +44,26 @@ function agruparPorPrioridad(recs: Recomendacion[]) {
   return { alta, media, baja };
 }
 
+const CATEGORY_I18N: Record<string, "categoryFisico" | "categoryEmocional" | "categoryLaboral" | "categoryLogistico" | "categoryUniversal"> = {
+  fisico: "categoryFisico",
+  emocional: "categoryEmocional",
+  laboral: "categoryLaboral",
+  logístico: "categoryLogistico",
+  universal: "categoryUniversal",
+};
+
 export function PlanView({ userId }: Props) {
   const mounted = useIsClientMounted();
   const [progreso, setProgreso] = useState(0);
+  const tp = useTranslations("dashboard.planPage");
+  const tNav = useTranslations("dashboard.nav");
+  const tFlow = useTranslations("dashboard.inicio");
+
+  function categoryLabel(categoria: string | undefined): string {
+    if (!categoria) return "";
+    const key = CATEGORY_I18N[categoria];
+    return key ? tp(key) : categoria;
+  }
 
   useEffect(() => {
     if (!mounted) return;
@@ -92,18 +102,17 @@ export function PlanView({ userId }: Props) {
       <div className="space-y-8">
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-8 text-center">
           <h2 className="text-lg font-semibold text-amber-900 mb-2">
-            Completa tu perfil primero
+            {tp("incompleteTitle")}
           </h2>
           <p className="text-amber-800/90 text-sm mb-6 max-w-lg mx-auto">
-            Para generar tu plan personalizado necesitamos más información sobre
-            tu situación. Completa al menos el 25% de tu perfil de recuperación.
+            {tp("incompleteBody")}
           </p>
           <Link
             href={ROUTES.profile}
             className="inline-flex items-center gap-2 px-6 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors"
           >
             <IconUser className="w-5 h-5" />
-            Ir a Mi perfil
+            {tp("goProfile")}
           </Link>
         </div>
       </div>
@@ -116,7 +125,7 @@ export function PlanView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-5 border-b border-slate-100">
           <h2 className="text-sm font-semibold text-rehub-dark/80 uppercase tracking-wider">
-            Tu flujo de recuperación
+            {tFlow("flowTitle")}
           </h2>
         </div>
         <div className="p-6 lg:p-8">
@@ -126,12 +135,12 @@ export function PlanView({ userId }: Props) {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconUser className="w-4 h-4" />
-              1. Mi perfil
+              1. {tNav("profile")}
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rehub-primary/15 text-rehub-primary border border-rehub-primary/30 text-sm font-medium">
               <IconClipboard className="w-4 h-4" />
-              2. Mi plan
+              2. {tNav("plan")}
             </span>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
@@ -139,7 +148,7 @@ export function PlanView({ userId }: Props) {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconRefresh className="w-4 h-4" />
-              3. Seguimiento
+              3. {tNav("followup")}
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
@@ -147,7 +156,7 @@ export function PlanView({ userId }: Props) {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconBook className="w-4 h-4" />
-              4. Recursos
+              4. {tNav("resources")}
             </Link>
           </div>
         </div>
@@ -166,13 +175,15 @@ export function PlanView({ userId }: Props) {
             <span className="text-2xl">{flujoPorSituacion.emoji}</span>
             <div>
               <h2 className="text-lg font-semibold text-rehub-dark">
-                Guía: {flujoPorSituacion.nombre}
+                {tp("guideHeading")} {flujoPorSituacion.nombre}
               </h2>
               <p className="text-sm text-rehub-dark/70 mt-0.5">
                 {flujoPorSituacion.descripcion}
               </p>
               <p className="text-xs text-rehub-dark/60 mt-1">
-                Seguimiento: {flujoPorSituacion.frecuenciaSeguimiento}
+                {tp("followupFreq", {
+                  freq: flujoPorSituacion.frecuenciaSeguimiento,
+                })}
               </p>
             </div>
           </div>
@@ -194,7 +205,7 @@ export function PlanView({ userId }: Props) {
             href={ROUTES.followup}
             className="inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline"
           >
-            Actualizar seguimiento para plan detallado
+            {tp("updateFollowupDetail")}
             <span aria-hidden>→</span>
           </Link>
         </div>
@@ -210,17 +221,20 @@ export function PlanView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark">
-            Tu plan personalizado
+            {tp("personalizedTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            {necesidades.length} áreas prioritarias · {todasRecomendaciones.length} recomendaciones. En Recursos: guías para transporte, medicamentos, apoyo cuando estás sola o solo.
+            {tp("personalizedSummary", {
+              areasCount: necesidades.length,
+              recsCount: todasRecomendaciones.length,
+            })}
           </p>
         </div>
         <div className="p-6 lg:p-8">
           {/* Necesidades prioritarias */}
           <div className="mb-8">
             <h3 className="text-sm font-semibold text-rehub-dark/80 uppercase tracking-wider mb-4">
-              Necesidades identificadas
+              {tp("identifiedNeeds")}
             </h3>
             <div className="flex flex-wrap gap-2">
               {necesidades.map((n) => (
@@ -243,7 +257,7 @@ export function PlanView({ userId }: Props) {
           {/* Checklist de acciones prioritarias */}
           <div>
             <h3 className="text-sm font-semibold text-rehub-dark/80 uppercase tracking-wider mb-4">
-              Acciones prioritarias
+              {tp("priorityActions")}
             </h3>
             <ul className="space-y-3">
               {CHECKLIST_PRIORITARIO.map((item) => (
@@ -272,10 +286,10 @@ export function PlanView({ userId }: Props) {
         <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
             <h2 className="text-lg font-semibold text-rehub-dark">
-              Recomendaciones prioritarias
+              {tp("recsHighTitle")}
             </h2>
             <p className="mt-1 text-sm text-rehub-dark/60">
-              Acciones que tienen mayor impacto en tu recuperación
+              {tp("recsHighSubtitle")}
             </p>
           </div>
           <div className="p-6 lg:p-8">
@@ -289,7 +303,7 @@ export function PlanView({ userId }: Props) {
                     <div className="flex items-center gap-2 flex-wrap mb-1">
                       {r.categoria && (
                         <span className="text-xs font-medium text-rehub-dark/60 uppercase">
-                          {ETIQUETA_CATEGORIA[r.categoria] ?? r.categoria}
+                          {categoryLabel(r.categoria)}
                         </span>
                       )}
                     </div>
@@ -302,7 +316,7 @@ export function PlanView({ userId }: Props) {
                     href={r.href ?? ROUTES.resources}
                     className="shrink-0 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-rehub-primary border border-rehub-primary/30 rounded-lg hover:bg-rehub-primary/5 transition-colors"
                   >
-                    {r.accion ?? "Ver más"}
+                    {r.accion ?? tp("seeMore")}
                     <span aria-hidden>→</span>
                   </Link>
                 </div>
@@ -317,10 +331,10 @@ export function PlanView({ userId }: Props) {
         <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
           <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
             <h2 className="text-lg font-semibold text-rehub-dark">
-              Más recomendaciones
+              {tp("recsMoreTitle")}
             </h2>
             <p className="mt-1 text-sm text-rehub-dark/60">
-              Orientación adicional para tu proceso
+              {tp("recsMoreSubtitle")}
             </p>
           </div>
           <div className="p-6 lg:p-8">
@@ -333,7 +347,7 @@ export function PlanView({ userId }: Props) {
                   <div className="flex-1 min-w-0">
                     {r.categoria && (
                       <span className="text-xs font-medium text-rehub-dark/60 uppercase">
-                        {ETIQUETA_CATEGORIA[r.categoria] ?? r.categoria}
+                        {categoryLabel(r.categoria)}
                       </span>
                     )}
                     <h4 className="font-medium text-rehub-dark mt-0.5">
@@ -347,7 +361,7 @@ export function PlanView({ userId }: Props) {
                     href={r.href ?? ROUTES.resources}
                     className="shrink-0 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-rehub-primary border border-rehub-primary/30 rounded-lg hover:bg-rehub-primary/5 transition-colors"
                   >
-                    {r.accion ?? "Ver más"}
+                    {r.accion ?? tp("seeMore")}
                     <span aria-hidden>→</span>
                   </Link>
                 </div>
@@ -361,40 +375,35 @@ export function PlanView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark">
-            Trámites en República Dominicana
+            {tp("proceduresTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            Información útil: ARS, SISALRIL, incapacidad laboral
+            {tp("proceduresSubtitle")}
           </p>
         </div>
         <div className="p-6 lg:p-8">
           <div className="space-y-5 text-sm">
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
               <h4 className="font-semibold text-rehub-dark mb-2">
-                ARS y SISALRIL
+                {tp("proceduresArsTitle")}
               </h4>
               <p className="text-rehub-dark/70">
-                Para verificar tu afiliación a una ARS y trámites de salud:
-                <strong> virtual.sisalril.gob.do</strong>. El subsidio por
-                incapacidad (enfermedad común o accidente no laboral) requiere
-                licencia médica registrada por tu empleador.
+                {tp("proceduresArsBody")}
               </p>
             </div>
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
               <h4 className="font-semibold text-rehub-dark mb-2">
-                Accidentes laborales (IDOPPRIL)
+                {tp("proceduresIdopprilTitle")}
               </h4>
               <p className="text-rehub-dark/70">
-                Si fue accidente de trabajo, el IDOPPRIL gestiona indemnización
-                cuando hay pérdida de capacidad laboral entre 15% y 50%.
-                Consulta idoppril.gob.do.
+                {tp("proceduresIdopprilBody")}
               </p>
             </div>
             <Link
               href={ROUTES.resources}
               className="inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline"
             >
-              Ver guía completa de trámites
+              {tp("proceduresGuideLink")}
               <span aria-hidden>→</span>
             </Link>
           </div>
@@ -405,10 +414,10 @@ export function PlanView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark">
-            Recordatorios sugeridos
+            {tp("remindersTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            Acciones periódicas para mantener tu recuperación al día
+            {tp("remindersSubtitle")}
           </p>
         </div>
         <div className="p-6 lg:p-8">
@@ -434,7 +443,7 @@ export function PlanView({ userId }: Props) {
                   {rem.descripcion}
                 </p>
                 <span className="mt-3 text-sm font-medium text-rehub-primary">
-                  Ir →
+                  {tp("reminderGo")}
                 </span>
               </Link>
             ))}
@@ -446,10 +455,10 @@ export function PlanView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark">
-            Ayuda gratuita y Planes de acogida
+            {tp("helpSectionTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            Servicios sin costo y programas de acompañamiento en República Dominicana
+            {tp("helpSectionSubtitle")}
           </p>
         </div>
         <div className="p-6 lg:p-8">
@@ -461,12 +470,12 @@ export function PlanView({ userId }: Props) {
               <span className="text-2xl">🎁</span>
               <div>
                 <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary transition-colors">
-                  Ayuda gratuita
+                  {tFlow("freeHelpTitle")}
                 </h3>
                 <p className="text-sm text-rehub-dark/70 mt-1">
-                  Líneas de salud mental (811, 809-200-1400), medicamentos Promese/CAL, hospitales públicos, ADR, programas sociales.
+                  {tp("freeHelpCardBody")}
                 </p>
-                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">Ver recursos →</span>
+                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{tp("viewResources")}</span>
               </div>
             </Link>
             <Link
@@ -476,12 +485,12 @@ export function PlanView({ userId }: Props) {
               <span className="text-2xl">🏠</span>
               <div>
                 <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary transition-colors">
-                  Planes de acogida
+                  {tFlow("shelterTitle")}
                 </h3>
                 <p className="text-sm text-rehub-dark/70 mt-1">
-                  Asociación Dominicana de Rehabilitación (35 centros), seguimiento post-alta, grupos de apoyo, reinserción laboral.
+                  {tp("shelterCardBody")}
                 </p>
-                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">Ver recursos →</span>
+                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{tp("viewResources")}</span>
               </div>
             </Link>
             <Link
@@ -491,12 +500,12 @@ export function PlanView({ userId }: Props) {
               <span className="text-2xl">📍</span>
               <div>
                 <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary transition-colors">
-                  Sitios cercanos
+                  {tp("nearbyCardTitle")}
                 </h3>
                 <p className="text-sm text-rehub-dark/70 mt-1">
-                  Hospitales, centros ADR y recursos en tu provincia. Completa tu ubicación en Mi perfil para ver los de tu zona.
+                  {tp("nearbyCardBody")}
                 </p>
-                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">Ver sitios cercanos →</span>
+                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{tp("nearbyCardLink")}</span>
               </div>
             </Link>
           </div>
@@ -505,28 +514,28 @@ export function PlanView({ userId }: Props) {
 
       {/* Próximos pasos */}
       <section className="bg-gradient-to-r from-rehub-primary/5 to-rehub-accent/5 rounded-2xl border border-rehub-primary/20 p-6 lg:p-8">
-        <h3 className="font-semibold text-rehub-dark mb-4">Próximos pasos</h3>
+        <h3 className="font-semibold text-rehub-dark mb-4">{tp("nextStepsTitle")}</h3>
         <div className="flex flex-col sm:flex-row flex-wrap gap-4">
           <Link
             href={ROUTES.followup}
             className="inline-flex items-center gap-2 px-5 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors"
           >
             <IconRefresh className="w-5 h-5" />
-            Actualizar seguimiento
+            {tp("updateFollowup")}
           </Link>
           <Link
             href={ROUTES.resources}
             className="inline-flex items-center gap-2 px-5 py-3 border border-rehub-primary/30 text-rehub-primary rounded-xl font-medium hover:bg-rehub-primary/5 transition-colors"
           >
             <IconBook className="w-5 h-5" />
-            Ver recursos
+            {tNav("resources")}
           </Link>
           <Link
             href={ROUTES.profile}
             className="inline-flex items-center gap-2 px-5 py-3 border border-slate-300 text-rehub-dark rounded-xl font-medium hover:bg-slate-50 transition-colors"
           >
             <IconUser className="w-5 h-5" />
-            Revisar perfil
+            {tp("reviewProfile")}
           </Link>
         </div>
       </section>

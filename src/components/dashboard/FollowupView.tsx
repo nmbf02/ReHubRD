@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import Link from "next/link";
 import {
@@ -46,16 +47,12 @@ function formatFecha(iso: string): string {
   }
 }
 
-const LABEL_BIENESTAR: Record<number, string> = {
-  1: "Muy bajo",
-  2: "Bajo",
-  3: "Regular",
-  4: "Bien",
-  5: "Muy bien",
-};
-
 export function SeguimientoView({ userId }: Props) {
   const mounted = useIsClientMounted();
+  const t = useTranslations("dashboard.followup");
+  const tNav = useTranslations("dashboard.nav");
+  const tFlow = useTranslations("dashboard.inicio");
+  const tCommon = useTranslations("common");
   const [estadoFisico, setEstadoFisico] = useState<PhysicalState>("recuperacion");
   const [nivelMovilidad, setNivelMovilidad] = useState<MobilityLevel>("leves");
   const [estadoEmocional, setEstadoEmocional] = useState<EmotionalState>("estres");
@@ -140,7 +137,7 @@ export function SeguimientoView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-5 border-b border-slate-100">
           <h2 className="text-sm font-semibold text-rehub-dark/80 uppercase tracking-wider">
-            Tu flujo de recuperación
+            {tFlow("flowTitle")}
           </h2>
         </div>
         <div className="p-6 lg:p-8">
@@ -150,7 +147,7 @@ export function SeguimientoView({ userId }: Props) {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconUser className="w-4 h-4" />
-              1. Mi perfil
+              1. {tNav("profile")}
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
@@ -158,12 +155,12 @@ export function SeguimientoView({ userId }: Props) {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconClipboard className="w-4 h-4" />
-              2. Mi plan
+              2. {tNav("plan")}
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rehub-primary/15 text-rehub-primary border border-rehub-primary/30 text-sm font-medium">
               <IconRefresh className="w-4 h-4" />
-              3. Seguimiento
+              3. {tNav("followup")}
             </span>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
@@ -171,7 +168,7 @@ export function SeguimientoView({ userId }: Props) {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
               <IconBook className="w-4 h-4" />
-              4. Recursos
+              4. {tNav("resources")}
             </Link>
           </div>
         </div>
@@ -181,16 +178,16 @@ export function SeguimientoView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark">
-            Nuevo check-in
+            {t("newCheckInTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            Registra tu estado actual para que el plan se adapte a tu evolución
+            {t("newCheckInSubtitle")}
           </p>
         </div>
         <form onSubmit={handleSubmit} className="p-6 lg:p-8 space-y-6">
           <div>
             <label className="block text-sm font-medium text-rehub-dark mb-2">
-              ¿Cómo te sientes hoy? (escala general)
+              {t("wellbeingQuestion")}
             </label>
             <div className="flex gap-2 flex-wrap">
               {[1, 2, 3, 4, 5].map((n) => (
@@ -209,13 +206,13 @@ export function SeguimientoView({ userId }: Props) {
               ))}
             </div>
             <p className="mt-2 text-sm text-rehub-dark/60">
-              {LABEL_BIENESTAR[bienestar]}
+              {t(`wellbeing.${bienestar}`)}
             </p>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-rehub-dark mb-2">
-              Estado físico
+              {t("physicalState")}
             </label>
             <select
               value={estadoFisico}
@@ -232,7 +229,7 @@ export function SeguimientoView({ userId }: Props) {
 
           <div>
             <label className="block text-sm font-medium text-rehub-dark mb-2">
-              Nivel de movilidad
+              {t("mobilityLevel")}
             </label>
             <select
               value={nivelMovilidad}
@@ -249,7 +246,7 @@ export function SeguimientoView({ userId }: Props) {
 
           <div>
             <label className="block text-sm font-medium text-rehub-dark mb-2">
-              Estado emocional
+              {t("emotionalState")}
             </label>
             <select
               value={estadoEmocional}
@@ -266,32 +263,33 @@ export function SeguimientoView({ userId }: Props) {
 
           <div>
             <label className="block text-sm font-medium text-rehub-dark mb-2">
-              ¿Tienes acceso a tus medicamentos actualmente?
+              {t("medicationQuestion")}
             </label>
             <select
               value={accesoMedicamentos}
               onChange={(e) => setAccesoMedicamentos(e.target.value as HasAccessToMedication | "")}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
             >
-              <option value="">No aplica / No tomo medicamentos</option>
-              <option value="si">Sí, tengo acceso</option>
-              <option value="no">No, no tengo acceso</option>
-              <option value="parcial">Parcial (faltan algunos)</option>
-              <option value="no_se">No sé</option>
+              <option value="">{t("medOptionNa")}</option>
+              <option value="si">{t("medOptionYes")}</option>
+              <option value="no">{t("medOptionNo")}</option>
+              <option value="parcial">{t("medOptionPartial")}</option>
+              <option value="no_se">{t("medOptionUnknown")}</option>
             </select>
             <p className="mt-1 text-xs text-rehub-dark/50">
-              Tu respuesta ayuda a personalizar el plan. Si no tienes medicamentos, te guiamos a recursos gratuitos.
+              {t("medicationHint")}
             </p>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-rehub-dark mb-2">
-              Notas <span className="text-rehub-dark/50 font-normal">(opcional)</span>
+              {t("notesLabel")}
+              <span className="text-rehub-dark/50 font-normal">{tCommon("optionalMarker")}</span>
             </label>
             <textarea
               value={notas}
               onChange={(e) => setNotas(e.target.value)}
-              placeholder="Dificultades, logros, algo que quieras registrar..."
+              placeholder={t("notesPlaceholder")}
               rows={3}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none resize-none"
             />
@@ -302,7 +300,7 @@ export function SeguimientoView({ userId }: Props) {
             disabled={isSaving}
             className="w-full py-4 bg-rehub-primary text-white rounded-xl font-semibold hover:bg-rehub-secondary transition-colors disabled:opacity-70"
           >
-            {isSaving ? "Guardando..." : saved ? "✓ Registrado" : "Registrar check-in"}
+            {isSaving ? t("saveSaving") : saved ? t("saveSaved") : t("saveSubmit")}
           </button>
         </form>
       </section>
@@ -321,13 +319,15 @@ export function SeguimientoView({ userId }: Props) {
               <span className="text-2xl">{flujoRecomendado.emoji}</span>
               <div>
                 <h2 className="text-lg font-semibold text-rehub-dark">
-                  Tu plan según tu situación
+                  {t("recommendedTitle")}
                 </h2>
                 <p className="text-sm text-rehub-dark/70 mt-0.5">
                   {flujoRecomendado.nombre}
                 </p>
                 <p className="text-xs text-rehub-dark/60 mt-1">
-                  Seguimiento sugerido: {flujoRecomendado.frecuenciaSeguimiento}
+                  {t("suggestedFollowup", {
+                    freq: flujoRecomendado.frecuenciaSeguimiento,
+                  })}
                 </p>
               </div>
             </div>
@@ -374,7 +374,7 @@ export function SeguimientoView({ userId }: Props) {
               href={hrefResourcesHash("flujos-guia")}
               className="inline-block mt-4 text-sm font-medium text-rehub-primary hover:underline"
             >
-              Ver guía completa de flujos por situación →
+              {t("fullFlowGuideLink")}
             </Link>
           </div>
         </section>
@@ -384,18 +384,18 @@ export function SeguimientoView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark">
-            Historial de check-ins
+            {t("historyTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            Tus registros recientes
+            {t("historySubtitle")}
           </p>
         </div>
         <div className="p-6 lg:p-8">
           {checkIns.length === 0 ? (
             <div className="text-center py-12 text-rehub-dark/60">
               <IconRefresh className="w-12 h-12 mx-auto mb-4 opacity-50" />
-              <p>Aún no tienes check-ins registrados.</p>
-              <p className="text-sm mt-1">Completa el formulario de arriba para comenzar.</p>
+              <p>{t("historyEmpty")}</p>
+              <p className="text-sm mt-1">{t("historyEmptyHint")}</p>
             </div>
           ) : (
             <ul className="space-y-4">
@@ -409,7 +409,7 @@ export function SeguimientoView({ userId }: Props) {
                       {formatFecha(ci.date)}
                     </span>
                     <span className="text-sm font-semibold text-rehub-primary">
-                      Bienestar: {ci.wellBeing}/5
+                      {t("wellbeingSummary", { n: ci.wellBeing })}
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-2 text-xs text-rehub-dark/70">
@@ -422,7 +422,14 @@ export function SeguimientoView({ userId }: Props) {
                       <>
                         <span>·</span>
                         <span>
-                          Medicamentos: {ci.hasAccessToMedication === "si" ? "Sí" : ci.hasAccessToMedication === "no" ? "No" : ci.hasAccessToMedication === "parcial" ? "Parcial" : "N/A"}
+                          {t("medicationSummary")}{" "}
+                          {ci.hasAccessToMedication === "si"
+                            ? t("medYesShort")
+                            : ci.hasAccessToMedication === "no"
+                              ? t("medNoShort")
+                              : ci.hasAccessToMedication === "parcial"
+                                ? t("medPartialShort")
+                                : t("medNaShort")}
                         </span>
                       </>
                     )}
@@ -443,10 +450,10 @@ export function SeguimientoView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark">
-            Ayuda gratuita y Planes de acogida
+            {t("helpShelterTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            Si necesitas servicios sin costo o programas de acompañamiento
+            {t("helpShelterSubtitle")}
           </p>
         </div>
         <div className="p-6 lg:p-8">
@@ -458,12 +465,12 @@ export function SeguimientoView({ userId }: Props) {
               <span className="text-2xl">🎁</span>
               <div>
                 <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary transition-colors">
-                  Ayuda gratuita
+                  {t("freeHelpCardTitle")}
                 </h3>
                 <p className="text-sm text-rehub-dark/70 mt-1">
-                  Líneas 811 y 809-200-1400, medicamentos Promese/CAL, ADR, programas sociales.
+                  {t("freeHelpCardBody")}
                 </p>
-                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">Ver recursos →</span>
+                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{t("viewResources")}</span>
               </div>
             </Link>
             <Link
@@ -473,12 +480,12 @@ export function SeguimientoView({ userId }: Props) {
               <span className="text-2xl">🏠</span>
               <div>
                 <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary transition-colors">
-                  Planes de acogida
+                  {t("shelterCardTitle")}
                 </h3>
                 <p className="text-sm text-rehub-dark/70 mt-1">
-                  ADR (35 centros), seguimiento post-alta, grupos de apoyo, reinserción laboral.
+                  {t("shelterCardBody")}
                 </p>
-                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">Ver recursos →</span>
+                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{t("viewResources")}</span>
               </div>
             </Link>
           </div>
@@ -487,21 +494,21 @@ export function SeguimientoView({ userId }: Props) {
 
       {/* Enlaces */}
       <section className="bg-gradient-to-r from-rehub-primary/5 to-rehub-accent/5 rounded-2xl border border-rehub-primary/20 p-6 lg:p-8">
-        <h3 className="font-semibold text-rehub-dark mb-4">Relacionado</h3>
+        <h3 className="font-semibold text-rehub-dark mb-4">{t("relatedTitle")}</h3>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             href={ROUTES.plan}
             className="inline-flex items-center gap-2 px-5 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors"
           >
             <IconClipboard className="w-5 h-5" />
-            Ver mi plan
+            {t("viewMyPlan")}
           </Link>
           <Link
             href={ROUTES.resources}
             className="inline-flex items-center gap-2 px-5 py-3 border border-rehub-primary/30 text-rehub-primary rounded-xl font-medium hover:bg-rehub-primary/5 transition-colors"
           >
             <IconBook className="w-5 h-5" />
-            Recursos
+            {tNav("resources")}
           </Link>
         </div>
       </section>

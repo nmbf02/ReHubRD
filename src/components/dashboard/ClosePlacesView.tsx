@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import {
   obtenerSitiosCercanos,
@@ -16,17 +17,6 @@ interface Props {
   userId?: string | null;
 }
 
-const ETIQUETA_TIPO: Record<TipoSitio, string> = {
-  emergencia: "Emergencia",
-  salud_mental: "Salud mental",
-  hospital: "Hospital",
-  centro_salud: "Centro de salud",
-  rehabilitacion: "Rehabilitación",
-  farmacia: "Farmacia",
-  medicamentos: "Medicamentos",
-  trámites: "Trámites",
-};
-
 const EMOJI_TIPO: Record<TipoSitio, string> = {
   emergencia: "🚨",
   salud_mental: "💚",
@@ -40,6 +30,7 @@ const EMOJI_TIPO: Record<TipoSitio, string> = {
 
 export function SitiosCercanosView({ userId }: Props) {
   const mounted = useIsClientMounted();
+  const t = useTranslations("dashboard.closePlaces");
   const [provincia, setProvincia] = useState<ProvinciaRD | undefined>();
   const [necesidades, setNecesidades] = useState<string[]>([]);
 
@@ -62,6 +53,10 @@ export function SitiosCercanosView({ userId }: Props) {
 
   if (!mounted) return null;
 
+  const provinceLabel = provincia
+    ? OPCIONES_PROVINCIA[provincia] ?? provincia
+    : "";
+
   return (
     <section
       id="sitios-cercanos"
@@ -69,12 +64,12 @@ export function SitiosCercanosView({ userId }: Props) {
     >
       <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
         <h2 className="text-lg font-semibold text-rehub-dark flex items-center gap-2">
-          <span>📍</span> Sitios cercanos que pueden ayudarte
+          <span>📍</span> {t("title")}
         </h2>
         <p className="mt-1 text-sm text-rehub-dark/60">
           {provincia
-            ? `Según tu ubicación en ${OPCIONES_PROVINCIA[provincia] ?? provincia} y tus necesidades`
-            : "Completa tu provincia en Mi perfil para ver sitios en tu zona. Mientras tanto: recursos nacionales."}
+            ? t("withProvince", { province: provinceLabel })
+            : t("noProvince")}
         </p>
       </div>
       <div className="p-6 lg:p-8">
@@ -86,7 +81,7 @@ export function SitiosCercanosView({ userId }: Props) {
         {!provincia && (
           <div className="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200">
             <p className="text-sm text-amber-900">
-              <strong>Tip:</strong> Ve a Mi perfil → Ubicación y selecciona tu provincia para ver hospitales y centros de rehabilitación cercanos.
+              <strong>{t("tipLabel")}</strong> {t("tipBody")}
             </p>
           </div>
         )}
@@ -96,6 +91,8 @@ export function SitiosCercanosView({ userId }: Props) {
 }
 
 function TarjetaSitio({ sitio }: { sitio: SitioCercano }) {
+  const t = useTranslations("dashboard.closePlaces");
+
   return (
     <div className="p-5 rounded-xl border border-slate-200/80 bg-slate-50/50 hover:bg-white hover:border-rehub-primary/20 transition-colors">
       <div className="flex flex-col sm:flex-row sm:items-start gap-4">
@@ -104,7 +101,7 @@ function TarjetaSitio({ sitio }: { sitio: SitioCercano }) {
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="font-semibold text-rehub-dark">{sitio.nombre}</h3>
             <span className="text-xs font-medium text-rehub-dark/60 bg-slate-200/80 px-2 py-0.5 rounded">
-              {ETIQUETA_TIPO[sitio.tipo]}
+              {t(`types.${sitio.tipo}`)}
             </span>
           </div>
           <p className="text-sm text-rehub-dark/70 mt-1">{sitio.descripcion}</p>
@@ -128,7 +125,7 @@ function TarjetaSitio({ sitio }: { sitio: SitioCercano }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 border border-rehub-primary/30 text-rehub-primary rounded-lg text-sm font-medium hover:bg-rehub-primary/5 transition-colors"
             >
-              Ver web →
+              {t("seeWebsite")}
             </a>
           )}
         </div>

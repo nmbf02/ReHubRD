@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { IconClipboard, IconRefresh } from "@/components/ui/Icons";
 import {
   GUIAS_APOYO,
@@ -16,6 +17,9 @@ interface Props {
 }
 
 export function RecursosView({ userId }: Props) {
+  const tr = useTranslations("dashboard.resourcesPage");
+  const tNav = useTranslations("dashboard.nav");
+  const tFlow = useTranslations("dashboard.inicio");
   const searchParams = useSearchParams();
   const guiaId = searchParams.get("guia");
   const guiaSeleccionada =
@@ -28,7 +32,7 @@ export function RecursosView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-5 border-b border-slate-100">
           <h2 className="text-sm font-semibold text-rehub-dark/80 uppercase tracking-wider">
-            Tu flujo de recuperación
+            {tFlow("flowTitle")}
           </h2>
         </div>
         <div className="p-6 lg:p-8">
@@ -37,25 +41,25 @@ export function RecursosView({ userId }: Props) {
               href={ROUTES.profile}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
-              1. Mi perfil
+              1. {tNav("profile")}
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
               href={ROUTES.plan}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
-              2. Mi plan
+              2. {tNav("plan")}
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <Link
               href={ROUTES.followup}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-rehub-dark hover:bg-rehub-primary/10 hover:text-rehub-primary transition-colors text-sm font-medium"
             >
-              3. Seguimiento
+              3. {tNav("followup")}
             </Link>
             <span className="text-slate-300 hidden sm:inline">→</span>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rehub-primary/15 text-rehub-primary border border-rehub-primary/30 text-sm font-medium">
-              4. Recursos
+              4. {tNav("resources")}
             </span>
           </div>
         </div>
@@ -64,9 +68,9 @@ export function RecursosView({ userId }: Props) {
       {/* Mensaje de apoyo */}
       <div className="bg-gradient-to-r from-rehub-primary/10 to-rehub-accent/10 rounded-2xl border border-rehub-primary/20 p-6 lg:p-8">
         <p className="text-lg font-medium text-rehub-dark">
-          ReHub está aquí para <strong>guiarte</strong>. 24 situaciones con
-          pasos concretos: transporte, medicamentos, estás sola o solo, trámites,
-          fisioterapia, derechos laborales, dormir, dolor, emergencias y más.
+          {tr.rich("supportIntro", {
+            highlight: (chunks) => <strong>{chunks}</strong>,
+          })}
         </p>
       </div>
 
@@ -74,12 +78,10 @@ export function RecursosView({ userId }: Props) {
       <section id="flujos-guia" className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden scroll-mt-6">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark flex items-center gap-2">
-            <span>🗺️</span> Guía: ¿Qué hacer según tu situación?
+            <span>🗺️</span> {tr("flowsTitle")}
           </h2>
           <p className="mt-2 text-sm text-rehub-dark/70">
-            Si te sientes mal, no puedes caminar, no tienes medicamentos o estás sola/o:
-            ReHub te da un <strong>plan con pasos concretos</strong> y sugiere cuándo hacer seguimiento.
-            Haz un check-in en Seguimiento para ver tu flujo personalizado.
+            {tr("flowsIntro")}
           </p>
         </div>
         <div className="p-6 lg:p-8">
@@ -100,18 +102,24 @@ export function RecursosView({ userId }: Props) {
                   {esc.descripcion}
                 </p>
                 <p className="text-xs text-rehub-dark/50 mt-2">
-                  Seguimiento: {esc.frecuenciaSeguimiento}
+                  {tr("flowsFollowupFreq", { freq: esc.frecuenciaSeguimiento })}
                 </p>
                 <span className="mt-3 text-sm font-medium text-rehub-primary">
-                  Ir a Seguimiento para mi plan →
+                  {tr("flowsCta")}
                 </span>
               </Link>
             ))}
           </div>
           <div className="mt-6 p-4 rounded-xl bg-slate-100/80 border border-slate-200/80">
             <p className="text-sm text-rehub-dark/80">
-              <strong>¿Cómo funciona?</strong> En <Link href={ROUTES.followup} className="text-rehub-primary hover:underline">Seguimiento</Link> indicas cómo te sientes (1-5), tu movilidad y si tienes acceso a medicamentos.
-              ReHub detecta tu situación y te muestra un plan con pasos concretos (llamar 811, ver guías, etc.) y la frecuencia de check-in sugerida.
+              {tr.rich("howItWorksBody", {
+                bold: (chunks) => <strong>{chunks}</strong>,
+                followup: (chunks) => (
+                  <Link href={ROUTES.followup} className="text-rehub-primary hover:underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </p>
           </div>
         </div>
@@ -121,10 +129,10 @@ export function RecursosView({ userId }: Props) {
       <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark">
-            ¿Qué necesitas ahora?
+            {tr("needsTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            24 situaciones · Selecciona la tuya para ver pasos concretos y recursos
+            {tr("needsSubtitle")}
           </p>
         </div>
         <div className="p-6 lg:p-8">
@@ -148,7 +156,7 @@ export function RecursosView({ userId }: Props) {
                   <h3 className="font-semibold text-rehub-dark">{sec.titulo}</h3>
                   <p className="text-sm text-rehub-dark/60 mt-1">{sec.resumen}</p>
                   <span className="mt-3 text-sm font-medium text-rehub-primary">
-                    {isActive ? "▲ Ver guía arriba" : "Ver guía ↓"}
+                    {isActive ? tr("guideViewActive") : tr("guideViewExpand")}
                   </span>
                 </Link>
               );
@@ -165,7 +173,7 @@ export function RecursosView({ userId }: Props) {
               href={ROUTES.resources}
               className="text-sm text-rehub-primary hover:underline"
             >
-              ← Ver todas las opciones
+              {tr("backToAll")}
             </Link>
             <h2 className="text-lg font-semibold text-rehub-dark mt-4">
               {guia.titulo}
@@ -176,7 +184,7 @@ export function RecursosView({ userId }: Props) {
             {guia.pasos && guia.pasos.length > 0 && (
               <div>
                 <h3 className="font-semibold text-rehub-dark mb-3">
-                  Pasos y opciones
+                  {tr("stepsHeading")}
                 </h3>
                 <ol className="space-y-3">
                   {guia.pasos.map((paso, i) => (
@@ -196,7 +204,7 @@ export function RecursosView({ userId }: Props) {
             {guia.contactos && guia.contactos.length > 0 && (
               <div>
                 <h3 className="font-semibold text-rehub-dark mb-3">
-                  Contactos útiles
+                  {tr("contactsHeading")}
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {guia.contactos.map((c) => (
@@ -222,7 +230,7 @@ export function RecursosView({ userId }: Props) {
             {guia.nota && (
               <div className="p-4 rounded-xl bg-amber-50 border border-amber-200">
                 <p className="text-sm text-amber-900">
-                  <strong>Nota:</strong> {guia.nota}
+                  <strong>{tr("notePrefix")}</strong> {guia.nota}
                 </p>
               </div>
             )}
@@ -234,57 +242,57 @@ export function RecursosView({ userId }: Props) {
       <section id="ayuda-gratuita" className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden scroll-mt-6">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark flex items-center gap-2">
-            <span>🎁</span> Ayuda gratuita
+            <span>🎁</span> {tr("freeHelpSectionTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            Servicios y programas sin costo en República Dominicana
+            {tr("freeHelpSectionSubtitle")}
           </p>
         </div>
         <div className="p-6 lg:p-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-100">
-              <h3 className="font-semibold text-rehub-dark">Salud mental</h3>
+              <h3 className="font-semibold text-rehub-dark">{tr("mhTitle")}</h3>
               <p className="text-sm text-rehub-dark/70 mt-1">
-                Líneas 811 y 809-200-1400: atención psicológica gratuita, confidencial. Psicólogos disponibles.
+                {tr("mhBody")}
               </p>
               <a href="tel:811" className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline">
-                Llamar al 811
+                {tr("call811")}
               </a>
             </div>
             <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-100">
-              <h3 className="font-semibold text-rehub-dark">Medicamentos</h3>
+              <h3 className="font-semibold text-rehub-dark">{tr("medTitle")}</h3>
               <p className="text-sm text-rehub-dark/70 mt-1">
-                Promese/CAL y programa Pausam: medicamentos gratuitos en hospitales públicos para personas sin protección social.
+                {tr("medBody")}
               </p>
               <p className="mt-2 text-xs text-rehub-dark/60">
-                Pregunta en tu centro de salud más cercano.
+                {tr("medHint")}
               </p>
             </div>
             <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-100">
-              <h3 className="font-semibold text-rehub-dark">Atención médica pública</h3>
+              <h3 className="font-semibold text-rehub-dark">{tr("publicCareTitle")}</h3>
               <p className="text-sm text-rehub-dark/70 mt-1">
-                Hospitales y centros de salud del MSP ofrecen consultas. Si cotizas al SDSS, tu ARS cubre según tu plan.
+                {tr("publicCareBody")}
               </p>
             </div>
             <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-100">
-              <h3 className="font-semibold text-rehub-dark">Rehabilitación (ADR)</h3>
+              <h3 className="font-semibold text-rehub-dark">{tr("adrTitle")}</h3>
               <p className="text-sm text-rehub-dark/70 mt-1">
-                Asociación Dominicana de Rehabilitación: 35 centros. Terapia física, ocupacional, apoyo psicológico. Aceptan ARS.
+                {tr("adrBody")}
               </p>
               <a href="https://rehabilitacion.org.do" target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline">
                 rehabilitacion.org.do
               </a>
             </div>
             <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-100">
-              <h3 className="font-semibold text-rehub-dark">Programas sociales</h3>
+              <h3 className="font-semibold text-rehub-dark">{tr("socialTitle")}</h3>
               <p className="text-sm text-rehub-dark/70 mt-1">
-                Comedores económicos, subsidios. Infórmate en la alcaldía, iglesias y organizaciones comunitarias de tu zona.
+                {tr("socialBody")}
               </p>
             </div>
             <div className="p-4 rounded-xl bg-emerald-50/80 border border-emerald-100">
-              <h3 className="font-semibold text-rehub-dark">Orientación y defensa</h3>
+              <h3 className="font-semibold text-rehub-dark">{tr("legalTitle")}</h3>
               <p className="text-sm text-rehub-dark/70 mt-1">
-                Defensoría del Pueblo y Procuraduría pueden orientar sobre derechos. IDOPPRIL para accidentes laborales.
+                {tr("legalBody")}
               </p>
               <a href="https://idoppril.gob.do" target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline">
                 idoppril.gob.do
@@ -301,18 +309,18 @@ export function RecursosView({ userId }: Props) {
       <section id="planes-acogida" className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden scroll-mt-6">
         <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
           <h2 className="text-lg font-semibold text-rehub-dark flex items-center gap-2">
-            <span>🏠</span> Planes de acogida
+            <span>🏠</span> {tr("shelterSectionTitle")}
           </h2>
           <p className="mt-1 text-sm text-rehub-dark/60">
-            Programas de acompañamiento y reinserción post-accidente
+            {tr("shelterSectionSubtitle")}
           </p>
         </div>
         <div className="p-6 lg:p-8 space-y-6">
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="p-5 rounded-xl border border-rehub-primary/20 bg-rehub-primary/5">
-              <h3 className="font-semibold text-rehub-dark">Asociación Dominicana de Rehabilitación</h3>
+              <h3 className="font-semibold text-rehub-dark">{tr("adrOrgTitle")}</h3>
               <p className="text-sm text-rehub-dark/70 mt-2">
-                Red de 35 centros a nivel nacional. Terapia física y ocupacional, laboratorio ortopédico, apoyo psicológico, programa de inserción laboral. Atienden secuelas de accidentes (fracturas, amputaciones, lesiones medulares).
+                {tr("adrOrgBody")}
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a href="tel:8096897151" className="inline-flex items-center gap-2 px-4 py-2 bg-rehub-primary text-white rounded-lg text-sm font-medium hover:bg-rehub-secondary transition-colors">
@@ -327,22 +335,22 @@ export function RecursosView({ userId }: Props) {
               </a>
             </div>
             <div className="p-5 rounded-xl border border-slate-200 bg-slate-50/50">
-              <h3 className="font-semibold text-rehub-dark">Seguimiento post-alta</h3>
+              <h3 className="font-semibold text-rehub-dark">{tr("postDischargeTitle")}</h3>
               <p className="text-sm text-rehub-dark/70 mt-2">
-                ReHub te acompaña con un plan personalizado (Mi plan), check-ins de seguimiento y guías por situación. Tu centro de salud puede indicar citas de control y rehabilitación.
+                {tr("postDischargeBody")}
               </p>
               <Link href={ROUTES.plan} className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:underline">
-                Ver mi plan en ReHub →
+                {tr("seePlanInRehub")}
               </Link>
             </div>
           </div>
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-            <h4 className="font-medium text-rehub-dark">Otros recursos de acogida</h4>
+            <h4 className="font-medium text-rehub-dark">{tr("otherShelterTitle")}</h4>
             <ul className="mt-2 text-sm text-rehub-dark/80 space-y-1">
-              <li>• Grupos de apoyo: buscar en redes o pedir referencias en centros de salud</li>
-              <li>• Iglesias y organizaciones comunitarias: acompañamiento y canasta básica</li>
-              <li>• Red de familia o vecinos: mantener contacto cercano facilita la recuperación</li>
-              <li>• ARS: si cotizas, verifica cobertura de rehabilitación y terapia domiciliaria</li>
+              <li>{tr("otherShelter1")}</li>
+              <li>{tr("otherShelter2")}</li>
+              <li>{tr("otherShelter3")}</li>
+              <li>{tr("otherShelter4")}</li>
             </ul>
           </div>
         </div>
@@ -352,12 +360,18 @@ export function RecursosView({ userId }: Props) {
       <section className="space-y-4">
         <div className="bg-red-100/50 rounded-2xl border border-red-200 p-4 text-center">
           <p className="text-sm text-red-900 font-medium">
-            Emergencias médicas o de seguridad: <a href="tel:911" className="font-bold text-red-700 hover:underline">911</a>
+            {tr.rich("emergencyBanner", {
+              phone: (chunks) => (
+                <a href="tel:911" className="font-bold text-red-700 hover:underline">
+                  {chunks}
+                </a>
+              ),
+            })}
           </p>
         </div>
         <div className="bg-red-50/50 rounded-2xl border border-red-100 p-6 lg:p-8">
         <h3 className="font-semibold text-rehub-dark mb-4">
-          Si necesitas hablar con alguien ahora
+          {tr("talkNowTitle")}
         </h3>
         <div className="grid sm:grid-cols-2 gap-4">
           <a
@@ -367,11 +381,11 @@ export function RecursosView({ userId }: Props) {
             <span className="text-2xl">📞</span>
             <div>
               <p className="font-semibold text-rehub-dark">
-                Cuida tu Salud Mental
+                {tr("mentalHealthService")}
               </p>
               <p className="text-xl font-bold text-rehub-primary">809-200-1400</p>
               <p className="text-xs text-rehub-dark/60">
-                Gratuito, confidencial. Ansiedad, crisis, duelo.
+                {tr("mentalHealthHint")}
               </p>
             </div>
           </a>
@@ -381,10 +395,10 @@ export function RecursosView({ userId }: Props) {
           >
             <span className="text-2xl">📞</span>
             <div>
-              <p className="font-semibold text-rehub-dark">Línea nacional</p>
+              <p className="font-semibold text-rehub-dark">{tr("nationalLine")}</p>
               <p className="text-xl font-bold text-rehub-primary">811</p>
               <p className="text-xs text-rehub-dark/60">
-                Salud mental. Psicólogos disponibles.
+                {tr("line811Hint")}
               </p>
             </div>
           </a>
@@ -399,14 +413,14 @@ export function RecursosView({ userId }: Props) {
           className="inline-flex items-center gap-2 px-5 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors"
         >
           <IconClipboard className="w-5 h-5" />
-          Ver mi plan
+          {tr("viewMyPlan")}
         </Link>
         <Link
           href={ROUTES.followup}
           className="inline-flex items-center gap-2 px-5 py-3 border border-rehub-primary/30 text-rehub-primary rounded-xl font-medium hover:bg-rehub-primary/5 transition-colors"
         >
           <IconRefresh className="w-5 h-5" />
-          Actualizar seguimiento
+          {tr("updateFollowup")}
         </Link>
       </section>
     </div>

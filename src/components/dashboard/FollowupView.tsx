@@ -21,6 +21,7 @@ import {
   type FlujoEscenario,
 } from "@/lib/scenary-workflow";
 import { ROUTES, hrefResourcesHash } from "@/lib/routes";
+import { useScenarioCopy } from "@/hooks/use-scenario-copy";
 import type { PhysicalState, MobilityLevel, EmotionalState } from "@/types/profile";
 import {
   OPCIONES_ESTADO_FISICO,
@@ -53,6 +54,7 @@ export function SeguimientoView({ userId }: Props) {
   const tNav = useTranslations("dashboard.nav");
   const tFlow = useTranslations("dashboard.inicio");
   const tCommon = useTranslations("common");
+  const sc = useScenarioCopy();
   const [estadoFisico, setEstadoFisico] = useState<PhysicalState>("recuperacion");
   const [nivelMovilidad, setNivelMovilidad] = useState<MobilityLevel>("leves");
   const [estadoEmocional, setEstadoEmocional] = useState<EmotionalState>("estres");
@@ -322,11 +324,11 @@ export function SeguimientoView({ userId }: Props) {
                   {t("recommendedTitle")}
                 </h2>
                 <p className="text-sm text-rehub-dark/70 mt-0.5">
-                  {flujoRecomendado.nombre}
+                  {sc.nombre(flujoRecomendado.id)}
                 </p>
                 <p className="text-xs text-rehub-dark/60 mt-1">
                   {t("suggestedFollowup", {
-                    freq: flujoRecomendado.frecuenciaSeguimiento,
+                    freq: sc.frecuenciaSeguimiento(flujoRecomendado.id),
                   })}
                 </p>
               </div>
@@ -335,26 +337,30 @@ export function SeguimientoView({ userId }: Props) {
           <div className="p-6 lg:p-8 space-y-4">
             {flujoRecomendado.contactosDirectos && flujoRecomendado.contactosDirectos.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
-                {flujoRecomendado.contactosDirectos.map((c) => (
+                {flujoRecomendado.contactosDirectos.map((c, i) => (
                   <a
-                    key={c.nombre}
+                    key={`${c.numero}-${i}`}
                     href={`tel:${c.numero.replace(/\D/g, "")}`}
                     className="inline-flex items-center gap-2 px-4 py-2 bg-rehub-primary text-white rounded-lg text-sm font-medium hover:bg-rehub-secondary transition-colors"
                   >
-                    {c.nombre}: {c.numero}
+                    {sc.contactoNombre(flujoRecomendado.id, i)}: {c.numero}
                   </a>
                 ))}
               </div>
             )}
             <ol className="space-y-3">
-              {flujoRecomendado.pasos.map((paso) => (
+              {flujoRecomendado.pasos.map((paso, i) => (
                 <li key={paso.orden} className="flex gap-4">
                   <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-rehub-primary/20 text-rehub-primary font-semibold text-sm">
                     {paso.orden}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-rehub-dark">{paso.titulo}</p>
-                    <p className="text-sm text-rehub-dark/70 mt-0.5">{paso.descripcion}</p>
+                    <p className="font-medium text-rehub-dark">
+                      {sc.pasoTitulo(flujoRecomendado.id, i)}
+                    </p>
+                    <p className="text-sm text-rehub-dark/70 mt-0.5">
+                      {sc.pasoDescripcion(flujoRecomendado.id, i)}
+                    </p>
                     {paso.href && (
                       <Link
                         href={paso.href}
@@ -362,7 +368,7 @@ export function SeguimientoView({ userId }: Props) {
                           paso.urgente ? "text-red-600 hover:text-red-700" : "text-rehub-primary hover:text-rehub-secondary"
                         }`}
                       >
-                        {paso.accion}
+                        {sc.pasoAccion(flujoRecomendado.id, i)}
                         <span aria-hidden>→</span>
                       </Link>
                     )}

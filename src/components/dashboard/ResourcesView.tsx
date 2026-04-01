@@ -10,6 +10,7 @@ import {
 } from "@/lib/resources-guide";
 import { ESCENARIOS } from "@/lib/scenary-workflow";
 import { ROUTES, hrefResourcesGuide } from "@/lib/routes";
+import { useScenarioCopy } from "@/hooks/use-scenario-copy";
 import { SitiosCercanosView } from "./ClosePlacesView";
 
 interface Props {
@@ -20,6 +21,7 @@ export function RecursosView({ userId }: Props) {
   const tr = useTranslations("dashboard.resourcesPage");
   const tNav = useTranslations("dashboard.nav");
   const tFlow = useTranslations("dashboard.inicio");
+  const sc = useScenarioCopy();
   const searchParams = useSearchParams();
   const guiaId = searchParams.get("guia");
   const guiaSeleccionada =
@@ -97,12 +99,14 @@ export function RecursosView({ userId }: Props) {
                 }`}
               >
                 <span className="text-2xl mb-2">{esc.emoji}</span>
-                <h3 className="font-semibold text-rehub-dark">{esc.nombre}</h3>
+                <h3 className="font-semibold text-rehub-dark">{sc.nombre(esc.id)}</h3>
                 <p className="text-xs text-rehub-dark/70 mt-1 line-clamp-2">
-                  {esc.descripcion}
+                  {sc.descripcion(esc.id)}
                 </p>
                 <p className="text-xs text-rehub-dark/50 mt-2">
-                  {tr("flowsFollowupFreq", { freq: esc.frecuenciaSeguimiento })}
+                  {tr("flowsFollowupFreq", {
+                    freq: sc.frecuenciaSeguimiento(esc.id),
+                  })}
                 </p>
                 <span className="mt-3 text-sm font-medium text-rehub-primary">
                   {tr("flowsCta")}

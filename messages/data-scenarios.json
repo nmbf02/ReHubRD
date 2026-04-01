@@ -1,0 +1,208 @@
+{
+  "urgente-mal-sin-medicamentos": {
+    "nombre": "Me siento mal, no puedo caminar y no tengo medicamentos",
+    "descripcion": "Situación crítica: bajo bienestar, movilidad limitada y sin acceso a medicamentos.",
+    "frecuenciaSeguimiento": "Check-in en 2-3 días. Si empeora, busca ayuda ahora.",
+    "pasos": [
+      {
+        "titulo": "Habla con alguien ahora",
+        "descripcion": "Líneas gratuitas: 811 y 809-200-1400. Psicólogos y orientadores disponibles.",
+        "accion": "Llamar 811"
+      },
+      {
+        "titulo": "Conseguir medicamentos",
+        "descripcion": "Promese/CAL y hospitales públicos ofrecen medicamentos gratuitos. Pregunta en tu centro de salud más cercano.",
+        "accion": "Ver guía medicamentos"
+      },
+      {
+        "titulo": "Transporte y acompañamiento",
+        "descripcion": "Si estás sola o solo: Movep, familia, vecinos. Pide ayuda para llegar al centro de salud o farmacia.",
+        "accion": "Ver guía estoy sola/o"
+      },
+      {
+        "titulo": "Ayuda gratuita",
+        "descripcion": "Revisa programas sin costo: 811, Promese/CAL, ADR, comedores económicos.",
+        "accion": "Ver ayuda gratuita"
+      },
+      {
+        "titulo": "Próximo check-in",
+        "descripcion": "Registra tu estado en 2-3 días para ajustar el plan.",
+        "accion": "Actualizar seguimiento"
+      }
+    ],
+    "contactos": [
+      { "nombre": "Salud mental" },
+      { "nombre": "Cuida tu Salud Mental" },
+      { "nombre": "Emergencias" }
+    ]
+  },
+  "mal-sin-medicamentos": {
+    "nombre": "Me siento mal y no tengo medicamentos",
+    "descripcion": "Bienestar bajo y sin acceso a tratamiento.",
+    "frecuenciaSeguimiento": "Check-in en 3-5 días.",
+    "pasos": [
+      {
+        "titulo": "Apoyo emocional",
+        "descripcion": "811 y 809-200-1400: atención psicológica gratuita.",
+        "accion": "Llamar 811"
+      },
+      {
+        "titulo": "Medicamentos sin costo",
+        "descripcion": "Promese/CAL, programas en hospitales públicos. Pregunta en tu centro de salud.",
+        "accion": "Ver guía"
+      },
+      {
+        "titulo": "Ayuda gratuita",
+        "descripcion": "Recursos sin costo en República Dominicana.",
+        "accion": "Ver recursos"
+      },
+      {
+        "titulo": "Seguimiento",
+        "descripcion": "Actualiza en unos días.",
+        "accion": "Registrar check-in"
+      }
+    ]
+  },
+  "no-puedo-caminar": {
+    "nombre": "No puedo caminar o tengo movilidad muy limitada",
+    "descripcion": "Necesitas rehabilitación, transporte y adaptaciones.",
+    "frecuenciaSeguimiento": "Check-in semanal.",
+    "pasos": [
+      {
+        "titulo": "Rehabilitación (ADR)",
+        "descripcion": "35 centros en RD. Terapia física, ocupacional, apoyo psicológico. Tel: 809-689-7151.",
+        "accion": "Llamar ADR"
+      },
+      {
+        "titulo": "Transporte",
+        "descripcion": "Movep, OMSA, familia. Planifica traslados con anticipación.",
+        "accion": "Ver guía transporte"
+      },
+      {
+        "titulo": "Accesibilidad en casa",
+        "descripcion": "Barras de apoyo, iluminación, eliminar obstáculos.",
+        "accion": "Ver guía accesibilidad"
+      },
+      {
+        "titulo": "Planes de acogida",
+        "descripcion": "Programas de acompañamiento y reinserción.",
+        "accion": "Ver planes"
+      }
+    ]
+  },
+  "sin-medicamentos-ok": {
+    "nombre": "No tengo medicamentos pero me siento estable",
+    "descripcion": "Prioridad: conseguir tratamiento. Tu estado emocional es estable.",
+    "frecuenciaSeguimiento": "Check-in en 1 semana.",
+    "pasos": [
+      {
+        "titulo": "Ayuda para pagar medicamentos",
+        "descripcion": "Promese/CAL, centros de salud, programas sociales.",
+        "accion": "Ver guía"
+      },
+      {
+        "titulo": "Opciones de delivery",
+        "descripcion": "PedidosYa, farmacias con envío a domicilio.",
+        "accion": "Ver guía medicamentos"
+      },
+      {
+        "titulo": "Seguimiento",
+        "descripcion": "Actualiza cuando consigas o si cambia tu situación.",
+        "accion": "Registrar check-in"
+      }
+    ]
+  },
+  "me-siento-mal-movilidad-ok": {
+    "nombre": "Me siento mal pero puedo moverme",
+    "descripcion": "Prioridad: apoyo emocional. Tu movilidad permite desplazarte.",
+    "frecuenciaSeguimiento": "Check-in en 3-5 días.",
+    "pasos": [
+      {
+        "titulo": "Hablar con alguien",
+        "descripcion": "811 y 809-200-1400: confidencial, gratuito.",
+        "accion": "Llamar 811"
+      },
+      {
+        "titulo": "Apoyo emocional",
+        "descripcion": "Recursos y técnicas para manejar ansiedad, estrés, tristeza.",
+        "accion": "Ver guía"
+      },
+      {
+        "titulo": "Seguimiento",
+        "descripcion": "Actualiza en unos días para ajustar el plan.",
+        "accion": "Registrar check-in"
+      }
+    ]
+  },
+  "estoy-sola-o-solo": {
+    "nombre": "Estoy sola o solo y necesito apoyo",
+    "descripcion": "Red de apoyo limitada. Necesitas orientación y recursos.",
+    "frecuenciaSeguimiento": "Check-in semanal.",
+    "pasos": [
+      {
+        "titulo": "Líneas de ayuda",
+        "descripcion": "809-200-1400 y 811. No estás sola. Habla con alguien.",
+        "accion": "Llamar"
+      },
+      {
+        "titulo": "Guía: Estoy sola o solo",
+        "descripcion": "Recursos, vecinos, organizaciones comunitarias.",
+        "accion": "Ver guía"
+      },
+      {
+        "titulo": "Contacto de emergencia",
+        "descripcion": "Registra una persona de confianza en tu perfil.",
+        "accion": "Completar perfil"
+      },
+      {
+        "titulo": "Planes de acogida",
+        "descripcion": "Programas de acompañamiento.",
+        "accion": "Ver planes"
+      }
+    ]
+  },
+  "dolor-cronico": {
+    "nombre": "El dolor no me deja",
+    "descripcion": "Dolor persistente que afecta tu día a día.",
+    "frecuenciaSeguimiento": "Check-in semanal.",
+    "pasos": [
+      {
+        "titulo": "Consulta con tu médico",
+        "descripcion": "Revisar tratamiento. Segunda opinión si lo necesitas.",
+        "accion": "Ver guía"
+      },
+      {
+        "titulo": "Guía: Dolor crónico",
+        "descripcion": "Opciones y recursos para manejar el dolor.",
+        "accion": "Ver guía"
+      },
+      {
+        "titulo": "Fisioterapia y rehabilitación",
+        "descripcion": "ADR y centros de salud pueden ayudar.",
+        "accion": "Ver recursos"
+      }
+    ]
+  },
+  "general": {
+    "nombre": "Seguimiento general",
+    "descripcion": "Tu situación requiere acompañamiento continuo.",
+    "frecuenciaSeguimiento": "Check-in semanal.",
+    "pasos": [
+      {
+        "titulo": "Revisar tu plan",
+        "descripcion": "Recomendaciones según tu perfil.",
+        "accion": "Ver mi plan"
+      },
+      {
+        "titulo": "Recursos",
+        "descripcion": "24 guías para distintas situaciones.",
+        "accion": "Explorar recursos"
+      },
+      {
+        "titulo": "Seguimiento",
+        "descripcion": "Actualiza tu estado regularmente.",
+        "accion": "Registrar check-in"
+      }
+    ]
+  }
+}

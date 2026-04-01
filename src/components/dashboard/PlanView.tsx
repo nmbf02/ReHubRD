@@ -26,6 +26,7 @@ import {
 import { NecesidadesSelector } from "./NeedsSelector";
 import { FlujoPersonalizadoView } from "./CustomFlowView";
 import { ROUTES, hrefResourcesHash } from "@/lib/routes";
+import { useScenarioCopy } from "@/hooks/use-scenario-copy";
 
 interface Props {
   userId?: string | null;
@@ -58,6 +59,7 @@ export function PlanView({ userId }: Props) {
   const tp = useTranslations("dashboard.planPage");
   const tNav = useTranslations("dashboard.nav");
   const tFlow = useTranslations("dashboard.inicio");
+  const sc = useScenarioCopy();
 
   function categoryLabel(categoria: string | undefined): string {
     if (!categoria) return "";
@@ -175,14 +177,14 @@ export function PlanView({ userId }: Props) {
             <span className="text-2xl">{flujoPorSituacion.emoji}</span>
             <div>
               <h2 className="text-lg font-semibold text-rehub-dark">
-                {tp("guideHeading")} {flujoPorSituacion.nombre}
+                {tp("guideHeading")} {sc.nombre(flujoPorSituacion.id)}
               </h2>
               <p className="text-sm text-rehub-dark/70 mt-0.5">
-                {flujoPorSituacion.descripcion}
+                {sc.descripcion(flujoPorSituacion.id)}
               </p>
               <p className="text-xs text-rehub-dark/60 mt-1">
                 {tp("followupFreq", {
-                  freq: flujoPorSituacion.frecuenciaSeguimiento,
+                  freq: sc.frecuenciaSeguimiento(flujoPorSituacion.id),
                 })}
               </p>
             </div>
@@ -190,13 +192,13 @@ export function PlanView({ userId }: Props) {
         </div>
         <div className="p-6 lg:p-8">
           <div className="flex flex-wrap gap-2 mb-4">
-            {flujoPorSituacion.pasos.slice(0, 3).map((paso) => (
+            {flujoPorSituacion.pasos.slice(0, 3).map((paso, i) => (
               <Link
                 key={paso.orden}
                 href={paso.href ?? ROUTES.resources}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-rehub-primary/10 text-rehub-primary hover:bg-rehub-primary/20 text-sm font-medium transition-colors"
               >
-                {paso.orden}. {paso.titulo}
+                {paso.orden}. {sc.pasoTitulo(flujoPorSituacion.id, i)}
                 <span aria-hidden>→</span>
               </Link>
             ))}
@@ -475,7 +477,7 @@ export function PlanView({ userId }: Props) {
                 <p className="text-sm text-rehub-dark/70 mt-1">
                   {tp("freeHelpCardBody")}
                 </p>
-                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{tp("viewResources")}</span>
+                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{tp("viewResourcesArrow")}</span>
               </div>
             </Link>
             <Link
@@ -490,7 +492,7 @@ export function PlanView({ userId }: Props) {
                 <p className="text-sm text-rehub-dark/70 mt-1">
                   {tp("shelterCardBody")}
                 </p>
-                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{tp("viewResources")}</span>
+                <span className="mt-2 inline-block text-sm font-medium text-rehub-primary">{tp("viewResourcesArrow")}</span>
               </div>
             </Link>
             <Link

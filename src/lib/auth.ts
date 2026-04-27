@@ -2,8 +2,8 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 /**
- * Validación de credenciales.
- * En producción: conectar a base de datos y usar bcrypt para verificar contraseñas.
+ * Credential validation.
+ * Production: connect to a database and verify passwords with bcrypt (or equivalent).
  */
 async function validateCredentials(
   email: string,
@@ -16,7 +16,7 @@ async function validateCredentials(
   if (email === demoEmail && password === demoPassword) {
     return {
       id: "demo-user",
-      name: "Usuario Demo",
+      name: "Demo User",
       email: demoEmail,
     };
   }
@@ -28,10 +28,10 @@ export const authOptions: NextAuthOptions = {
   debug: process.env.NODE_ENV !== "production",
   providers: [
     CredentialsProvider({
-      name: "Credenciales",
+      name: "Credentials",
       credentials: {
-        email: { label: "Correo", type: "email" },
-        password: { label: "Contraseña", type: "password" },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {

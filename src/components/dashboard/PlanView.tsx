@@ -23,7 +23,7 @@ import {
   identificarEscenarioDesdePerfil,
   type FlujoEscenario,
 } from "@/lib/scenary-workflow";
-import { NecesidadesSelector } from "./NeedsSelector";
+import { NeedsSelector } from "./NeedsSelector";
 import { FlujoPersonalizadoView } from "./CustomFlowView";
 import { ROUTES, hrefResourcesHash } from "@/lib/routes";
 import { useScenarioCopy } from "@/hooks/use-scenario-copy";
@@ -214,7 +214,7 @@ export function PlanView({ userId }: Props) {
       </section>
 
       {/* Selecciona tus necesidades */}
-      <NecesidadesSelector userId={userId} />
+      <NeedsSelector userId={userId} />
 
       {/* Flujo personalizado (según selección) */}
       <FlujoPersonalizadoView userId={userId} />

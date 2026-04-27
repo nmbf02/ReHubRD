@@ -16,6 +16,7 @@ interface Props {
 
 function BloqueGuia({ guia }: { guia: GuiaInline }) {
   const t = useTranslations("dashboard.customFlow");
+  const tNeeds = useTranslations("dashboard.needs");
 
   return (
     <div className="p-5 rounded-xl border border-rehub-primary/20 bg-white">
@@ -26,7 +27,7 @@ function BloqueGuia({ guia }: { guia: GuiaInline }) {
         <div>
           <h3 className="text-lg font-semibold text-rehub-dark flex items-center gap-2">
             <span>{guia.emoji}</span>
-            {guia.titulo}
+            {tNeeds(`options.${guia.needOptionId}.label`)}
           </h3>
           <p className="text-sm text-rehub-dark/70 mt-1">{guia.descripcion}</p>
         </div>

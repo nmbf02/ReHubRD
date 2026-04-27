@@ -260,6 +260,39 @@
       "contactsHeading": "Contactos útiles",
       "notePrefix": "Nota:"
     },
+    "needs": {
+      "selectorTitle": "Selecciona tus necesidades",
+      "selectorHint": "Marca las que aplican. Verás la guía completa con todos los pasos aquí abajo, sin salir de la página.",
+      "selectedCount": "{count} seleccionadas. Ver tu guía personalizada abajo.",
+      "options": {
+        "apoyo-emocional": { "label": "Necesito apoyo emocional" },
+        "no-puedo-caminar": { "label": "No puedo caminar / Movilidad reducida" },
+        "sin-medicamentos": { "label": "No tengo medicamentos" },
+        "estoy-sola": { "label": "Estoy sola o solo" },
+        "transporte": { "label": "Necesito transporte" },
+        "medicamentos-delivery": { "label": "Necesito conseguir medicamentos" },
+        "fisioterapia": { "label": "Fisioterapia o rehabilitación" },
+        "tramites": { "label": "Trámites y documentos" },
+        "accesibilidad": { "label": "Accesibilidad en casa" },
+        "derechos-laborales": { "label": "Derechos laborales" },
+        "dolor": { "label": "Me duele mucho" },
+        "abrumado": { "label": "Me siento abrumado" },
+        "volver-trabajo": { "label": "Quiero volver al trabajo" },
+        "cuidador": { "label": "Necesito un cuidador" },
+        "miedo-conducir": { "label": "Miedo a salir o conducir" },
+        "ayuda-gratuita": { "label": "Ayuda gratuita" },
+        "planes-acogida": { "label": "Planes de acogida" },
+        "asesoria-legal": { "label": "Asesoría legal" },
+        "segunda-opinion": { "label": "Segunda opinión médica" },
+        "problemas-dormir": { "label": "Problemas para dormir" }
+      }
+    },
+    "accountError": {
+      "title": "Algo salió mal",
+      "description": "No se pudo cargar la configuración de cuenta. Intenta de nuevo.",
+      "retry": "Reintentar",
+      "backHome": "Volver al inicio"
+    },
     "suggestions": {
       "title": "Recordatorios sugeridos",
       "hint": "Sugerencias rápidas basadas en tu progreso",

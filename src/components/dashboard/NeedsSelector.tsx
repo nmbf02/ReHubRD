@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
-import Link from "next/link";
 import {
   OPCIONES_NECESIDADES,
   getNecesidadesSeleccionadas,
@@ -13,7 +13,8 @@ interface Props {
   userId?: string | null;
 }
 
-export function NecesidadesSelector({ userId }: Props) {
+export function NeedsSelector({ userId }: Props) {
+  const t = useTranslations("dashboard.needs");
   const [seleccionados, setSeleccionados] = useState<string[]>([]);
   const mounted = useIsClientMounted();
 
@@ -44,10 +45,10 @@ export function NecesidadesSelector({ userId }: Props) {
     <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
       <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
         <h2 className="text-lg font-semibold text-rehub-dark">
-          Selecciona tus necesidades
+          {t("selectorTitle")}
         </h2>
         <p className="mt-1 text-sm text-rehub-dark/60">
-          Marca las que aplican. Verás la guía completa con todos los pasos aquí abajo, sin salir de la página.
+          {t("selectorHint")}
         </p>
       </div>
       <div className="p-6 lg:p-8">
@@ -76,7 +77,7 @@ export function NecesidadesSelector({ userId }: Props) {
                 </span>
                 <span className="text-xl">{op.emoji}</span>
                 <span className="text-sm font-medium text-rehub-dark truncate">
-                  {op.titulo}
+                  {t(`options.${op.id}.label`)}
                 </span>
               </button>
             );
@@ -84,7 +85,7 @@ export function NecesidadesSelector({ userId }: Props) {
         </div>
         {seleccionados.length > 0 && (
           <p className="mt-4 text-sm text-rehub-dark/60">
-            {seleccionados.length} seleccionadas. Ver tu guía personalizada abajo.
+            {t("selectedCount", { count: seleccionados.length })}
           </p>
         )}
       </div>

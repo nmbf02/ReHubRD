@@ -1,44 +1,43 @@
 /**
- * Opciones seleccionables para crear un flujo personalizado.
- * El usuario elige sus necesidades y ReHub genera un plan adaptado.
+ * Selectable need options for a personalized recovery flow.
+ * Labels for the UI live in `messages/*.json` under `dashboard.needs.options`.
  */
 
 import { hrefResourcesHash } from "@/lib/routes";
 
 export interface OpcionNecesidad {
   id: string;
-  titulo: string;
   emoji: string;
-  /** Mapea a MAPA_RECOMENDACIONES en plan-recomendaciones */
+  /** Maps to MAPA_RECOMENDACIONES in plan-recomendaciones */
   necesidadId?: string;
-  /** Mapea a guía en recursos (recursos?guia=X) */
+  /** Maps to resources guide id (recursos?guia=X) */
   guiaId?: string;
-  /** Para enlace directo a sección (recursos#X) */
+  /** Direct link to a resources hash section */
   hrefDirecto?: string;
 }
 
-/** 18 opciones para que el usuario seleccione sus necesidades */
+/** Need chips the user can toggle; display titles come from i18n */
 export const OPCIONES_NECESIDADES: OpcionNecesidad[] = [
-  { id: "apoyo-emocional", titulo: "Necesito apoyo emocional", emoji: "💚", necesidadId: "emocional-ansiedad", guiaId: "apoyoEmocional" },
-  { id: "no-puedo-caminar", titulo: "No puedo caminar / Movilidad reducida", emoji: "🦿", necesidadId: "movilidad", guiaId: "transporte" },
-  { id: "sin-medicamentos", titulo: "No tengo medicamentos", emoji: "💊", guiaId: "ayudaPagarMedicamentos" },
-  { id: "estoy-sola", titulo: "Estoy sola o solo", emoji: "🤝", necesidadId: "red-apoyo", guiaId: "sola" },
-  { id: "transporte", titulo: "Necesito transporte", emoji: "🚗", guiaId: "transporte" },
-  { id: "medicamentos-delivery", titulo: "Necesito conseguir medicamentos", emoji: "💊", guiaId: "medicamentos" },
-  { id: "fisioterapia", titulo: "Fisioterapia o rehabilitación", emoji: "🦿", guiaId: "fisioterapia", hrefDirecto: hrefResourcesHash("planes-acogida") },
-  { id: "tramites", titulo: "Trámites y documentos", emoji: "📋", necesidadId: "tramites", guiaId: "tramites" },
-  { id: "accesibilidad", titulo: "Accesibilidad en casa", emoji: "🏠", necesidadId: "movilidad", guiaId: "accesibilidad" },
-  { id: "derechos-laborales", titulo: "Derechos laborales", emoji: "⚖️", necesidadId: "laboral-tramites", guiaId: "derechosLaborales" },
-  { id: "dolor", titulo: "Me duele mucho", emoji: "🩹", guiaId: "dolorCronico" },
-  { id: "abrumado", titulo: "Me siento abrumado", emoji: "😓", guiaId: "abrumado" },
-  { id: "volver-trabajo", titulo: "Quiero volver al trabajo", emoji: "💼", necesidadId: "laboral-reinsercion", guiaId: "volverTrabajo" },
-  { id: "cuidador", titulo: "Necesito un cuidador", emoji: "👩‍⚕️", necesidadId: "asistencia", guiaId: "cuidador" },
-  { id: "miedo-conducir", titulo: "Miedo a salir o conducir", emoji: "🚙", guiaId: "miedoConducir" },
-  { id: "ayuda-gratuita", titulo: "Ayuda gratuita", emoji: "🎁", hrefDirecto: hrefResourcesHash("ayuda-gratuita") },
-  { id: "planes-acogida", titulo: "Planes de acogida", emoji: "🏠", hrefDirecto: hrefResourcesHash("planes-acogida") },
-  { id: "asesoria-legal", titulo: "Asesoría legal", emoji: "⚖️", guiaId: "asesoriaLegal" },
-  { id: "segunda-opinion", titulo: "Segunda opinión médica", emoji: "🩺", guiaId: "segundoDiagnostico" },
-  { id: "problemas-dormir", titulo: "Problemas para dormir", emoji: "😴", guiaId: "problemasDormir" },
+  { id: "apoyo-emocional", emoji: "💚", necesidadId: "emocional-ansiedad", guiaId: "apoyoEmocional" },
+  { id: "no-puedo-caminar", emoji: "🦿", necesidadId: "movilidad", guiaId: "transporte" },
+  { id: "sin-medicamentos", emoji: "💊", guiaId: "ayudaPagarMedicamentos" },
+  { id: "estoy-sola", emoji: "🤝", necesidadId: "red-apoyo", guiaId: "sola" },
+  { id: "transporte", emoji: "🚗", guiaId: "transporte" },
+  { id: "medicamentos-delivery", emoji: "💊", guiaId: "medicamentos" },
+  { id: "fisioterapia", emoji: "🦿", guiaId: "fisioterapia", hrefDirecto: hrefResourcesHash("planes-acogida") },
+  { id: "tramites", emoji: "📋", necesidadId: "tramites", guiaId: "tramites" },
+  { id: "accesibilidad", emoji: "🏠", necesidadId: "movilidad", guiaId: "accesibilidad" },
+  { id: "derechos-laborales", emoji: "⚖️", necesidadId: "laboral-tramites", guiaId: "derechosLaborales" },
+  { id: "dolor", emoji: "🩹", guiaId: "dolorCronico" },
+  { id: "abrumado", emoji: "😓", guiaId: "abrumado" },
+  { id: "volver-trabajo", emoji: "💼", necesidadId: "laboral-reinsercion", guiaId: "volverTrabajo" },
+  { id: "cuidador", emoji: "👩‍⚕️", necesidadId: "asistencia", guiaId: "cuidador" },
+  { id: "miedo-conducir", emoji: "🚙", guiaId: "miedoConducir" },
+  { id: "ayuda-gratuita", emoji: "🎁", hrefDirecto: hrefResourcesHash("ayuda-gratuita") },
+  { id: "planes-acogida", emoji: "🏠", hrefDirecto: hrefResourcesHash("planes-acogida") },
+  { id: "asesoria-legal", emoji: "⚖️", guiaId: "asesoriaLegal" },
+  { id: "segunda-opinion", emoji: "🩺", guiaId: "segundoDiagnostico" },
+  { id: "problemas-dormir", emoji: "😴", guiaId: "problemasDormir" },
 ];
 
 const STORAGE_KEY = "rehub-necesidades-seleccionadas";
@@ -68,7 +67,8 @@ export function saveNecesidadesSeleccionadas(
 
 export interface GuiaInline {
   orden: number;
-  titulo: string;
+  /** Matches `id` in `OPCIONES_NECESIDADES`; title from `dashboard.needs.options.{id}.label` */
+  needOptionId: string;
   emoji: string;
   descripcion: string;
   pasos: string[];
@@ -76,11 +76,11 @@ export interface GuiaInline {
   nota?: string;
 }
 
-/** Obtiene el contenido de guía para mostrar inline (sin redirección) */
+/** Inline guide body (descriptions and steps still sourced in TS; migrate to messages over time). */
 export function getGuiaContenido(
   op: OpcionNecesidad,
   guiaFromRecursos?: { descripcion: string; pasos?: string[]; contactos?: { nombre: string; valor: string; tipo: "tel" | "web" | "otros" }[]; nota?: string }
-): Omit<GuiaInline, "orden" | "titulo" | "emoji"> {
+): Omit<GuiaInline, "orden" | "needOptionId" | "emoji"> {
   if (guiaFromRecursos) {
     return {
       descripcion: guiaFromRecursos.descripcion,
@@ -124,7 +124,7 @@ export function getGuiaContenido(
   return { descripcion: "", pasos: [] };
 }
 
-/** Genera las guías completas para mostrar inline según las necesidades seleccionadas */
+/** Build inline guides for the custom flow from selected need ids */
 export function buildGuiasParaFlujo(
   idsSeleccionados: string[],
   guiasMap: Record<string, { descripcion: string; pasos?: string[]; contactos?: { nombre: string; valor: string; tipo: "tel" | "web" | "otros" }[]; nota?: string }>
@@ -137,7 +137,7 @@ export function buildGuiasParaFlujo(
       const contenido = getGuiaContenido(op, guia);
       return {
         orden: i + 1,
-        titulo: op.titulo,
+        needOptionId: op.id,
         emoji: op.emoji,
         ...contenido,
       };

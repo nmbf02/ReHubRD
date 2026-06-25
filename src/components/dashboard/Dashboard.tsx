@@ -6,15 +6,22 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import {
-  IconUser,
-  IconClipboard,
-  IconRefresh,
-  IconBook,
-} from "@/components/ui/Icons";
+  User,
+  ClipboardList,
+  RefreshCw,
+  BookOpen,
+  ArrowRight,
+  Check,
+  Phone,
+  Gift,
+  Home,
+  Compass,
+} from "lucide-react";
 import { getPerfilInicial, calcularProgreso } from "@/lib/profile-store";
 import SugerenciasRecordatorios from "@/components/dashboard/SuggestionsAndRecommendations";
 import { getAccountData } from "@/lib/account-store";
 import { ROUTES, hrefResourcesHash } from "@/lib/routes";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
 
 interface Props {
   userName?: string | null;
@@ -41,28 +48,28 @@ export function InicioDashboard({ userName, userId }: Props) {
         titulo: t("steps.profile.title"),
         descripcion: t("steps.profile.desc"),
         href: ROUTES.profile,
-        Icon: IconUser,
+        Icon: User,
       },
       {
         paso: 2,
         titulo: t("steps.plan.title"),
         descripcion: t("steps.plan.desc"),
         href: ROUTES.plan,
-        Icon: IconClipboard,
+        Icon: ClipboardList,
       },
       {
         paso: 3,
         titulo: t("steps.followup.title"),
         descripcion: t("steps.followup.desc"),
         href: ROUTES.followup,
-        Icon: IconRefresh,
+        Icon: RefreshCw,
       },
       {
         paso: 4,
         titulo: t("steps.resources.title"),
         descripcion: t("steps.resources.desc"),
         href: ROUTES.resources,
-        Icon: IconBook,
+        Icon: BookOpen,
       },
     ],
     [t]
@@ -74,25 +81,25 @@ export function InicioDashboard({ userName, userId }: Props) {
         title: t("cards.profile.title"),
         desc: t("cards.profile.desc"),
         href: ROUTES.profile,
-        Icon: IconUser,
+        Icon: User,
       },
       {
         title: t("cards.plan.title"),
         desc: t("cards.plan.desc"),
         href: ROUTES.plan,
-        Icon: IconClipboard,
+        Icon: ClipboardList,
       },
       {
         title: t("cards.followup.title"),
         desc: t("cards.followup.desc"),
         href: ROUTES.followup,
-        Icon: IconRefresh,
+        Icon: RefreshCw,
       },
       {
         title: t("cards.resources.title"),
         desc: t("cards.resources.desc"),
         href: ROUTES.resources,
-        Icon: IconBook,
+        Icon: BookOpen,
       },
     ],
     [t]
@@ -120,154 +127,219 @@ export function InicioDashboard({ userName, userId }: Props) {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-2xl bg-gradient-to-br from-rehub-primary/10 via-rehub-accent/5 to-transparent border border-rehub-primary/20 p-6 lg:p-8">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-          <div>
-            <h1 className="text-2xl lg:text-3xl font-bold text-rehub-dark tracking-tight">
-              {t("greeting", { name: displayName })}
-            </h1>
-            <p className="mt-2 text-rehub-dark/80 text-base max-w-xl">{t("heroSub")}</p>
-          </div>
-          {mounted && (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 shrink-0">
-              <div className="min-w-[200px]">
-                <p className="text-xs font-medium text-rehub-dark/60 uppercase tracking-wider mb-2">
-                  {t("progressLabel")}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="flex-1 h-3 bg-slate-200/80 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${progreso}%` }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                      className="h-full bg-rehub-primary rounded-full"
-                    />
-                  </div>
-                  <span className="text-sm font-bold text-rehub-dark tabular-nums w-12">
-                    {progreso}%
-                  </span>
-                </div>
-              </div>
-              {progreso < 100 && (
-                <Link
-                  href={accionSugerida.href}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-rehub-primary rounded-xl hover:bg-rehub-secondary transition-colors"
-                >
-                  {accionSugerida.label}
-                  <span aria-hidden>→</span>
-                </Link>
-              )}
+      {/* Welcome panel */}
+      <Reveal>
+        <div className="relative overflow-hidden rounded-3xl border border-rehub-100 bg-gradient-to-br from-white via-rehub-50/60 to-rehub-100/40 p-6 shadow-card lg:p-8">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-rehub-300/30 blur-3xl"
+          />
+          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h1 className="text-balance text-2xl font-bold tracking-tightest text-rehub-950 lg:text-3xl">
+                {t("greeting", { name: displayName })}
+              </h1>
+              <p className="mt-2 max-w-xl text-pretty text-base leading-relaxed text-rehub-900/70">
+                {t("heroSub")}
+              </p>
             </div>
-          )}
+            {mounted && (
+              <div className="flex shrink-0 flex-col items-start gap-4 sm:flex-row sm:items-center">
+                <div className="min-w-[200px] rounded-2xl border border-rehub-100 bg-white/80 p-4 shadow-soft backdrop-blur">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-rehub-900/55">
+                    {t("progressLabel")}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="h-3 flex-1 overflow-hidden rounded-full bg-rehub-100">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${progreso}%` }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        className="h-full rounded-full bg-brand-gradient"
+                      />
+                    </div>
+                    <span className="w-12 text-sm font-bold tabular-nums text-rehub-950">
+                      {progreso}%
+                    </span>
+                  </div>
+                </div>
+                {progreso < 100 && (
+                  <Link
+                    href={accionSugerida.href}
+                    className="group inline-flex items-center gap-2 rounded-xl bg-rehub-600 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition-all hover:bg-rehub-700 hover:shadow-glow-lg"
+                  >
+                    {accionSugerida.label}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                )}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </Reveal>
 
-      <div className="flex flex-wrap gap-3 items-center p-4 rounded-xl bg-slate-100/80 border border-slate-200/80">
-        <span className="text-sm font-medium text-rehub-dark/80">{t("quickHelp")}</span>
-        <a href="tel:911" className="text-sm font-semibold text-red-600 hover:underline">911</a>
-        <span className="text-slate-300">·</span>
-        <a href="tel:811" className="text-sm font-semibold text-rehub-primary hover:underline">{t("mentalHealthLine")}</a>
-        <span className="text-slate-300">·</span>
-        <a href="tel:8092001400" className="text-sm font-semibold text-rehub-primary hover:underline">809-200-1400</a>
-      </div>
+      {/* Quick help line */}
+      <Reveal delay={0.05}>
+        <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-rehub-100 bg-white px-5 py-4 shadow-soft">
+          <span className="inline-flex items-center gap-2 text-sm font-medium text-rehub-900/70">
+            <Phone className="h-4 w-4 text-rehub-600" />
+            {t("quickHelp")}
+          </span>
+          <a href="tel:911" className="text-sm font-semibold text-red-600 hover:underline">
+            911
+          </a>
+          <span className="text-rehub-300">·</span>
+          <a
+            href="tel:811"
+            className="text-sm font-semibold text-rehub-700 hover:underline"
+          >
+            {t("mentalHealthLine")}
+          </a>
+          <span className="text-rehub-300">·</span>
+          <a
+            href="tel:8092001400"
+            className="text-sm font-semibold text-rehub-700 hover:underline"
+          >
+            809-200-1400
+          </a>
+        </div>
+      </Reveal>
 
       <SugerenciasRecordatorios progreso={progreso} userId={userId} />
 
-      <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-        <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
-          <h2 className="text-lg font-semibold text-rehub-dark">{t("flowTitle")}</h2>
-          <p className="mt-1 text-sm text-rehub-dark/60">{t("flowSubtitle")}</p>
-        </div>
-        <div className="p-6 lg:p-8">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            {FLUJO_PASOS.map((item, i) => {
-              const esActual = item.paso === pasoEnCurso;
-              const esCompletado = item.paso < pasoEnCurso;
-              return (
-                <span key={item.paso} className="contents">
-                  <Link
-                    href={item.href}
-                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                      esActual
-                        ? "bg-rehub-primary text-white shadow-md"
-                        : esCompletado
-                          ? "bg-rehub-primary/10 text-rehub-primary hover:bg-rehub-primary/20"
-                          : "bg-slate-100 text-rehub-dark/70 hover:bg-slate-200 hover:text-rehub-dark"
-                    }`}
-                  >
-                    {esCompletado ? "✓" : item.paso}
-                    <span className="hidden sm:inline">{item.titulo}</span>
-                  </Link>
-                  {i < FLUJO_PASOS.length - 1 && (
-                    <span className="text-slate-300 hidden sm:inline">→</span>
-                  )}
-                </span>
-              );
-            })}
-          </div>
-          {pasoActualData && (
-            <div className="mt-6 p-5 rounded-xl bg-slate-50 border border-slate-100">
-              <p className="text-sm text-rehub-dark/80">
-                <span className="font-semibold text-rehub-dark">{pasoActualData.titulo}:</span>{" "}
-                {pasoActualData.descripcion}
-              </p>
-              <Link
-                href={pasoActualData.href}
-                className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-rehub-primary hover:text-rehub-secondary"
-              >
-                {t("goToStep")}
-                <span aria-hidden>→</span>
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-sm font-semibold text-rehub-dark/80 uppercase tracking-wider mb-4">
-          {t("quickAccessTitle")}
-        </h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {CARDS_ACCESO.map(({ title, desc, href, Icon }) => (
-            <Link
-              key={title}
-              href={href}
-              className="group flex flex-col gap-3 p-5 bg-white rounded-xl border border-slate-200/80 hover:border-rehub-primary/30 hover:shadow-lg transition-all duration-200"
-            >
-              <span className="shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-slate-100 text-slate-600 group-hover:bg-rehub-primary/10 group-hover:text-rehub-primary transition-colors [&_svg]:h-6 [&_svg]:w-6">
-                <Icon />
+      {/* Flow stepper */}
+      <Reveal delay={0.05}>
+        <section className="overflow-hidden rounded-3xl border border-rehub-100 bg-white shadow-card">
+          <div className="border-b border-rehub-100 px-6 py-6 lg:px-8">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700">
+                <Compass className="h-5 w-5" />
               </span>
               <div>
-                <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary transition-colors">
-                  {title}
+                <h2 className="text-lg font-semibold tracking-tight text-rehub-950">
+                  {t("flowTitle")}
+                </h2>
+                <p className="mt-0.5 text-sm text-rehub-900/60">{t("flowSubtitle")}</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-6 lg:p-8">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              {FLUJO_PASOS.map((item, i) => {
+                const esActual = item.paso === pasoEnCurso;
+                const esCompletado = item.paso < pasoEnCurso;
+                return (
+                  <span key={item.paso} className="contents">
+                    <Link
+                      href={item.href}
+                      className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-all ${
+                        esActual
+                          ? "bg-rehub-600 text-white shadow-glow"
+                          : esCompletado
+                            ? "bg-rehub-50 text-rehub-700 hover:bg-rehub-100"
+                            : "bg-rehub-50/60 text-rehub-900/70 hover:bg-rehub-100 hover:text-rehub-950"
+                      }`}
+                    >
+                      {esCompletado ? (
+                        <Check className="h-4 w-4" />
+                      ) : (
+                        <span className="tabular-nums">{item.paso}</span>
+                      )}
+                      <span className="hidden sm:inline">{item.titulo}</span>
+                    </Link>
+                    {i < FLUJO_PASOS.length - 1 && (
+                      <ArrowRight className="hidden h-4 w-4 text-rehub-300 sm:inline" />
+                    )}
+                  </span>
+                );
+              })}
+            </div>
+            {pasoActualData && (
+              <div className="mt-6 rounded-2xl border border-rehub-100 bg-gradient-to-br from-white to-rehub-50/50 p-5">
+                <p className="text-sm leading-relaxed text-rehub-900/70">
+                  <span className="font-semibold text-rehub-950">
+                    {pasoActualData.titulo}:
+                  </span>{" "}
+                  {pasoActualData.descripcion}
+                </p>
+                <Link
+                  href={pasoActualData.href}
+                  className="group mt-3 inline-flex items-center gap-2 text-sm font-semibold text-rehub-700 transition-colors hover:text-rehub-800"
+                >
+                  {t("goToStep")}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            )}
+          </div>
+        </section>
+      </Reveal>
+
+      {/* Quick access */}
+      <section>
+        <Reveal>
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-rehub-900/60">
+            {t("quickAccessTitle")}
+          </h2>
+        </Reveal>
+        <Stagger className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {CARDS_ACCESO.map(({ title, desc, href, Icon }) => (
+            <StaggerItem key={title}>
+              <Link
+                href={href}
+                className="group flex h-full flex-col gap-3 rounded-2xl border border-rehub-100 bg-white p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:border-rehub-200 hover:shadow-elevated"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700 transition-colors group-hover:bg-brand-gradient group-hover:text-white group-hover:shadow-glow">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <div>
+                  <h3 className="font-semibold text-rehub-950 transition-colors group-hover:text-rehub-700">
+                    {title}
+                  </h3>
+                  <p className="mt-0.5 text-xs leading-relaxed text-rehub-900/60">{desc}</p>
+                </div>
+              </Link>
+            </StaggerItem>
+          ))}
+        </Stagger>
+        <Stagger className="mt-4 grid gap-4 sm:grid-cols-2">
+          <StaggerItem>
+            <Link
+              href={hrefResourcesHash("ayuda-gratuita")}
+              className="group flex h-full items-center gap-4 rounded-2xl border border-rehub-200 bg-gradient-to-br from-rehub-50 to-white p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-elevated"
+            >
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow">
+                <Gift className="h-6 w-6" />
+              </span>
+              <div>
+                <h3 className="font-semibold text-rehub-950 transition-colors group-hover:text-rehub-700">
+                  {t("freeHelpTitle")}
                 </h3>
-                <p className="text-xs text-rehub-dark/60 mt-0.5">{desc}</p>
+                <p className="text-sm leading-relaxed text-rehub-900/65">
+                  {t("freeHelpDesc")}
+                </p>
               </div>
             </Link>
-          ))}
-        </div>
-        <div className="mt-4 grid sm:grid-cols-2 gap-4">
-          <Link
-            href={hrefResourcesHash("ayuda-gratuita")}
-            className="flex items-center gap-4 p-5 rounded-xl border border-emerald-200 bg-emerald-50/60 hover:bg-emerald-50 transition-colors group"
-          >
-            <span className="text-2xl">🎁</span>
-            <div>
-              <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary">{t("freeHelpTitle")}</h3>
-              <p className="text-sm text-rehub-dark/70">{t("freeHelpDesc")}</p>
-            </div>
-          </Link>
-          <Link
-            href={hrefResourcesHash("planes-acogida")}
-            className="flex items-center gap-4 p-5 rounded-xl border border-slate-200 bg-slate-50/80 hover:bg-slate-50 transition-colors group"
-          >
-            <span className="text-2xl">🏠</span>
-            <div>
-              <h3 className="font-semibold text-rehub-dark group-hover:text-rehub-primary">{t("shelterTitle")}</h3>
-              <p className="text-sm text-rehub-dark/70">{t("shelterDesc")}</p>
-            </div>
-          </Link>
-        </div>
+          </StaggerItem>
+          <StaggerItem>
+            <Link
+              href={hrefResourcesHash("planes-acogida")}
+              className="group flex h-full items-center gap-4 rounded-2xl border border-rehub-100 bg-white p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:border-rehub-200 hover:shadow-elevated"
+            >
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700 transition-colors group-hover:bg-brand-gradient group-hover:text-white group-hover:shadow-glow">
+                <Home className="h-6 w-6" />
+              </span>
+              <div>
+                <h3 className="font-semibold text-rehub-950 transition-colors group-hover:text-rehub-700">
+                  {t("shelterTitle")}
+                </h3>
+                <p className="text-sm leading-relaxed text-rehub-900/65">
+                  {t("shelterDesc")}
+                </p>
+              </div>
+            </Link>
+          </StaggerItem>
+        </Stagger>
       </section>
     </div>
   );

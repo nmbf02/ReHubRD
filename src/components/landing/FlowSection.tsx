@@ -1,59 +1,110 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import {
+  UserPlus,
+  ClipboardCheck,
+  ListChecks,
+  CalendarCheck,
+  SlidersHorizontal,
+  PartyPopper,
+  CheckCircle2,
+  type LucideIcon,
+} from "lucide-react";
+import { Reveal } from "@/components/ui/motion";
+import { GridBackground, GlowOrb } from "@/components/ui/backgrounds";
+import { SectionHeading } from "@/components/ui/section";
 
-const STEP_NUMBERS = [1, 2, 3, 4, 5, 6] as const;
+const STEPS: { step: number; Icon: LucideIcon }[] = [
+  { step: 1, Icon: UserPlus },
+  { step: 2, Icon: ClipboardCheck },
+  { step: 3, Icon: ListChecks },
+  { step: 4, Icon: CalendarCheck },
+  { step: 5, Icon: SlidersHorizontal },
+  { step: 6, Icon: PartyPopper },
+];
 
 export function FlowSection() {
   const t = useTranslations("landing.flow");
 
   return (
-    <section id="funcionamiento" className="py-20 lg:py-28 bg-gradient-to-b from-rehub-light/50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-rehub-dark mb-4">
-            {t("title")}
-          </h2>
-          <p className="text-lg text-rehub-dark/70">{t("intro")}</p>
-        </motion.div>
+    <section
+      id="funcionamiento"
+      className="relative overflow-hidden bg-gradient-to-b from-rehub-50/60 to-white py-20 lg:py-28"
+    >
+      <GridBackground className="-z-10 opacity-60" />
+      <GlowOrb className="left-1/2 top-24 h-64 w-64 -translate-x-1/2 bg-rehub-300/30" />
 
-        <div className="relative">
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-rehub-primary/30 -translate-x-1/2" />
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow={t("eyebrow")} title={t("title")} lede={t("intro")} />
 
-          <div className="space-y-12 lg:space-y-0">
-            {STEP_NUMBERS.map((step, i) => (
-              <motion.div
-                key={step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className={`flex flex-col lg:flex-row gap-8 items-center ${
-                  i % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
-              >
-                <div className="flex-1 lg:max-w-xl">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="w-10 h-10 rounded-full bg-rehub-primary text-white flex items-center justify-center font-bold">
+        <div className="relative mt-16">
+          {/* Center gradient spine (desktop) + left rail (mobile) */}
+          <div
+            aria-hidden
+            className="absolute bottom-0 left-6 top-0 w-px bg-gradient-to-b from-rehub-200 via-rehub-300/70 to-rehub-200/0 lg:left-1/2 lg:-translate-x-1/2"
+          />
+
+          <ol className="space-y-10 lg:space-y-0">
+            {STEPS.map(({ step, Icon }, i) => {
+              const isRight = i % 2 === 1;
+              return (
+                <Reveal
+                  key={step}
+                  delay={i * 0.08}
+                  direction="up"
+                  className="relative pl-20 lg:pl-0"
+                >
+                  <li
+                    className={`relative flex items-stretch lg:items-center ${
+                      isRight ? "lg:flex-row-reverse" : ""
+                    }`}
+                  >
+                    {/* Glowing numbered node on the spine */}
+                    <span
+                      aria-hidden
+                      className="absolute left-6 top-6 z-10 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full border border-rehub-100 bg-brand-gradient text-base font-bold text-white shadow-glow lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2"
+                    >
                       {step}
                     </span>
-                    <h3 className="font-semibold text-xl text-rehub-dark">
-                      {t(`step${step}.title`)}
-                    </h3>
-                  </div>
-                  <p className="text-rehub-dark/70 pl-14">{t(`step${step}.desc`)}</p>
-                </div>
-                <div className="hidden lg:flex flex-shrink-0 w-16" />
-                <div className="hidden lg:flex flex-shrink-0 w-16" />
-              </motion.div>
-            ))}
-          </div>
+
+                    {/* Card */}
+                    <div className="lg:w-1/2 lg:px-12 lg:py-6">
+                      <div className="group rounded-2xl border border-rehub-100 bg-gradient-to-br from-white to-rehub-50/50 p-6 shadow-card transition-all hover:-translate-y-0.5 hover:border-rehub-200 hover:shadow-elevated">
+                        <div className="flex items-start gap-4">
+                          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700 transition-colors group-hover:bg-rehub-600 group-hover:text-white">
+                            <Icon className="h-6 w-6" />
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs font-semibold uppercase tracking-wider text-rehub-600">
+                                {step}/{STEPS.length}
+                              </span>
+                              {step === STEPS.length ? (
+                                <CheckCircle2
+                                  className="h-4 w-4 text-rehub-500"
+                                  aria-hidden
+                                />
+                              ) : null}
+                            </div>
+                            <h3 className="mt-1 text-balance text-xl font-bold leading-snug tracking-tight text-rehub-950">
+                              {t(`step${step}.title`)}
+                            </h3>
+                            <p className="mt-2 text-pretty leading-relaxed text-rehub-900/70">
+                              {t(`step${step}.desc`)}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Spacer for the opposite column on desktop */}
+                    <div className="hidden lg:block lg:w-1/2" />
+                  </li>
+                </Reveal>
+              );
+            })}
+          </ol>
         </div>
       </div>
     </section>

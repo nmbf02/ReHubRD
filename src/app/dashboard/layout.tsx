@@ -16,9 +16,13 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-rehub-light/20">
+    <div className="relative min-h-screen bg-rehub-50/40">
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 bg-grid-rehub bg-grid opacity-[0.4] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]"
+      />
       <DashboardNav user={session.user} />
-      <main className="lg:pl-64 pt-16">{children}</main>
+      <main className="relative lg:pl-64 pt-16 lg:pt-0">{children}</main>
     </div>
   );
 }

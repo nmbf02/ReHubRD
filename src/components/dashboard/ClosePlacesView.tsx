@@ -12,20 +12,69 @@ import { getPerfilInicial } from "@/lib/profile-store";
 import { getNecesidadesSeleccionadas } from "@/lib/needs-options";
 import { OPCIONES_PROVINCIA } from "@/types/profile";
 import type { ProvinciaRD } from "@/types/profile";
+import {
+  Siren,
+  Brain,
+  Hospital,
+  Cross,
+  Dumbbell,
+  Pill,
+  Tablets,
+  ClipboardList,
+  MapPin,
+  Phone,
+  ExternalLink,
+} from "lucide-react";
+import { Stagger, StaggerItem, Reveal } from "@/components/ui/motion";
 
 interface Props {
   userId?: string | null;
 }
 
-const EMOJI_TIPO: Record<TipoSitio, string> = {
-  emergencia: "🚨",
-  salud_mental: "💚",
-  hospital: "🏥",
-  centro_salud: "🏥",
-  rehabilitacion: "🦿",
-  farmacia: "💊",
-  medicamentos: "💊",
-  trámites: "📋",
+const ICON_TIPO: Record<TipoSitio, React.ComponentType<{ className?: string }>> = {
+  emergencia: Siren,
+  salud_mental: Brain,
+  hospital: Hospital,
+  centro_salud: Cross,
+  rehabilitacion: Dumbbell,
+  farmacia: Pill,
+  medicamentos: Tablets,
+  trámites: ClipboardList,
+};
+
+const COLOR_TIPO: Record<TipoSitio, { chip: string; badge: string }> = {
+  emergencia: {
+    chip: "bg-red-100 text-red-700",
+    badge: "border-red-200 bg-red-50 text-red-700",
+  },
+  salud_mental: {
+    chip: "bg-emerald-100 text-emerald-700",
+    badge: "border-emerald-200 bg-emerald-50 text-emerald-700",
+  },
+  hospital: {
+    chip: "bg-rehub-100 text-rehub-700",
+    badge: "border-rehub-200 bg-rehub-50 text-rehub-700",
+  },
+  centro_salud: {
+    chip: "bg-sky-100 text-sky-700",
+    badge: "border-sky-200 bg-sky-50 text-sky-700",
+  },
+  rehabilitacion: {
+    chip: "bg-violet-100 text-violet-700",
+    badge: "border-violet-200 bg-violet-50 text-violet-700",
+  },
+  farmacia: {
+    chip: "bg-teal-100 text-teal-700",
+    badge: "border-teal-200 bg-teal-50 text-teal-700",
+  },
+  medicamentos: {
+    chip: "bg-cyan-100 text-cyan-700",
+    badge: "border-cyan-200 bg-cyan-50 text-cyan-700",
+  },
+  trámites: {
+    chip: "bg-amber-100 text-amber-700",
+    badge: "border-amber-200 bg-amber-50 text-amber-700",
+  },
 };
 
 export function SitiosCercanosView({ userId }: Props) {
@@ -60,30 +109,45 @@ export function SitiosCercanosView({ userId }: Props) {
   return (
     <section
       id="sitios-cercanos"
-      className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden scroll-mt-6"
+      className="bg-white rounded-2xl border border-rehub-100 shadow-card overflow-hidden scroll-mt-6"
     >
-      <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
-        <h2 className="text-lg font-semibold text-rehub-dark flex items-center gap-2">
-          <span>📍</span> {t("title")}
-        </h2>
-        <p className="mt-1 text-sm text-rehub-dark/60">
-          {provincia
-            ? t("withProvince", { province: provinceLabel })
-            : t("noProvince")}
-        </p>
-      </div>
-      <div className="p-6 lg:p-8">
-        <div className="space-y-4">
-          {sitios.map((sitio) => (
-            <TarjetaSitio key={sitio.id} sitio={sitio} />
-          ))}
-        </div>
-        {!provincia && (
-          <div className="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200">
-            <p className="text-sm text-amber-900">
-              <strong>{t("tipLabel")}</strong> {t("tipBody")}
+      {/* Header */}
+      <Reveal direction="up" duration={0.5}>
+        <div className="px-6 lg:px-8 py-5 border-b border-rehub-100 flex items-start gap-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700">
+            <MapPin className="h-5 w-5" />
+          </div>
+          <div>
+            <h2 className="text-base font-semibold text-rehub-950 leading-snug">
+              {t("title")}
+            </h2>
+            <p className="mt-0.5 text-sm text-rehub-900/60">
+              {provincia
+                ? t("withProvince", { province: provinceLabel })
+                : t("noProvince")}
             </p>
           </div>
+        </div>
+      </Reveal>
+
+      {/* List */}
+      <div className="p-6 lg:p-8">
+        <Stagger className="space-y-3">
+          {sitios.map((sitio) => (
+            <StaggerItem key={sitio.id}>
+              <TarjetaSitio sitio={sitio} />
+            </StaggerItem>
+          ))}
+        </Stagger>
+
+        {!provincia && (
+          <Reveal direction="up" delay={0.2} duration={0.5}>
+            <div className="mt-5 p-4 rounded-xl bg-amber-50 border border-amber-200">
+              <p className="text-sm text-amber-900">
+                <strong>{t("tipLabel")}</strong> {t("tipBody")}
+              </p>
+            </div>
+          </Reveal>
         )}
       </div>
     </section>
@@ -92,30 +156,54 @@ export function SitiosCercanosView({ userId }: Props) {
 
 function TarjetaSitio({ sitio }: { sitio: SitioCercano }) {
   const t = useTranslations("dashboard.closePlaces");
+  const IconComponent = ICON_TIPO[sitio.tipo] ?? MapPin;
+  const colors = COLOR_TIPO[sitio.tipo] ?? {
+    chip: "bg-rehub-100 text-rehub-700",
+    badge: "border-rehub-200 bg-rehub-50 text-rehub-700",
+  };
 
   return (
-    <div className="p-5 rounded-xl border border-slate-200/80 bg-slate-50/50 hover:bg-white hover:border-rehub-primary/20 transition-colors">
+    <div className="group p-5 rounded-xl border border-rehub-100 bg-gradient-to-br from-white to-rehub-50/50 transition-all hover:-translate-y-0.5 hover:shadow-elevated hover:border-rehub-200">
       <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-        <span className="text-2xl shrink-0">{EMOJI_TIPO[sitio.tipo] ?? "📍"}</span>
+        {/* Icon chip */}
+        <div
+          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${colors.chip}`}
+        >
+          <IconComponent className="h-5 w-5" />
+        </div>
+
+        {/* Body */}
         <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="font-semibold text-rehub-dark">{sitio.nombre}</h3>
-            <span className="text-xs font-medium text-rehub-dark/60 bg-slate-200/80 px-2 py-0.5 rounded">
+            <h3 className="font-semibold text-rehub-950 leading-snug">
+              {sitio.nombre}
+            </h3>
+            <span
+              className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${colors.badge}`}
+            >
               {t(`types.${sitio.tipo}`)}
             </span>
           </div>
-          <p className="text-sm text-rehub-dark/70 mt-1">{sitio.descripcion}</p>
+          <p className="text-sm text-rehub-900/65 mt-1 text-pretty">
+            {sitio.descripcion}
+          </p>
           {sitio.direccion && (
-            <p className="text-xs text-rehub-dark/60 mt-2">📍 {sitio.direccion}</p>
+            <p className="mt-1.5 flex items-center gap-1.5 text-xs text-rehub-900/50">
+              <MapPin className="h-3 w-3 shrink-0" />
+              {sitio.direccion}
+            </p>
           )}
         </div>
+
+        {/* Actions */}
         <div className="flex flex-wrap gap-2 shrink-0">
           {sitio.telefono && (
             <a
               href={`tel:${sitio.telefono.replace(/\D/g, "")}`}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-rehub-primary text-white rounded-lg text-sm font-medium hover:bg-rehub-secondary transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl bg-rehub-600 px-4 py-2 text-sm font-semibold text-white shadow-glow transition-all hover:bg-rehub-700 hover:shadow-glow-lg"
             >
-              📞 {sitio.telefono}
+              <Phone className="h-3.5 w-3.5" />
+              {sitio.telefono}
             </a>
           )}
           {sitio.web && (
@@ -123,8 +211,9 @@ function TarjetaSitio({ sitio }: { sitio: SitioCercano }) {
               href={sitio.web.startsWith("http") ? sitio.web : `https://${sitio.web}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 border border-rehub-primary/30 text-rehub-primary rounded-lg text-sm font-medium hover:bg-rehub-primary/5 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-rehub-200 bg-white px-4 py-2 text-sm font-semibold text-rehub-800 transition-all hover:bg-rehub-50 hover:border-rehub-300"
             >
+              <ExternalLink className="h-3.5 w-3.5" />
               {t("seeWebsite")}
             </a>
           )}

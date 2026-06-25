@@ -6,6 +6,18 @@ import { useIsClientMounted } from "@/hooks/use-is-client-mounted";
 import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
 import { getAccountData as getAccountData, saveAccountData } from "@/lib/account-store";
+import {
+  User,
+  Phone,
+  Mail,
+  LogIn,
+  Hash,
+  Check,
+  Loader2,
+  ArrowRight,
+  UserCircle,
+} from "lucide-react";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
 
 interface UserData {
   id?: string;
@@ -86,130 +98,217 @@ export function AccountForm({ user }: Props) {
   }
 
   return (
-    <div className="space-y-8">
-      {/* Datos editables */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-rehub-light/50 p-6 lg:p-8">
-        <h2 className="text-lg font-semibold text-rehub-dark mb-6">
-          {ta("editTitle")}
-        </h2>
-        <div className="space-y-6">
-          <div>
-            <label htmlFor="nombreMostrar" className="block text-sm font-medium text-rehub-dark mb-2">
-              {ta("displayName")}
-            </label>
-            <input
-              id="nombreMostrar"
-              type="text"
-              value={showName}
-              onChange={(e) => setShowName(e.target.value)}
-              placeholder={ta("displayNamePh")}
-              className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
-            />
-            <p className="mt-1 text-xs text-rehub-dark/60">
-              {ta("displayNameHint")}
-            </p>
-          </div>
-          <div>
-            <label htmlFor="telefono" className="block text-sm font-medium text-rehub-dark mb-2">
-              {ta("phone")}
-            </label>
-            <input
-              id="telefono"
-              type="tel"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              placeholder="809-000-0000"
-              className="w-full px-4 py-3 rounded-xl border border-rehub-dark/20 focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none"
-            />
-          </div>
-          <div>
-            <label htmlFor="correoContacto" className="block text-sm font-medium text-rehub-dark mb-2">
-              {ta("contactEmail")}
-              <span className="text-rehub-dark/50 font-normal">{tCommon("optionalMarker")}</span>
-            </label>
-            <input
-              id="correoContacto"
-              type="email"
-              value={contactEmail}
-              onChange={(ev) => {
-                setContactEmail(ev.target.value);
-                if (errores.email) setErrores((prev) => ({ ...prev, correo: undefined }));
-              }}
-              placeholder={ta("contactEmailPh")}
-              className={`w-full px-4 py-3 rounded-xl border focus:border-rehub-primary focus:ring-2 focus:ring-rehub-primary/20 outline-none ${
-                errores.email ? "border-red-300" : "border-rehub-dark/20"
-              }`}
-            />
-            {errores.email && (
-              <p className="mt-1 text-sm text-red-600" role="alert">{errores.email}</p>
-            )}
-            <p className="mt-1 text-xs text-rehub-dark/60">
-              {ta("contactEmailHint")}
-            </p>
-          </div>
-          {errores.save && (
-            <p className="text-sm text-red-600" role="alert">{errores.save}</p>
-          )}
-          <button
-            type="submit"
-            disabled={isSaving}
-            className="px-6 py-3 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors disabled:opacity-70"
-          >
-            {isSaving ? ta("saveSaving") : saved ? ta("saveSaved") : ta("saveSubmit")}
-          </button>
-        </div>
-      </form>
-
-      {/* Información de sesión (solo lectura) */}
-      <div className="bg-white rounded-2xl border border-rehub-light/50 p-6 lg:p-8">
-        <h2 className="text-lg font-semibold text-rehub-dark mb-6">
-          {ta("sessionTitle")}
-        </h2>
-        <dl className="space-y-6">
-          <div>
-            <dt className="text-sm font-medium text-rehub-dark/70 mb-1">
-              {ta("loginEmail")}
-            </dt>
-            <dd className="text-rehub-dark font-medium">{safeUser?.email ?? "—"}</dd>
-            <p className="mt-1 text-xs text-rehub-dark/60">
-              {ta("loginEmailHint")}
-            </p>
-          </div>
-          {getAccountData(safeUser?.id ?? undefined)?.contactEmail && (
+    <Stagger className="space-y-6">
+      {/* ── Editable data panel ── */}
+      <StaggerItem>
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-2xl border border-rehub-100 bg-white shadow-card"
+        >
+          {/* Panel header */}
+          <div className="flex items-center gap-3 border-b border-rehub-100 px-6 py-5">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700">
+              <User className="h-5 w-5" />
+            </span>
             <div>
-              <dt className="text-sm font-medium text-rehub-dark/70 mb-1">
+              <h2 className="text-base font-semibold text-rehub-950">{ta("editTitle")}</h2>
+            </div>
+          </div>
+
+          {/* Form fields */}
+          <div className="space-y-5 p-6">
+            {/* Display name */}
+            <div>
+              <label
+                htmlFor="nombreMostrar"
+                className="block text-sm font-medium text-rehub-900 mb-1.5"
+              >
+                {ta("displayName")}
+              </label>
+              <div className="relative">
+                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-rehub-900/40">
+                  <User className="h-4 w-4" />
+                </span>
+                <input
+                  id="nombreMostrar"
+                  type="text"
+                  value={showName}
+                  onChange={(e) => setShowName(e.target.value)}
+                  placeholder={ta("displayNamePh")}
+                  className="w-full rounded-xl border border-rehub-200 bg-white pl-10 pr-4 py-2.5 text-rehub-950 outline-none transition-all placeholder:text-rehub-900/40 focus:border-rehub-500 focus:ring-4 focus:ring-rehub-500/15"
+                />
+              </div>
+              <p className="mt-1.5 text-xs text-rehub-900/55">{ta("displayNameHint")}</p>
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label
+                htmlFor="telefono"
+                className="block text-sm font-medium text-rehub-900 mb-1.5"
+              >
+                {ta("phone")}
+              </label>
+              <div className="relative">
+                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-rehub-900/40">
+                  <Phone className="h-4 w-4" />
+                </span>
+                <input
+                  id="telefono"
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="809-000-0000"
+                  className="w-full rounded-xl border border-rehub-200 bg-white pl-10 pr-4 py-2.5 text-rehub-950 outline-none transition-all placeholder:text-rehub-900/40 focus:border-rehub-500 focus:ring-4 focus:ring-rehub-500/15"
+                />
+              </div>
+            </div>
+
+            {/* Contact email */}
+            <div>
+              <label
+                htmlFor="correoContacto"
+                className="block text-sm font-medium text-rehub-900 mb-1.5"
+              >
                 {ta("contactEmail")}
+                <span className="ml-1 text-rehub-900/50 font-normal">
+                  {tCommon("optionalMarker")}
+                </span>
+              </label>
+              <div className="relative">
+                <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-rehub-900/40">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <input
+                  id="correoContacto"
+                  type="email"
+                  value={contactEmail}
+                  onChange={(ev) => {
+                    setContactEmail(ev.target.value);
+                    if (errores.email) setErrores((prev) => ({ ...prev, correo: undefined }));
+                  }}
+                  placeholder={ta("contactEmailPh")}
+                  className={`w-full rounded-xl border bg-white pl-10 pr-4 py-2.5 text-rehub-950 outline-none transition-all placeholder:text-rehub-900/40 focus:ring-4 ${
+                    errores.email
+                      ? "border-red-300 focus:border-red-400 focus:ring-red-500/10"
+                      : "border-rehub-200 focus:border-rehub-500 focus:ring-rehub-500/15"
+                  }`}
+                />
+              </div>
+              {errores.email && (
+                <p className="mt-1.5 text-sm text-red-600" role="alert">
+                  {errores.email}
+                </p>
+              )}
+              <p className="mt-1.5 text-xs text-rehub-900/55">{ta("contactEmailHint")}</p>
+            </div>
+
+            {errores.save && (
+              <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-2.5 text-sm text-red-600" role="alert">
+                {errores.save}
+              </p>
+            )}
+
+            {/* Submit */}
+            <div className="pt-1">
+              <button
+                type="submit"
+                disabled={isSaving}
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-rehub-600 px-5 py-2.5 font-semibold text-white shadow-glow transition-all hover:bg-rehub-700 hover:shadow-glow-lg disabled:opacity-60"
+              >
+                {isSaving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    {ta("saveSaving")}
+                  </>
+                ) : saved ? (
+                  <>
+                    <Check className="h-4 w-4" />
+                    {ta("saveSaved")}
+                  </>
+                ) : (
+                  ta("saveSubmit")
+                )}
+              </button>
+            </div>
+          </div>
+        </form>
+      </StaggerItem>
+
+      {/* ── Session info panel (read-only) ── */}
+      <StaggerItem>
+        <div className="rounded-2xl border border-rehub-100 bg-white shadow-card">
+          {/* Panel header */}
+          <div className="flex items-center gap-3 border-b border-rehub-100 px-6 py-5">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700">
+              <LogIn className="h-5 w-5" />
+            </span>
+            <div>
+              <h2 className="text-base font-semibold text-rehub-950">{ta("sessionTitle")}</h2>
+            </div>
+          </div>
+
+          {/* Session fields */}
+          <dl className="divide-y divide-rehub-100 px-6">
+            <div className="py-4">
+              <dt className="text-xs font-medium text-rehub-900/55 uppercase tracking-wide mb-1">
+                {ta("loginEmail")}
               </dt>
-              <dd className="text-rehub-dark font-medium">
-                {getAccountData(safeUser?.id ?? undefined)?.contactEmail}
+              <dd className="flex items-center gap-2 text-rehub-950 font-medium text-sm">
+                <Mail className="h-3.5 w-3.5 text-rehub-400 shrink-0" />
+                {safeUser?.email ?? "—"}
+              </dd>
+              <p className="mt-1 text-xs text-rehub-900/55">{ta("loginEmailHint")}</p>
+            </div>
+
+            {getAccountData(safeUser?.id ?? undefined)?.contactEmail && (
+              <div className="py-4">
+                <dt className="text-xs font-medium text-rehub-900/55 uppercase tracking-wide mb-1">
+                  {ta("contactEmail")}
+                </dt>
+                <dd className="flex items-center gap-2 text-rehub-950 font-medium text-sm">
+                  <Mail className="h-3.5 w-3.5 text-rehub-400 shrink-0" />
+                  {getAccountData(safeUser?.id ?? undefined)?.contactEmail}
+                </dd>
+              </div>
+            )}
+
+            <div className="py-4">
+              <dt className="text-xs font-medium text-rehub-900/55 uppercase tracking-wide mb-1">
+                {ta("userId")}
+              </dt>
+              <dd className="flex items-center gap-2 text-sm text-rehub-900/60 font-mono">
+                <Hash className="h-3.5 w-3.5 text-rehub-400 shrink-0" />
+                {safeUser?.id ?? "—"}
               </dd>
             </div>
-          )}
-          <div>
-            <dt className="text-sm font-medium text-rehub-dark/70 mb-1">
-              {ta("userId")}
-            </dt>
-            <dd className="text-sm text-rehub-dark/60 font-mono">
-              {safeUser?.id ?? "—"}
-            </dd>
-          </div>
-        </dl>
-      </div>
+          </dl>
+        </div>
+      </StaggerItem>
 
-      <div className="bg-rehub-light/30 rounded-2xl border border-rehub-primary/10 p-6 lg:p-8">
-        <h2 className="text-lg font-semibold text-rehub-dark mb-2">
-          {ta("profileBoxTitle")}
-        </h2>
-        <p className="text-sm text-rehub-dark/70 mb-4">
-          {ta("profileBoxBody")}
-        </p>
-        <Link
-          href={ROUTES.profile}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-rehub-primary text-white rounded-xl font-medium hover:bg-rehub-secondary transition-colors text-sm"
-        >
-          {ta("goProfile")}
-        </Link>
-      </div>
-    </div>
+      {/* ── Profile box ── */}
+      <StaggerItem>
+        <div className="rounded-2xl border border-rehub-200 bg-gradient-to-br from-rehub-50 to-white p-6 shadow-soft">
+          <div className="flex items-start gap-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow">
+              <UserCircle className="h-5 w-5" />
+            </span>
+            <div className="flex-1 min-w-0">
+              <h2 className="text-base font-semibold text-rehub-950 mb-1">
+                {ta("profileBoxTitle")}
+              </h2>
+              <p className="text-sm text-rehub-900/70 mb-4">{ta("profileBoxBody")}</p>
+              <Link
+                href={ROUTES.profile}
+                className="inline-flex items-center gap-2 rounded-xl bg-rehub-600 px-4 py-2 text-sm font-semibold text-white shadow-glow transition-all hover:bg-rehub-700 hover:shadow-glow-lg"
+              >
+                {ta("goProfile")}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </StaggerItem>
+    </Stagger>
   );
 }

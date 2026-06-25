@@ -23,15 +23,15 @@
     "heroFooter": "Re · Recovery · Hub · Centro",
     "title": "Iniciar sesión",
     "subtitle": "Ingresa tus credenciales para acceder a tu cuenta.",
-    "emailLabel": "Correo electrónico",
-    "emailPlaceholder": "tu@correo.com",
+    "emailLabel": "Usuario o correo",
+    "emailPlaceholder": "nathaly",
     "passwordLabel": "Contraseña",
     "passwordPlaceholder": "••••••••",
     "submit": "Entrar",
     "submitting": "Ingresando...",
     "noAccount": "¿No tienes cuenta?",
     "registerLink": "Regístrate",
-    "demoHint": "Demo: demo@rehub.do / demo123",
+    "demoHint": "Acceso de prueba: nathaly / welcome",
     "errorUrl": "Error al iniciar sesión. Verifica tus credenciales.",
     "validationRequired": "Ingresa tu correo y contraseña.",
     "errorNoResponse": "No se recibió respuesta. Intenta de nuevo.",
@@ -70,6 +70,13 @@
       "subtitle": "ReHub te guía después del alta: cómo ir a un lugar, conseguir medicamentos, apoyo cuando estás sola o solo, trámites y más.",
       "ctaPrimary": "Comenzar mi recuperación",
       "ctaSecondary": "Cómo funciona",
+      "trustLabel": "Construido con recursos reales de la República Dominicana",
+      "statGuides": "guías por situación",
+      "statCenters": "centros de rehabilitación (ADR)",
+      "statProvinces": "provincias del país",
+      "previewTitle": "Tu plan de recuperación",
+      "previewProgress": "Progreso del perfil",
+      "previewBadge": "En vivo",
       "cards": {
         "profile": {
           "title": "Perfil de recuperación",
@@ -86,6 +93,7 @@
       }
     },
     "problem": {
+      "eyebrow": "El problema",
       "title": "El vacío que ReHub viene a llenar",
       "intro": "En República Dominicana, una vez que la persona sale del hospital, enfrenta su recuperación física, emocional y social sin un sistema de acompañamiento continuo.",
       "postDischarge": {
@@ -106,6 +114,7 @@
       }
     },
     "solution": {
+      "eyebrow": "La solución",
       "title": "Una solución digital centrada en la persona",
       "intro": "ReHub funciona como sistema de orientación, acompañamiento y canalización. Accesible, estructurado y diseñado para crecer contigo.",
       "structured": {
@@ -126,6 +135,7 @@
       }
     },
     "flow": {
+      "eyebrow": "Cómo funciona",
       "title": "Cómo funciona ReHub",
       "intro": "Un flujo progresivo y adaptativo, diseñado para acompañarte en cada etapa de tu recuperación.",
       "step1": {
@@ -160,9 +170,75 @@
       "registerSoon": "Próximamente: Registrarse",
       "disclaimer": "ReHub no sustituye profesionales de la salud. Funciona como sistema de orientación, acompañamiento y canalización."
     },
+    "statsbar": {
+      "label": "Apoyado en la red de recuperación dominicana",
+      "resources": [
+        "Asociación Dominicana de Rehabilitación",
+        "Promese / CAL",
+        "SISALRIL",
+        "IDOPPRIL",
+        "Ministerio de Salud Pública",
+        "Línea de Salud Mental 811",
+        "Defensoría del Pueblo"
+      ],
+      "guidesLabel": "guías por situación",
+      "centersLabel": "centros ADR a nivel nacional",
+      "provincesLabel": "provincias cubiertas",
+      "linesLabel": "líneas de ayuda gratuitas"
+    },
+    "personas": {
+      "eyebrow": "¿Para quién es?",
+      "title": "Acompañamiento para cada persona del proceso",
+      "lede": "El camino de regreso no se recorre solo. ReHub se adapta a quien vive la recuperación y a quienes la sostienen.",
+      "patient": {
+        "title": "La persona en recuperación",
+        "desc": "Después del alta médica, encuentra pasos claros para transporte, medicamentos, trámites y apoyo emocional, sin sentirse perdida."
+      },
+      "caregiver": {
+        "title": "Familiares y cuidadores",
+        "desc": "Saben qué hacer y a dónde acudir. Recordatorios, guías concretas y recursos cercanos para acompañar sin agotarse."
+      },
+      "professional": {
+        "title": "Profesionales y aliados",
+        "desc": "Centros de salud y organizaciones canalizan a las personas hacia un seguimiento estructurado tras el alta."
+      }
+    },
+    "faq": {
+      "eyebrow": "Preguntas frecuentes",
+      "title": "Lo que necesitas saber",
+      "lede": "Respuestas claras sobre cómo funciona ReHub y qué esperar del piloto.",
+      "items": [
+        {
+          "q": "¿ReHub reemplaza a mi médico o terapeuta?",
+          "a": "No. ReHub es un sistema de orientación, acompañamiento y canalización. Te ayuda a organizar tu recuperación y te conecta con recursos, pero nunca sustituye la atención de profesionales de la salud."
+        },
+        {
+          "q": "¿Cuánto cuesta usar ReHub?",
+          "a": "Durante la fase piloto en República Dominicana, ReHub es gratuito. Nuestro foco es validar el acompañamiento post-accidente con personas reales."
+        },
+        {
+          "q": "¿Qué información necesito para empezar?",
+          "a": "Solo lo básico sobre tu situación: tipo de accidente, estado físico y emocional, ubicación y red de apoyo. Con eso construimos tu perfil y tu plan personalizado."
+        },
+        {
+          "q": "¿Mis datos están seguros?",
+          "a": "Tu información se usa únicamente para personalizar tu acompañamiento. En esta versión piloto, los datos de tu perfil y seguimiento se guardan localmente en tu dispositivo."
+        },
+        {
+          "q": "¿En qué parte del país funciona?",
+          "a": "El piloto está pensado para todo el territorio dominicano. Al indicar tu provincia, ReHub prioriza hospitales, centros de rehabilitación y recursos cercanos a tu zona."
+        }
+      ]
+    },
     "footer": {
       "copyright": "© {year} ReHub. Proyecto piloto en República Dominicana.",
-      "tagline": "Re · Recovery, Rehabilitación, Reintegración · Hub · Centro, Núcleo"
+      "tagline": "Re · Recovery, Rehabilitación, Reintegración · Hub · Centro, Núcleo",
+      "description": "Acompañamiento continuo después del accidente: orientación, seguimiento y recursos para tu recuperación y reintegración en la República Dominicana.",
+      "navTitle": "Navegación",
+      "contactTitle": "Contacto",
+      "emergencyLabel": "Emergencias",
+      "mentalHealthLabel": "Salud mental",
+      "disclaimer": "ReHub no sustituye a profesionales de la salud. Funciona como sistema de orientación, acompañamiento y canalización."
     }
   },
   "dashboard": {

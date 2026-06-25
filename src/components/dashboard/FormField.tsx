@@ -14,14 +14,14 @@ export function FormField({ label, optional, error, children, id }: Props) {
   const t = useTranslations("common");
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-1.5">
       <label
         htmlFor={id}
-        className="block text-sm font-medium text-rehub-dark"
+        className="block text-sm font-medium text-rehub-900 mb-1.5"
       >
         {label}
         {optional && (
-          <span className="text-rehub-dark/50 font-normal">
+          <span className="text-rehub-900/50 font-normal ml-1">
             {t("optionalMarker")}
           </span>
         )}

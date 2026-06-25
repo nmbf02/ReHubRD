@@ -1,51 +1,56 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { Hospital, HelpCircle, TrendingDown, CloudRain } from "lucide-react";
+import { AuroraBackground, GridBackground } from "@/components/ui/backgrounds";
+import { Stagger, StaggerItem } from "@/components/ui/motion";
+import { SectionHeading } from "@/components/ui/section";
 
 const PROBLEM_ITEMS = [
-  { key: "postDischarge" as const, icon: "🏥" },
-  { key: "misinformation" as const, icon: "❓" },
-  { key: "treatmentDropout" as const, icon: "📉" },
-  { key: "emotionalIsolation" as const, icon: "💭" },
+  { key: "postDischarge" as const, Icon: Hospital },
+  { key: "misinformation" as const, Icon: HelpCircle },
+  { key: "treatmentDropout" as const, Icon: TrendingDown },
+  { key: "emotionalIsolation" as const, Icon: CloudRain },
 ];
 
 export function ProblemSection() {
   const t = useTranslations("landing.problem");
 
   return (
-    <section id="problema" className="py-20 lg:py-28 bg-rehub-dark text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t("title")}</h2>
-          <p className="text-lg text-rehub-light/80">{t("intro")}</p>
-        </motion.div>
+    <section
+      id="problema"
+      className="relative overflow-hidden bg-ink-gradient grain py-20 text-white lg:py-28"
+    >
+      <GridBackground variant="ink" className="-z-0" />
+      <AuroraBackground variant="ink" className="-z-0 opacity-60" />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PROBLEM_ITEMS.map((problem, i) => (
-            <motion.div
-              key={problem.key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          tone="light"
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          lede={t("intro")}
+          className="mb-16"
+        />
+
+        <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {PROBLEM_ITEMS.map(({ key, Icon }) => (
+            <StaggerItem
+              key={key}
+              className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10"
             >
-              <span className="text-3xl mb-4 block">{problem.icon}</span>
-              <h3 className="font-semibold text-lg mb-2">
-                {t(`${problem.key}.title`)}
+              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-rehub-200 transition-colors group-hover:bg-white/15">
+                <Icon className="h-6 w-6" />
+              </span>
+              <h3 className="mb-2 text-lg font-semibold text-white">
+                {t(`${key}.title`)}
               </h3>
-              <p className="text-rehub-light/80 text-sm">
-                {t(`${problem.key}.desc`)}
+              <p className="text-pretty text-sm leading-relaxed text-rehub-100/75">
+                {t(`${key}.desc`)}
               </p>
-            </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

@@ -3,8 +3,10 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { RefreshCw, ClipboardList, CalendarDays, Bell, BellOff, Clock, ExternalLink } from "lucide-react";
 import { IconRefresh, IconClipboard, IconCalendar } from "@/components/ui/Icons";
 import { ROUTES, hrefResourcesHash } from "@/lib/routes";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
 
 interface Item {
   label: string;
@@ -137,62 +139,103 @@ export default function SugerenciasRecordatorios({ progreso, userId, items }: Pr
   }
 
   return (
-    <section className="mt-6 bg-white rounded-2xl border border-slate-200/80 p-5">
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-rehub-dark">{t("title")}</h3>
-        <p className="text-xs text-rehub-dark/60">{t("hint")}</p>
-      </div>
-      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {sugerencias.map((s) => (
-          <div key={s.label} className="flex items-center gap-3 p-3 rounded-lg border border-slate-100">
-            <span className="w-9 h-9 flex items-center justify-center rounded-lg bg-rehub-primary/10 text-rehub-primary">
-              {s.Icon ? <s.Icon className="w-4 h-4" /> : null}
+    <Reveal>
+      <section className="mt-6 rounded-2xl border border-rehub-100 bg-gradient-to-br from-white to-rehub-50/50 p-5 shadow-card">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700">
+              <Bell className="h-4 w-4" />
             </span>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-rehub-dark">{s.label}</p>
-              <p className="text-xs text-rehub-dark/60">{t("rowHint")}</p>
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => scheduleQuick(s.label, s.href, 10000)}
-                className="text-xs px-3 py-1 bg-rehub-primary/10 text-rehub-primary rounded-md"
-              >
-                {t("remind10s")}
-              </button>
-              <button
-                onClick={() => scheduleQuick(s.label, s.href, 60 * 60 * 1000)}
-                className="text-xs px-3 py-1 bg-slate-100 rounded-md"
-              >
-                {t("remind1h")}
-              </button>
-            </div>
+            <h3 className="text-sm font-semibold text-rehub-950">{t("title")}</h3>
           </div>
-        ))}
-      </div>
-
-      {recordatorios.length > 0 && (
-        <div className="mt-4">
-          <h4 className="text-sm font-semibold text-rehub-dark/80 mb-2">{t("scheduledTitle")}</h4>
-          <ul className="space-y-2">
-            {recordatorios.map((r) => (
-              <li key={r.id} className="flex items-center justify-between p-3 rounded-lg border border-slate-100">
-                <div>
-                  <p className="text-sm font-medium text-rehub-dark">{r.label}</p>
-                  <p className="text-xs text-rehub-dark/60">{new Date(r.when).toLocaleString()}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  {r.href && (
-                    <Link href={r.href} className="text-xs text-rehub-primary underline">
-                      {t("go")}
-                    </Link>
-                  )}
-                  <button onClick={() => removeReminder(r.id)} className="text-xs text-red-600">{t("cancel")}</button>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <p className="text-xs text-rehub-900/55">{t("hint")}</p>
         </div>
-      )}
-    </section>
+
+        {/* Suggestions grid */}
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {sugerencias.map((s) => (
+            <StaggerItem key={s.label}>
+              <div className="group flex items-center gap-3 rounded-xl border border-rehub-100 bg-white p-3 transition-all hover:-translate-y-0.5 hover:border-rehub-200 hover:shadow-elevated">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700 transition-colors group-hover:bg-rehub-600 group-hover:text-white">
+                  {s.Icon ? <s.Icon className="h-4 w-4" /> : <Bell className="h-4 w-4" />}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium text-rehub-950">{s.label}</p>
+                  <p className="text-xs text-rehub-900/55">{t("rowHint")}</p>
+                </div>
+                <div className="flex shrink-0 gap-1.5">
+                  <button
+                    onClick={() => scheduleQuick(s.label, s.href, 10000)}
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-rehub-600 px-3 py-1.5 text-xs font-semibold text-white shadow-glow transition-all hover:bg-rehub-700 hover:shadow-glow-lg disabled:opacity-60"
+                  >
+                    <Clock className="h-3 w-3" />
+                    {t("remind10s")}
+                  </button>
+                  <button
+                    onClick={() => scheduleQuick(s.label, s.href, 60 * 60 * 1000)}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-rehub-200 bg-white px-3 py-1.5 text-xs font-semibold text-rehub-800 transition-all hover:bg-rehub-50"
+                  >
+                    <CalendarDays className="h-3 w-3" />
+                    {t("remind1h")}
+                  </button>
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+
+        {/* Scheduled reminders */}
+        {recordatorios.length > 0 && (
+          <div className="mt-5 rounded-xl border border-rehub-100 bg-rehub-50/60 p-4">
+            <div className="mb-3 flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-rehub-100 text-rehub-700">
+                <Bell className="h-3.5 w-3.5" />
+              </span>
+              <h4 className="text-sm font-semibold text-rehub-950">{t("scheduledTitle")}</h4>
+              <span className="ml-auto rounded-full border border-rehub-200 bg-rehub-50 px-2.5 py-0.5 text-xs font-semibold text-rehub-700">
+                {recordatorios.length}
+              </span>
+            </div>
+            <ul className="space-y-2">
+              {recordatorios.map((r) => (
+                <li
+                  key={r.id}
+                  className="flex items-center justify-between rounded-xl border border-rehub-100 bg-white px-4 py-3 transition-all hover:border-rehub-200 hover:shadow-elevated"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-rehub-100 text-rehub-700">
+                      <Clock className="h-3.5 w-3.5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium text-rehub-950">{r.label}</p>
+                      <p className="text-xs text-rehub-900/55">{new Date(r.when).toLocaleString()}</p>
+                    </div>
+                  </div>
+                  <div className="ml-3 flex shrink-0 items-center gap-2">
+                    {r.href && (
+                      <Link
+                        href={r.href}
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-rehub-600 transition-colors hover:text-rehub-700"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        {t("go")}
+                      </Link>
+                    )}
+                    <button
+                      onClick={() => removeReminder(r.id)}
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600 transition-all hover:bg-red-100"
+                    >
+                      <BellOff className="h-3 w-3" />
+                      {t("cancel")}
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
+    </Reveal>
   );
 }

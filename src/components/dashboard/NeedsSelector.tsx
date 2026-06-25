@@ -8,6 +8,8 @@ import {
   getNecesidadesSeleccionadas,
   saveNecesidadesSeleccionadas,
 } from "@/lib/needs-options";
+import { Stagger, StaggerItem, Reveal } from "@/components/ui/motion";
+import { CheckCircle2 } from "lucide-react";
 
 interface Props {
   userId?: string | null;
@@ -42,52 +44,60 @@ export function NeedsSelector({ userId }: Props) {
   if (!mounted) return null;
 
   return (
-    <section className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-      <div className="px-6 lg:px-8 py-6 border-b border-slate-100">
-        <h2 className="text-lg font-semibold text-rehub-dark">
-          {t("selectorTitle")}
-        </h2>
-        <p className="mt-1 text-sm text-rehub-dark/60">
-          {t("selectorHint")}
-        </p>
-      </div>
-      <div className="p-6 lg:p-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+    <section className="rounded-2xl border border-rehub-100 bg-white shadow-card overflow-hidden">
+      {/* Header */}
+      <Reveal direction="up" duration={0.5}>
+        <div className="px-6 lg:px-8 py-5 border-b border-rehub-100 flex items-start justify-between gap-4">
+          <div>
+            <h2 className="text-base font-semibold text-rehub-950">
+              {t("selectorTitle")}
+            </h2>
+            <p className="mt-0.5 text-sm text-rehub-900/60">
+              {t("selectorHint")}
+            </p>
+          </div>
+          {seleccionados.length > 0 && (
+            <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full border border-rehub-200 bg-rehub-50 px-3 py-1 text-xs font-semibold text-rehub-700">
+              <CheckCircle2 className="h-3 w-3 text-rehub-600" />
+              {t("selectedCount", { count: seleccionados.length })}
+            </span>
+          )}
+        </div>
+      </Reveal>
+
+      {/* Chips grid */}
+      <div className="px-6 lg:px-8 py-6">
+        <Stagger className="flex flex-wrap gap-2.5">
           {OPCIONES_NECESIDADES.map((op) => {
             const isSelected = seleccionados.includes(op.id);
             return (
-              <button
-                key={op.id}
-                type="button"
-                onClick={() => toggle(op.id)}
-                className={`flex items-center gap-3 p-4 rounded-xl border-2 text-left transition-all ${
-                  isSelected
-                    ? "border-rehub-primary bg-rehub-primary/10"
-                    : "border-slate-200 hover:border-rehub-primary/30 hover:bg-slate-50"
-                }`}
-              >
-                <span
-                  className={`shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center text-xs font-bold ${
+              <StaggerItem key={op.id}>
+                <button
+                  type="button"
+                  onClick={() => toggle(op.id)}
+                  className={[
+                    "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all",
                     isSelected
-                      ? "border-rehub-primary bg-rehub-primary text-white"
-                      : "border-slate-300"
-                  }`}
+                      ? "border border-rehub-500 bg-rehub-600 text-white shadow-glow hover:bg-rehub-700 hover:shadow-glow-lg"
+                      : "border border-rehub-50 bg-rehub-50 text-rehub-800 hover:border-rehub-200 hover:bg-white hover:text-rehub-950",
+                  ].join(" ")}
+                  aria-pressed={isSelected}
                 >
-                  {isSelected ? "✓" : ""}
-                </span>
-                <span className="text-xl">{op.emoji}</span>
-                <span className="text-sm font-medium text-rehub-dark truncate">
-                  {t(`options.${op.id}.label`)}
-                </span>
-              </button>
+                  <span aria-hidden="true">{op.emoji}</span>
+                  <span>{t(`options.${op.id}.label`)}</span>
+                  {isSelected && (
+                    <span
+                      className="flex h-4 w-4 items-center justify-center rounded-full bg-white/20 text-[10px] font-bold text-white"
+                      aria-hidden="true"
+                    >
+                      ✓
+                    </span>
+                  )}
+                </button>
+              </StaggerItem>
             );
           })}
-        </div>
-        {seleccionados.length > 0 && (
-          <p className="mt-4 text-sm text-rehub-dark/60">
-            {t("selectedCount", { count: seleccionados.length })}
-          </p>
-        )}
+        </Stagger>
       </div>
     </section>
   );

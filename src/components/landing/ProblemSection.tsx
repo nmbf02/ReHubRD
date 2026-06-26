@@ -1,56 +1,47 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Hospital, HelpCircle, TrendingDown, CloudRain } from "lucide-react";
-import { AuroraBackground, GridBackground } from "@/components/ui/backgrounds";
-import { Stagger, StaggerItem } from "@/components/ui/motion";
 import { SectionHeading } from "@/components/ui/section";
+import { EmotionPanel } from "@/components/landing/EmotionPanel";
 
-const PROBLEM_ITEMS = [
-  { key: "postDischarge" as const, Icon: Hospital },
-  { key: "misinformation" as const, Icon: HelpCircle },
-  { key: "treatmentDropout" as const, Icon: TrendingDown },
-  { key: "emotionalIsolation" as const, Icon: CloudRain },
+const IMG = "https://images.unsplash.com/photo-";
+const Q = "?auto=format&fit=crop&w=1400&q=72";
+
+// Real human emotion, one per problem the platform addresses.
+const PROBLEMS = [
+  { key: "postDischarge", img: `${IMG}1473830394358-91588751b241${Q}` }, // alone, facing the sea
+  { key: "misinformation", img: `${IMG}1586473219010-2ffc57b0d282${Q}` }, // buried in sticky notes
+  { key: "treatmentDropout", img: `${IMG}1554188572-9d184b57d8e2${Q}` }, // exhausted, hand on face
+  { key: "emotionalIsolation", img: `${IMG}1647942678809-bc501a2c2b6a${Q}` }, // withdrawn, slumped
 ];
 
 export function ProblemSection() {
   const t = useTranslations("landing.problem");
 
   return (
-    <section
-      id="problema"
-      className="relative overflow-hidden bg-ink-gradient grain py-20 text-white lg:py-28"
-    >
-      <GridBackground variant="ink" className="-z-0" />
-      <AuroraBackground variant="ink" className="-z-0 opacity-60" />
-
+    <section id="problema" className="relative overflow-hidden bg-ink-gradient py-20 lg:py-28">
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           tone="light"
           eyebrow={t("eyebrow")}
           title={t("title")}
           lede={t("intro")}
-          className="mb-16"
+          className="mb-16 lg:mb-24"
         />
-
-        <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {PROBLEM_ITEMS.map(({ key, Icon }) => (
-            <StaggerItem
-              key={key}
-              className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10"
-            >
-              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-rehub-200 transition-colors group-hover:bg-white/15">
-                <Icon className="h-6 w-6" />
-              </span>
-              <h3 className="mb-2 text-lg font-semibold text-white">
-                {t(`${key}.title`)}
-              </h3>
-              <p className="text-pretty text-sm leading-relaxed text-rehub-100/75">
-                {t(`${key}.desc`)}
-              </p>
-            </StaggerItem>
+        <div className="space-y-20 lg:space-y-28">
+          {PROBLEMS.map((p, i) => (
+            <EmotionPanel
+              key={p.key}
+              image={p.img}
+              alt={t(`${p.key}.title`)}
+              index={`0${i + 1}`}
+              title={t(`${p.key}.title`)}
+              desc={t(`${p.key}.desc`)}
+              reversed={i % 2 === 1}
+              tone="dark"
+            />
           ))}
-        </Stagger>
+        </div>
       </div>
     </section>
   );

@@ -12,7 +12,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white dark:bg-rehub-950">
       <ScrollProgress />
       <Header />
       <Hero />

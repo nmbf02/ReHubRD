@@ -253,6 +253,17 @@
     "tagline": "Centro de Recuperación",
     "signOutMobile": "Salir",
     "signOutDesktop": "Cerrar sesión",
+    "community": {
+      "title": "Círculo de apoyo",
+      "subtitle": "Personas que viven una recuperación como la tuya. No tienes que hacerlo en soledad.",
+      "shareLabel": "Aparecer en el círculo",
+      "shareHint": "Otras personas podrán verte y saludarte.",
+      "greet": "Saludar",
+      "greeted": "Saludado",
+      "connectNote": "Las conversaciones del círculo llegan próximamente.",
+      "emptyTitle": "Aún no hay nadie en el círculo",
+      "emptyBody": "Activa «Aparecer en el círculo» para ser de los primeros en conectar."
+    },
     "pages": {
       "profile": {
         "title": "Mi perfil",

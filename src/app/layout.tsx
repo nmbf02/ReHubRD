@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { SessionProvider } from "@/components/auth/SessionProvider";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -28,11 +29,17 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang="es" className={cn("scroll-smooth", "font-sans", plusJakarta.variable)}>
+    <html
+      lang="es"
+      suppressHydrationWarning
+      className={cn("scroll-smooth", "font-sans", plusJakarta.variable)}
+    >
       <body className={`${plusJakarta.variable} font-sans antialiased`}>
-        <NextIntlClientProvider messages={messages}>
-          <SessionProvider>{children}</SessionProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider messages={messages}>
+            <SessionProvider>{children}</SessionProvider>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

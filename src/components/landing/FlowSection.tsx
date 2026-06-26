@@ -30,7 +30,7 @@ export function FlowSection() {
   return (
     <section
       id="funcionamiento"
-      className="relative overflow-hidden bg-gradient-to-b from-rehub-50/60 to-white py-20 lg:py-28"
+      className="relative overflow-hidden bg-gradient-to-b from-rehub-50/60 to-white py-20 dark:from-rehub-900/30 dark:to-rehub-950 lg:py-28"
     >
       <GridBackground className="-z-10 opacity-60" />
       <GlowOrb className="left-1/2 top-24 h-64 w-64 -translate-x-1/2 bg-rehub-300/30" />
@@ -70,9 +70,9 @@ export function FlowSection() {
 
                     {/* Card */}
                     <div className="lg:w-1/2 lg:px-12 lg:py-6">
-                      <div className="group rounded-2xl border border-rehub-100 bg-gradient-to-br from-white to-rehub-50/50 p-6 shadow-card transition-all hover:-translate-y-0.5 hover:border-rehub-200 hover:shadow-elevated">
+                      <div className="group rounded-2xl border border-rehub-100 bg-gradient-to-br from-white to-rehub-50/50 p-6 shadow-card transition-all hover:-translate-y-0.5 hover:border-rehub-200 hover:shadow-elevated dark:border-white/10 dark:from-rehub-900/50 dark:to-rehub-900/50 dark:hover:border-rehub-500/50">
                         <div className="flex items-start gap-4">
-                          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700 transition-colors group-hover:bg-rehub-600 group-hover:text-white">
+                          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700 transition-colors group-hover:bg-rehub-600 group-hover:text-white dark:bg-white/10 dark:text-rehub-300">
                             <Icon className="h-6 w-6" />
                           </span>
                           <div className="min-w-0 flex-1">
@@ -87,10 +87,10 @@ export function FlowSection() {
                                 />
                               ) : null}
                             </div>
-                            <h3 className="mt-1 text-balance text-xl font-bold leading-snug tracking-tight text-rehub-950">
+                            <h3 className="mt-1 text-balance text-xl font-bold leading-snug tracking-tight text-rehub-950 dark:text-white">
                               {t(`step${step}.title`)}
                             </h3>
-                            <p className="mt-2 text-pretty leading-relaxed text-rehub-900/70">
+                            <p className="mt-2 text-pretty leading-relaxed text-rehub-900/70 dark:text-rehub-100/70">
                               {t(`step${step}.desc`)}
                             </p>
                           </div>

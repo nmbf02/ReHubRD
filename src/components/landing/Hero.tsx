@@ -26,53 +26,53 @@ export async function Hero() {
   const t = await getTranslations("landing.hero");
 
   return (
-    <section className="relative overflow-hidden border-b border-border bg-white pt-32 pb-16 lg:pt-40 lg:pb-24">
+    <section className="relative overflow-hidden border-b border-border bg-white pt-32 pb-16 dark:bg-rehub-950 lg:pt-40 lg:pb-24">
       <GridBackground className="-z-10 opacity-60" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           {/* Copy — rendered instantly, no fade-in */}
           <div>
-            <div className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-rehub-700">
+            <div className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-rehub-700 dark:text-rehub-300">
               <span className="h-1.5 w-1.5 rounded-full bg-rehub-600" />
               {t("badge")}
             </div>
 
-            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] tracking-tight text-rehub-950 sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] tracking-tight text-rehub-950 dark:text-white sm:text-5xl lg:text-[3.4rem]">
               {t("titlePrefix")}{" "}
-              <span className="text-rehub-700">{t("titleHighlight")}</span>{" "}
+              <span className="text-rehub-700 dark:text-rehub-300">{t("titleHighlight")}</span>{" "}
               {t("titleSuffix")}
             </h1>
 
-            <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-rehub-900/70">
+            <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-rehub-900/70 dark:text-rehub-100/70">
               {t("subtitle")}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 href={ROUTES.login}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-rehub-700 px-6 py-3 font-semibold text-white shadow-soft transition-colors hover:bg-rehub-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rehub-600 focus-visible:ring-offset-2"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-rehub-700 px-6 py-3 font-semibold text-white shadow-soft transition-colors hover:bg-rehub-800 dark:bg-rehub-500 dark:hover:bg-rehub-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rehub-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-rehub-950"
               >
                 {t("ctaPrimary")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
                 href="#funcionamiento"
-                className="inline-flex items-center justify-center rounded-lg border border-border bg-white px-6 py-3 font-semibold text-rehub-900 transition-colors hover:bg-rehub-50/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rehub-600 focus-visible:ring-offset-2"
+                className="inline-flex items-center justify-center rounded-lg border border-border bg-white px-6 py-3 font-semibold text-rehub-900 transition-colors hover:bg-rehub-50/70 dark:bg-white/5 dark:text-rehub-100 dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rehub-600 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-rehub-950"
               >
                 {t("ctaSecondary")}
               </a>
             </div>
 
             <div className="mt-12 border-t border-border pt-8">
-              <p className="text-sm text-rehub-900/55">{t("trustLabel")}</p>
+              <p className="text-sm text-rehub-900/55 dark:text-rehub-100/55">{t("trustLabel")}</p>
               <dl className="mt-5 grid max-w-md grid-cols-3 gap-6">
                 {STATS.map((s) => (
                   <div key={s.key}>
-                    <dt className="text-3xl font-bold tracking-tight text-rehub-950 tabular-nums">
+                    <dt className="text-3xl font-bold tracking-tight text-rehub-950 dark:text-white tabular-nums">
                       {s.value}
                     </dt>
-                    <dd className="mt-1 text-xs leading-tight text-rehub-900/55">
+                    <dd className="mt-1 text-xs leading-tight text-rehub-900/55 dark:text-rehub-100/55">
                       {t(s.key)}
                     </dd>
                   </div>

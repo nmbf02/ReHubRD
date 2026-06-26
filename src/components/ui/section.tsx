@@ -23,7 +23,7 @@ export function Eyebrow({
     <span
       className={cn(
         "text-xs font-semibold uppercase tracking-[0.16em]",
-        tone === "brand" ? "text-rehub-700" : "text-rehub-300",
+        tone === "brand" ? "text-rehub-700 dark:text-rehub-300" : "text-rehub-300",
         className
       )}
     >
@@ -63,7 +63,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "text-balance text-3xl font-bold leading-[1.1] tracking-tightest sm:text-4xl lg:text-[2.75rem]",
-          tone === "light" ? "text-white" : "text-rehub-950"
+          tone === "light" ? "text-white" : "text-rehub-950 dark:text-white"
         )}
       >
         {title}
@@ -72,7 +72,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-5 text-pretty text-lg leading-relaxed",
-            tone === "light" ? "text-rehub-100/80" : "text-rehub-900/65"
+            tone === "light" ? "text-rehub-100/80" : "text-rehub-900/65 dark:text-rehub-100/70"
           )}
         >
           {lede}

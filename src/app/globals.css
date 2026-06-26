@@ -61,14 +61,10 @@ body {
     -webkit-backdrop-filter: blur(16px) saturate(140%);
   }
 
-  /* Subtle film-grain overlay for premium dark sections. */
+  /* Grain overlay retired — real products don't need texture noise. No-op
+     so existing `.grain` usages stay valid but render nothing. */
   .grain::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.5;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    content: none;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -116,8 +112,9 @@ body {
     --accent: oklch(0.95 0.04 185);
     --accent-foreground: oklch(0.3 0.06 185);
     --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.91 0.015 195);
-    --input: oklch(0.91 0.015 195);
+    /* Clean cool-gray hairlines — neutral, not teal-tinted. */
+    --border: oklch(0.922 0.004 240);
+    --input: oklch(0.9 0.005 240);
     --ring: oklch(0.58 0.1 184);
     --chart-1: oklch(0.58 0.1 184);
     --chart-2: oklch(0.7 0.13 178);

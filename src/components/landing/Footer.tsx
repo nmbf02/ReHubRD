@@ -15,17 +15,13 @@ export async function Footer() {
   ];
 
   return (
-    <footer className="grain relative overflow-hidden bg-ink-gradient text-white">
-      {/* soft glow accents */}
-      <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-rehub-500/20 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 -bottom-16 h-72 w-72 rounded-full bg-rehub-400/10 blur-3xl" />
-
+    <footer className="relative overflow-hidden border-t border-rehub-800 bg-ink-gradient text-white">
       <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand block */}
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-glow">
+              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-rehub-700 text-white">
                 <HeartPulse className="h-6 w-6" />
               </span>
               <div className="leading-tight">

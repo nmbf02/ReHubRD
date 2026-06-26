@@ -81,26 +81,24 @@ const config: Config = {
         "8xl": "88rem",
       },
       boxShadow: {
-        soft: "0 1px 2px rgba(4,47,46,0.04), 0 4px 16px rgba(4,47,46,0.06)",
-        card: "0 1px 3px rgba(4,47,46,0.05), 0 10px 30px -12px rgba(4,47,46,0.12)",
+        // Neutral, restrained elevation — the depth of a real product, not a glow.
+        soft: "0 1px 2px rgba(15,23,42,0.04), 0 1px 3px rgba(15,23,42,0.05)",
+        card: "0 1px 2px rgba(15,23,42,0.04), 0 4px 12px -2px rgba(15,23,42,0.07)",
         elevated:
-          "0 2px 4px rgba(4,47,46,0.04), 0 24px 48px -16px rgba(4,47,46,0.18)",
-        glow: "0 0 0 1px rgba(13,148,136,0.10), 0 12px 32px -8px rgba(13,148,136,0.35)",
-        "glow-lg":
-          "0 0 0 1px rgba(13,148,136,0.12), 0 24px 60px -12px rgba(13,148,136,0.45)",
-        "inner-light": "inset 0 1px 0 0 rgba(255,255,255,0.7)",
+          "0 2px 4px rgba(15,23,42,0.04), 0 12px 28px -8px rgba(15,23,42,0.10)",
+        // "glow" kept for API compatibility but is now a quiet neutral shadow.
+        glow: "0 1px 2px rgba(15,23,42,0.05), 0 2px 6px -1px rgba(15,23,42,0.08)",
+        "glow-lg": "0 4px 10px -2px rgba(15,23,42,0.10), 0 10px 24px -6px rgba(15,23,42,0.12)",
+        "inner-light": "inset 0 1px 0 0 rgba(255,255,255,0.6)",
       },
       backgroundImage: {
         "grid-rehub":
-          "linear-gradient(to right, rgba(13,148,136,0.07) 1px, transparent 1px), linear-gradient(to bottom, rgba(13,148,136,0.07) 1px, transparent 1px)",
+          "linear-gradient(to right, rgba(15,23,42,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.04) 1px, transparent 1px)",
         "grid-light":
-          "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)",
-        "radial-fade":
-          "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,184,166,0.18), transparent 70%)",
-        "brand-gradient":
-          "linear-gradient(135deg, #0D9488 0%, #14B8A6 50%, #2DD4BF 100%)",
-        "ink-gradient":
-          "linear-gradient(160deg, #042F2E 0%, #0F766E 60%, #115E59 100%)",
+          "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
+        // Near-solid deep teal — reads as confident flat color, not a rainbow gradient.
+        "brand-gradient": "linear-gradient(180deg, #0F766E 0%, #0D9488 100%)",
+        "ink-gradient": "linear-gradient(175deg, #0C3B38 0%, #08302E 100%)",
       },
       backgroundSize: {
         grid: "44px 44px",

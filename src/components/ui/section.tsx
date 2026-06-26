@@ -22,17 +22,11 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider",
-        tone === "brand"
-          ? "border-rehub-200 bg-rehub-50 text-rehub-700"
-          : "border-white/15 bg-white/10 text-rehub-100 backdrop-blur",
+        "text-xs font-semibold uppercase tracking-[0.16em]",
+        tone === "brand" ? "text-rehub-700" : "text-rehub-300",
         className
       )}
     >
-      <span className="relative flex h-1.5 w-1.5">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-60" />
-        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-current" />
-      </span>
       {children}
     </span>
   );

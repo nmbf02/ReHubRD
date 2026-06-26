@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface EmotionPanelProps {
@@ -12,6 +12,7 @@ export interface EmotionPanelProps {
   desc: string;
   reversed?: boolean;
   tone?: "dark" | "light";
+  onActive?: () => void;
 }
 
 /**
@@ -27,15 +28,22 @@ export function EmotionPanel({
   desc,
   reversed = false,
   tone = "dark",
+  onActive,
 }: EmotionPanelProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const inView = useInView(ref, { amount: 0.55 });
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["-8%", "8%"]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], reduce ? [1, 1, 1] : [1.12, 1.05, 1.12]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (inView) onActive?.();
+  }, [inView]);
 
   const dark = tone === "dark";
 

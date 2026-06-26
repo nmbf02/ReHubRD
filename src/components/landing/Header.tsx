@@ -5,10 +5,11 @@ import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Menu, X, ChevronDown, LogOut, ArrowRight, HeartPulse } from "lucide-react";
+import { Menu, X, ChevronDown, LogOut, ArrowRight } from "lucide-react";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { BrandMark } from "@/components/brand/BrandMark";
 
 const NAV_KEYS = [
   { href: "#problema", key: "problem" as const },
@@ -46,7 +47,7 @@ export function Header() {
       >
         <Link href="/" className="flex items-center gap-2.5">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rehub-700 text-white">
-            <HeartPulse className="h-5 w-5" strokeWidth={2.2} />
+            <BrandMark className="h-5 w-5" />
           </span>
           <span className="flex flex-col leading-none">
             <span className="text-lg font-bold tracking-tight text-rehub-950 dark:text-white">

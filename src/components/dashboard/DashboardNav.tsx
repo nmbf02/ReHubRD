@@ -14,12 +14,12 @@ import {
   BookOpen,
   Settings,
   LogOut,
-  HeartPulse,
   type LucideIcon,
 } from "lucide-react";
 import { getAccountData } from "@/lib/account-store";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
+import { BrandMark } from "@/components/brand/BrandMark";
 
 interface Props {
   user: Session["user"];
@@ -65,7 +65,7 @@ export function DashboardNav({ user }: Props) {
       <header className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-b border-rehub-100 bg-white/85 px-4 backdrop-blur-xl lg:hidden">
         <Link href={ROUTES.dashboard} className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-gradient text-white shadow-glow">
-            <HeartPulse className="h-5 w-5" />
+            <BrandMark className="h-5 w-5" />
           </span>
           <span className="text-lg font-bold text-rehub-950">{tCommon("brand")}</span>
         </Link>
@@ -91,7 +91,7 @@ export function DashboardNav({ user }: Props) {
         <div className="shrink-0 border-b border-rehub-100 p-6">
           <Link href={ROUTES.dashboard} className="flex items-center gap-2.5">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow">
-              <HeartPulse className="h-5 w-5" strokeWidth={2.2} />
+              <BrandMark className="h-5 w-5" />
             </span>
             <span className="flex flex-col leading-none">
               <span className="text-xl font-bold tracking-tight text-rehub-950">

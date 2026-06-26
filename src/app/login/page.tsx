@@ -6,9 +6,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { HeartPulse, User, Lock, ArrowRight, ShieldCheck, AlertCircle } from "lucide-react";
+import { User, Lock, ArrowRight, ShieldCheck, AlertCircle } from "lucide-react";
 import { ROUTES } from "@/lib/routes";
 import { RecoveryTree } from "@/components/effects/RecoveryTree";
+import { BrandMark } from "@/components/brand/BrandMark";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -113,7 +114,7 @@ function LoginForm() {
         >
           <Link href={ROUTES.home} className="inline-flex items-center gap-2.5 text-2xl font-bold tracking-tight text-white">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15 backdrop-blur">
-              <HeartPulse className="h-5 w-5 text-rehub-300" />
+              <BrandMark className="h-5 w-5 text-rehub-300" />
             </span>
             {tCommon("brand")}
           </Link>
@@ -155,7 +156,7 @@ function LoginForm() {
           <div className="mb-8 text-center lg:hidden">
             <Link href={ROUTES.home} className="inline-flex items-center gap-2 text-2xl font-bold tracking-tight text-rehub-700 dark:text-white">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rehub-700 text-white">
-                <HeartPulse className="h-5 w-5" />
+                <BrandMark className="h-5 w-5" />
               </span>
               {tCommon("brand")}
             </Link>

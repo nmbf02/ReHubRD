@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { SectionHeading } from "@/components/ui/section";
 import { EmotionPanel } from "@/components/landing/EmotionPanel";
@@ -17,10 +19,30 @@ const PROBLEMS = [
 
 export function ProblemSection() {
   const t = useTranslations("landing.problem");
+  const emotions = t.raw("emotions") as string[];
+  const [active, setActive] = useState(0);
 
   return (
     <section id="problema" className="relative overflow-hidden bg-ink-gradient py-20 lg:py-28">
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      {/* the felt emotion, looming faintly behind — changes as each panel arrives */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={active}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.04 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="select-none whitespace-nowrap text-[26vw] font-black uppercase leading-none tracking-tighter text-white/[0.045]"
+            >
+              {emotions[active]}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           tone="light"
           eyebrow={t("eyebrow")}
@@ -39,6 +61,7 @@ export function ProblemSection() {
               desc={t(`${p.key}.desc`)}
               reversed={i % 2 === 1}
               tone="dark"
+              onActive={() => setActive(i)}
             />
           ))}
         </div>

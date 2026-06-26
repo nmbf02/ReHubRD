@@ -7,6 +7,7 @@ import { SolutionSection } from "@/components/landing/SolutionSection";
 import { PersonasSection } from "@/components/landing/PersonasSection";
 import { FlowSection } from "@/components/landing/FlowSection";
 import { FAQSection } from "@/components/landing/FAQSection";
+import { ReintegrationFinale } from "@/components/landing/ReintegrationFinale";
 import { CTASection } from "@/components/landing/CTASection";
 import { Footer } from "@/components/landing/Footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
@@ -24,6 +25,7 @@ export default function Home() {
       <PersonasSection />
       <FlowSection />
       <FAQSection />
+      <ReintegrationFinale />
       <CTASection />
       <Footer />
     </main>

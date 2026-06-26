@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { HeartPulse, Phone } from "lucide-react";
+import { BrandMark } from "@/components/brand/BrandMark";
 
 export async function Footer() {
   const tNav = await getTranslations("landing.nav");
@@ -22,7 +23,7 @@ export async function Footer() {
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
               <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-rehub-700 text-white">
-                <HeartPulse className="h-6 w-6" />
+                <BrandMark className="h-6 w-6" />
               </span>
               <div className="leading-tight">
                 <span className="block text-xl font-bold tracking-tight text-white">

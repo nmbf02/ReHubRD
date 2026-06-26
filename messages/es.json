@@ -96,6 +96,7 @@
       "eyebrow": "El problema",
       "title": "El vacío que ReHub viene a llenar",
       "intro": "En República Dominicana, una vez que la persona sale del hospital, enfrenta su recuperación física, emocional y social sin un sistema de acompañamiento continuo.",
+      "emotions": ["Vacío", "Confusión", "Agotamiento", "Soledad"],
       "postDischarge": {
         "title": "Vacío post-alta",
         "desc": "La atención se concentra en emergencia y hospitalización. Al salir del centro de salud, la persona queda sin acompañamiento estructurado."
@@ -254,6 +255,11 @@
           "a": "El piloto está pensado para todo el territorio dominicano. Al indicar tu provincia, ReHub prioriza hospitales, centros de rehabilitación y recursos cercanos a tu zona."
         }
       ]
+    },
+    "finale": {
+      "eyebrow": "Reintegración",
+      "title": "Volver a la vida que es tuya.",
+      "body": "Reintegrarte a tu familia, tu trabajo y tu comunidad es la meta de todo el camino. ReHub te acompaña hasta que vuelvas a abrazar lo que amas."
     },
     "footer": {
       "copyright": "© {year} ReHub. Proyecto piloto en República Dominicana.",

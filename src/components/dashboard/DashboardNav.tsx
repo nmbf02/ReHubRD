@@ -64,9 +64,7 @@ export function DashboardNav({ user }: Props) {
       {/* Mobile top bar */}
       <header className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-b border-rehub-100 bg-white/85 px-4 backdrop-blur-xl lg:hidden">
         <Link href={ROUTES.dashboard} className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-gradient text-white shadow-glow">
-            <BrandMark className="h-5 w-5" />
-          </span>
+          <BrandMark className="h-9 w-9" />
           <span className="text-lg font-bold text-rehub-950">{tCommon("brand")}</span>
         </Link>
         <div className="flex items-center gap-2">
@@ -90,9 +88,7 @@ export function DashboardNav({ user }: Props) {
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-rehub-100 bg-white/80 backdrop-blur-xl lg:flex">
         <div className="shrink-0 border-b border-rehub-100 p-6">
           <Link href={ROUTES.dashboard} className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow">
-              <BrandMark className="h-5 w-5" />
-            </span>
+            <BrandMark className="h-10 w-10" />
             <span className="flex flex-col leading-none">
               <span className="text-xl font-bold tracking-tight text-rehub-950">
                 {tCommon("brand")}

@@ -13,6 +13,7 @@ export function HeroMascot({ className }: { className?: string }) {
   const [pupil, setPupil] = useState({ x: 0, y: 0 });
   const [blink, setBlink] = useState(false);
   const [hover, setHover] = useState(false);
+  const [pop, setPop] = useState(false);
 
   useEffect(() => {
     let raf = 0;
@@ -44,12 +45,22 @@ export function HeroMascot({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("select-none", className)}
+      className={cn("cursor-pointer select-none", className)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onClick={() => {
+        setPop(true);
+        setTimeout(() => setPop(false), 560);
+      }}
       aria-hidden
     >
-      <div className="motion-safe:animate-[mascotBob_4s_ease-in-out_infinite]">
+      <div
+        className={
+          pop
+            ? "animate-[mascotPop_0.56s_ease]"
+            : "motion-safe:animate-[mascotBob_4s_ease-in-out_infinite]"
+        }
+      >
         <svg ref={ref} viewBox="0 0 60 70" className="h-full w-full overflow-visible">
           {/* shadow */}
           <ellipse cx="30" cy="66" rx="16" ry="3" fill="#0f766e" opacity="0.12" />
@@ -76,18 +87,22 @@ export function HeroMascot({ className }: { className?: string }) {
           {/* cheeks */}
           <circle cx="14" cy="44" r="3" fill="#fb7185" opacity="0.5" />
           <circle cx="46" cy="44" r="3" fill="#fb7185" opacity="0.5" />
-          {/* mouth — grins on hover */}
-          <path
-            d={hover ? "M24 46 q6 7 12 0" : "M26 47 q4 3 8 0"}
-            stroke="#0f3d3a"
-            strokeWidth="2"
-            strokeLinecap="round"
-            fill="none"
-            className="transition-all duration-300"
-          />
+          {/* mouth — grins on hover, gasps when poked */}
+          {pop ? (
+            <ellipse cx="30" cy="48" rx="3.4" ry="4.4" fill="#0f3d3a" />
+          ) : (
+            <path
+              d={hover ? "M24 46 q6 7 12 0" : "M26 47 q4 3 8 0"}
+              stroke="#0f3d3a"
+              strokeWidth="2"
+              strokeLinecap="round"
+              fill="none"
+              className="transition-all duration-300"
+            />
+          )}
         </svg>
       </div>
-      <style>{`@keyframes mascotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}`}</style>
+      <style>{`@keyframes mascotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes mascotPop{0%{transform:translateY(0) scaleX(1) scaleY(1)}30%{transform:translateY(-16px) scaleX(.88) scaleY(1.12)}62%{transform:translateY(0) scaleX(1.12) scaleY(.88)}100%{transform:translateY(0) scaleX(1) scaleY(1)}}`}</style>
     </div>
   );
 }

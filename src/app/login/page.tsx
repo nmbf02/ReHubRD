@@ -10,6 +10,7 @@ import { User, Lock, ArrowRight, ShieldCheck, AlertCircle } from "lucide-react";
 import { ROUTES } from "@/lib/routes";
 import { RecoveryTree } from "@/components/effects/RecoveryTree";
 import { BrandMark } from "@/components/brand/BrandMark";
+import { LoginBuddy } from "@/components/effects/LoginBuddy";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -32,6 +33,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [formError, setFormError] = useState("");
+  const [field, setField] = useState<"idle" | "email" | "password">("idle");
 
   function translateAuthError(code: string): string {
     if (code === "CredentialsSignin") return t("errors.CredentialsSignin");
@@ -107,21 +109,19 @@ function LoginForm() {
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
           className="relative z-10"
         >
           <Link href={ROUTES.home} className="inline-flex items-center gap-2.5 text-2xl font-bold tracking-tight text-white">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15 backdrop-blur">
-              <BrandMark className="h-5 w-5 text-rehub-300" />
-            </span>
+            <BrandMark className="h-11 w-11" />
             {tCommon("brand")}
           </Link>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.12, ease }}
           className="relative z-10 max-w-md"
@@ -135,7 +135,7 @@ function LoginForm() {
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.24, ease }}
           className="relative z-10 inline-flex items-center gap-2 text-sm text-white/60"
@@ -148,16 +148,18 @@ function LoginForm() {
       {/* Form */}
       <div className="flex w-full items-center justify-center bg-white p-8 dark:bg-rehub-950 lg:w-1/2">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="w-full max-w-md"
         >
+          <div className="mb-3 flex justify-center">
+            <LoginBuddy state={field} />
+          </div>
+
           <div className="mb-8 text-center lg:hidden">
             <Link href={ROUTES.home} className="inline-flex items-center gap-2 text-2xl font-bold tracking-tight text-rehub-700 dark:text-white">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rehub-700 text-white">
-                <BrandMark className="h-5 w-5" />
-              </span>
+              <BrandMark className="h-9 w-9" />
               {tCommon("brand")}
             </Link>
           </div>
@@ -188,6 +190,8 @@ function LoginForm() {
                   autoComplete="username"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onFocus={() => setField("email")}
+                  onBlur={() => setField("idle")}
                   placeholder={t("emailPlaceholder")}
                   className={inputClass}
                   disabled={isLoading}
@@ -207,6 +211,8 @@ function LoginForm() {
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onFocus={() => setField("password")}
+                  onBlur={() => setField("idle")}
                   placeholder={t("passwordPlaceholder")}
                   className={inputClass}
                   disabled={isLoading}

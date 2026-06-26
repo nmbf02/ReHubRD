@@ -46,9 +46,7 @@ export function Header() {
         )}
       >
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rehub-700 text-white">
-            <BrandMark className="h-5 w-5" />
-          </span>
+          <BrandMark className="h-9 w-9" />
           <span className="flex flex-col leading-none">
             <span className="text-lg font-bold tracking-tight text-rehub-950 dark:text-white">
               {common("brand")}

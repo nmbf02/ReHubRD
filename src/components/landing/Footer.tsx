@@ -22,9 +22,7 @@ export async function Footer() {
           {/* Brand block */}
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-rehub-700 text-white">
-                <BrandMark className="h-6 w-6" />
-              </span>
+              <BrandMark className="h-11 w-11" />
               <div className="leading-tight">
                 <span className="block text-xl font-bold tracking-tight text-white">
                   {common("brand")}

@@ -186,6 +186,31 @@
       "provincesLabel": "provincias cubiertas",
       "linesLabel": "líneas de ayuda gratuitas"
     },
+    "story": {
+      "eyebrow": "El recorrido",
+      "h1": "Después del alta, empiezan las preguntas.",
+      "h2": "ReHub reúne las piezas, una por una.",
+      "h3": "Tu plan de recuperación, completo y en un solo lugar.",
+      "scrollHint": "Desplázate",
+      "modules": {
+        "profile": {
+          "title": "Perfil",
+          "desc": "Tu situación, el accidente y tus necesidades prioritarias."
+        },
+        "plan": {
+          "title": "Plan",
+          "desc": "Recomendaciones, trámites y recordatorios a tu medida."
+        },
+        "followup": {
+          "title": "Seguimiento",
+          "desc": "Check-ins que ajustan tu plan según tu evolución."
+        },
+        "resources": {
+          "title": "Recursos",
+          "desc": "24 guías y la red de apoyo de la República Dominicana."
+        }
+      }
+    },
     "personas": {
       "eyebrow": "¿Para quién es?",
       "title": "Acompañamiento para cada persona del proceso",

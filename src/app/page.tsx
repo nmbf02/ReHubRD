@@ -1,5 +1,6 @@
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
+import { ScrollStory } from "@/components/landing/ScrollStory";
 import { StatsBar } from "@/components/landing/StatsBar";
 import { ProblemSection } from "@/components/landing/ProblemSection";
 import { SolutionSection } from "@/components/landing/SolutionSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <ScrollProgress />
       <Header />
       <Hero />
+      <ScrollStory />
       <StatsBar />
       <ProblemSection />
       <SolutionSection />

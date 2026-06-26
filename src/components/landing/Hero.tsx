@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { ROUTES } from "@/lib/routes";
 import { GridBackground } from "@/components/ui/backgrounds";
+import { HeroMascot } from "@/components/effects/HeroMascot";
 
 const PREVIEW_CARDS = [
   { key: "profile", Icon: Stethoscope, done: true },
@@ -170,6 +171,8 @@ export async function Hero() {
             </div>
           </div>
         </div>
+
+        <HeroMascot className="absolute right-1 -bottom-3 z-20 hidden h-[80px] w-[66px] sm:block lg:right-4 lg:-bottom-5 lg:h-[94px] lg:w-[78px]" />
       </div>
     </section>
   );

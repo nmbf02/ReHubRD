@@ -2,14 +2,16 @@
 
 import { useTranslations } from "next-intl";
 import { Reveal } from "@/components/ui/motion";
+import { CatToy } from "@/components/effects/CatToy";
 
 export function StatsBar() {
   const t = useTranslations("landing.statsbar");
   const resources = t.raw("resources") as string[];
 
   return (
-    <section className="border-b border-border bg-rehub-50/40 dark:bg-rehub-900/30">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+    <section className="relative overflow-hidden border-b border-border bg-rehub-50/40 dark:bg-rehub-900/30">
+      <CatToy className="pointer-events-none absolute bottom-0 right-3 hidden h-20 w-24 opacity-90 lg:block" />
+      <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <Reveal>
           <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-rehub-900/45 dark:text-rehub-100/45">
             {t("label")}

@@ -283,6 +283,14 @@
       "medications": "Medicamentos",
       "account": "Cuenta"
     },
+    "welcomeVoice": {
+      "eyebrow": "Un momento para ti",
+      "title": "Antes de empezar, respira",
+      "play": "Escúchame",
+      "stop": "Detener",
+      "caption": "Una voz que te acompaña. Puedes leerlo mientras escuchas.",
+      "script": "Respira. Estás a salvo. Sé que este momento es difícil, y que quizás te sientas confundido o cansado. Es normal, y no tienes que resolverlo todo hoy. Quiero que sepas algo importante: a partir de ahora, no estás solo. ReHub va a acompañarte en cada paso de tu recuperación. Nosotros te vamos a decir qué sigue: a qué médico acudir, cómo organizar tus medicamentos y sus horarios, dónde encontrar farmacias y terapias cerca de ti, y qué te cubre tu seguro y qué ofrece el gobierno. Todo en un solo lugar, con calma, a tu ritmo. No tienes que buscar nada por tu cuenta ni cargar con papeles: nosotros nos encargamos de que la información llegue a ti, justo cuando la necesitas. Tu única tarea hoy es descansar y recuperarte; de lo demás nos ocupamos juntos. Y para tener todo esto siempre contigo, ReHub cuesta apenas una suscripción mensual modesta, mucho menos que una sola consulta perdida por no saber a dónde ir. Pero eso lo vemos después. Ahora, respira, y demos el primer paso, juntos."
+    },
     "tagline": "Centro de Recuperación",
     "signOutMobile": "Salir",
     "signOutDesktop": "Cerrar sesión",

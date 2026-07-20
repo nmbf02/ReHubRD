@@ -12,7 +12,28 @@ Este repositorio contiene la aplicación frontend (Next 14) con rutas de dashboa
 - Componentes reutilizables para UI y navegación (`src/components/*`).
 - Autenticación demo con `next-auth` (Credentials provider) para desarrollo.
 - Módulo de `SugerenciasRecordatorios` que permite programar recordatorios en sesión (usa `sessionStorage` y la Notification API cuando el navegador lo permite).
+- **Recordatorios de medicamentos** (`/dashboard/medications`): foto de la receta → OCR en el navegador (Tesseract.js, gratis) → horario con recordatorios, guardado solo en el dispositivo.
 - Guías y recursos agrupados para apoyo post-accidente.
+
+---
+
+## Modo demo (gratis) vs. modo real (producción)
+
+**Estado actual — demo de tesis, costo $0.** Esta versión está pensada para funcionar **gratis** durante la presentación del proyecto, con la computadora encendida, usando solo herramientas sin costo: Next.js, OCR en el navegador (Tesseract.js), `localStorage`, Notification API y `npm run dev` (o Vercel Hobby). **No requiere** servidor de datos, APIs de pago ni infraestructura externa. Las limitaciones de este modo (recordatorios solo mientras la app está abierta, datos solo en el dispositivo) son aceptables para el piloto/demo.
+
+**Puede convertirse a modo real/pago.** El diseño es incremental: cada decisión "gratis" tiene su equivalente de producción. Se activa cada fila cuando el producto pase de piloto a producción.
+
+| Área | Demo (gratis, actual) | Modo real / pago (producción) |
+|---|---|---|
+| Hosting | PC encendida · `npm run dev` · Vercel Hobby | Vercel Pro o servidor dedicado (siempre disponible) |
+| Persistencia | `localStorage` (solo en el dispositivo) | Postgres (Neon) en servidor, cifrado + respaldo |
+| Datos clínicos (PHI) | No se guardan en servidor (on-device) | Servidor con consentimiento, auditoría y retención (requiere ADR + revisión legal) |
+| Autenticación | `next-auth` demo (Credentials + JWT) | OAuth + cookies httpOnly + refresh + verificación de identidad del médico |
+| Roles | 1 rol (paciente) | RBAC: paciente · doctor · enfermera · farmacia |
+| OCR de receta | Tesseract.js en el navegador (gratis; mejor con recetas impresas) | API de visión en la nube (Google Vision / GPT-4o), más precisa — de pago |
+| Recordatorios | Notification API mientras la app está abierta | Web Push + Service Worker + cron en servidor → notifican con la app cerrada |
+| Datos externos | `datos.gob.do` (abierto) + curaduría manual | + Google Places (con cuota), convenios de datos |
+| Funciones futuras | — | Receta-QR verificable · consulta del médico · muñeco → médicos por centro (slices posteriores) |
 
 ---
 

@@ -276,9 +276,11 @@
     "nav": {
       "home": "Inicio",
       "profile": "Mi perfil",
+      "care": "Mi lesión",
       "plan": "Mi plan",
       "followup": "Seguimiento",
       "resources": "Recursos",
+      "medications": "Medicamentos",
       "account": "Cuenta"
     },
     "tagline": "Centro de Recuperación",
@@ -661,6 +663,118 @@
         "medicamentos": "Medicamentos",
         "trámites": "Trámites"
       }
+    },
+    "medications": {
+      "title": "Mis medicamentos",
+      "description": "Toma una foto de tu receta y ReHub arma tu horario y te recuerda cada toma. Todo se guarda solo en este dispositivo.",
+      "disclaimer": "ReHub organiza tu receta, no la reemplaza. Revisa siempre las dosis con tu médico o farmacéutico.",
+      "deviceNote": "Privado: se guarda solo en este dispositivo.",
+      "notifyTitle": "Hora de tu medicamento: {name}",
+      "notifyBody": "Abre ReHub para ver tu horario.",
+      "photo": {
+        "title": "Tu receta",
+        "hint": "Toma o sube una foto de la receta",
+        "take": "Tomar / subir foto",
+        "change": "Cambiar foto",
+        "autofill": "Auto-rellenar desde la foto",
+        "autofillHint": "Experimental — siempre revisa lo que se llenó. Funciona mejor con recetas impresas.",
+        "reading": "Leyendo la receta…",
+        "readOk": "Listo — revisa las sugerencias y agrégalas.",
+        "readEmpty": "No pudimos leer bien la receta. Agrégala manualmente abajo.",
+        "readError": "No se pudo procesar la foto. Puedes agregar la receta manualmente."
+      },
+      "form": {
+        "title": "Agregar medicamento",
+        "editTitle": "Editar medicamento",
+        "name": "Medicamento",
+        "namePlaceholder": "Ej: Amoxicilina",
+        "dose": "Dosis",
+        "dosePlaceholder": "Ej: 500 mg",
+        "frequency": "Cada cuánto",
+        "freqDaily": "1 vez al día",
+        "freqTwice": "Cada 12 horas",
+        "freqThrice": "Cada 8 horas",
+        "freqFour": "Cada 6 horas",
+        "startTime": "Primera toma",
+        "times": "Horas",
+        "withFood": "Con comida",
+        "notes": "Notas",
+        "notesPlaceholder": "Opcional",
+        "save": "Guardar",
+        "cancel": "Cancelar"
+      },
+      "list": {
+        "title": "Tu horario",
+        "empty": "Aún no has agregado medicamentos. Sube tu receta o agrégalos manualmente.",
+        "add": "Agregar",
+        "edit": "Editar",
+        "delete": "Quitar",
+        "withFood": "con comida",
+        "remindersOn": "Recordatorios activados",
+        "enableReminders": "Activar recordatorios",
+        "remindersHint": "Te avisamos a la hora de cada toma mientras la app esté abierta."
+      },
+      "share": {
+        "button": "Compartir receta (QR)",
+        "title": "Receta verificable",
+        "approvedBy": "Aprobada por {name}",
+        "noDoctor": "Sin médico — escribe su nombre en \"Mi lesión\" y aparecerá en el QR.",
+        "hint": "La farmacia escanea este QR con su celular y ve que tu receta es válida."
+      }
+    },
+    "care": {
+      "title": "¿Dónde te duele?",
+      "description": "Toca en el muñeco las partes lastimadas y te mostramos la especialidad que sueles necesitar y centros reales cerca de ti.",
+      "bodyTitle": "Señala dónde te lastimaste",
+      "bodyHint": "Toca las partes del cuerpo afectadas (puedes elegir varias, izquierda y derecha).",
+      "clear": "Limpiar",
+      "resultTitle": "Qué necesitas y dónde ir",
+      "emptyParts": "Toca una parte del cuerpo para ver qué especialidad y centros te sirven.",
+      "specialtyLabel": "Especialidad que suele atender",
+      "centersLabel": "Centros reales cerca de ti",
+      "chooseCenter": "Mi centro",
+      "chosenCenter": "Elegido",
+      "realNote": "Datos reales de RD (ADR, hospitales públicos, líneas SNS). Orientación — la decisión y la atención son del profesional.",
+      "doctorNameLabel": "Médico que te atiende (opcional)",
+      "doctorNameHint": "Si lo escribes, aparecerá como \"aprobada por\" en el QR de tu receta. Es tu dato real, no un médico inventado.",
+      "doctorNamePlaceholder": "Ej: Dra. María Pérez",
+      "side": {
+        "izq": "izq.",
+        "der": "der."
+      },
+      "parts": {
+        "cabeza": "Cabeza",
+        "cuello": "Cuello",
+        "hombro": "Hombro",
+        "pecho": "Pecho",
+        "brazo": "Brazo",
+        "codo": "Codo",
+        "mano": "Mano",
+        "abdomen": "Abdomen",
+        "cadera": "Cadera",
+        "muslo": "Muslo",
+        "rodilla": "Rodilla",
+        "pierna": "Pierna",
+        "pie": "Pie"
+      },
+      "specialties": {
+        "ortopedia": "Ortopedia",
+        "traumatologia": "Traumatología",
+        "fisiatria": "Fisiatría (rehabilitación)",
+        "neurologia": "Neurología",
+        "medicina_general": "Medicina general"
+      }
     }
+  },
+  "verify": {
+    "verified": "Receta verificada",
+    "verifiedSub": "Firmada en ReHub",
+    "approvedBy": "Aprobada por",
+    "center": "Centro",
+    "date": "Fecha",
+    "meds": "Medicamentos",
+    "demoNote": "Verificación de demostración: los datos viajan dentro del código QR. En producción, la receta se verificaría en el servidor de ReHub y podría anularse.",
+    "invalid": "No pudimos verificar esta receta",
+    "invalidSub": "El código es inválido o está incompleto."
   }
 }

@@ -9,6 +9,8 @@ export const ROUTES = {
   followup: "/dashboard/followup",
   plan: "/dashboard/plan",
   resources: "/dashboard/resources",
+  medications: "/dashboard/medications",
+  care: "/dashboard/care",
 } as const;
 
 /** `/dashboard/resources?guia=…` */

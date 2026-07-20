@@ -5,17 +5,18 @@ import { useTranslations } from "next-intl";
 import { Play, Square, Volume2 } from "lucide-react";
 
 /**
- * Calming spoken welcome for someone who just arrived injured and may not feel
- * like reading. Plays a pre-generated ElevenLabs clip (public/audio/welcome.mp3)
- * over a soft, code-generated ambient pad (Web Audio — no asset). If the MP3 is
- * not present, it falls back to the browser's free speech synthesis so it never
- * breaks. Zero-cost at runtime.
+ * Calming spoken welcome on the LANDING hero — the first thing someone who just
+ * arrived injured hears, before "Comenzar". Plays a pre-generated ElevenLabs
+ * clip (public/audio/welcome.mp3) over a soft, code-generated Web Audio ambient
+ * pad; falls back to the browser's free speech synthesis if the clip is absent.
+ * Zero-cost at runtime.
  */
 export function WelcomeVoice() {
-  const t = useTranslations("dashboard.welcomeVoice");
+  const t = useTranslations("landing.welcomeVoice");
   const script = t("script");
 
   const [playing, setPlaying] = useState(false);
+  const [showText, setShowText] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const ctxRef = useRef<AudioContext | null>(null);
   const nodesRef = useRef<{ stop: () => void } | null>(null);
@@ -23,7 +24,8 @@ export function WelcomeVoice() {
   const startAmbient = useCallback(() => {
     try {
       const AudioCtx =
-        window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (!AudioCtx) return;
       const ctx = new AudioCtx();
       ctxRef.current = ctx;
@@ -37,9 +39,7 @@ export function WelcomeVoice() {
       master.connect(filter);
       filter.connect(ctx.destination);
 
-      // two softly detuned oscillators = a warm, breathing pad
-      const freqs = [110, 164.81];
-      const oscs = freqs.map((f, i) => {
+      const oscs = [110, 164.81].map((f, i) => {
         const osc = ctx.createOscillator();
         osc.type = "sine";
         osc.frequency.value = f;
@@ -49,7 +49,6 @@ export function WelcomeVoice() {
         return osc;
       });
 
-      // slow "breathing" of the volume
       const lfo = ctx.createOscillator();
       lfo.frequency.value = 0.12;
       const lfoGain = ctx.createGain();
@@ -100,7 +99,6 @@ export function WelcomeVoice() {
     const utter = new SpeechSynthesisUtterance(script);
     utter.lang = "es-ES";
     utter.rate = 0.9;
-    utter.pitch = 1;
     const esVoice = window.speechSynthesis.getVoices().find((v) => v.lang.startsWith("es"));
     if (esVoice) utter.voice = esVoice;
     utter.onend = () => stopAll();
@@ -110,43 +108,42 @@ export function WelcomeVoice() {
 
   const play = useCallback(() => {
     setPlaying(true);
+    setShowText(true);
     startAmbient();
     const audio = new Audio("/audio/welcome.mp3");
-    audio.volume = 1;
     audio.onended = () => stopAll();
-    audio.onerror = () => speakFallback(); // MP3 not present yet → free browser voice
+    audio.onerror = () => speakFallback();
     audioRef.current = audio;
     audio.play().catch(() => speakFallback());
   }, [startAmbient, stopAll, speakFallback]);
 
   return (
-    <section className="overflow-hidden rounded-2xl border border-rehub-100 bg-gradient-to-br from-rehub-50 to-white p-5 shadow-card sm:p-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <span
-          className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-glow ${
-            playing ? "animate-pulse" : ""
-          }`}
-        >
-          <Volume2 className="h-6 w-6" />
-        </span>
-        <div className="min-w-0 flex-1">
-          <p className="text-xs font-semibold uppercase tracking-wide text-rehub-700/70">{t("eyebrow")}</p>
-          <h3 className="text-lg font-bold text-rehub-950">{t("title")}</h3>
-          <p className="mt-0.5 text-sm text-rehub-900/60">{t("caption")}</p>
-        </div>
+    <div className="mt-8 max-w-xl rounded-xl border border-rehub-200 bg-gradient-to-br from-rehub-50 to-white p-4 shadow-soft dark:border-rehub-800 dark:from-rehub-900 dark:to-rehub-950">
+      <div className="flex items-center gap-3">
         <button
           type="button"
           onClick={playing ? stopAll : play}
-          className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-rehub-600 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition-all hover:bg-rehub-700"
+          aria-label={playing ? t("stop") : t("play")}
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-rehub-700 text-white shadow-soft transition-colors hover:bg-rehub-800 dark:bg-rehub-500 dark:hover:bg-rehub-400 ${
+            playing ? "animate-pulse" : ""
+          }`}
         >
-          {playing ? <Square className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          {playing ? t("stop") : t("play")}
+          {playing ? <Square className="h-5 w-5" /> : <Play className="h-5 w-5 translate-x-0.5" />}
         </button>
+        <div className="min-w-0">
+          <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-rehub-700 dark:text-rehub-300">
+            <Volume2 className="h-3.5 w-3.5" />
+            {t("eyebrow")}
+          </p>
+          <p className="text-sm font-semibold text-rehub-950 dark:text-white">{t("title")}</p>
+          <p className="text-xs text-rehub-900/55 dark:text-rehub-100/55">{t("caption")}</p>
+        </div>
       </div>
-
-      {playing && (
-        <p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-rehub-900/70">{script}</p>
+      {showText && (
+        <p className="mt-3 text-pretty text-sm leading-relaxed text-rehub-900/70 dark:text-rehub-100/70">
+          {script}
+        </p>
       )}
-    </section>
+    </div>
   );
 }

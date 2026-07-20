@@ -10,6 +10,7 @@ import {
 import { ROUTES } from "@/lib/routes";
 import { GridBackground } from "@/components/ui/backgrounds";
 import { HeroMascot } from "@/components/effects/HeroMascot";
+import { WelcomeVoice } from "@/components/landing/WelcomeVoice";
 
 const PREVIEW_CARDS = [
   { key: "profile", Icon: Stethoscope, done: true },
@@ -48,6 +49,9 @@ export async function Hero() {
             <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-rehub-900/70 dark:text-rehub-100/70">
               {t("subtitle")}
             </p>
+
+            {/* Voz que te acompaña — lo primero, antes de "Comenzar" */}
+            <WelcomeVoice />
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link

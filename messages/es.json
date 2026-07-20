@@ -722,6 +722,20 @@
         "hint": "La farmacia escanea este QR con su celular y ve que tu receta es válida."
       }
     },
+    "pharmacies": {
+      "title": "Farmacias cerca de ti",
+      "intro": "Con tu ubicación te mostramos farmacias reales cercanas (OpenStreetMap). No mostramos inventario en vivo.",
+      "cta": "Ver farmacias cerca de mí",
+      "locating": "Buscando tu ubicación…",
+      "loading": "Buscando farmacias cerca…",
+      "denied": "No pudimos acceder a tu ubicación. Actívala en el navegador e inténtalo de nuevo.",
+      "error": "El servicio de mapas no respondió. Inténtalo de nuevo en un momento.",
+      "empty": "No encontramos farmacias mapeadas en tu zona.",
+      "retry": "Reintentar",
+      "directions": "Cómo llegar",
+      "pueblo": "Para medicamentos esenciales, la Farmacia del Pueblo suele tenerlos más barato o gratis (PROMESE/CAL · 809-518-1313).",
+      "puebloLink": "Localizador oficial"
+    },
     "care": {
       "title": "¿Dónde te duele?",
       "description": "Toca en el muñeco las partes lastimadas y te mostramos la especialidad que sueles necesitar y centros reales cerca de ti.",

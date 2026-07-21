@@ -175,8 +175,14 @@ export function IntakeView({ userId }: Props) {
     voiceOnRef.current = true;
     setVoiceOn(true);
     const firstUnanswered = INTAKE_QUESTIONS.findIndex((q) => !answers[q.id]);
-    runStep(firstUnanswered === -1 ? 0 : firstUnanswered);
-  }, [answers, runStep]);
+    const first = firstUnanswered === -1 ? 0 : firstUnanswered;
+    void (async () => {
+      setVoiceStatus("speaking");
+      await speak(t("intro")); // the bot introduces itself, then asks
+      if (!voiceOnRef.current) return;
+      runStep(first);
+    })();
+  }, [answers, runStep, speak, t]);
 
   useEffect(() => () => { voiceOnRef.current = false; try { recRef.current?.abort(); } catch { /* noop */ } }, []);
 
@@ -186,6 +192,21 @@ export function IntakeView({ userId }: Props) {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       <div className="space-y-4">
+        {/* Bot introduces itself */}
+        <Reveal>
+          <section className="rounded-2xl border border-rehub-100 bg-gradient-to-br from-rehub-50 to-white p-5 shadow-card">
+            <div className="flex items-start gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow">
+                <MessageCircleHeart className="h-5 w-5" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-wide text-rehub-700/70">{t("introTitle")}</p>
+                <p className="mt-1 text-sm leading-relaxed text-rehub-900/75">{t("intro")}</p>
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
         {/* Voice control */}
         {voiceSupported && (
           <Reveal>

@@ -748,6 +748,8 @@
     "intake": {
       "title": "Cuéntame cómo estás",
       "description": "Respóndeme unas preguntas y te sugiero lo que más te conviene. Todo se guarda solo en tu dispositivo.",
+      "introTitle": "Antes de empezar",
+      "intro": "Hola, soy ReHub y voy a acompañarte. Te haré unas preguntas cortas para entender tu situación y sugerirte lo mejor para ti. No hay respuestas buenas ni malas: respóndeme con honestidad y con calma. Todo es confidencial y se guarda solo en tu dispositivo. No te preocupes, estoy aquí para ayudarte.",
       "suggestionsTitle": "Para ti, ahora mismo",
       "suggestionsEmpty": "Responde las preguntas y aquí aparecerán tus sugerencias.",
       "go": "Ver",

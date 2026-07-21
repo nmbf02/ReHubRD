@@ -14,6 +14,7 @@ import {
   BookOpen,
   Pill,
   Stethoscope,
+  MessageCircleHeart,
   Settings,
   LogOut,
   type LucideIcon,
@@ -37,6 +38,7 @@ export function DashboardNav({ user }: Props) {
     () =>
       [
         { href: ROUTES.dashboard, key: "home" as const, Icon: Home as LucideIcon },
+        { href: ROUTES.intake, key: "intake" as const, Icon: MessageCircleHeart as LucideIcon },
         { href: ROUTES.profile, key: "profile" as const, Icon: User as LucideIcon },
         { href: ROUTES.care, key: "care" as const, Icon: Stethoscope as LucideIcon },
         { href: ROUTES.plan, key: "plan" as const, Icon: ClipboardList as LucideIcon },

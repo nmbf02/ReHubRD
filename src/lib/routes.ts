@@ -11,6 +11,7 @@ export const ROUTES = {
   resources: "/dashboard/resources",
   medications: "/dashboard/medications",
   care: "/dashboard/care",
+  intake: "/dashboard/intake",
 } as const;
 
 /** `/dashboard/resources?guia=…` */

@@ -283,6 +283,7 @@
   "dashboard": {
     "nav": {
       "home": "Inicio",
+      "intake": "Cuéntame",
       "profile": "Mi perfil",
       "care": "Mi lesión",
       "plan": "Mi plan",
@@ -743,6 +744,84 @@
       "directions": "Cómo llegar",
       "pueblo": "Para medicamentos esenciales, la Farmacia del Pueblo suele tenerlos más barato o gratis (PROMESE/CAL · 809-518-1313).",
       "puebloLink": "Localizador oficial"
+    },
+    "intake": {
+      "title": "Cuéntame cómo estás",
+      "description": "Respóndeme unas preguntas y te sugiero lo que más te conviene. Todo se guarda solo en tu dispositivo.",
+      "suggestionsTitle": "Para ti, ahora mismo",
+      "suggestionsEmpty": "Responde las preguntas y aquí aparecerán tus sugerencias.",
+      "go": "Ver",
+      "call": "Llamar al",
+      "questions": {
+        "apoyo": {
+          "q": "¿Tienes familiares o alguien que te apoye en tu recuperación?",
+          "si": "Sí, tengo apoyo",
+          "poco": "Un poco",
+          "no": "No, estoy solo/a"
+        },
+        "dinero": {
+          "q": "¿Puedes cubrir tus medicamentos y tratamiento?",
+          "si": "Sí, puedo",
+          "dificil": "Con dificultad",
+          "no": "No tengo cómo pagarlo"
+        },
+        "movilidad": {
+          "q": "¿Puedes salir de casa o moverte por tu cuenta?",
+          "si": "Sí",
+          "dificil": "Con dificultad",
+          "no": "No puedo salir"
+        },
+        "seguro": {
+          "q": "¿Tienes seguro médico (ARS)?",
+          "si": "Sí",
+          "nose": "No sé",
+          "no": "No tengo"
+        },
+        "animo": {
+          "q": "¿Cómo te sientes emocionalmente?",
+          "bien": "Bien",
+          "bajo": "Ansioso o triste",
+          "muymal": "Muy mal"
+        }
+      },
+      "sug": {
+        "emergencia-emocional": {
+          "t": "Habla con alguien ahora",
+          "d": "Línea de salud mental gratuita y confidencial, disponible siempre."
+        },
+        "circulo": {
+          "t": "No estás solo/a: el círculo de apoyo",
+          "d": "Personas que viven una recuperación como la tuya, para acompañarte."
+        },
+        "ayuda-gratuita": {
+          "t": "Ayuda gratuita y programas sociales",
+          "d": "Líneas, medicamentos, ADR y apoyo del gobierno para ti."
+        },
+        "apoyo-cirugia": {
+          "t": "Apoyo para tu cirugía (próximamente)",
+          "d": "Si no tienes cómo pagar, ReHub prepara: un mes gratis + una recaudación validada por un médico, con seguimiento diario de tu meta. Función en preparación."
+        },
+        "farmacia-pueblo": {
+          "t": "Medicamentos más baratos o gratis",
+          "d": "Farmacia del Pueblo y farmacias cercanas a tu ubicación."
+        },
+        "transporte": {
+          "t": "Cómo llegar a tus terapias",
+          "d": "Opciones de transporte para personas con movilidad reducida."
+        },
+        "seguro": {
+          "t": "Entiende qué te cubre",
+          "d": "Orientación sobre tu seguro y a qué tienes derecho."
+        },
+        "apoyo-emocional": {
+          "t": "Apoyo emocional",
+          "d": "Recursos y líneas para manejar la ansiedad o la tristeza."
+        },
+        "mi-lesion": {
+          "t": "Encuentra tu especialista",
+          "d": "Señala dónde te duele y ve centros reales cerca de ti."
+        }
+      }
     },
     "care": {
       "title": "¿Dónde te duele?",

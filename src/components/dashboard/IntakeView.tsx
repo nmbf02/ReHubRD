@@ -192,68 +192,81 @@ export function IntakeView({ userId }: Props) {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       <div className="space-y-4">
-        {/* Bot introduces itself */}
-        <Reveal>
-          <section className="rounded-2xl border border-rehub-100 bg-gradient-to-br from-rehub-50 to-white p-5 shadow-card">
-            <div className="flex items-start gap-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow">
-                <MessageCircleHeart className="h-5 w-5" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-xs font-semibold uppercase tracking-wide text-rehub-700/70">{t("introTitle")}</p>
-                <p className="mt-1 text-sm leading-relaxed text-rehub-900/75">{t("intro")}</p>
+        {/* Voice-first: ReHub presents itself out loud, then runs the questionnaire */}
+        {voiceSupported && !voiceOn && (
+          <Reveal>
+            <section className="rounded-2xl border border-rehub-200 bg-gradient-to-br from-rehub-50 to-white p-6 shadow-card">
+              <div className="flex items-start gap-3">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-glow">
+                  <MessageCircleHeart className="h-6 w-6" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-rehub-700/70">{t("introTitle")}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-rehub-900/70">{t("voice.heroLead")}</p>
+                </div>
               </div>
-            </div>
-          </section>
-        </Reveal>
+              <button
+                type="button"
+                onClick={startVoice}
+                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-rehub-600 px-6 py-3 text-sm font-semibold text-white shadow-glow transition-all hover:bg-rehub-700"
+              >
+                <Mic className="h-4 w-4" />
+                {t("voice.start")}
+              </button>
+            </section>
+          </Reveal>
+        )}
 
-        {/* Voice control */}
-        {voiceSupported && (
+        {voiceSupported && voiceOn && (
           <Reveal>
             <section className="flex flex-col gap-3 rounded-2xl border border-rehub-200 bg-gradient-to-br from-rehub-50 to-white p-4 shadow-card sm:flex-row sm:items-center">
-              {!voiceOn ? (
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={startVoice}
-                  className="inline-flex items-center gap-2 rounded-xl bg-rehub-600 px-4 py-2.5 text-sm font-semibold text-white shadow-glow transition-all hover:bg-rehub-700"
+                  onClick={stopVoice}
+                  className="inline-flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-3.5 py-2 text-sm font-semibold text-red-600 transition-all hover:bg-red-100"
                 >
-                  <Mic className="h-4 w-4" />
-                  {t("voice.start")}
+                  <Square className="h-4 w-4" />
+                  {t("voice.stop")}
                 </button>
-              ) : (
-                <div className="flex items-center gap-2">
+                {voiceStatus === "unclear" && (
                   <button
                     type="button"
-                    onClick={stopVoice}
-                    className="inline-flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-3.5 py-2 text-sm font-semibold text-red-600 transition-all hover:bg-red-100"
+                    onClick={() => runStep(step)}
+                    className="inline-flex items-center gap-2 rounded-xl border border-rehub-200 bg-white px-3.5 py-2 text-sm font-semibold text-rehub-800 transition-all hover:bg-rehub-50"
                   >
-                    <Square className="h-4 w-4" />
-                    {t("voice.stop")}
+                    <RotateCcw className="h-4 w-4" />
+                    {t("voice.repeat")}
                   </button>
-                  {voiceStatus === "unclear" && (
-                    <button
-                      type="button"
-                      onClick={() => runStep(step)}
-                      className="inline-flex items-center gap-2 rounded-xl border border-rehub-200 bg-white px-3.5 py-2 text-sm font-semibold text-rehub-800 transition-all hover:bg-rehub-50"
-                    >
-                      <RotateCcw className="h-4 w-4" />
-                      {t("voice.repeat")}
-                    </button>
-                  )}
-                </div>
-              )}
-              <p className="text-xs text-rehub-900/60 sm:ml-auto">
-                {voiceOn
-                  ? voiceStatus === "speaking"
-                    ? t("voice.speaking")
-                    : voiceStatus === "listening"
-                    ? t("voice.listening")
-                    : voiceStatus === "unclear"
-                    ? t("voice.unclear")
-                    : t("voice.on")
-                  : t("voice.hint")}
+                )}
+              </div>
+              <p className="flex items-center gap-2 text-xs text-rehub-900/60 sm:ml-auto">
+                {voiceStatus === "listening" && <Mic className="h-3.5 w-3.5 animate-pulse text-rehub-600" />}
+                {voiceStatus === "speaking"
+                  ? t("voice.speaking")
+                  : voiceStatus === "listening"
+                  ? t("voice.listening")
+                  : voiceStatus === "unclear"
+                  ? t("voice.unclear")
+                  : t("voice.on")}
                 {heard ? ` — "${heard}"` : ""}
               </p>
+            </section>
+          </Reveal>
+        )}
+
+        {!voiceSupported && (
+          <Reveal>
+            <section className="rounded-2xl border border-rehub-100 bg-gradient-to-br from-rehub-50 to-white p-5 shadow-card">
+              <div className="flex items-start gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-glow">
+                  <MessageCircleHeart className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-rehub-700/70">{t("introTitle")}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-rehub-900/75">{t("intro")}</p>
+                </div>
+              </div>
             </section>
           </Reveal>
         )}

@@ -33,9 +33,9 @@ const KEYWORDS: Record<IntakeId, Record<string, string[]>> = {
     no: ["no", "no puedo", "no tengo", "sin dinero", "nada", "imposible"],
   },
   movilidad: {
-    si: ["si", "puedo", "camino", "salgo", "muevo"],
+    si: ["si", "puedo", "camino", "salgo", "muevo", "bien", "problema", "normal"],
     dificil: ["dificil", "apenas", "cuesta", "con ayuda", "un poco"],
-    no: ["no", "no puedo", "no salgo", "cama", "silla", "encerrado", "encerrada"],
+    no: ["no", "no puedo", "no salgo", "casi no", "cama", "silla", "encerrado", "encerrada"],
   },
   seguro: {
     si: ["si", "tengo", "ars", "senasa", "seguro"],

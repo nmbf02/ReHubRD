@@ -749,52 +749,53 @@
       "title": "Cuéntame cómo estás",
       "description": "Respóndeme unas preguntas y te sugiero lo que más te conviene. Todo se guarda solo en tu dispositivo.",
       "introTitle": "Antes de empezar",
-      "intro": "Hola, soy ReHub y voy a acompañarte. Te haré unas preguntas cortas para entender tu situación y sugerirte lo mejor para ti. No hay respuestas buenas ni malas: respóndeme con honestidad y con calma. Todo es confidencial y se guarda solo en tu dispositivo. No te preocupes, estoy aquí para ayudarte.",
+      "intro": "Hola, soy ReHub. Primero, respira: ya no estás solo en esto, estoy aquí contigo. Voy a hacerte unas preguntas cortas y sencillas para conocerte mejor y ayudarte de verdad. No hay respuestas correctas ni incorrectas; cuéntame con confianza y a tu ritmo, sin ninguna pena. Todo lo que me digas queda entre nosotros, guardado solo en tu dispositivo. Cuando quieras, empezamos, con calma.",
       "suggestionsTitle": "Para ti, ahora mismo",
       "suggestionsEmpty": "Responde las preguntas y aquí aparecerán tus sugerencias.",
       "go": "Ver",
       "call": "Llamar al",
       "voice": {
-        "start": "Responder por voz",
+        "start": "Empezar",
+        "heroLead": "Toca una vez y ReHub te hablará y te guiará, paso a paso. También puedes responder tocando las opciones.",
         "stop": "Detener",
         "repeat": "Repetir pregunta",
-        "on": "Modo voz activo",
+        "on": "Escuchando con calma…",
         "hint": "También puedes responder tocando las opciones.",
-        "speaking": "Escucha la pregunta…",
-        "listening": "Te escucho… habla ahora",
-        "unclear": "No te entendí bien — toca tu respuesta o repite",
-        "done": "Listo. Aquí tienes tus sugerencias."
+        "speaking": "ReHub te está hablando…",
+        "listening": "Te escucho… cuéntame cuando quieras",
+        "unclear": "No te entendí bien, no pasa nada — toca tu respuesta o repite",
+        "done": "Gracias por contarme, de verdad. Esto es lo que te sugiero ahora."
       },
       "questions": {
         "apoyo": {
-          "q": "¿Tienes familiares o alguien que te apoye en tu recuperación?",
-          "si": "Sí, tengo apoyo",
-          "poco": "Un poco",
-          "no": "No, estoy solo/a"
+          "q": "Para empezar, con calma: ¿cuentas con alguien cercano que te acompañe en esto?",
+          "si": "Sí, cuento con apoyo",
+          "poco": "Solo un poco",
+          "no": "La verdad, estoy solo/a"
         },
         "dinero": {
-          "q": "¿Puedes cubrir tus medicamentos y tratamiento?",
+          "q": "Gracias por contarme. Y sin ninguna pena: ¿tienes cómo cubrir tus medicamentos y tu tratamiento?",
           "si": "Sí, puedo",
-          "dificil": "Con dificultad",
-          "no": "No tengo cómo pagarlo"
+          "dificil": "Me cuesta un poco",
+          "no": "Ahora mismo no puedo"
         },
         "movilidad": {
-          "q": "¿Puedes salir de casa o moverte por tu cuenta?",
-          "si": "Sí",
-          "dificil": "Con dificultad",
-          "no": "No puedo salir"
+          "q": "¿Cómo te sientes para moverte o salir de casa estos días?",
+          "si": "Bien, sin problema",
+          "dificil": "Me cuesta un poco",
+          "no": "Casi no puedo salir"
         },
         "seguro": {
-          "q": "¿Tienes seguro médico (ARS)?",
-          "si": "Sí",
-          "nose": "No sé",
+          "q": "¿Cuentas con un seguro médico (ARS)? Si no, tranquilo, igual te ayudo.",
+          "si": "Sí, tengo",
+          "nose": "No estoy seguro/a",
           "no": "No tengo"
         },
         "animo": {
-          "q": "¿Cómo te sientes emocionalmente?",
-          "bien": "Bien",
-          "bajo": "Ansioso o triste",
-          "muymal": "Muy mal"
+          "q": "Y lo más importante para mí: ¿cómo está tu ánimo hoy?",
+          "bien": "Bastante bien",
+          "bajo": "Un poco ansioso/a o triste",
+          "muymal": "La verdad, muy mal"
         }
       },
       "sug": {

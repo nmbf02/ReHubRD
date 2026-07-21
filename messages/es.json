@@ -752,6 +752,17 @@
       "suggestionsEmpty": "Responde las preguntas y aquí aparecerán tus sugerencias.",
       "go": "Ver",
       "call": "Llamar al",
+      "voice": {
+        "start": "Responder por voz",
+        "stop": "Detener",
+        "repeat": "Repetir pregunta",
+        "on": "Modo voz activo",
+        "hint": "También puedes responder tocando las opciones.",
+        "speaking": "Escucha la pregunta…",
+        "listening": "Te escucho… habla ahora",
+        "unclear": "No te entendí bien — toca tu respuesta o repite",
+        "done": "Listo. Aquí tienes tus sugerencias."
+      },
       "questions": {
         "apoyo": {
           "q": "¿Tienes familiares o alguien que te apoye en tu recuperación?",

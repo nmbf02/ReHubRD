@@ -1,0 +1,936 @@
+UNIVERSIDAD TECNOLÓGICA DE SANTIAGO, UTESA
+SISTEMA CORPORATIVO
+Facultad de Arquitectura e Ingeniería
+Carrera de Ingeniería en Sistemas
+ELABORACIÓN DE PROPUESTA PLATAFORMA DIGITAL DE ACOMPAÑAMIENTO POST-ACCIDENTE EN LA CIUDAD DE SANTIAGO DE LOS CABALLEROS, REPUBLICA DOMINICANA
+Proyecto de Grado presentado como requisito para optar por el título de Ingeniero en Sistemas Computacionales
+Presentado por
+Nathaly Berroa
+Pedro De La Rosa
+Félix Blanco
+Asesor
+Carlos Felipe Cabrera, DBA.
+Santiago de los Caballeros
+República Dominicana
+Agosto, 2026
+UNIVERSIDAD TECNOLÓGICA DE SANTIAGO, UTESA SISTEMA CORPORATIVO
+Facultad de Arquitectura e Ingeniería
+Carrera de Ingeniería en Sistemas
+ELABORACIÓN DE PROPUESTA PLATAFORMA DIGITAL DE ACOMPAÑAMIENTO POST-ACCIDENTE EN LA CIUDAD DE SANTIAGO DE LOS CABALLEROS, REPUBLICA DOMINICANA
+Proyecto de Grado presentado como requisito para optar por el título de Ingeniero en Sistemas Computacionales.
+Presentado por
+[TABLA]
+Nathaly Berroa | 1-20-0297
+Pedro De La Rosa | 1-03-3398
+Félix Blanco | 1-17-1693
+[/TABLA]
+Asesor
+Carlos Felipe Cabrera, DBA.
+Santiago de los Caballeros
+República Dominicana
+Agosto, 2026
+TABLA DE CONTENIDO
+
+# RESUMEN EJECUTIVO
+En la República Dominicana, cuando ocurre un accidente, el sistema de salud responde rápido y atiende bien la emergencia. El problema viene después. Una vez que el paciente sale del hospital, ya nadie se encarga de lo que sigue. No hay un plan de seguimiento, así que la recuperación queda a medias: medicamentos que se toman sin control, terapias que se dejan a la mitad, trámites que nadie explica y un estado emocional que casi siempre se ignora.
+ReHub busca resolver justo eso. Es una plataforma digital que junta todo el proceso de recuperación en un mismo lugar y lo organiza en seis áreas: el control de medicamentos, las citas y terapias físicas, el apoyo psicológico, la orientación con los trámites y seguros, el seguimiento del progreso y la ayuda para volver al trabajo y a la vida normal. Está armada por módulos, de manera que cada persona usa solo lo que de verdad necesita en su etapa, sin llenarse de cosas en un momento que ya de por sí es complicado.
+Para sustentar la propuesta encuestamos a 383 personas entre pacientes, familiares y profesionales de la salud en Santiago de los Caballeros y el Gran Santo Domingo, de un universo estimado de 85,000 personas. Los resultados hablan por sí solos. 8 de cada 10 encuestados no recibió ningún tipo de seguimiento después del alta médica. El 85% usaría o recomendaría la plataforma y el 74% la usaría todos los días o varias veces por semana. Además, el 70% reconoció que dejar las terapias a medias es algo bastante común durante la recuperación. No se trata de una simple tendencia, sino de una necesidad real que hoy nadie está atendiendo.
+El modelo de negocio funciona bajo un esquema B2B2C en el que la aplicación es completamente gratuita para el paciente, lo que favorece una adopción rápida y masiva. Los ingresos provienen de seis fuentes: planes Premium para médicos y fisioterapeutas independientes, licencias para centros de rehabilitación y clínicas, licencias corporativas para empresas, contratos institucionales con ARS, espacios publicitarios patrocinados por laboratorios farmacéuticos y comisiones por reservas de citas y terapias gestionadas a través de la plataforma. Este esquema diversificado no depende de una única fuente, lo que lo hace más sólido, escalable y coherente con el propósito social del proyecto: si el paciente accidentado ya enfrenta múltiples gastos, no tiene sentido cobrarle una suscripción adicional. El mercado inicial son esos aliados institucionales en Santiago de los Caballeros, ciudad piloto, con expansión hacia el Gran Santo Domingo a partir del segundo año; a través de ellos la plataforma proyecta alcanzar cerca de 85,000 usuarios beneficiarios en cinco años.
+Hoy por hoy, ReHub no tiene competencia directa en el país, y eso abre una buena oportunidad para entrar antes de que alguien más se dé cuenta del espacio. La propuesta se apoya en tres cosas concretas: una demanda que pudimos medir, un entorno tecnológico que ayuda y el hecho de que no existe nada parecido en el mercado dominicano de salud digital.
+
+# CAPÍTULO I. IDEA DE NEGOCIO
+
+## Presentación de la idea de negocio
+Cuando una persona sufre un accidente y le dan de alta, el sistema de salud dominicano siente que ya cumplió con su parte. Pero todo lo que viene después (coordinar los medicamentos, cumplir con las terapias, lidiar con los seguros, sobreponerse emocionalmente y volver al trabajo) queda en manos del paciente y de su familia, sin nada que los ayude a ordenar ese proceso. Justo esa desconexión entre la atención del hospital y la recuperación de verdad es lo que ReHub quiere resolver.
+La idea es una plataforma digital que junte en un mismo lugar todo lo que el paciente necesita durante su recuperación: el seguimiento de los medicamentos y sus dosis, las citas y terapias físicas, el avance de la recuperación, la orientación con los trámites y seguros, el apoyo psicológico y la ayuda para volver al trabajo y a la vida social. Cada una de estas partes responde a un problema concreto que la persona vive después del alta.
+La plataforma está armada por módulos, así que cada usuario activa solo las funciones que le hacen falta según el momento en que se encuentra. De esta forma la va adoptando poco a poco, sin sentirla como una carga más en una etapa que de por sí ya es pesada. Además, este diseño hace más fácil que el paciente, su familia y los profesionales de salud se mantengan en contacto.
+ReHub no compite con los servicios médicos que ya existen ni busca reemplazarlos. Más bien viene a ser ese eslabón que hoy falta entre el alta del hospital y una recuperación completa, pensado para la realidad del sistema de salud dominicano (Organización Mundial de la Salud, 2021).
+
+## Descripción de la necesidad
+En el país no existe un modelo claro para acompañar al paciente después del alta. La persona sale del hospital con sus indicaciones médicas, pero sin nada ni nadie que la ayude a organizarlas, cumplirlas o entender qué viene después. Los medicamentos quedan sin supervisión, las terapias se coordinan por cuenta propia y los trámites con las aseguradoras se quedan a medias porque nadie orienta. Y el resultado casi siempre es el mismo: tratamientos que no se terminan, recuperaciones que se alargan y un desgaste emocional que tampoco recibe atención.
+El problema no es un servicio en particular, sino que ninguno se habla con el otro. La atención médica, el apoyo psicológico y la parte administrativa van cada uno por su lado, sin coordinarse entre sí ni con el paciente. Al final, todo ese desorden cae sobre la persona accidentada y su familia, que terminan resolviendo solos algo que debería tener un acompañamiento real, sobre todo en accidentes de mediana o alta complejidad, donde la recuperación puede durar semanas o hasta meses.
+Ante todo esto, una plataforma digital que reúna todas estas piezas en un mismo lugar no es un lujo, es algo que de verdad hace falta. Tener el seguimiento en un solo sitio, lograr que el paciente y sus médicos se comuniquen mejor y mantener el proceso ordenado desde el alta hasta el regreso a la vida normal son cosas básicas para que la recuperación funcione. De hecho, la evidencia que existe muestra que este tipo de soluciones ayuda a que menos personas abandonen sus terapias y mejora su calidad de vida en una de las etapas más difíciles del proceso (Organización Mundial de la Salud, 2021; Pullen et al., 2024).
+
+## Matriz de tendencias
+En la República Dominicana, el sistema de salud siempre ha respondido mejor ante la emergencia que en lo que viene después. Por mucho tiempo el modelo fue puramente reactivo: una vez que estabilizaban al paciente y le daban de alta, la recuperación quedaba en sus propias manos. Los expedientes estaban en papel, el seguimiento dependía de que la persona volviera por su cuenta a consulta y la coordinación entre lo médico, lo psicológico y lo administrativo casi no existía.
+La pandemia de COVID-19 apuró un cambio que ya venía dándose. El uso de la telemedicina en el país creció un 150% durante y después de ese tiempo, según datos del Ministerio de Salud Pública (2023, como se citó en Diario Libre, 2025). Pero ese salto digital se concentró en la consulta a distancia, no en el seguimiento después del alta. La etapa que sigue a la hospitalización continúa siendo el punto ciego del sistema: nadie la vigila, nadie la organiza y nadie acompaña a la persona de forma ordenada.
+La tabla 1 muestra hacia dónde va el sector. La Estrategia Nacional de Salud Digital 2024-2028, impulsada por el Ministerio de Salud Pública con apoyo del Banco Mundial y el PNUD, traza un plan para modernizar el sistema de salud dominicano con tecnología, poniendo el foco en que sea accesible y equitativo. ReHub encaja justo ahí: no repite lo que ya existe, sino que ocupa el espacio que hoy ninguna solución cubre, conectando al paciente con lo que necesita desde el alta hasta que vuelve por completo a su vida.
+Tabla 1
+[TABLA]
+Tendencia | Impacto | Madurez | Horizonte | Implicaciones
+Seguimiento digital post-alta | 5 | 2 | Corto | Aquí el vacío se nota más: 8 de cada 10 encuestados no tuvo ningún seguimiento después del alta. Por eso la plataforma busca juntar los medicamentos, las citas y las terapias en un mismo lugar, todo desde el móvil.
+Módulo de recordatorios y control de medicamentos | 5 | 3 | Corto | Un 35% lo eligió como el módulo más útil. La idea es que avise por sí solo cuándo toca cada dosis o tratamiento, para que la gente no deje la terapia a medias.
+Acompañamiento psicológico digital | 4 | 2 | Corto-Medio | El 70% percibe el abandono terapéutico como problema habitual. La plataforma debe integrar recursos de apoyo emocional accesibles durante todo el proceso de recuperación.
+Integración con equipo médico tratante | 5 | 2 | Medio | El 85% valora algún nivel de integración médica. La plataforma debe permitir al equipo tratante consultar el historial y recibir alertas sobre la evolución del paciente.
+Acceso gratuito para el paciente y modelo B2B2C | 4 | 3 | Corto | El paciente accede sin costo a todas las funciones. La arquitectura debe sostenerse mediante un modelo B2B2C financiado por aliados comerciales (aseguradoras, empresas, médicos, centros de rehabilitación y laboratorios), garantizando acceso universal y gratuito para el usuario final.
+[/TABLA]
+Matriz de tendencias del sector de salud digital y su proyección para ReHub
+Nota. Adaptado de Ministerio de Salud Pública de la República Dominicana (2023), Estudio sobre telemedicina en la República Dominicana; Ministerio de Salud Pública de la República Dominicana (2024), Estrategia Nacional de Salud Digital 2024-2028; y Organización Mundial de la Salud (2021), Rehabilitación: resumen de orientación (https://www.who.int/es/publications/i/item/9789240041264).
+
+## Modelo de negocio
+El modelo de negocio de ReHub se estructura a partir del lienzo de modelo de negocio (Business Model Canvas) propuesto por Osterwalder y Pigneur (2010), que organiza la propuesta en nueve bloques y se presenta a continuación:
+[TABLA]
+Socios Claves | Actividades Claves | Propuesta de Valor | Relación Clientes | Segmentos de mercado
+Hospitales, clínicas y centros de rehabilitación. | Desarrollo y actualización de la plataforma. Integración de servicios médicos, psicológicos y administrativos. | Acompañamiento continuo que reduce el abandono terapéutico | Onboarding digital guiado. Base de conocimiento y orientación documentada | Aseguradoras privadas. Empresas con gestión de accidentes laborales. Clínicas y centros de rehabilitación. Pacientes post-accidente (usuarios con acceso gratuito). Médicos y profesionales de la salud.
+ | Recursos Claves |  | Canales | 
+ | Plataforma web y móvil. Infraestructura en la nube. |  | Aplicación móvil. Página web. Redes sociales. Demostraciones institucionales. | 
+Estructura de costos | Fuentes de Ingresos
+Desarrollo y mantenimiento del software. Soporte técnico y atención al usuario. Nómina del equipo operativo. | Licencias corporativas para aseguradoras (ARS) y empresas con empleados accidentados. Planes Premium para médicos y centros de rehabilitación. Comisión por reservas de citas médicas y terapias realizadas a través de la plataforma. Espacios publicitarios patrocinados por laboratorios farmacéuticos, claramente identificados. Servicios de analítica y reportes institucionales anonimizados. Acceso gratuito para el paciente (sin costo).
+[/TABLA]
+
+# CAPÍTULO II. GESTIÓN ESTRATÉGICA
+
+## Filosofía institucional
+Robbins y Coulter (2020) señalan que la misión, la visión y los valores forman la base de la identidad de una organización y alinean sus decisiones estratégicas con objetivos claros y duraderos. En el caso de ReHub, esta filosofía se fundamenta en el acompañamiento integral al paciente, la innovación tecnológica en el ámbito de la salud y la contribución al bienestar de las personas durante su proceso de recuperación post-accidente.
+
+### Misión
+Acompañar de forma integral a las personas que han sufrido un accidente durante su proceso de recuperación post-alta, proporcionando a través de una plataforma digital centralizada los recursos, herramientas y orientación necesarios para garantizar una recuperación efectiva, organizada y continua en la República Dominicana.
+
+### Visión
+Ser la plataforma digital de referencia en acompañamiento post-accidente en la República Dominicana y el Caribe para el año 2030, reconocida por mejorar la calidad de vida de los pacientes mediante la integración de tecnología, salud y bienestar.
+
+### Valores
+Compromiso con el paciente: el bienestar del usuario es el centro de cada decisión de diseño, desarrollo y servicio.
+Innovación: búsqueda constante de soluciones tecnológicas que mejoren la experiencia de recuperación post-accidente.
+Integridad: transparencia y honestidad en el manejo de la información y los datos clínicos de los pacientes.
+Empatía: comprensión profunda de las necesidades físicas, emocionales y sociales del paciente durante su proceso de recuperación.
+Colaboración: trabajo conjunto con profesionales de la salud, aseguradoras y familias para ofrecer un acompañamiento verdaderamente integral.
+
+## Análisis de las 5 fuerzas de Porter
+Porter (2008) plantea que la competitividad de un sector puede comprenderse a partir de cinco fuerzas cuya interacción determina su atractivo y su rentabilidad. Estas fuerzas (competencia existente, amenaza de nuevos competidores, poder de negociación de los proveedores, poder de negociación de los clientes y amenaza de productos sustitutos) determinan en conjunto qué tan defendible es la posición de una empresa y su capacidad de sostener ventajas competitivas a largo plazo.
+En el caso de ReHub, el análisis de las cinco fuerzas proporciona una visión integral sobre el entorno competitivo del mercado de plataformas digitales de salud y recuperación post-accidente, considerando tanto los factores tecnológicos como las condiciones del sector sanitario y de seguros en la República Dominicana.
+.
+Tabla 2
+Análisis de las cinco fuerzas de Porter para ReHub en el sector salud digital
+[TABLA]
+Fuerza de Porter | Grado | Análisis para ReHub
+Rivalidad entre competidores existentes | Bajo | En la República Dominicana no existen plataformas enfocadas específicamente en el seguimiento post-accidente. Las soluciones de salud general y telemedicina no cubren este nicho, por lo que la competencia directa es limitada.
+Amenaza de nuevos competidores | Medio | El crecimiento de la salud digital podría atraer nuevas startups y aseguradoras. Sin embargo, la especialización de ReHub y sus convenios institucionales actuarían como barreras de entrada.
+Poder de negociación de los proveedores | Medio | ReHub depende de proveedores tecnológicos y profesionales de la salud. La diversificación de alianzas y el uso de servicios cloud reducen la dependencia de un solo proveedor.
+Poder de negociación de los clientes | Medio-alto | Los usuarios pueden rechazar la plataforma si no perciben beneficios inmediatos. El acceso gratuito para el paciente, una interfaz intuitiva y el acompañamiento continuo favorecen su adopción y fidelización.
+Amenaza de productos sustitutos | Medio | La atención presencial, las clínicas de rehabilitación y el apoyo familiar son alternativas tradicionales. ReHub se diferencia por ofrecer mayor organización, accesibilidad y continuidad en el seguimiento.
+[/TABLA]
+Nota. Adaptado de Porter (2008), aplicado al análisis competitivo del mercado de plataformas digitales de salud post-accidente en República Dominicana.
+
+## Análisis FODA de la idea de negocio
+El siguiente análisis permite identificar las fortalezas, oportunidades, debilidades y amenazas de ReHub, con el fin de definir estrategias que fortalezcan su posicionamiento en el mercado nacional de plataformas digitales de acompañamiento post-accidente. Se destaca una solución enfocada en la centralización del proceso de recuperación post-alta, que aporta organización, seguimiento continuo e integración de servicios médicos, psicológicos y administrativos para reducir el abandono de tratamientos y mejorar la calidad de vida del paciente.
+Sin embargo, también se consideran retos como la credibilidad inicial de la plataforma, la resistencia al cambio por parte de usuarios y profesionales de la salud, y los recursos necesarios para su desarrollo e implementación. A partir de estos factores se construye la Matriz de estrategias – Cruce FODA, la cual convierte el diagnóstico en acciones concretas (FO, DO, FA y DA) orientadas a aprovechar oportunidades del entorno, reducir riesgos y consolidar las ventajas competitivas del proyecto.
+Tabla 3
+Matriz de estrategias – Cruce FODA de ReHub
+[TABLA]
+Fortalezas (F) | Oportunidades (O)
+F1. Solución innovadora sin competencia directa en RD. F2. Integración de múltiples servicios en una sola plataforma. F3. Propuesta centrada en el paciente. F4. Modelo de negocio escalable y adaptable. F5. Alianzas estratégicas con el sector salud. | O1. Crecimiento del mercado de salud digital en RD. O2. Nicho post-alta no cubierto por ninguna plataforma. O3. Mayor conciencia de la rehabilitación integral. O4. Incremento del uso de smartphones y apps de salud. O5. Posibles alianzas con aseguradoras y hospitales.
+Debilidades (D) | Amenazas (A)
+D1. Plataforma nueva sin historial de credibilidad. D2. Dependencia de conectividad a internet. D3. Requiere alto capital inicial para desarrollo tecnológico. D4. Posible resistencia al cambio por parte de usuarios. D5. Necesidad de validación clínica de los procesos. | A1. Entrada de nuevos startups de salud digital. A2. Inestabilidad económica que reduzca inversión en salud. A3. Desconfianza del usuario hacia plataformas digitales de salud. A4. Cambios regulatorios en el sector salud dominicano. A5. Riesgo de ciberseguridad y protección de datos de pacientes.
+Estrategias FO (Ofensivas) | Estrategias DO (Adaptativas)
+FO1. Aprovechar la ausencia de competidores directos en el nicho post-accidente para posicionarse como la plataforma de referencia nacional, destacando la integración de servicios médicos, psicológicos y administrativos en un solo entorno digital. | DO1. Reducir la curva de adopción con un onboarding guiado, tutoriales cortos y una interfaz intuitiva que permita al paciente comenzar a usar la plataforma desde el primer día post-alta sin fricción.
+Estrategias FA (Defensivas) | Estrategias DA (Supervivencia)
+FA1. Diferenciarse mediante reportes de seguimiento claros y medibles (cumplimiento de terapias, medicamentos y citas) para competir frente a posibles nuevos entrantes y demostrar impacto real en la recuperación del paciente. | DA1. Lanzar un MVP con las funcionalidades esenciales (seguimiento de medicamentos, citas y terapias) para evitar el abandono por complejidad y validar el modelo antes de escalar a módulos adicionales.
+[/TABLA]
+
+## Objetivos estratégicos de la empresa
+Tabla 4
+Matriz de objetivos estratégicos de ReHub
+[TABLA]
+Objetivo estratégico | Perspectiva | Indicador (KPI) | Meta estratégica
+Facilitar el uso de la plataforma para que el paciente registre su recuperación y acceda a sus recursos desde el alta médica. | Cliente | Satisfacción del usuario / Tiempo de adaptación por perfil | ≥ 80% satisfacción en pilotos y adaptación en ≤ 2 horas por usuario.
+Mantener la plataforma estable y disponible en todo momento, garantizando el acceso continuo al seguimiento de medicamentos, citas y terapias. | Procesos internos | Uptime / Incidencias críticas / Tiempo de respuesta | ≥ 99% uptime mensual y < 2 incidencias críticas por mes.
+Reducir el abandono de tratamientos post-accidente en los usuarios activos de la plataforma mediante seguimiento automatizado y recordatorios. | Procesos internos | Tasa de abandono de tratamiento / Cumplimiento de terapias registradas | Reducir ≥ 30% la tasa de abandono en los primeros 3–6 meses de operación.
+Expandir el uso de ReHub mediante alianzas con hospitales, clínicas y aseguradoras, captando usuarios referidos institucionalmente. | Crecimiento / Mercado | Usuarios activos / Convenios firmados / Aliados comerciales activos | Alcanzar 1,000 usuarios activos y ≥ 5 convenios institucionales en el primer año de operación.
+[/TABLA]
+
+# CAPÍTULO III. ESTUDIO DE MERCADO
+
+## Descripción del producto o servicio
+FICHA TÉCNICA DEL PRODUCTO
+[TABLA]
+Campo | Descripción
+Nombre del producto | ReHub
+Tipo de producto | Plataforma digital de acompañamiento post-accidente
+Modalidad | Aplicación móvil y plataforma web
+Modelo de acceso | B2B2C: acceso gratuito y completo para el paciente, financiado por médicos e instituciones mediante planes Premium
+Planes disponibles | Paciente: acceso gratuito y completo. Planes de pago para aliados: Médico Premium (RD$500/mes), Centro de rehabilitación (RD$3,000–8,000/mes), Empresa (RD$15,000/mes), ARS (RD$50,000/mes) y Laboratorio (RD$20,000/mes)
+Idioma | Español
+Perfiles de usuario | Paciente en recuperación, familiar o cuidador, profesional de salud (médico, fisioterapeuta, psicólogo) e institución (aseguradora, empleador, clínica)
+Mercado objetivo | Personas de 25 a 55 años en proceso de recuperación post-accidente residentes en el Gran Santo Domingo y Santiago de los Caballeros
+Módulos funcionales | Seguimiento de medicamentos, gestión de citas y terapias, acompañamiento psicológico, orientación administrativa, monitoreo del progreso y reintegración laboral y social
+Funciones para el equipo médico | Consulta del historial del paciente, recepción de reportes automáticos de progreso y emisión de alertas por incumplimiento del tratamiento
+Canales de acceso | Dispositivos móviles (iOS y Android) y navegador web
+Integraciones previstas | Equipo médico tratante, aseguradoras y centros de rehabilitación
+Modelo de distribución | B2C (usuario individual) y B2B (instituciones de salud, aseguradoras y empleadores)
+País de desarrollo | República Dominicana
+Año de propuesta | 2026
+Desarrollado por | Nathaly Berroa, Pedro De La Rosa y Félix Blanco
+[/TABLA]
+
+## Diferenciación del producto
+ReHub se diferencia de cualquier otra oferta existente en el mercado dominicano por ser la única plataforma diseñada exclusivamente para el período post-accidente. Mientras que las aplicaciones de salud generales y las plataformas de telemedicina disponibles en el país atienden consultas médicas o el seguimiento de condiciones crónicas. Su diferenciación se sostiene en cuatro pilares. El primero es la especialización: cada módulo responde a una necesidad real del proceso de recuperación post-alta, a diferencia de las apps generalistas. El segundo es la integración: reúne en una sola plataforma los aspectos médicos, psicológicos, administrativos y sociales de la recuperación, eliminando la fragmentación que enfrenta el paciente actualmente. El tercero es la accesibilidad: el modelo B2B2C garantiza al paciente acceso gratuito y completo, ya que la plataforma es financiada por los aliados del ecosistema mediante planes Premium. El cuarto es la contextualización local: desarrollada para el sistema de salud dominicano, con información sobre aseguradoras y proveedores del país, a diferencia de apps internacionales que no contemplan estas realidades.
+
+## Descripción del perfil del cliente
+ReHub opera con dos tipos de cliente claramente diferenciados. El usuario final es una persona joven-adulta de entre 18 y 35 años, con predominio del rango de 26 a 35 años, vinculada al proceso de recuperación post-accidente como paciente o familiar, que accede a la plataforma de forma totalmente gratuita y busca control de citas, recordatorios de medicamentos y seguimiento de terapias. El cliente de pago es institucional: médicos independientes y fisioterapeutas que gestionan carteras de pacientes, centros de rehabilitación y clínicas que necesitan reducir el abandono de terapias, aseguradoras y ARS interesadas en acortar los tiempos de recuperación de sus afiliados, empresas que deben reintegrar a colaboradores accidentados y laboratorios que buscan canales de contacto con pacientes en tratamiento. Cada aliado adquiere el servicio porque mejora un indicador propio: adherencia, ocupación de agenda, siniestralidad o ausentismo laboral.
+
+## Mercado potencial
+El mercado potencial de ReHub se compone de las instituciones de salud y empleadores que pueden financiar el acceso de los pacientes. En Santiago y el Gran Santo Domingo operan cientos de centros de rehabilitación, clínicas y consultorios de fisioterapia, junto a las principales ARS y un universo de empresas obligadas a gestionar accidentes laborales. La encuesta respalda ese potencial: más del 80% percibe que las personas abandonan sus terapias, problema que impacta los resultados clínicos y financieros de esos aliados.
+
+## Mercado meta
+El mercado meta de ReHub son los aliados institucionales de Santiago de los Caballeros, ciudad piloto del proyecto: médicos independientes y fisioterapeutas con cartera activa de pacientes en rehabilitación, centros de rehabilitación y clínicas privadas de tamaño mediano, las ARS del sistema dominicano y las empresas con personal expuesto a accidentes laborales. Estos clientes comparten un problema medible y costoso: pierden pacientes que abandonan el tratamiento a mitad de camino, sin ninguna visibilidad de lo que ocurre entre una consulta y la siguiente. El paciente beneficiario es un hombre o una mujer de entre 25 y 55 años que sufrió un accidente de tránsito o laboral en los últimos doce meses y salió del hospital con indicaciones médicas en mano pero sin nadie que le explique qué sigue ni cómo organizar su recuperación. ReHub le entrega esa estructura sin costo alguno, mientras el aliado obtiene el seguimiento y los datos de adherencia que antes no tenía. La propuesta gana al aliado porque convierte un gasto en un indicador de gestión, y gana al paciente porque le ofrece claridad en español y disponible cuando realmente la necesita.
+Proyección de captación del mercado (5 años)
+85,000 / 5 años = 17,000 usuarios por año
+17,000 / 12 meses = 1,417 usuarios por mes
+
+## Presentación de la competencia
+Tabla 5
+Visualización comparativa de algunas características de los competidores.
+[TABLA]
+Competidores | Fortalezas | Debilidades
+Plataformas de telemedicina generales (ej.: Doctolib) | Cuentan con presencia digital consolidada y reconocimiento de marca. Su infraestructura tecnológica está probada y ofrecen una experiencia de usuario desarrollada para el ámbito médico. Son accesibles desde dispositivos móviles y tienen disponibilidad en múltiples idiomas. | No están especializadas en el seguimiento post-accidente ni integran los aspectos psicológicos y administrativos de la recuperación. Su enfoque está en la consulta médica puntual, no en el acompañamiento continuo del paciente durante la rehabilitación.
+Clínicas de rehabilitación tradicionales (ej.: FisioRehab DR) | Poseen credibilidad médica establecida, atención presencial personalizada y una red activa de pacientes. El contacto directo con el profesional de salud genera confianza en el proceso de recuperación. | Su servicio es exclusivamente presencial, sin ninguna plataforma digital que complemente el seguimiento entre sesiones. El acceso está limitado por horarios, costos por sesión y ubicación geográfica, lo que dificulta la continuidad del tratamiento.
+Aplicaciones de salud generales (ej.: Ada Health, HealthTap) | Ofrecen amplias funciones de salud general, están disponibles en múltiples idiomas y son accesibles desde cualquier dispositivo móvil. Algunas cuentan con funciones de seguimiento de bienestar y orientación médica básica. | No están diseñadas para el contexto dominicano ni para el período específico post-accidente. No integran la gestión de terapias físicas, los trámites administrativos con aseguradoras ni la orientación para la reintegración laboral y social del paciente.
+[/TABLA]
+Nota. Con base en información pública de Doctolib (2026), Ada Health (2026) y HealthTap (2026); FisioRehab DR se menciona como ejemplo ilustrativo de las clínicas de rehabilitación locales. Las referencias completas se encuentran en la sección de referencias del documento.
+
+## Presentación de los proveedores
+Tabla 6
+Insumos tecnológicos y costos estimados para la operación de la plataforma ReHub.
+[TABLA]
+Productos | Proveedores | Precios aproximados (RD$)
+Infraestructura cloud (servidores y base de datos) | AWS / Google Cloud Platform | RD$3,000 – RD$12,000 mensuales, según arquitectura
+Desarrollo de software (frontend y backend) | Agencia tecnológica local o desarrolladores freelance RD | RD$160,000 – RD$400,000 el proyecto; RD$10,000 – RD$30,000 mensuales de mantenimiento
+Dominio web y certificado SSL | GoDaddy / Namecheap | RD$600 – RD$900 anuales el dominio; RD$0 – RD$6,000 anuales el SSL
+Comunicaciones (notificaciones push, SMS, correo) | Twilio / Firebase Cloud Messaging | RD$0 – RD$2,000 mensuales, según consumo
+Pasarela de pagos (procesamiento de suscripciones) | CardNet RD / PayPal | 2.5% – 4% por transacción, según tipo de tarjeta
+Almacenamiento de archivos | AWS S3 / Firebase Storage | RD$200 – RD$1,000 mensuales, según uso
+Monitoreo y logs | Datadog o Grafana Cloud | RD$1,000 – RD$4,000 mensuales
+[/TABLA]
+Nota. Precios aproximados convertidos a pesos dominicanos utilizando tarifas vigentes para servicios tecnológicos en la región, con variaciones según consumo y requerimientos específicos del proyecto.
+
+## Demanda
+
+### Análisis de la demanda
+Para determinar la viabilidad del proyecto se aplicó un cuestionario estructurado a 383 personas entre residentes del Gran Santo Domingo y Santiago de los Caballeros y profesionales del sector salud de las mismas ciudades, con el propósito de conocer la percepción, el interés y la disposición de la población hacia una plataforma digital de acompañamiento post-accidente como ReHub. Los resultados reflejaron que el 82% de los encuestados ha tenido contacto directo con el proceso post-accidente, ya sea de forma personal, a través de un familiar o en su práctica profesional, y que el 80% no recibió ningún seguimiento organizado por parte del sistema de salud después del alta médica, lo que confirma que la ausencia de acompañamiento post-accidente no es una percepción aislada, sino una experiencia mayoritaria y documentada en la muestra, y que constituye el vacío estructural que ReHub busca resolver.
+En cuanto a la disposición hacia la plataforma, el 85% de los encuestados indicó que la utilizaría o recomendaría y el 74% prevé un uso diario o de varias veces por semana durante su recuperación, mientras que en el aspecto económico el 59% estaría dispuesto a pagar por funciones avanzadas y el 30% optaría por el acceso gratuito, lo que confirma tanto una fuerte demanda de gratuidad para el paciente como una disposición de pago en el mercado que respalda el modelo B2B2C, en el que los aliados financian el acceso del paciente. Este mismo 85% recomendaría la implementación de ReHub en el sistema de salud dominicano (el indicador más contundente de demanda del estudio), de modo que los resultados confirman una demanda latente, favorable y cuantificable que respalda el proyecto como una respuesta tecnológica concreta a una necesidad real e insatisfecha en la República Dominicana.
+Métodos de muestreo, población objetivo y tamaño de la muestra
+El estudio de mercado se llevó a cabo desde un enfoque cuantitativo. Para ello se aplicaron encuestas estructuradas (Hernández Sampieri et al., 2014) a personas mayores de 18 años que residen en el Gran Santo Domingo y Santiago de los Caballeros, además de profesionales de la salud que trabajan en instituciones de ambas ciudades. La población objetivo estuvo conformada por dos segmentos: personas que hayan sufrido un accidente de tránsito, laboral o doméstico en los últimos 24 meses, y profesionales vinculados directamente al proceso de recuperación post-alta.
+Para calcular el tamaño de la muestra se utilizó la fórmula para poblaciones finitas, considerando que el universo estimado para el estudio es de 85,000 personas, de acuerdo con los datos del Ministerio de Salud Pública (2023) y la DIGESETT (2023). La fórmula utilizada fue la siguiente:
+𝒏 =
+Proceso del cálculo:
+Datos:
+N: Población total = 85,000
+n: Tamaño de la muestra = 383
+Z: Nivel de confianza = 1.96
+P: Proporción positiva = 50% = 0.5
+Q: Proporción negativa = 50% = 0.5
+E: Error máximo permitido (5%= 0.05)
+El cálculo del tamaño de la muestra arrojó un valor de 382.5, el cual se aproximó a 383 personas como muestra estadísticamente representativa para un nivel de confianza del 95% y un margen de error de ±5%.
+Resultado: con una población estimada de 85,000 personas, una muestra de 383 encuestados permite obtener estimaciones con un nivel de confianza del 95% y un margen de error de ±5%, bajo el supuesto de máxima variabilidad (p=q=0.5).
+
+### Estimación y proyección de la demanda
+Para estimar la demanda potencial, se considera el total del universo identificado a partir de las fuentes oficiales consultadas:
+Demanda potencial = N x P
+Donde:
+N = 85,000 personas
+P = 1.00
+Demanda Potencial = 85,000 x 1.00
+Demanda Potencial = 85,000 personas
+Se estima que aproximadamente 85,000 personas del mercado objetivo, entre pacientes en proceso de recuperación post-accidente, familiares y profesionales de salud, presentan una tendencia favorable hacia la adopción de la plataforma ReHub.
+Proyección acumulada
+Tabla 7
+Proyección de usuarios anual (ReHub)
+[TABLA]
+Año | Clientes Nuevos | Total Acumulado
+1 | 17,000 | 17,000
+2 | 17,000 | 34,000
+3 | 17,000 | 51,000
+4 | 17,000 | 68,000
+5 | 17,000 | 85,000
+Total 5 Años |  | 85,000
+[/TABLA]
+Nota. Con base en la encuesta aplicada (sección 3.8.1) y en datos del Ministerio de Salud Pública (2023) y la DIGESETT (2023).
+
+## Estrategias de mercado
+
+### Estrategia de introducción al mercado
+Las estrategias de mercado de ReHub buscan posicionarla como la primera plataforma digital del país especializada en acompañar al paciente después de un accidente, una etapa en la que organizar el tratamiento, dar seguimiento y brindar apoyo emocional influyen directamente en su recuperación. Para lograr una buena entrada al mercado, se trabajará de forma gradual, combinando presencia digital, alianzas con instituciones y acompañamiento al usuario desde el primer día tras el alta, a través de:
+Presencia en internet y en buscadores, con un sitio web informativo y optimizado para búsquedas como "seguimiento post-accidente", "recuperación médica organizada" y "plataforma de salud digital", apoyado con campañas de búsqueda cuando sea necesario.
+Campañas en redes sociales centradas en mostrar los beneficios de la plataforma (organización, seguimiento y acompañamiento), con contenido demostrativo dirigido a pacientes en recuperación, sus familiares y los profesionales de la salud.
+Entrada gradual al mercado, dando prioridad a las alianzas con hospitales y clínicas del Gran Santo Domingo y Santiago de los Caballeros para conseguir usuarios referidos desde el momento del alta médica.
+Acceso totalmente gratuito para el paciente como gancho de adopción masiva, acompañado de la captación de aliados de pago (médicos, centros de rehabilitación, aseguradoras, empresas y laboratorios) que financian la plataforma mediante planes Premium y servicios asociados.
+Distribución a través de canales digitales y convenios con instituciones, lo que facilita el acceso y la activación de la plataforma, con una orientación inicial al usuario cuando haga falta.
+Acompañamiento guiado en el primer uso, para que al paciente le resulte más fácil adoptar la plataforma en un momento difícil y entienda su valor desde las primeras semanas.
+Con estas estrategias se busca reforzar lo que ofrece ReHub, reducir las barreras para empezar a usarla y afianzar sus ventajas frente a la atención post-alta tradicional y a las soluciones digitales más generales que ya existen en el mercado dominicano.
+
+### Precios
+El acceso a ReHub es totalmente gratuito para el paciente, quien dispone de todas las funciones de la plataforma sin costo alguno durante toda su recuperación. El modelo de ingresos no recae sobre el paciente sino sobre los aliados del ecosistema (médicos, centros de rehabilitación, aseguradoras, empresas y laboratorios), que financian la plataforma mediante planes Premium y servicios asociados. Esta estrategia B2B2C convierte la gratuidad total del paciente en el principal gancho de adopción masiva y, a la vez, en la propuesta de valor que atrae a los aliados de pago: mientras mayor sea la base de pacientes activos, mayor es el interés de médicos e instituciones por acceder a los paneles de seguimiento, los reportes clínicos y la visibilidad dentro de la plataforma. Los precios de los planes de aliados se establecieron con base en su capacidad de pago institucional y en estimaciones del mercado de salud digital de la región.
+Tabla 8
+Planes de aliados y tarifas mensuales de ReHub (con ITBIS incluido). El paciente accede de forma totalmente gratuita.
+[TABLA]
+Plan | Precio base (RD$) | ITBIS 18 % (RD$) | Total (RD$) | Funcionalidades principales | Dirigido a
+Médico Premium | 500 | 90 | 590 | Panel del médico con historial del paciente, reportes automáticos de progreso, alertas por incumplimiento del tratamiento y comunicación directa con sus pacientes. | Médicos y profesionales de la salud que dan seguimiento a sus pacientes en recuperación post-accidente.
+Centro de rehabilitación | 3,000 – 8,000 | 540 – 1,440 | 3,540 – 9,440 | Panel institucional de seguimiento, gestión de grupos de pacientes, reportes agregados y soporte prioritario. El rango depende del volumen de pacientes y profesionales del centro. | Clínicas y centros de rehabilitación que dan seguimiento estructurado a grupos de pacientes post-accidente.
+Empresa | 15,000 | 2,700 | 17,700 | Licencia corporativa para seguimiento de la reintegración laboral de colaboradores accidentados, reportes de progreso y panel de recursos humanos. | Empleadores que buscan acompañar la recuperación y el retorno laboral de su personal.
+ARS / Aseguradora | 50,000 | 9,000 | 59,000 | Panel de seguimiento de asegurados, reportes de adherencia al tratamiento, indicadores de recuperación y datos para la gestión de siniestros y costos médicos. | Aseguradoras y ARS que dan seguimiento a la recuperación de sus asegurados post-accidente.
+Laboratorio | 20,000 | 3,600 | 23,600 | Visibilidad de marca dentro de la plataforma, publicidad patrocinada segmentada y espacios promocionales dirigidos a pacientes y profesionales de la salud. | Laboratorios farmacéuticos y proveedores de salud que buscan visibilidad ante pacientes en recuperación.
+Comisión por cita | 150 | 27 | 177 | Cargo por cada cita o terapia reservada a través de la plataforma (por transacción, no mensual), correspondiente a la gestión de la reserva. | Aplica a las reservas de citas y terapias que los pacientes agendan con médicos y centros mediante ReHub.
+[/TABLA]
+Nota. El paciente accede de forma totalmente gratuita; las tarifas corresponden a los aliados que financian la plataforma. Precios establecidos con base en la capacidad de pago institucional y en estimaciones del mercado de salud digital en la región (Berroa et al., 2026).
+
+### Estrategia de distribución y canales de distribución
+La distribución se hará a través de un modelo de acceso gratuito para el paciente desde la aplicación móvil y la página web, lo que ofrece una solución completa y fácil de usar, sin instalaciones complicadas, de modo que el paciente pueda empezar a usar la plataforma desde el mismo momento del alta médica, cuando más necesita organización y orientación. La comercialización sigue una lógica B2B2C: el paciente accede sin costo, mientras que la monetización proviene de los aliados (instituciones de salud, aseguradoras, empresas y laboratorios); para llegar a estos se empezará con presentaciones y demostraciones guiadas ante los equipos médicos y administradores de las clínicas, buscando convenios que generen un flujo constante de usuarios referidos desde el alta hospitalaria y reduzcan la resistencia al cambio de los profesionales de salud.
+El canal digital se reforzará con el sitio web oficial y medios de contacto directo como formularios, correo y WhatsApp, que facilitan pedir información, activar cuentas y seguir el registro del usuario, mientras que la presencia en buscadores y redes sociales servirá de apoyo para atraer a usuarios individuales y llevarlos hacia los canales de registro oficiales. Por su parte, las alianzas con hospitales, aseguradoras y centros de rehabilitación ampliarán el alcance mediante referidos, lo que reduce las barreras para empezar a usar la plataforma y aumenta su credibilidad entre los pacientes en recuperación.
+
+## Ventajas competitivas
+ReHub se diferencia por ser la única propuesta digital pensada exclusivamente para la etapa posterior a un accidente en la República Dominicana, una fase de la recuperación que hoy ninguna plataforma cubre de forma organizada, lo que la convierte en una alternativa sin competencia directa en el mercado dominicano, no solo porque digitaliza el seguimiento médico, sino porque reúne en un solo lugar los aspectos físicos, psicológicos, administrativos y sociales de la recuperación tras el alta. Al concentrar todo el proceso en una sola plataforma, el paciente maneja sus medicamentos, citas, terapias y trámites sin usar varios canales separados, lo que ayuda a que menos personas abandonen su tratamiento (una necesidad respaldada por la encuesta, donde más del 80% percibe que las terapias se dejan incompletas), reduce el estrés de los trámites y mejora la comunicación con el equipo médico.
+Estas ventajas se apoyan en su modelo de acceso totalmente gratuito para el paciente, que le permite usar todas las funciones sin costo durante toda su recuperación (financiado por los aliados del ecosistema), y en el acceso desde el celular con recordatorios automáticos y notificaciones personalizadas, que mantienen el acompañamiento desde cualquier lugar durante toda la rehabilitación. A esto se suma que la plataforma está pensada para el sistema de salud dominicano, con orientación sobre aseguradoras, trámites y proveedores del país, algo que las aplicaciones internacionales no toman en cuenta.
+
+## Estrategia de promoción, publicidad y servicio al cliente
+La estrategia de promoción de ReHub busca ganar visibilidad y credibilidad en la salud digital, resaltando beneficios como organizar la recuperación, evitar el abandono del tratamiento y mantener el acompañamiento tras el alta, con una comunicación cercana al paciente y desplegada de forma digital, mediante un sitio web optimizado para buscadores, contenido en redes sociales dirigido a pacientes, familiares y profesionales de salud, campañas puntuales durante el lanzamiento y presentaciones ante hospitales, clínicas y aseguradoras que generen usuarios referidos desde el alta. A esto se suma un servicio al cliente cercano, con acompañamiento guiado en el primer uso, orientación durante las primeras semanas y soporte por WhatsApp y correo, que fideliza al usuario y afianza su confianza en la plataforma.
+
+# CAPÍTULO IV. ANÁLISIS DE LAS OPERACIONES
+
+## Análisis de localización de la empresa y disposición física
+Al tratarse de una plataforma digital y no de una operación de manufactura o de atención presencial, el análisis de localización de ReHub se centra en la ubicación del equipo de trabajo, la sede administrativa y la infraestructura tecnológica que soporta el servicio, y no en la localización de una planta de producción. Bajo este enfoque se evaluaron dos posibles sedes para la oficina administrativa: Santiago de los Caballeros, ciudad de origen del equipo fundador y de la Universidad Tecnológica de Santiago (UTESA), y el Gran Santo Domingo, donde se concentra la mayor parte de las instituciones de salud, aseguradoras y empleadores que conforman el mercado institucional (B2B) de la propuesta.
+Para decidir entre ambas opciones se utilizó una matriz de factores ponderados, considerando el costo de operación, la disponibilidad de talento tecnológico, la cercanía a las instituciones aliadas, la calidad de la conectividad digital y la facilidad para establecer alianzas institucionales.
+Tabla 9
+Matriz de factores de localización de la sede administrativa de ReHub
+[TABLA]
+Criterio de localización | Peso | Santiago de los Caballeros | Gran Santo Domingo
+Costo de alquiler y operación | 30% | 5 (1.50) | 3 (0.90)
+Disponibilidad de talento tecnológico | 20% | 4 (0.80) | 5 (1.00)
+Cercanía a instituciones de salud y aseguradoras | 15% | 3 (0.45) | 5 (0.75)
+Conectividad e infraestructura digital | 20% | 4 (0.80) | 5 (1.00)
+Facilidad para alianzas institucionales | 15% | 5 (0.75) | 4 (0.60)
+Puntaje ponderado total | 100% | 4.30 | 4.25
+[/TABLA]
+Nota. Escala de 1 (bajo) a 5 (alto). Entre paréntesis se muestra el puntaje ponderado (calificación x peso). Ponderaciones y calificaciones asignadas por el equipo del proyecto (2026).
+El resultado señala una ligera ventaja para Santiago de los Caballeros, sustentada principalmente en el menor costo de operación y en la facilidad para concretar las alianzas institucionales de la etapa inicial, que se establecerán con clínicas y centros de rehabilitación de la región del Cibao. Con base en este análisis, ReHub establecerá su sede administrativa principal en Santiago de los Caballeros, ciudad que además funge como mercado piloto de lanzamiento y donde el vínculo del equipo fundador con UTESA facilita el acceso a la red de profesionales y centros de salud locales. La expansión hacia el Gran Santo Domingo, donde se concentran las aseguradoras y los hospitales de mayor volumen, se contempla a partir del segundo año de operación, una vez validado el modelo en el mercado piloto.
+Disposición física
+Para el funcionamiento inicial se estima un espacio de aproximadamente 40 m², correspondiente al local seleccionado en Plaza Chulala, sector Los Jardines, distribuido en cuatro áreas funcionales que permiten a cada departamento operar eficientemente sin interferir en los demás procesos.
+Tabla 10
+Distribución de áreas funcionales de la sede de ReHub
+[TABLA]
+Área | Función principal | Modalidad
+Desarrollo y tecnología | Programación, mantenimiento y mejora de la plataforma. Alberga al Director de Tecnología, los desarrolladores backend y frontend, y el especialista QA, con estaciones de trabajo de alto rendimiento. | Híbrida (remoto/presencial)
+Comercial y soporte | Gestión de alianzas institucionales, atención al usuario vía WhatsApp y correo, y coordinación con hospitales, clínicas y aseguradoras. | Híbrida
+Administrativa | Dirección estratégica, control financiero, gestión de contratos y documentación legal. | Presencial
+Sala de reuniones / espacio común | Reuniones internas del equipo y encuentros puntuales con aliados institucionales. | Presencial
+[/TABLA]
+Figura 1
+Plano organizacional del local de Rehub
+Costos del local
+Se estima un alquiler mensual de RD$27,000 más RD$3,000 de mantenimiento (RD$360,000 anuales) por el local de Plaza Chulala, un monto manejable para una empresa tecnológica en etapa inicial y considerablemente menor al de un local comercial en zonas de alto tráfico como Colinas Mall o Bella Terra Mall, opciones descartadas por sus costos elevados y por no ser necesarias dado que ReHub no atiende público de forma presencial. La selección final priorizará un equilibrio entre costo, seguridad del sector, accesibilidad y disponibilidad de servicios básicos (internet de alta velocidad, electricidad estable y espacio de estacionamiento para el equipo).
+Análisis de ubicaciones evaluadas
+Durante el proceso de investigación se analizaron distintas ubicaciones dentro de plazas comerciales, como Colinas Mall y Bella Terra Mall, donde se consideró la posibilidad de establecer las oficinas del proyecto. Sin embargo, los costos de alquiler en estos centros comerciales resultaron significativamente elevados para una empresa en etapa inicial, lo cual podría afectar la estabilidad financiera durante los primeros años de operación.
+Debido a esta situación, se realizó una evaluación adicional de otros establecimientos y espacios comerciales ubicados en zonas estratégicas de la ciudad, pero con costos de alquiler más accesibles. Esta alternativa permite optimizar el uso de los recursos financieros disponibles y destinar una mayor parte del presupuesto al desarrollo tecnológico del sistema y a la expansión futura del negocio.
+La selección final del local se realizó priorizando un equilibrio entre costo, ubicación, accesibilidad y seguridad, con el objetivo de garantizar un entorno adecuado para el funcionamiento de la empresa y el crecimiento progresivo del proyecto.
+Tabla 11
+Localización de la empresa utilizando el método de costo mínimo.
+[TABLA]
+Plaza / Local | Ubicación | Mt² | Renta mensual | Costo por m² | Mantenimiento | Total acumulado
+Chulala (escogido) | Los Jardines | 40 | 27,000 | 675 | 3,000 | 30,000
+Gurabo | Gurabo | 50 | 20,000 | 400 | 2,500 | 22,500
+Las colinas | Las colinas | 40 | 30,000 | 750 | 3,500 | 33,500
+Plaza Brookling | Padre las Casas | 50 | 30,000 | 600 | 2,000 | 32,000
+[/TABLA]
+Nota. Con base en precios de alquiler de locales comerciales en Santiago de los Caballeros publicados en portales inmobiliarios dominicanos (SuperCasas, 2026; Corotos, 2026).
+Aunque Gurabo presenta el menor costo total acumulado, ReHub selecciona la Plaza Chulala, en Los Jardines, por ofrecer un mejor equilibrio entre costo, ubicación estratégica y accesibilidad para el equipo y los aliados institucionales, factores que no quedan reflejados únicamente en el costo mensual.
+
+## Tamaño del negocio o capacidad de producción
+La capacidad de ReHub no depende de una planta física ni de un volumen de producción, sino de la infraestructura tecnológica y del equipo humano que sostienen el crecimiento. Al operar con acceso gratuito para el paciente desde aplicación móvil y plataforma web, cada nuevo usuario no implica una instalación ni una intervención manual. El dimensionamiento inicial se apoya en la proyección de demanda del capítulo III (17,000 usuarios nuevos por año hasta alcanzar 85,000 acumulados en cinco años), cifra que constituye la meta de adopción y no el límite técnico: la infraestructura en la nube contratada (AWS o GCP) permite ampliar la capacidad de procesamiento sin inversión estructural previa si la incorporación avanza más rápido de lo estimado.
+Tabla 12
+Capacidad operativa proyectada de ReHub por etapa.
+[TABLA]
+Etapa | Usuarios activos acumulados | Infraestructura tecnológica | Equipo humano
+Etapa 1 (año 1) | Hasta 17,000 | Instancia cloud básica con autoescalado (AWS EC2 / RDS) | 6 colaboradores
+Etapa 2 (años 2-3) | Hasta 51,000 | Balanceo de carga y réplicas de base de datos | 6 + 2 colaboradores
+Etapa 3 (años 4-5) | Hasta 85,000 | Arquitectura distribuida en contenedores (Kubernetes) multi-zona | 6 + 3 colaboradores
+[/TABLA]
+Nota. Con base en la proyección de demanda del capítulo III y en los rangos de costo de infraestructura cloud presentados en la tabla 14.
+El tamaño inicial del negocio parte de un equipo de seis colaboradores (tabla 21) y de un Producto Mínimo Viable centrado en tres funcionalidades: recordatorios de medicamentos, gestión de citas y terapias, y un panel de seguimiento para el equipo médico tratante. Los módulos restantes (apoyo psicológico, orientación administrativa y monitoreo del progreso) se incorporarán de forma escalonada conforme se valide la adopción del MVP, sin que esto obligue a una reestructuración operativa mayor, dado el diseño modular de la plataforma descrito en el capítulo III.
+Este crecimiento depende en buena medida de factores que están fuera del control directo del equipo técnico: la disposición de hospitales, clínicas y aseguradoras a integrar ReHub como parte de su proceso de alta, la confianza que los pacientes desarrollen hacia una plataforma nueva en el mercado dominicano, y la capacidad del equipo de soporte para sostener un acompañamiento cercano durante las primeras semanas de uso, tal como se planteó en la estrategia DO1 del capítulo II.
+
+## Procesos. Descripción de los procesos
+ReHub funciona mediante módulos interconectados que acompañan al paciente desde el alta médica hasta su reintegración laboral y social, organizando el seguimiento de medicamentos, citas y terapias, apoyo emocional, orientación administrativa, monitoreo del progreso y, por detrás, alianzas institucionales, administración del sistema y protección de datos clínicos.
+A continuación, se describen los principales procesos operativos del sistema.
+Proceso de alta e incorporación del paciente
+El paciente, un familiar o el personal de una institución aliada lo registra en la plataforma al momento del alta, ingresando datos básicos, tipo de accidente e indicaciones médicas, con acceso gratuito y completo. El sistema activa solo los módulos de la etapa correspondiente y ofrece un acompañamiento guiado durante las primeras semanas para facilitar la adopción.
+Proceso de seguimiento de medicamentos
+El paciente o su familiar carga el esquema de medicación indicado por el médico (nombre, dosis, frecuencia y duración) y el sistema organiza los horarios y envía recordatorios automáticos. Cada dosis tomada o no registrada construye un historial de cumplimiento que alimenta el panel del médico tratante (plan Premium) y genera alertas automáticas ante incumplimientos reiterados.
+Proceso de gestión de citas y terapias
+El módulo de Citas y terapias permite programar las consultas de seguimiento y las sesiones de fisioterapia, registrando cada cita con fecha, hora y profesional asignado y enviando recordatorios previos para reducir el ausentismo, uno de los principales causantes del abandono terapéutico identificado en la encuesta. El paciente puede consultar el estado de sus sesiones (pendientes, completadas o reprogramadas) y ese avance se refleja también en el módulo de Monitoreo de progreso, de modo que el cumplimiento de terapias queda conectado con el resto de su recorrido.
+Proceso de apoyo en salud emocional
+El módulo de Salud emocional ofrece recursos de apoyo psicológico, desde contenido de orientación general hasta la conexión con un profesional de salud mental aliado, sin costo para el paciente. No reemplaza la atención presencial, sino que evita que el componente emocional quede desatendido.
+Proceso de orientación en trámites y seguros
+Respondiendo a uno de los vacíos más señalados por los encuestados (la falta de orientación sobre los trámites administrativos tras un accidente), el módulo de Trámites y seguros ofrece información sobre los pasos a seguir ante la aseguradora, los documentos que suele requerir cada reclamación y, en convenios institucionales, orientación específica según la aseguradora o el empleador; además, mediante las licencias corporativas se conecta con el panel institucional, permitiendo a aseguradoras y empleadores dar seguimiento centralizado al estado de las reclamaciones de sus pacientes o empleados.
+Proceso de monitoreo de progreso y notificación al médico tratante
+El módulo de Monitoreo de progreso reúne la información generada por los demás módulos (cumplimiento de medicamentos, asistencia a terapias, avance en trámites) y la traduce en un panorama general del estado de recuperación del paciente. Esta vista está disponible de forma gratuita para el paciente y, cuando cuenta con un plan Premium, también para el médico tratante.
+Cuando detecta incumplimiento o estancamiento, el sistema notifica automáticamente al médico tratante para que intervenga a tiempo, sin depender del reporte verbal del paciente en la próxima consulta.
+Proceso de gestión de alianzas institucionales
+El área de Ventas y Marketing identifica hospitales, clínicas de rehabilitación y aseguradoras con potencial de integrarse a ReHub, les presenta la plataforma y negocia convenios de referidos que aporten pacientes desde el alta; firmado el convenio, la institución adquiere una licencia corporativa y da seguimiento a sus referidos mediante un panel institucional.
+Proceso de gestión de publicidad patrocinada
+Los laboratorios farmacéuticos y otros anunciantes del sector salud pueden contratar espacios publicitarios dentro de la plataforma, claramente identificados como contenido patrocinado. Estos espacios ofrecen información educativa sobre el uso correcto de medicamentos o tratamientos, sin intervenir en ningún momento en las decisiones médicas ni en la prescripción del paciente. El área de Ventas y Marketing gestiona los acuerdos, define la duración de las campañas y garantiza que todo contenido patrocinado cumpla con los criterios éticos y normativos aplicables.
+Proceso de reservas de citas y terapias con comisión
+Cuando un paciente agenda desde ReHub una cita o terapia con un centro de rehabilitación, fisioterapia, ortopedia o psicología aliado, la plataforma registra la reserva, la envía al centro correspondiente y gestiona su confirmación. Una vez confirmada la cita, el sistema calcula automáticamente la comisión pactada con el centro (un porcentaje o monto fijo por reserva) y la registra como ingreso para ReHub, sin ningún costo adicional para el paciente.
+Proceso de administración del sistema y protección de datos
+Este proceso, a cargo de la Dirección de Tecnología, permite gestionar los usuarios internos de la plataforma, definir los roles y permisos de acceso (paciente, familiar, profesional de salud, institución) y configurar los parámetros generales del sistema.
+Dado el carácter sensible de la información clínica que ReHub maneja, este proceso incluye también los controles de acceso, cifrado y respaldo de los datos del paciente, en cumplimiento de la Ley 172-13 sobre Protección de Datos de Carácter Personal. Ningún módulo de la plataforma (ni el de medicamentos, ni el de salud emocional, ni el de trámites) puede operar sin que este proceso de fondo garantice que la información del paciente se maneje de forma segura y conforme a la normativa vigente.
+Figura 2
+Diagrama de procesos de uso de la plataforma
+
+## Recursos
+
+### Recursos tangibles
+Los recursos tangibles corresponden a los activos físicos y elementos materiales necesarios para la operación de ReHub. Estos recursos permiten ejecutar las actividades de desarrollo, gestión administrativa y soporte técnico de la plataforma.
+Dentro de estos recursos se incluyen los equipos tecnológicos asignados al equipo de seis colaboradores (tabla 21), tales como laptops, dispositivos móviles de prueba, equipos de red y herramientas físicas necesarias para el desarrollo y mantenimiento del sistema.
+Asimismo, se contempla la inversión en mobiliario y equipos de oficina, incluyendo escritorios, sillas ergonómicas y demás elementos que permiten acondicionar el espacio físico de aproximadamente 40 m² descrito en la sección 4.1, distribuido en las áreas de desarrollo, comercial y administrativa.
+Tabla 13
+Equipos físicos necesarios
+[TABLA]
+Activo | Cantidad | Costo unitario (RD$) | Valor total (RD$) | Vida útil (años)
+Laptops de trabajo (i5 o equivalente / 8 GB RAM / SSD) | 6 | 24,000.00 | 144,000.00 | 5
+Dispositivos móviles de prueba (iOS y Android) | 3 | 13,000.00 | 39,000.00 | 4
+Monitores externos (22” Full HD) | 4 | 5,800.00 | 23,200.00 | 5
+Impresora multifuncional | 1 | 10,000.00 | 10,000.00 | 5
+Router empresarial básico | 1 | 5,000.00 | 5,000.00 | 5
+UPS / reguladores de energía | 2 | 3,800.00 | 7,600.00 | 5
+Disco externo / respaldo local | 1 | 5,500.00 | 5,500.00 | 5
+Escritorios de trabajo | 6 | 3,800.00 | 22,800.00 | 10
+Sillas ergonómicas | 6 | 3,200.00 | 19,200.00 | 10
+Periféricos (mouse, teclado, audífonos, webcam) | 6 | 2,200.00 | 13,200.00 | 5
+Total estimado de inversión |  |  | 289,500.00 | 
+[/TABLA]
+Nota. Con base en precios de referencia de comercios tecnológicos y de mobiliario de oficina de la República Dominicana (2026).
+
+### Recursos intangibles
+Los recursos intangibles corresponden a los elementos no físicos que aportan valor estratégico a ReHub y sustentan su funcionamiento desde el punto de vista tecnológico, operativo y comercial. Dado el carácter digital del negocio, estos recursos concentran la mayor parte del valor de la empresa, tal como se planteó en la introducción del capítulo.
+Tabla 14
+Requerimientos técnicos del sistema ReHub y costo estimado
+[TABLA]
+Categoría técnica | Elemento o herramienta | Función específica | Costo estimado mensual (RD$)
+Infraestructura en la nube | AWS (Amazon Web Services) o Google Cloud Platform (GCP) | Alojamiento de la plataforma, gestión de la base de datos de pacientes y escalamiento del sistema según la demanda. | 3,000 – 12,000
+Almacenamiento de archivos | Amazon S3 / Firebase Storage | Almacenamiento seguro de documentos, reportes e información de seguimiento de los pacientes. | 200 – 1,000
+Comunicaciones | Twilio / Firebase Cloud Messaging | Envío de recordatorios de medicamentos, notificaciones push y alertas automáticas al médico tratante. | 0 – 2,000
+Pasarela de pagos | CardNet RD / PayPal | Procesamiento de los pagos de los planes Premium de aliados (médicos, centros, empresas, ARS y laboratorios) y de las comisiones por cita. | 2.5% – 4% por transacción
+Monitoreo y logs | Datadog / Grafana Cloud | Identificación y corrección de incidencias del sistema antes de que afecten al usuario final. | 1,000 – 4,000
+Dominio y seguridad | GoDaddy / Namecheap, certificado SSL | Registro del dominio web y cifrado de las comunicaciones entre el usuario y la plataforma. | 50 – 575 (prorrateo mensual)
+Mantenimiento de software | Desarrollo interno / soporte externo | Corrección de errores, mejoras continuas y actualización de los módulos de la plataforma. | 10,000 – 30,000
+[/TABLA]
+Nota. Con base en las tarifas publicadas por AWS, Twilio, CardNet, Datadog y GoDaddy (consultadas en 2026), la proyección de la tabla 7 del capítulo III y la tabla 20 (costos de operación) del presente capítulo.
+Además del componente tecnológico, ReHub cuenta con otros recursos intangibles que constituyen su principal ventaja competitiva y que, por su naturaleza, requieren una inversión inicial o un costo de mantenimiento propio:
+Tabla 15
+Recursos tecnológicos y sistemas de información
+[TABLA]
+Tecnología o plataforma | Aplicación específica
+Next.js 14 (App Router) + TypeScript | Desarrollo del frontend de la plataforma web, incluyendo las rutas del dashboard, login y registro, con tipado estático para mayor robustez del código.
+Tailwind CSS + shadcn/ui | Diseño visual responsive de la interfaz y componentes reutilizables de UI en todo el sistema.
+NextAuth.js (Credentials Provider) | Autenticación y control de sesión de los usuarios (estrategia JWT), con validación de credenciales para el acceso a la plataforma.
+Node.js 18+ | Entorno de ejecución del proyecto en desarrollo y producción.
+GitHub | Control de versiones del código fuente y colaboración entre los integrantes del equipo de desarrollo.
+Notification API / almacenamiento en sesión | Módulo de recordatorios que programa y dispara notificaciones al usuario durante su sesión activa en la plataforma.
+[/TABLA]
+Tabla 16
+Servicios virtuales y equipo digital (en la nube)
+[TABLA]
+Servicio o plataforma | Función
+AWS (Amazon Web Services) o Google Cloud Platform (GCP) | Infraestructura principal en la nube para el alojamiento de la plataforma, administración de la base de datos y escalamiento del sistema según la demanda.
+Amazon S3 / Firebase Storage | Almacenamiento de archivos, documentos y reportes generados dentro de la plataforma.
+GitHub | Control de versiones del proyecto, automatización de pruebas, integración continua y apoyo en los despliegues del sistema.
+Twilio / Firebase Cloud Messaging | Envío de notificaciones y recordatorios automáticos a los usuarios de la plataforma.
+Google Workspace | Gestión de correo corporativo, documentos compartidos y colaboración interna del equipo fundador.
+[/TABLA]
+Nota. Con base en la documentación oficial de los proveedores citados (AWS, Google, GitHub y Twilio, 2026).
+Otro recurso intangible fundamental es el software ReHub, el cual integra funcionalidades como el seguimiento de medicamentos, la gestión de citas y terapias, el apoyo en salud emocional, la orientación en trámites y seguros, y el monitoreo del progreso del paciente, permitiendo centralizar todo el proceso de recuperación post-accidente en una sola plataforma.
+Asimismo, el conocimiento técnico del equipo de trabajo representa un recurso estratégico, ya que permite el desarrollo, mantenimiento y mejora continua del sistema.
+También se consideran recursos intangibles la base de datos de pacientes, la marca ReHub y su posicionamiento como primera plataforma especializada en acompañamiento post-accidente en el país, los cuales aportan valor competitivo y fortalecen la confianza del usuario.
+Finalmente, el servicio de soporte técnico y atención al usuario constituye un elemento clave para la adopción de la plataforma, facilitando su implementación y garantizando el acompañamiento continuo del paciente durante su proceso de recuperación.
+
+## Aspectos legales
+
+### Tipo de empresa
+ReHub se proyecta como una microempresa privada del sector cuaternario o de la economía del conocimiento, con seis (6) colaboradores y financiada por aportes del equipo fundador, ubicada dentro del rango de microempresa de la DGII (hasta nueve trabajadores y ventas brutas anuales de hasta RD$9,118,990.74). Se constituirá como Sociedad de Responsabilidad Limitada (S.R.L.), conforme a la Ley No. 479-08 (modificada por la Ley No. 31-11), figura que limita la responsabilidad de los socios a sus aportes y aporta la formalidad y credibilidad necesarias para manejar información clínica sensible ante hospitales, clínicas y aseguradoras; su constitución contempla el registro ante la Cámara de Comercio, la obtención del RNC ante la DGII y la inscripción como empleador ante la TSS.
+
+### Nómina de socios
+La empresa estará compuesta por tres socios fundadores, quienes aportarán conocimientos estratégicos, técnicos y administrativos para impulsar el desarrollo, operación y crecimiento de ReHub. Cada socio asumirá funciones acordes con su perfil profesional, con el propósito de establecer una estructura organizativa sólida y una gestión eficiente desde la etapa inicial del proyecto.
+De acuerdo con la Ley No. 479-08 sobre Sociedades Comerciales y Empresas Individuales de Responsabilidad Limitada, habrá sociedad comercial cuando dos o más personas físicas o jurídicas aporten bienes con el fin de realizar una actividad comercial organizada, participar en las ganancias y asumir las pérdidas que se generen. Asimismo, dicha ley reconoce a las sociedades de responsabilidad limitada como uno de los tipos societarios válidos en la República Dominicana, manteniéndose este marco legal con las modificaciones introducidas por la Ley No. 31-11 (República Dominicana, 2008, modificada por la Ley No. 31-11 de 2011).
+En la siguiente tabla se presenta la nómina de los socios fundadores de ReHub, detallando su rol, porcentaje de participación y tipo de aporte al proyecto.
+Tabla 17
+Nómina de socios propuesta de ReHub, SRL
+[TABLA]
+Nombre del socio | Rol | Porcentaje | Tipo de aporte
+Nathaly Berroa | Director General | 33.33 % | Capital y trabajo
+Pedro De La Rosa | Director de Tecnología y Desarrollo | 33.33 % | Capital y trabajo
+Félix Blanco | Director Administrativo y Financiero | 33.34 % | Capital y trabajo
+[/TABLA]
+
+### Marcas y patentes
+Con el fin de proteger la identidad comercial de ReHub, se contempla registrar su nombre comercial, logotipo y posible lema comercial ante la Oficina Nacional de la Propiedad Industrial (ONAPI). Este registro permitirá resguardar legalmente los elementos que distinguen a la plataforma en el mercado y asegurar su uso exclusivo dentro del territorio nacional. De acuerdo con la Ley No. 20-00 sobre Propiedad Industrial, el lema comercial puede registrarse por un período de diez (10) años, renovable por plazos iguales, siempre que la marca a la que esté vinculado se mantenga vigente (República Dominicana, 2000).
+
+### Incentivos, restricciones y normativas relacionadas con el negocio
+Tabla 18
+Incentivos, restricciones, normativas relacionadas con el negocio
+[TABLA]
+Aspecto | Descripción
+Incentivos para MIPYMES | ReHub, como microempresa tecnológica vinculada al sector cuaternario, podrá acogerse al marco de apoyo establecido por la Ley núm. 488-08 sobre el Régimen Regulatorio para el Desarrollo y Competitividad de las MIPYMES. Este marco facilita el acceso a mecanismos de fortalecimiento empresarial, capacitación, acompañamiento institucional y programas de financiamiento impulsados por entidades como el Ministerio de Industria, Comercio y Mipymes (MICM) y Promipyme.
+Innovación y desarrollo tecnológico | ReHub podría beneficiarse de las disposiciones de la Ley núm. 392-07 sobre Competitividad e Innovación Industrial, que promueve el desarrollo de proyectos tecnológicos e innovadores, así como de programas de incubación dirigidos a empresas emergentes de base digital.
+Protección de datos personales | Debido a que la plataforma gestionará datos clínicos y de seguimiento de pacientes, deberá cumplir la Ley núm. 172-13 sobre Protección de Datos de Carácter Personal. Esto implica obtener el consentimiento informado de los titulares, aplicar medidas razonables de seguridad y confidencialidad y establecer restricciones para el tratamiento de datos sensibles relacionados con la salud. Su cumplimiento también constituye un elemento central de la estrategia de confianza del usuario definida en el capítulo II, específicamente en la estrategia FA1.
+Transferencia internacional de datos | Al no existir en la República Dominicana centros de datos de los principales proveedores de nube utilizados por ReHub, como AWS y GCP, la información podría alojarse físicamente fuera del territorio nacional. Por esta razón, deberán formalizarse acuerdos de tratamiento de datos y cláusulas contractuales que garanticen un nivel de protección equivalente al exigido por la Ley núm. 172-13 para la transferencia internacional de datos personales.
+Información clínica y normativa sanitaria | ReHub deberá considerar las disposiciones de la Ley General de Salud núm. 42-01 debido a la naturaleza clínica de la información gestionada y al seguimiento de pacientes durante su proceso de recuperación post-accidente.
+Salud digital | La Estrategia Nacional de Salud Digital 2024-2028 del Ministerio de Salud Pública constituye un marco de referencia para la propuesta, debido a que orienta la incorporación y el desarrollo de soluciones tecnológicas dentro del sistema de salud dominicano.
+Comercio electrónico y consentimiento digital | Por tratarse de una solución digital, ReHub deberá considerar la Ley núm. 126-02 sobre Comercio Electrónico, Documentos y Firmas Digitales. Esta normativa reconoce la validez jurídica de los documentos y las transacciones electrónicas, por lo que resulta aplicable a los procesos de registro, aceptación de términos y condiciones y consentimiento informado realizados dentro de la plataforma.
+Constitución de la empresa | La constitución y operación formal de ReHub como Sociedad de Responsabilidad Limitada (S.R.L.) se regirá por la Ley núm. 479-08, modificada por la Ley núm. 31-11.
+Clasificación y obligaciones empresariales | La condición de ReHub como microempresa estará sujeta al marco legal, fiscal, comercial y administrativo aplicable a las MIPYMES en la República Dominicana, incluyendo las disposiciones correspondientes de la Dirección General de Impuestos Internos (DGII).
+[/TABLA]
+Nota. Información sintetizada con base en la Dirección General de Impuestos Internos (DGII, s. f.); Promipyme (s. f.); el Ministerio de Salud Pública (2024); y República Dominicana (2001, 2002, 2007, 2008, 2011, 2013).
+
+## Aspectos ambientales
+Los aspectos ambientales del proyecto ReHub se relacionan con el impacto de su actividad, el cual es menor en comparación con empresas industriales o de manufactura, debido a su naturaleza tecnológica y digital.
+El uso de una plataforma digital reduce procesos físicos, eliminando la necesidad de expedientes en papel para el seguimiento del paciente y sustituyéndolos por el registro digital de medicamentos, citas y progreso dentro de la aplicación. Asimismo, el esquema de trabajo híbrido adoptado por el equipo (sección 4.1) contribuye a reducir las emisiones asociadas al transporte diario del personal.
+La empresa promoverá el uso responsable de los recursos tecnológicos, priorizando proveedores cloud (AWS o GCP) con compromisos públicos de eficiencia energética, y el manejo adecuado de los equipos electrónicos (tabla 13) al final de su ciclo de uso, para minimizar la generación de desechos electrónicos.
+Tabla 19
+Impacto ambiental del proyecto
+[TABLA]
+Aspecto | Impacto
+Uso de papel | Eliminación de expedientes físicos del paciente
+Transporte del personal | Reducción de emisiones mediante esquema de trabajo híbrido
+Consumo energético en la nube | Uso de proveedores cloud con compromisos de eficiencia energética
+Equipos electrónicos | Manejo responsable y disposición adecuada al final de su vida útil
+[/TABLA]
+En el plano regulatorio, aunque ReHub no realiza actividades sujetas a permisos ambientales específicos por tratarse de un servicio digital, la empresa operará en observancia de los principios generales establecidos en la Ley No. 64-00 General sobre Medio Ambiente y Recursos Naturales, en lo que resulte aplicable a sus operaciones administrativas.
+
+## Total costos de operación. Cálculo del capital de trabajo
+Durante su etapa inicial, ReHub operará bajo una estructura de trabajo híbrida, combinando actividades técnicas y administrativas apoyadas en herramientas digitales y servicios en la nube. Este modelo permite optimizar recursos, mantener flexibilidad operativa y reducir costos, sin afectar la calidad del servicio ofrecido.
+Los costos operativos mensuales incluyen la infraestructura tecnológica necesaria, el local administrativo seleccionado en la sección 4.1 (Plaza Chulala), los gastos administrativos básicos, las acciones de marketing y la nómina del personal técnico, comercial y administrativo. Estos representan la base mínima requerida para sostener la operación de ReHub como microempresa tecnológica en su fase inicial.
+Tabla 20
+Costos operativos fijos y nómina. (Estimados mensuales)
+[TABLA]
+Categoría | Detalle | Costo mensual estimado (RD$)
+Servicios en la nube | AWS/GCP, comunicaciones, almacenamiento y monitoreo | 12,600.00
+Dominio y seguridad digital | Registro de dominio, DNS y certificado SSL | 575.00
+Mantenimiento de software | Corrección de errores y mejoras continuas de la plataforma | 20,000.00
+Marketing digital | Publicidad en redes sociales, contenido y campañas promocionales | 25,000.00
+Herramientas colaborativas | Google Workspace y plataformas de gestión interna | 3,000.00
+Renta del local | Plaza Chulala, Los Jardines (tabla 11) | 27,000.00
+Mantenimiento del local | Limpieza y mantenimiento general de oficina | 3,000.00
+Luz | Consumo eléctrico de equipos y climatización | 4,500.00
+Internet | Servicio de internet empresarial | 3,000.00
+Nómina | Personal técnico, administrativo y comercial (6 colaboradores, tabla 21), incluyendo prestaciones laborales (TSS, INFOTEP y regalía) | 287,000.00
+Subtotal mensual |  | 385,675.00
+Contingencia (10%) |  | 38,568.00
+Total, mensual estimado |  | RD$ 424,243.00
+[/TABLA]
+Nota. Con base en la tabla 7 (capítulo III), la tabla 11 (sección 4.1) y la tabla 21 (capítulo V). El renglón de nómina corresponde a los sueldos brutos de la tabla 21 (RD$232,000) más las prestaciones laborales de ley (RD$55,000), equivalentes a un 23.7% adicional por concepto de TSS, INFOTEP y regalía pascual.
+Cálculo del capital de trabajo
+Capital de trabajo = Costo de operación mensual × Meses de cobertura
+Capital de trabajo = RD$424,243 × 11 meses
+Capital de trabajo = RD$4,666,673
+El capital de trabajo se estimó en RD$4,666,673, equivalente a once meses de costos operativos. Este monto permite cubrir el déficit acumulado proyectado de RD$4,468,340 durante los dos primeros años de operación y mantener una reserva adicional de RD$198,333 para atender variaciones de liquidez, retrasos en los cobros institucionales y gastos imprevistos durante la etapa inicial del proyecto.
+
+# CAPÍTULO V. GESTIÓN EMPRESA Y DE PERSONAS
+
+## Organigrama de la empresa
+Figura 3
+Organigrama de ReHub
+
+## Descripción de puestos, funciones y sueldos
+El capital humano de ReHub constituye un elemento fundamental para garantizar el adecuado funcionamiento y desarrollo de la plataforma.
+La estructura organizativa ha sido definida en función de las necesidades operativas, tecnológicas, comerciales y administrativas del proyecto, asignando responsabilidades específicas a cada puesto según la etapa inicial de implementación.
+A continuación, se presenta la distribución del personal junto con la remuneración mensual estimada, acorde a la etapa inicial de la propuesta.
+Tabla 21
+Descripción de puestos y sueldos estimados (mensuales).
+[TABLA]
+Cargo | Función principal | Cantidad | Sueldo | Total
+Director General | Dirección estratégica y supervisión general de la empresa | 1 | 55,000 | 55,000
+Director de Tecnología | Gestión del desarrollo, infraestructura y seguridad de la plataforma | 1 | 50,000 | 50,000
+Desarrollador Backend | Programación del servidor, APIs y base de datos | 1 | 40,000 | 40,000
+Desarrollador Frontend | Desarrollo de la interfaz web y móvil | 1 | 35,000 | 35,000
+Especialista en Ventas y Marketing | Captación de usuarios, alianzas institucionales y posicionamiento digital | 1 | 30,000 | 30,000
+Soporte al Usuario | Atención al cliente, orientación y resolución de incidencias | 1 | 22,000 | 22,000
+Total |  | 6 |  | RD$ 232,000.00
+[/TABLA]
+Nota. Sueldos estimados con base en los rangos salariales del mercado tecnológico dominicano reportados por Curriculum.do (2026) y la resolución núm. 089-2024 del Ministerio de Administración Pública (MAP), mediante la cual se establecen criterios de remuneración para cargos especializados en el área de las Tecnologías de la Información y Comunicación (TIC).
+
+# CAPÍTULO VI. ANÁLISIS FINANCIERO
+
+## Estimación y proyección de los ingresos
+Bajo el modelo B2B2C, el paciente accede a ReHub de forma totalmente gratuita y los ingresos provienen en su totalidad de los aliados que financian la plataforma, conforme a las tarifas de la tabla 8 del capítulo III: los planes Premium de médicos (RD$500 mensuales), los planes de centros de rehabilitación (RD$3,000 a 8,000 mensuales), las licencias corporativas de empresas (RD$15,000 mensuales), los planes de aseguradoras y ARS (RD$50,000 mensuales), los planes de laboratorios (RD$20,000 mensuales) y la comisión por cita gestionada a través de la plataforma (RD$150 por transacción). El ITBIS (18%) se excluye de los ingresos de la empresa por tratarse de un impuesto trasladado a la DGII, no de un ingreso propio.
+La captación de aliados se proyectó de forma gradual y proporcional al crecimiento de la base de pacientes gratuitos (tabla 7), que actúa como principal gancho de valor: mientras mayor es el número de pacientes activos, mayor resulta el interés de médicos, centros, empresas, aseguradoras y laboratorios por integrarse a la plataforma. Para cada tipo de aliado se estimó un número promedio por año, partiendo de una adopción inicial conservadora en el año 1 y acelerando conforme la plataforma gana reconocimiento y volumen de pacientes.
+Tabla 22
+Proyección de ingresos de ReHub a 5 años (RD$, sin ITBIS).
+[TABLA]
+Concepto | Año 1 | Año 2 | Año 3 | Año 4 | Año 5
+Ingresos planes Premium (médicos) | 240,000 | 720,000 | 1,320,000 | 2,040,000 | 2,880,000
+Ingresos centros de rehabilitación | 198,000 | 528,000 | 924,000 | 1,320,000 | 1,716,000
+Ingresos licencias corporativas (empresas) | 360,000 | 1,080,000 | 1,980,000 | 3,060,000 | 4,320,000
+Ingresos planes ARS / aseguradoras | 0 | 600,000 | 1,200,000 | 1,800,000 | 2,400,000
+Ingresos planes de laboratorios | 240,000 | 720,000 | 1,200,000 | 1,680,000 | 2,160,000
+Ingresos por comisión de citas | 900,000 | 3,000,000 | 6,000,000 | 9,750,000 | 14,250,000
+Ingresos totales | 1,938,000 | 6,648,000 | 12,624,000 | 19,650,000 | 27,726,000
+[/TABLA]
+Nota. Cifras en pesos dominicanos (RD$), sin ITBIS. Ingresos calculados a partir del número promedio de aliados de cada tipo por año y de las tarifas de la tabla 8 del capítulo III.
+Los ingresos totales proyectados crecen de RD$1,938,000 en el año 1 a RD$27,726,000 en el año 5, impulsados principalmente por la comisión de citas y las licencias corporativas, que en conjunto representan más de la mitad del ingreso total hacia el final del horizonte proyectado, en línea con el crecimiento de la base de pacientes que utilizan la plataforma para agendar sus consultas y terapias.
+
+## Proyección de costos de producción
+El costo de producción de ReHub es equivalente al costo de los servicios vendidos en un negocio de software como servicio agrupa dos componentes: los costos fijos de infraestructura tecnológica, que escalan conforme a las etapas de capacidad definidas en la tabla 12 del capítulo IV, y la comisión variable de la pasarela de pagos (3%, punto medio del rango de la tabla 14), aplicada sobre los ingresos cobrados por este medio (planes de médicos, centros, empresas, laboratorios y comisiones de citas), ya que los contratos de ARS y aseguradoras se facturan y cobran directamente por transferencia.
+Tabla 23
+Proyección de costos de producción de ReHub a 5 años (RD$)
+[TABLA]
+Concepto | Año 1 | Año 2 | Año 3 | Año 4 | Año 5
+Infraestructura tecnológica fija (tabla 20) | 398,100 | 618,900 | 618,900 | 852,900 | 852,900
+Comisión de pasarela de pagos (3% ingresos cobrados por pasarela) | 58,140 | 181,440 | 342,720 | 535,500 | 759,780
+Costo de producción total | 456,240 | 800,340 | 961,620 | 1,388,400 | 1,612,680
+[/TABLA]
+El margen bruto de ReHub parte de un 76.5% en el año 1 (cuando la infraestructura fija pesa más frente a un ingreso todavía reducido) y supera el 88% a partir del año 2, hasta alcanzar el 94.2% en el año 5, un nivel de margen característico de los negocios de software como servicio, dado que la infraestructura cloud y la comisión de cobro son los únicos costos directamente atribuibles a la prestación del servicio.
+
+## Proyección de gastos administrativos y gastos de ventas
+Los gastos administrativos y de ventas reproducen la estructura de costos de la tabla 20 del capítulo IV: nómina completa con prestaciones laborales (con las ampliaciones de la tabla 12), marketing y oficina, renta y mantenimiento del local, y contingencia del 10%. La proyección parte así del mismo costo operativo de RD$424,243 mensuales establecido en el capítulo IV.
+Tabla 24
+Proyección de gastos administrativos y de ventas de ReHub a 5 años (RD$)
+[TABLA]
+Concepto | Año 1 | Año 2 | Año 3 | Año 4 | Año 5
+Nómina del equipo (incluye prestaciones laborales) | 3,444,000 | 4,408,908 | 4,408,908 | 5,819,172 | 5,819,172
+Marketing digital y gastos de oficina | 426,000 | 657,000 | 657,000 | 888,000 | 888,000
+Renta y mantenimiento del local | 360,000 | 360,000 | 360,000 | 516,000 | 516,000
+Contingencia (10%) | 462,816 | 542,591 | 542,591 | 722,317 | 722,317
+Total gastos administrativos y de ventas | 4,692,816 | 5,968,499 | 5,968,499 | 7,945,489 | 7,945,489
+[/TABLA]
+Nota. Los montos del año 1 provienen de la tabla 20 del capítulo IV. La nómina incluye sueldos (RD$232,000) y prestaciones laborales (RD$55,000 por TSS, INFOTEP y regalía), y aumenta en los años 2 y 4 con las ampliaciones de personal de la tabla 12. La renta comprende el alquiler del local (RD$27,000) y su mantenimiento (RD$3,000).
+
+## Proyección de depreciación
+La depreciación de los activos fijos de ReHub (tabla 13 del capítulo IV) se calculó conforme a las categorías y tasas anuales establecidas por la Dirección General de Impuestos Internos (DGII) para fines del Impuesto Sobre la Renta: los equipos de cómputo y dispositivos móviles se deprecian a una tasa del 25% anual (Categoría II, vida útil de 4 años) y el mobiliario y equipo de conectividad a una tasa del 15% anual (Categoría III), aplicadas en línea recta para efectos de esta proyección. Se contempla además la incorporación de nuevos equipos de cómputo en los años 2 y 4, coincidiendo con la ampliación del equipo humano (tabla 12).
+Adicionalmente, la inversión en activos intangibles (sección 6.7.2) se amortiza en línea recta a lo largo de 5 años, conforme al criterio de amortización de activos intangibles y gastos de organización admitido por la DGII.
+Tabla 25
+Gastos de depreciación y amortización de ReHub a 5 años (RD$)
+[TABLA]
+Concepto | Año 1 | Año 2 | Año 3 | Año 4 | Año 5
+Depreciación equipos de cómputo y móviles (Cat. II, 25%) | 56,225 | 68,225 | 68,225 | 86,225 | 30,000
+Depreciación mobiliario y equipo de red (Cat. III, 15%) | 9,690 | 9,690 | 9,690 | 9,690 | 9,690
+Amortización de activos intangibles (20%) | 70,000 | 70,000 | 70,000 | 70,000 | 70,000
+Total depreciación y amortización | 135,915 | 147,915 | 147,915 | 165,915 | 109,690
+[/TABLA]
+Nota. Con base en las tasas de depreciación de la DGII y en la tabla 13 del capítulo IV.
+
+## Estado de resultados proyectado
+El estado de resultados proyectado integra los ingresos (tabla 22), el costo de producción (tabla 23), los gastos administrativos y de ventas (tabla 24) y la depreciación y amortización (tabla 25), además de los gastos financieros derivados del financiamiento externo descrito en la sección 6.8.2, y aplica la tasa del Impuesto Sobre la Renta (ISR) vigente para personas jurídicas en la República Dominicana (27%). Conforme al artículo 287 del Código Tributario, las pérdidas de los ejercicios 1 y 2 se compensan contra las utilidades de los ejercicios siguientes en cuotas anuales equivalentes al 20% de cada pérdida, límite que permite deducir hasta RD$799,478 por ejercicio a partir del año 3.
+Tabla 26
+Estado de resultados proyectado de ReHub a 5 años (RD$)
+[TABLA]
+Concepto | Año 1 | Año 2 | Año 3 | Año 4 | Año 5
+Ingresos totales | 1,938,000 | 6,648,000 | 12,624,000 | 19,650,000 | 27,726,000
+(-) Costo de producción | 456,240 | 800,340 | 961,620 | 1,388,400 | 1,612,680
+Utilidad bruta | 1,481,760 | 5,847,660 | 11,662,380 | 18,261,600 | 26,113,320
+(-) Gastos administrativos y de ventas | 4,692,816 | 5,968,499 | 5,968,499 | 7,945,489 | 7,945,489
+(-) Depreciación y amortización | 135,915 | 147,915 | 147,915 | 165,915 | 109,690
+Utilidad operativa (EBIT) | -3,346,971 | -268,754 | 5,545,966 | 10,150,196 | 18,058,141
+(-) Gastos financieros (intereses) | 212,035 | 169,628 | 127,221 | 84,814 | 42,407
+Utilidad antes de impuestos (EBT) | -3,559,006 | -438,382 | 5,418,745 | 10,065,382 | 18,015,734
+(-) ISR (27%) | 0 | 0 | 1,247,202 | 2,501,794 | 4,648,389
+Utilidad neta | -3,559,006 | -438,382 | 4,171,543 | 7,563,588 | 13,367,345
+[/TABLA]
+El año 1 cierra con una pérdida neta de RD$3,559,006 (margen de -183.6%) y el año 2 con RD$438,382 (-6.6%), resultado esperable en la fase de inversión y consolidación, cuando la base de aliados aún es pequeña frente a una estructura de costos fija. A partir del año 3 el proyecto alcanza utilidad positiva y el margen neto crece hasta el 48.2% en el año 5, reflejando el apalancamiento operativo propio de un negocio de software.
+
+## Punto de equilibrio
+El punto de equilibrio se calculó para el año 1 de operación, considerando como costos fijos la nómina, los gastos de marketing y administración y la renta del local (tabla 24), la depreciación y amortización (tabla 25), el componente fijo del costo de producción (infraestructura tecnológica, tabla 23) y los gastos financieros del préstamo (tabla 31); y como costo variable únicamente la comisión de la pasarela de pagos, que representa un 3% de los ingresos cobrados por ese medio.
+Cálculo del punto de equilibrio (año 1)
+Costos fijos año 1 = RD$4,692,816 + RD$135,915 + RD$398,100 + RD$212,035 = RD$5,438,866
+Margen de contribución = 1 - 0.03 = 0.97
+Punto de equilibrio (ingresos) = RD$5,438,866 / 0.97 = RD$5,607,078 anuales (RD$467,257 mensuales)
+Ingresos proyectados año 1 (tabla 22) = RD$1,938,000, equivalentes al 35% del punto de equilibrio anual
+El punto de equilibrio anual de RD$5,607,078 se ubica por encima de los ingresos proyectados para el año 1 (RD$1,938,000), lo que confirma que durante el primer año ReHub opera por debajo de su punto de equilibrio, en la fase de inversión inicial ya reflejada en el estado de resultados. Dado que los costos fijos crecen con las ampliaciones de personal e infraestructura de las etapas 2 y 3 (tabla 12), el punto de equilibrio se recalcula por año: RD$7,118,497 en el año 2 y RD$7,074,778 en el año 3. El proyecto supera su punto de equilibrio durante el año 3, cuando los ingresos alcanzan RD$12,624,000, lo que coincide con la primera utilidad neta positiva del estado de resultados.
+
+## Inversión total
+
+### Inversión en activos fijos
+La inversión inicial en activos fijos corresponde al equipo de cómputo, dispositivos móviles de prueba, mobiliario y equipo de conectividad descritos en la tabla 13 del capítulo IV, a los que se suman ampliaciones de equipo de cómputo en los años 2 y 4 para el personal incorporado en esas etapas (tabla 12).
+Tabla 27
+Inversión en activos fijos de ReHub (RD$)
+[TABLA]
+Activo | Monto inicial (RD$) | Ampliaciones posteriores
+Laptops y estaciones de trabajo (6) | 144,000 | Año 2: +RD$48,000 (2 equipos) / Año 4: +RD$72,000 (3 equipos)
+Dispositivos móviles de prueba (3) | 39,000 | N/A
+Mobiliario de oficina | 42,000 | N/A
+Equipo de conectividad y redes | 64,500 | N/A
+Total activos fijos (inversión inicial) | 289,500 | N/A
+[/TABLA]
+
+### Inversión en activos intangibles
+La inversión en activos intangibles cubre el desarrollo inicial del software (punto medio del rango de la tabla 6, RD$160,000-RD$400,000), el registro de marca ante ONAPI y el registro de derecho de autor del software ante ONDA (sección 4.5.3 del capítulo IV), y la configuración inicial de dominio e identidad de marca.
+Tabla 28
+Inversión en activos intangibles de ReHub (RD$)
+[TABLA]
+Activo intangible | Monto (RD$)
+Desarrollo inicial del software (punto medio, tabla 6) | 280,000
+Registro de marca (ONAPI) y derecho de autor de software (ONDA) | 50,000
+Configuración de dominio e identidad de marca | 20,000
+Total activos intangibles | 350,000
+[/TABLA]
+
+### Capital de trabajo
+El capital de trabajo corresponde a los recursos financieros destinados a cubrir los gastos operativos durante los primeros meses de funcionamiento, mientras la base de clientes se consolida. Su cálculo se realiza a partir del costo operativo mensual total establecido en la tabla 20 (sección 4.7), ascendente a RD$424,243, considerando un periodo de cobertura de once meses:
+Capital de trabajo = Costo de operación mensual × Meses de cobertura
+Capital de trabajo = RD$424,243 × 11 = RD$4,666,673
+El capital de trabajo se estimó en RD$4,666,673, equivalente a once meses de costos operativos. Este monto permite cubrir el déficit acumulado proyectado de RD$4,468,340 durante los dos primeros años de operación y mantener una reserva adicional de RD$198,333 para atender variaciones de liquidez, retrasos en los cobros institucionales y gastos imprevistos durante la etapa inicial del proyecto.
+Tabla 29
+Resumen de la inversión total inicial.
+[TABLA]
+Categoría | Monto (RD$)
+Activos fijos | 289,500
+Activos intangibles | 350,000
+Capital de trabajo (11 meses) | 4,666,673
+Total, inversión inicial | RD$ 5,306,173
+[/TABLA]
+
+## Financiamiento
+
+### Capital propio
+El capital propio (RD$3,539,217) será aportado por los tres socios fundadores en proporción a su participación accionaria establecida en la tabla 17 del capítulo IV (33.33%, 33.33% y 33.34%), lo que representa un aporte aproximado de RD$1,179,621 por cada uno de los socios Nathaly Berroa y Pedro De La Rosa, y de RD$1,179,975 por parte de Félix Blanco.
+Tabla 30
+Estructura de financiamiento de la inversión inicial.
+[TABLA]
+Fuente | Rol | Participación | Aporte (RD$)
+Capital propio | Aporte equitativo de los 3 socios fundadores | 66.70% | 3,539,217
+Préstamo bancario | Banco de Reservas | 33.30% | 1,766,956
+Total capital |  | 100% | 5,306,173
+[/TABLA]
+
+### Financiamiento externo
+El financiamiento externo (RD$1,766,956) se contempla a través de un préstamo bancario orientado a emprendimientos tecnológicos (por ejemplo, líneas de financiamiento para pymes de Banreservas o Banco Popular), a una tasa de interés anual del 12%, a un plazo de 5 años, con amortización de capital en cuotas anuales iguales.
+Tabla 31
+Tabla de amortización del préstamo (RD$).
+[TABLA]
+Año | Saldo inicial | Interés (12%) | Amortización de capital | Saldo final
+1 | 1,766,956 | 212,035 | 353,391 | 1,413,565
+2 | 1,413,565 | 169,628 | 353,391 | 1,060,174
+3 | 1,060,174 | 127,221 | 353,391 | 706,783
+4 | 706,783 | 84,814 | 353,391 | 353,392
+5 | 353,392 | 42,407 | 353,392 | 0
+[/TABLA]
+
+## Evaluación de factibilidad económica y financiera
+
+### Flujo neto de efectivo
+El flujo de caja del inversionista se construyó a partir de la utilidad neta proyectada (tabla 26), sumando la depreciación y amortización (gasto que no representa salida de efectivo) y restando la amortización anual de capital del préstamo (tabla 31) y la reinversión en equipos prevista para los años 2 y 4 (tabla 27). En el año 5, cierre del horizonte de evaluación, se incorpora el valor residual en libros de los activos fijos no depreciados en su totalidad (RD$52,150), bajo el supuesto de liquidación al concluir el período. No se computa recuperación del capital de trabajo, dado que este se destinó a financiar el déficit operativo de los dos primeros años y por tanto no permanece disponible al cierre.
+En el año 0 los socios aportan el capital propio de RD$3,539,217, cifra que constituye la base de comparación de los indicadores de rentabilidad (secciones 6.9.2 a 6.9.4). A partir del año 1, el flujo se construye como se muestra en la tabla 32.
+Tabla 32
+Flujo de caja del inversionista de ReHub, años 1 a 5 (RD$)
+[TABLA]
+Concepto | Año 1 | Año 2 | Año 3 | Año 4 | Año 5
+Utilidad neta | -3,559,006 | -438,382 | 4,171,543 | 7,563,588 | 13,367,345
+(+) Depreciación y amortización | 135,915 | 147,915 | 147,915 | 165,915 | 109,690
+(-) Amortización de capital del préstamo | 353,391 | 353,391 | 353,391 | 353,391 | 353,392
+(-) Reinversión en equipos (tabla 27) | 0 | 48,000 | 0 | 72,000 | 0
+(+) Valor residual de activos fijos | 0 | 0 | 0 | 0 | 52,150
+Flujo neto de efectivo | -3,776,482 | -691,858 | 3,966,067 | 7,304,112 | 13,175,793
+Flujo acumulado | -7,315,699 | -8,007,557 | -4,041,490 | 3,262,622 | 16,438,415
+[/TABLA]
+Nota. El flujo acumulado parte de -RD$3,539,217 en el año 0 (capital propio invertido). Elaboración propia (2026).
+
+### ROI
+El ROI mide la rentabilidad de ReHub en relación con el capital propio invertido, expresando en términos porcentuales cuánto genera el proyecto por cada peso aportado por los socios.
+ROI = ((Flujo de efectivo acumulado − Inversión inicial) / Inversión inicial) × 100
+Datos utilizados:
+Capital propio invertido: RD$3,539,217
+Flujo de efectivo acumulado de los años 1 al 5: RD$19,977,632
+Sustituyendo los valores:
+ROI = ((RD$19,977,632 - RD$3,539,217) / RD$3,539,217) × 100
+ROI = (RD$16,438,415 / RD$3,539,217) × 100
+ROI = 464.46%
+Al cierre del quinto año, ReHub habrá generado un retorno acumulado de 464.46% sobre el capital propio: por cada peso aportado, el proyecto genera RD$4.64 de rendimiento, además de recuperar el capital invertido.
+Incluyendo la recuperación de la inversión, por cada peso invertido se obtendrían RD$5.64, equivalente a un retorno promedio de 92.89% anual.
+La rentabilidad proyectada responde principalmente al tamaño del mercado objetivo estimado en el capítulo III, de aproximadamente 85,000 personas, que alimenta la base gratuita de pacientes y con ella el interés de los aliados de pago, frente a una estructura de costos deliberadamente ligera, compuesta inicialmente por un equipo de seis personas. No obstante, dado que el resultado depende del ritmo de captación de aliados, en la sección 6.10 se analiza la sensibilidad financiera del proyecto ante diferentes escenarios y supuestos de adopción.
+
+### Tasa Interna de Retorno
+La TIR representa la tasa de descuento que iguala a cero el VPN de los flujos de caja del inversionista. Permite comparar directamente la rentabilidad del proyecto con el costo del financiamiento externo.
+Para su cálculo se utilizaron los flujos de caja del inversionista presentados en la tabla 32, considerando como desembolso inicial el capital propio aportado por los socios y como entradas los flujos generados durante los cinco años proyectados.
+Tabla 33
+Flujo de caja del inversionista proyectado (5 años)
+[TABLA]
+Año | Flujo neto de efectivo (RD$)
+0 (Capital propio invertido) | -3,539,217
+1 | -3,776,482
+2 | -691,858
+3 | 3,966,067
+4 | 7,304,112
+5 | 13,175,793
+[/TABLA]
+TIR ≈  35.2%
+La TIR de 35.2% se compara contra el rendimiento mínimo exigido por los socios, estimado en un 25% anual para un emprendimiento tecnológico en etapa temprana en el mercado dominicano, y supera ampliamente el 12% del financiamiento externo. Al descontar los flujos a esa tasa del 25%, el proyecto arroja un valor actual neto positivo de RD$2,336,643, lo que confirma que genera valor por encima del rendimiento requerido y mantiene capacidad para cubrir sus compromisos financieros.
+Este resultado es consistente con las características del modelo de negocio digital B2B2C de ReHub. Una vez desarrollada la infraestructura tecnológica y cubiertos los costos operativos básicos, la incorporación de nuevos aliados de pago puede generar ingresos adicionales sin que los costos aumenten en la misma proporción. No obstante, el resultado depende directamente de que se alcance el ritmo de captación de aliados establecido para el escenario base.
+
+### Período de Recuperación de la Inversión (PRI)
+El PRI determina el tiempo necesario para que los flujos de caja acumulados cubran el capital propio de RD$3,539,217 aportado por los socios.
+Para su cálculo se aplica la siguiente fórmula:
+PRI = A + ((B − C) ÷ D)
+Donde:
+A = Período anterior al de recuperación = 3
+B = Inversión inicial = RD$ 3,539,217
+C = Flujo acumulado del período A = -RD$502,273
+D = Flujo neto del período donde se recupera = RD$7,304,112
+Tabla 34
+Flujo de caja acumulado del inversionista durante el período de recuperación
+[TABLA]
+Año | Flujo neto de efectivo (RD$) | Flujo acumulado (RD$)
+1 | -3,776,482 | -3,776,482
+2 | -691,858 | -4,468,340
+3 | 3,966,067 | -502,273
+4 | 7,304,112 | 6,801,839
+5 | 13,175,793 | 19,977,632
+[/TABLA]
+Nota. El flujo acumulado bruto (RD$19,977,632 al año 5) se compara contra el capital propio de RD$3,539,217 para determinar el PRI; no debe confundirse con el de la tabla 32, que parte de -RD$3,539,217 por incluir el aporte inicial.
+Sustituyendo:
+PRI = 3 + (3,539,217 - (-502,273)) ÷ 7,304,112
+PRI = 3 + 4,041,490 ÷ 7,304,112
+PRI = 3 + 0.55
+PRI = 3.55 años ≈ 42.6 meses
+PRI ≈ 3 años y 7 meses
+ReHub recuperaría el capital propio en aproximadamente tres años y siete meses. Los años 1 y 2 cierran con flujo negativo y a partir del año 3 los flujos acumulados cubren progresivamente la inversión.
+Esto deja casi dos años de flujos plenamente positivos dentro del horizonte proyectado, siempre que se cumpla el ritmo de captación previsto.
+
+## Análisis de riesgo del proyecto de inversión
+ReHub está expuesto a factores ligados a su naturaleza tecnológica, el manejo de información de salud y las condiciones del mercado dominicano. Para evaluarlos se analizan los indicadores financieros bajo tres escenarios de captación de aliados: base (ritmo proyectado), conservador (65%) y optimista (150%).
+Escenario base (proyección normal). Con el ritmo de captación proyectado, ReHub alcanzaría ingresos de RD$1,938,000 en el primer año y RD$27,726,000 en el quinto, pasando de una pérdida neta de RD$3,559,006 a una utilidad de RD$13,367,345; obtendría una TIR del 35.2% y recuperaría el capital propio de RD$3,539,217 en unos tres años y siete meses, con un rendimiento superior al 25% exigido por los socios.
+Escenario conservador (menor ritmo de captación de aliados). Si la captación avanzara a un 65% del ritmo base por retrasos en los convenios o mayor resistencia institucional, los ingresos del primer año bajarían a RD$1,259,700 con una pérdida de RD$4,216,957, alcanzando RD$18,021,900 en ingresos y RD$6,635,223 de utilidad en el quinto año; la TIR y el valor actual neto serían negativos (-2.6%), por lo que el capital no se recuperaría en el horizonte de cinco años. El margen de tolerancia es estrecho: resulta crítico asegurar los primeros convenios antes de iniciar operaciones y monitorear mensualmente la captación.
+Escenario optimista (mayor ritmo de captación de aliados). Con una captación al 150% del ritmo base, los ingresos alcanzarían RD$2,907,000 en el primer año y RD$41,589,000 en el quinto, pasando de una pérdida de RD$2,619,076 a una utilidad de RD$23,135,586 con una TIR cercana al 74.4% y una recuperación más rápida del capital; ese crecimiento exigiría reforzar servidores, protección de datos y soporte al usuario para sostener la calidad del servicio.
+ReHub también enfrenta riesgos regulatorios (cambios en la Ley No. 172-13 sobre Protección de Datos), competitivos y tecnológicos, en particular el riesgo cambiario por proveedores de nube facturados en dólares frente a ingresos en pesos. El proyecto mantiene su viabilidad en los escenarios base y optimista, mientras que el conservador lo tornaría inviable; esta sensibilidad al ritmo de captación institucional constituye el principal riesgo y exige un seguimiento estrecho de los convenios, la liquidez y la seguridad de la información en los primeros doce a dieciocho meses.
+
+# CONCLUSIÓN
+El análisis desarrollado en el presente proyecto permitió identificar una problemática relevante dentro del sistema de salud dominicano: la ausencia de un modelo estructurado de acompañamiento durante el período post-accidente. A pesar de la eficiencia en la atención de emergencias, se evidenció que la etapa posterior a la alta médica carece de seguimiento organizado, lo que impacta negativamente en la recuperación integral de los pacientes.
+A partir de los estudios realizados, tanto a nivel estratégico como de mercado, se confirma la existencia de una demanda real y significativa por soluciones que faciliten la gestión del proceso de rehabilitación. Los resultados obtenidos reflejan una alta disposición de uso por parte de los potenciales usuarios, así como un nivel favorable de aceptación hacia herramientas digitales aplicadas al ámbito de la salud.
+En este contexto, ReHub se plantea como una propuesta innovadora y viable, que integra tecnología y servicios de salud en una solución pensada para el entorno dominicano. Su enfoque integral, basado en la organización de tratamientos, el seguimiento continuo y el acompañamiento emocional y administrativo, constituye un valor diferenciador frente a las alternativas existentes en el mercado.
+Asimismo, el análisis del entorno y la evaluación competitiva evidencian condiciones favorables para la implementación del proyecto, destacándose la ausencia de competidores directos especializados y el crecimiento del sector de salud digital. No obstante, también se identifican desafíos importantes, como la necesidad de generar confianza en los usuarios y adaptarse a posibles cambios regulatorios.
+En el plano financiero, la evaluación de factibilidad respaldó la viabilidad del proyecto. La inversión inicial estimada, de RD$5,306,173, se cubre con un 66.7% de capital propio de los socios y un 33.3% de financiamiento externo. Bajo el modelo B2B2C, en el que el paciente accede de forma totalmente gratuita y los ingresos provienen de los aliados de pago (médicos, centros, empresas, aseguradoras y laboratorios), el proyecto supera su punto de equilibrio durante el tercer año de operación, tras una fase de inversión inicial y consolidación con pérdidas en los dos primeros años. Los flujos de caja permiten recuperar el capital aportado en aproximadamente tres años y siete meses, y los indicadores de rentabilidad muestran una tasa interna de retorno del 35.2%, superior al 25% de rendimiento exigido por los socios y muy por encima del 12% del financiamiento externo, siempre que se cumpla el ritmo de captación de aliados asumido en el escenario base.
+En conclusión, ReHub responde a una necesidad insatisfecha dentro del sistema de salud y tiene el potencial de mejorar la calidad de vida de los pacientes y de ordenar los procesos de recuperación posteriores a un accidente. Por tratarse de una propuesta, su concreción dependerá del desarrollo e implementación posteriores y del cumplimiento de las metas de adopción de pacientes y de captación de aliados planteadas en el estudio; de lograrse, contribuiría además al avance de la salud digital en la República Dominicana.
+
+# REFERENCIAS
+Diario Libre. (2025, 15 de junio). Telemedicina: avances de la salud digital en República Dominicana. https://www.diariolibre.com/actualidad/salud/2025/06/15/telemedicina-avances-de-la-salud-digital-en-republica-dominicana/3150306
+Dirección General de Impuestos Internos. (s. f.). Información institucional y normativa tributaria. https://dgii.gov.do/
+Dirección General de Seguridad de Tránsito y Transporte Terrestre. (2023). Memoria institucional 2023. https://digesett.panel-dev-pys.ogtic.gob.do/wp-content/uploads/2025/08/MEMORIA-2023.pdf
+Doctolib. (2026). Doctolib: reserva de citas médicas en línea. https://www.doctolib.fr/
+Hernández Sampieri, R., Fernández Collado, C., & Baptista Lucio, P. (2014). Metodología de la investigación (6.ª ed.). McGraw-Hill.
+Instituto Dominicano de las Telecomunicaciones. (2024). Indicadores del sector telecomunicaciones. https://indotel.gob.do/transparencia/documentos/2023-reporte-de-indicadores-estadisticos-anuales/
+Instituto Dominicano de Prevención y Protección de Riesgos Laborales. (2023). Estadísticas institucionales. https://idoppril.gob.do/transparencia/estadisticas-institucionales/
+Ministerio de Salud Pública de la República Dominicana. (2024). Estrategia Nacional de Salud Digital 2024–2028. https://ensd.msp.gob.do/
+Organización Mundial de la Salud. (2021). Rehabilitación: Resumen de orientación. https://www.who.int/es/publications/i/item/9789240041264
+Organización Panamericana de la Salud. (2022). Salud digital en las Américas. https://www.paho.org/es/temas/salud-digital
+Osterwalder, A., & Pigneur, Y. (2010). Business Model Generation. John Wiley & Sons.
+Porter, M. E. (2008). Estrategia competitiva: Técnicas para el análisis de los sectores industriales y de la competencia. CECSA.
+Pullen, S., Bell, R., Ma, I., & Timbie, S. (2024). Improving Rehabilitation Access in the Dominican Republic: A Bridge to the World Health Organization's Rehabilitation 2030 Initiative. https://archivesisprm.org/full-text/9/eng
+República Dominicana. (2008). Ley No. 479-08 sobre sociedades comerciales y empresas individuales de responsabilidad limitada. https://www.oas.org/juridico/spanish/mesicic3_rep_ley_479_08.pdf
+República Dominicana. (2013). Ley No. 172-13 sobre Protección de Datos de Carácter Personal. https://dgii.gov.do/legislacion/leyesTributarias/Documents/Otras%20Leyes%20de%20Inter%C3%A9s/Ley%20172-13.pdf
+
+# ANEXOS
+Tabulación de los resultados de la encuesta realizada
+Tabla 1
+¿Cuál es su relación con los procesos de recuperación post-accidente?
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+He sufrido un accidente | 96 | 25.1%
+Soy familiar o cuidador de una persona accidentada | 0 | 0.0%
+Soy profesional del área de la salud | 191 | 49.8%
+Trabajo en una aseguradora, empresa o centro médico | 24 | 6.3%
+No he tenido relación directa | 72 | 18.8%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 1 del cuestionario aplicado
+Tabla 2
+¿En cuál rango de edad se encuentra?
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Menos de 18 años | 0 | 0.0%
+De 18 a 25 años | 144 | 37.6%
+De 26 a 35 años | 239 | 62.4%
+De 36 a 45 años | 0 | 0.0%
+De 46 a 55 años | 0 | 0.0%
+Más de 55 años | 0 | 0.0%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 2 del cuestionario aplicado
+Tabla 3
+Después del alta médica, ¿recibió algún tipo de seguimiento durante la recuperación?
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Sí, de manera continua | 191 | 49.9%
+Sí, pero de manera limitada | 72 | 18.8%
+No recibió seguimiento | 0 | 0.0%
+No aplica | 120 | 31.3%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 3 del cuestionario aplicado
+Tabla 4
+¿Cuáles fueron las principales dificultades durante la recuperación? (puede seleccionar varias)
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Cumplir con los medicamentos | 52 | 13.6%
+Recordar las citas médicas | 21 | 5.5%
+Asistir o dar continuidad a las terapias físicas | 62 | 16.2%
+Realizar trámites con la aseguradora | 52 | 13.6%
+Obtener apoyo psicológico | 62 | 16.2%
+Mantener comunicación con los profesionales de la salud | 31 | 8.1%
+Regresar al trabajo o a las actividades cotidianas | 72 | 18.7%
+Ninguna de las anteriores | 31 | 8.1%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 4 del cuestionario aplicado
+Tabla 5
+¿Con qué frecuencia considera que las personas abandonan o dejan incompletas sus terapias después de un accidente?
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Frecuentemente | 311 | 81.2%
+Algunas veces | 72 | 18.8%
+Nunca | 0 | 0.0%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 5 del cuestionario aplicado
+Tabla 6
+¿Qué tan útil considera una plataforma que reúna en un solo lugar las herramientas necesarias para organizar la recuperación post-accidente?
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Útil | 368 | 96.1%
+Nada útil | 15 | 3.9%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 6 del cuestionario aplicado
+Tabla 7
+¿Cuáles funciones consideraría más importantes dentro de la plataforma? (puede seleccionar varias)
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Recordatorios de medicamentos | 55 | 14.3%
+Control de citas médicas | 60 | 15.6%
+Seguimiento de terapias físicas | 55 | 14.4%
+Apoyo psicológico | 42 | 11.0%
+Orientación sobre trámites y seguros | 51 | 13.3%
+Seguimiento del progreso de recuperación | 46 | 12.0%
+Comunicación con profesionales de la salud | 32 | 8.4%
+Orientación para regresar al trabajo y a la vida cotidiana | 42 | 11.0%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 7 del cuestionario aplicado
+Tabla 8
+¿Utilizaría o recomendaría una plataforma digital como ReHub para acompañar el proceso de recuperación post-accidente?
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Sí | 371 | 96.9%
+No | 12 | 3.1%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 8 del cuestionario aplicado
+Tabla 9
+¿Considera que las funciones avanzadas de acompañamiento y seguimiento aportan suficiente valor como para justificar una inversión (ya sea del propio usuario o de un tercero, como un médico o institución)?
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Sí | 356 | 93.0%
+Solo usaría las funciones básicas gratuitas | 19 | 5.0%
+No utilizaría la plataforma | 8 | 2.0%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 9 del cuestionario aplicado
+Tabla 10
+¿Qué valor mensual consideraría razonable para un plan con funciones avanzadas de acompañamiento y seguimiento?
+[TABLA]
+Opciones | Frecuencia | Porcentaje
+Menos de RD$300 | 40 | 10.4%
+Entre RD$300 y RD$800 | 103 | 26.9%
+Entre RD$801 y RD$1,000 | 150 | 39.2%
+Más de RD$1,000 | 90 | 23.5%
+No estaría dispuesto a pagar | 0 | 0.0%
+Total | 383 | 100%
+[/TABLA]
+Nota. Pregunta 10 del cuestionario aplicado

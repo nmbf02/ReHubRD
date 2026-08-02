@@ -6,9 +6,52 @@ Este repositorio contiene la aplicación frontend (Next 14) con rutas de dashboa
 
 ---
 
+## El recorrido de recuperación
+
+La aplicación está organizada como **un proceso con inicio y final**, no como un catálogo de
+herramientas. El inicio es el **alta médica** y el final es la **reintegración laboral y social**, tal
+como los define la tesis:
+
+```
+ALTA MÉDICA ──▶ ① Ingreso ──▶ ② Tratamiento ──▶ ③ Avance ──▶ ④ Reintegración ──▶ ALTA REHUB
+   (día 0)       organizar      cumplir          sostener      volver             (se gradúa)
+```
+
+De esa estructura derivan el menú, el dashboard y los paneles de aliado. Se avanza **cumpliendo
+hitos**, no dejando pasar el tiempo, y el índice de recuperación sale de los datos de los módulos
+(dosis marcadas, terapias asistidas, trámites resueltos) — nunca del porcentaje de un formulario.
+
+**Los seis módulos** de la ficha técnica: Medicamentos · Citas y terapias · Trámites y seguros ·
+Salud emocional · Monitoreo de progreso · Reintegración. Cada uno se activa en la etapa que le toca.
+
+**Tres perfiles**, cada uno con su propia navegación y su propio panel de entrada:
+
+| Rol | Entra viendo | Ruta |
+|---|---|---|
+| Paciente | Dónde estoy hoy | `/dashboard` |
+| Profesional de salud | Sus alertas | `/dashboard/alerts` |
+| Institución (ARS · Empresa · Centro) | Su indicador | `/dashboard/institution` |
+
+Se alterna entre ellos con el selector «Estás viendo ReHub como» de la barra lateral.
+
+> **Documentación de referencia.** Las reglas de negocio extraídas de la tesis están en
+> [`docs/tesis/BR.md`](docs/tesis/BR.md), con la línea exacta del documento que sostiene cada una.
+> Las decisiones de arquitectura, en [`docs/adr/`](docs/adr/).
+
+### Datos de demostración
+
+Una aplicación vacía no puede enseñar un flujo. En **Cuenta → Modo demostración** hay un botón que
+carga un caso a mitad de recuperación (47 días desde el alta, adherencia ~78 %, siete terapias
+completadas) que queda **a una sola terapia** de pasar a Reintegración: al marcarla, el recorrido
+cambia de etapa en vivo. Los paneles de médico e institución traen su propia población, y el paciente
+de la sesión aparece dentro de la cartera del médico.
+
+---
+
 ## Características principales
 
-- Panel de usuario (`/dashboard`) con flujo: Perfil → Plan → Seguimiento → Recursos.
+- Panel del paciente (`/dashboard`) organizado por el recorrido de recuperación.
+- Paneles de aliado: alertas y cartera del médico tratante, indicadores institucionales.
 - Componentes reutilizables para UI y navegación (`src/components/*`).
 - Autenticación demo con `next-auth` (Credentials provider) para desarrollo.
 - Módulo de `SugerenciasRecordatorios` que permite programar recordatorios en sesión (usa `sessionStorage` y la Notification API cuando el navegador lo permite).

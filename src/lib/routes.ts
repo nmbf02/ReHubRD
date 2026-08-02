@@ -9,9 +9,26 @@ export const ROUTES = {
   followup: "/dashboard/followup",
   plan: "/dashboard/plan",
   resources: "/dashboard/resources",
-  medications: "/dashboard/medications",
   care: "/dashboard/care",
   intake: "/dashboard/intake",
+
+  // Los seis módulos funcionales de la tesis (BR-09). El orden es el del
+  // recorrido, no el alfabético.
+  medications: "/dashboard/medications",
+  appointments: "/dashboard/appointments",
+  paperwork: "/dashboard/paperwork",
+  emotional: "/dashboard/emotional",
+  progress: "/dashboard/progress",
+  reintegration: "/dashboard/reintegration",
+
+  // Panel del profesional de salud (BR-11, BR-12).
+  alerts: "/dashboard/alerts",
+  patients: "/dashboard/patients",
+  agenda: "/dashboard/agenda",
+
+  // Panel institucional: ARS, empresa o centro (BR-07).
+  institution: "/dashboard/institution",
+  population: "/dashboard/population",
 } as const;
 
 /** `/dashboard/resources?guia=…` */

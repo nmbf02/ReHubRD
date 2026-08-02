@@ -17,6 +17,7 @@ import { STAGES, STAGE_ORDER } from "@/lib/journey";
 import { isMissed, APPOINTMENT_KIND_LABEL } from "@/lib/appointments-store";
 import { OPCIONES_TIPO_ACCIDENTE } from "@/types/profile";
 import { MiniBar, RiskDot, StageBadge, riskOf } from "@/components/dashboard/PatientBits";
+import { IssuePrescription } from "@/components/dashboard/IssuePrescription";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -183,14 +184,24 @@ export function DoctorPatientsView({ userId, userName }: Props) {
                     ` · día ${selected.journey.daysSinceDischarge} desde el alta`}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => setSelectedId(null)}
-                className="rounded-lg p-1.5 text-rehub-500 transition-colors hover:bg-white"
-                aria-label="Cerrar detalle"
-              >
-                <X className="h-4 w-4" />
-              </button>
+              <div className="flex items-center gap-2">
+                <IssuePrescription
+                  doctorName={selected.doctorName}
+                  // La receta se ata a la cuenta cuando el paciente es el de la
+                  // sesión; los de la cohorte de demostración no tienen cuenta.
+                  patientId={selected.id === "sesion-actual" ? (userId ?? null) : null}
+                  patientName={selected.name.replace(" (tu sesión)", "")}
+                  center={selected.center}
+                />
+                <button
+                  type="button"
+                  onClick={() => setSelectedId(null)}
+                  className="rounded-lg p-1.5 text-rehub-500 transition-colors hover:bg-white"
+                  aria-label="Cerrar detalle"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </header>
 
             <div className="grid gap-6 p-6 lg:grid-cols-2">

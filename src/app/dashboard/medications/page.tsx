@@ -5,6 +5,7 @@ import { Pill } from "lucide-react";
 import { authOptions } from "@/lib/auth";
 import { MedicationsView } from "@/components/dashboard/MedicationsView";
 import { AdherencePanel } from "@/components/dashboard/AdherencePanel";
+import { PrescriptionsFromDoctor } from "@/components/dashboard/PrescriptionsFromDoctor";
 import { NearbyPharmacies } from "@/components/dashboard/NearbyPharmacies";
 import { DashboardPageHeader } from "@/components/dashboard/PageHeader";
 import { ROUTES, hrefLoginCallback } from "@/lib/routes";
@@ -22,6 +23,8 @@ export default async function MedicationsPage() {
       <DashboardPageHeader title={t("title")} description={t("description")} icon={Pill} />
       {/* Marcar las dosis va primero: es la acción diaria. Editar la receta se hace una vez. */}
       <AdherencePanel userId={session.user.id ?? null} />
+      {/* Lo que el médico emitió: no se muestra si no hay ninguna. */}
+      <PrescriptionsFromDoctor />
       <MedicationsView userId={session.user.id ?? null} />
       <NearbyPharmacies />
     </div>

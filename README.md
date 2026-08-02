@@ -72,7 +72,8 @@ de la sesión aparece dentro de la cartera del médico.
 | Persistencia | `localStorage` (solo en el dispositivo) | Postgres (Neon) en servidor, cifrado + respaldo |
 | Datos clínicos (PHI) | No se guardan en servidor (on-device) | Servidor con consentimiento, auditoría y retención (requiere ADR + revisión legal) |
 | Autenticación | `next-auth` demo (Credentials + JWT) | OAuth + cookies httpOnly + refresh + verificación de identidad del médico |
-| Roles | 1 rol (paciente) | RBAC: paciente · doctor · enfermera · farmacia |
+| Roles | 3 perfiles con navegación y panel propios (paciente · médico · institución), alternables con un selector | RBAC real: cada perfil entra con su propia cuenta, + enfermera y farmacia |
+| Compartir tratamiento | QR con un resumen legible del tratamiento — **no verifica autoría ni sustituye la receta** | Receta emitida por el médico desde su cuenta, firmada en servidor, con identificador opaco y anulable |
 | OCR de receta | Tesseract.js en el navegador (gratis; mejor con recetas impresas) | API de visión en la nube (Google Vision / GPT-4o), más precisa — de pago |
 | Recordatorios | Notification API mientras la app está abierta | Web Push + Service Worker + cron en servidor → notifican con la app cerrada |
 | Datos externos | `datos.gob.do` (abierto) + curaduría manual | + Google Places (con cuota), convenios de datos |

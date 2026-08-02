@@ -31,7 +31,7 @@
     "submitting": "Ingresando...",
     "noAccount": "¿No tienes cuenta?",
     "registerLink": "Regístrate",
-    "demoHint": "Acceso de prueba: nathaly / welcome",
+    "demoHint": "Acceso de prueba: demo@rehub.do / demo123",
     "errorUrl": "Error al iniciar sesión. Verifica tus credenciales.",
     "validationRequired": "Ingresa tu correo y contraseña.",
     "errorNoResponse": "No se recibió respuesta. Intenta de nuevo.",
@@ -104,7 +104,12 @@
       "eyebrow": "El problema",
       "title": "El vacío que ReHub viene a llenar",
       "intro": "En República Dominicana, una vez que la persona sale del hospital, enfrenta su recuperación física, emocional y social sin un sistema de acompañamiento continuo.",
-      "emotions": ["Vacío", "Confusión", "Agotamiento", "Soledad"],
+      "emotions": [
+        "Vacío",
+        "Confusión",
+        "Agotamiento",
+        "Soledad"
+      ],
       "postDischarge": {
         "title": "Vacío post-alta",
         "desc": "La atención se concentra en emergencia y hospitalización. Al salir del centro de salud, la persona queda sin acompañamiento estructurado."
@@ -326,6 +331,46 @@
       "resources": {
         "title": "Recursos y guías",
         "description": "Orientación concreta para ir a un lugar, conseguir medicamentos, apoyo cuando estás sola o solo, y más."
+      },
+      "appointments": {
+        "title": "Citas y terapias",
+        "description": "Tus consultas y sesiones de fisioterapia en un solo lugar, con aviso antes de cada una. Faltar a las terapias es la causa más común de que una recuperación se quede a medias."
+      },
+      "emotional": {
+        "title": "Salud emocional",
+        "description": "Cómo vas por dentro también es parte de la recuperación. Registra tu ánimo en un toque y conecta con apoyo real cuando lo necesites."
+      },
+      "paperwork": {
+        "title": "Trámites y seguros",
+        "description": "Qué papel te toca ahora, ante quién y con cuánto tiempo. Adaptado a tu tipo de accidente y a tu cobertura en República Dominicana."
+      },
+      "progress": {
+        "title": "Mi progreso",
+        "description": "Todo lo que registras, junto: medicamentos, terapias, ánimo y trámites. Aquí también ves exactamente qué está viendo tu médico."
+      },
+      "reintegration": {
+        "title": "Reintegración",
+        "description": "La última etapa: volver al trabajo, recuperar tu autonomía y retomar tu vida. Marca cada logro a tu ritmo."
+      },
+      "alerts": {
+        "title": "Alertas",
+        "description": "Pacientes que necesitan que intervengas ahora, sin esperar a la próxima consulta."
+      },
+      "patients": {
+        "title": "Mis pacientes",
+        "description": "Tu cartera en recuperación post-accidente, con su etapa, su adherencia y su cumplimiento de terapias."
+      },
+      "agenda": {
+        "title": "Agenda",
+        "description": "Tus citas y terapias de los próximos días, con el estado de cada paciente."
+      },
+      "institution": {
+        "title": "Indicadores",
+        "description": "El estado de recuperación de tu población y lo que te está costando el abandono terapéutico."
+      },
+      "population": {
+        "title": "Población",
+        "description": "Cada caso, su etapa y su nivel de riesgo. Del indicador al paciente en un clic."
       }
     },
     "inicio": {
@@ -394,26 +439,66 @@
       "selectorHint": "Marca las que aplican. Verás la guía completa con todos los pasos aquí abajo, sin salir de la página.",
       "selectedCount": "{count} seleccionadas. Ver tu guía personalizada abajo.",
       "options": {
-        "apoyo-emocional": { "label": "Necesito apoyo emocional" },
-        "no-puedo-caminar": { "label": "No puedo caminar / Movilidad reducida" },
-        "sin-medicamentos": { "label": "No tengo medicamentos" },
-        "estoy-sola": { "label": "Estoy sola o solo" },
-        "transporte": { "label": "Necesito transporte" },
-        "medicamentos-delivery": { "label": "Necesito conseguir medicamentos" },
-        "fisioterapia": { "label": "Fisioterapia o rehabilitación" },
-        "tramites": { "label": "Trámites y documentos" },
-        "accesibilidad": { "label": "Accesibilidad en casa" },
-        "derechos-laborales": { "label": "Derechos laborales" },
-        "dolor": { "label": "Me duele mucho" },
-        "abrumado": { "label": "Me siento abrumado" },
-        "volver-trabajo": { "label": "Quiero volver al trabajo" },
-        "cuidador": { "label": "Necesito un cuidador" },
-        "miedo-conducir": { "label": "Miedo a salir o conducir" },
-        "ayuda-gratuita": { "label": "Ayuda gratuita" },
-        "planes-acogida": { "label": "Planes de acogida" },
-        "asesoria-legal": { "label": "Asesoría legal" },
-        "segunda-opinion": { "label": "Segunda opinión médica" },
-        "problemas-dormir": { "label": "Problemas para dormir" }
+        "apoyo-emocional": {
+          "label": "Necesito apoyo emocional"
+        },
+        "no-puedo-caminar": {
+          "label": "No puedo caminar / Movilidad reducida"
+        },
+        "sin-medicamentos": {
+          "label": "No tengo medicamentos"
+        },
+        "estoy-sola": {
+          "label": "Estoy sola o solo"
+        },
+        "transporte": {
+          "label": "Necesito transporte"
+        },
+        "medicamentos-delivery": {
+          "label": "Necesito conseguir medicamentos"
+        },
+        "fisioterapia": {
+          "label": "Fisioterapia o rehabilitación"
+        },
+        "tramites": {
+          "label": "Trámites y documentos"
+        },
+        "accesibilidad": {
+          "label": "Accesibilidad en casa"
+        },
+        "derechos-laborales": {
+          "label": "Derechos laborales"
+        },
+        "dolor": {
+          "label": "Me duele mucho"
+        },
+        "abrumado": {
+          "label": "Me siento abrumado"
+        },
+        "volver-trabajo": {
+          "label": "Quiero volver al trabajo"
+        },
+        "cuidador": {
+          "label": "Necesito un cuidador"
+        },
+        "miedo-conducir": {
+          "label": "Miedo a salir o conducir"
+        },
+        "ayuda-gratuita": {
+          "label": "Ayuda gratuita"
+        },
+        "planes-acogida": {
+          "label": "Planes de acogida"
+        },
+        "asesoria-legal": {
+          "label": "Asesoría legal"
+        },
+        "segunda-opinion": {
+          "label": "Segunda opinión médica"
+        },
+        "problemas-dormir": {
+          "label": "Problemas para dormir"
+        }
       }
     },
     "accountError": {

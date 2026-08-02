@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Settings } from "lucide-react";
 import { AccountForm } from "@/components/dashboard/AccountForm";
+import { DemoDataCard } from "@/components/dashboard/DemoDataCard";
 import { DashboardPageHeader } from "@/components/dashboard/PageHeader";
 import { Suspense } from "react";
 import { ROUTES, hrefLoginCallback } from "@/lib/routes";
@@ -40,6 +41,7 @@ export default async function AccountPage() {
       >
         <AccountForm user={userData} />
       </Suspense>
+      <DemoDataCard userId={session.user.id ?? null} />
     </div>
   );
 }

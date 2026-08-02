@@ -7,11 +7,27 @@ import {
   type PrescribedMed,
 } from "@/lib/prescriptions";
 
-/** Emitir exige sesión: el emisor sale de ella, nunca del cuerpo de la petición. */
+/**
+ * Emitir exige sesión **y cuenta de profesional de salud**.
+ *
+ * Las dos comprobaciones salen de la sesión, nunca del cuerpo de la petición ni
+ * del rol que el navegador tenga seleccionado: ese selector es de presentación
+ * y se puede cambiar desde la consola. Sin este control, estando en el rol
+ * «paciente» se emitía una receta de morfina firmada con cualquier nombre.
+ */
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Necesitas iniciar sesión." }, { status: 401 });
+  }
+  if (!session.user.isDoctor) {
+    return NextResponse.json(
+      {
+        error:
+          "Tu cuenta no es de profesional de salud. Solo un médico puede emitir recetas — el selector de rol sirve para ver los paneles, no para emitir.",
+      },
+      { status: 403 }
+    );
   }
 
   let cuerpo: {

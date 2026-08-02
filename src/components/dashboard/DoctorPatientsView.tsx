@@ -23,11 +23,13 @@ import { cn } from "@/lib/utils";
 interface Props {
   userId: string | null;
   userName: string | null;
+  /** Decidido en el servidor: si la cuenta puede emitir recetas. */
+  canIssue: boolean;
 }
 
 type Filter = "todos" | "riesgo" | "alta";
 
-export function DoctorPatientsView({ userId, userName }: Props) {
+export function DoctorPatientsView({ userId, userName, canIssue }: Props) {
   const { mine } = useCohort(userId, userName);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("todos");
@@ -192,6 +194,7 @@ export function DoctorPatientsView({ userId, userName }: Props) {
                   patientId={selected.id === "sesion-actual" ? (userId ?? null) : null}
                   patientName={selected.name.replace(" (tu sesión)", "")}
                   center={selected.center}
+                  canIssue={canIssue}
                 />
                 <button
                   type="button"

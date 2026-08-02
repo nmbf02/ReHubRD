@@ -2,6 +2,7 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { pgPool } from "@/lib/db";
+import { isDoctorAccount } from "@/lib/doctor-accounts";
 
 type AuthedUser = { id: string; name: string; email: string };
 
@@ -115,11 +116,15 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.email = user.email ?? undefined;
       }
+      // Se recalcula en cada paso, no solo al iniciar sesión: así, quitar una
+      // cuenta de la lista surte efecto sin esperar a que caduque su token.
+      token.isDoctor = isDoctorAccount(token.email);
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
+        session.user.isDoctor = Boolean(token.isDoctor);
       }
       return session;
     },

@@ -10,7 +10,7 @@
  */
 
 import { useState } from "react";
-import { FileSignature, Plus, Trash2, X, Loader2, Ban, ExternalLink } from "lucide-react";
+import { FileSignature, Plus, Trash2, X, Loader2, Ban, ExternalLink, Lock } from "lucide-react";
 import { timesForDosesPerDay } from "@/lib/medication-schedule";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +28,12 @@ interface Props {
   patientId: string | null;
   patientName: string;
   center?: string;
+  /**
+   * Si la cuenta de la sesión es de profesional de salud. Se decide en el
+   * servidor; aquí solo se usa para explicarlo antes de que el intento falle.
+   * El control real está en la API — esto es cortesía, no seguridad.
+   */
+  canIssue: boolean;
 }
 
 interface RecetaEmitida {
@@ -35,7 +41,13 @@ interface RecetaEmitida {
   status: string;
 }
 
-export function IssuePrescription({ doctorName, patientId, patientName, center }: Props) {
+export function IssuePrescription({
+  doctorName,
+  patientId,
+  patientName,
+  center,
+  canIssue,
+}: Props) {
   const [abierto, setAbierto] = useState(false);
   const [renglones, setRenglones] = useState<Renglon[]>([{ ...RENGLON_VACIO }]);
   const [notas, setNotas] = useState("");
@@ -147,7 +159,25 @@ export function IssuePrescription({ doctorName, patientId, patientName, center }
           </button>
         </div>
 
-        {emitida ? (
+        {!canIssue ? (
+          <div className="space-y-3">
+            <div className="flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <Lock className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
+              <div className="text-sm leading-relaxed text-amber-900">
+                <p className="font-semibold">Tu cuenta no es de profesional de salud.</p>
+                <p className="mt-1">
+                  El selector de rol sirve para <strong>ver</strong> los tres paneles con una sola
+                  sesión, pero no otorga permisos. Emitir recetas exige entrar con una cuenta
+                  médica, y eso lo comprueba el servidor — no el navegador.
+                </p>
+              </div>
+            </div>
+            <p className="text-xs leading-relaxed text-rehub-900/55">
+              Es justo lo que impide que un paciente se recete a sí mismo. Si abres la consola y
+              llamas a la API directamente, responde <code className="font-mono">403</code>.
+            </p>
+          </div>
+        ) : emitida ? (
           <div className="space-y-4 text-center">
             {qr && (
               /* eslint-disable-next-line @next/next/no-img-element */

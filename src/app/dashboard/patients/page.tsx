@@ -21,6 +21,7 @@ export default async function PatientsPage() {
       <DoctorPatientsView
         userId={session.user.id ?? null}
         userName={session.user.name ?? null}
+        canIssue={session.user.isDoctor}
       />
     </div>
   );

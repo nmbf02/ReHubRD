@@ -33,3 +33,6 @@ yarn-error.log*
 Thumbs.db
 .vercel
 .env*
+
+# Recetas de prueba del OCR (imágenes locales, no forman parte del producto)
+.ocr-pruebas/

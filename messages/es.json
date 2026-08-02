@@ -771,10 +771,10 @@
         "take": "Tomar / subir foto",
         "change": "Cambiar foto",
         "autofill": "Auto-rellenar desde la foto",
-        "autofillHint": "Experimental — siempre revisa lo que se llenó. Funciona mejor con recetas impresas.",
+        "autofillHint": "Experimental — revisa siempre lo que se llenó. Funciona con recetas impresas; la letra manuscrita no se lee de forma fiable.",
         "reading": "Leyendo la receta…",
         "readOk": "Listo — revisa las sugerencias y agrégalas.",
-        "readEmpty": "No pudimos leer bien la receta. Agrégala manualmente abajo.",
+        "readEmpty": "No logramos leer esta receta — pasa casi siempre con la letra a mano. Agrégala abajo en un minuto.",
         "readError": "No se pudo procesar la foto. Puedes agregar la receta manualmente."
       },
       "form": {

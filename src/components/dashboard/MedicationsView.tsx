@@ -629,7 +629,10 @@ export function MedicationsView({ userId }: Props) {
             ) : (
               <p className="text-xs text-amber-700">{t("share.noDoctor")}</p>
             )}
-            <p className="text-xs leading-relaxed text-rehub-900/50">{t("share.hint")}</p>
+            {/* El aviso de que no sustituye a la receta va visible, no en gris al pie. */}
+            <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs leading-relaxed text-amber-900">
+              {t("share.hint")}
+            </p>
           </div>
         </div>
       )}

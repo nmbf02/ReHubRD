@@ -1,13 +1,25 @@
 import { getTranslations } from "next-intl/server";
-import { ShieldCheck, AlertTriangle, Pill, Stethoscope, MapPin, CalendarDays } from "lucide-react";
+import { TriangleAlert, Pill, Stethoscope, MapPin, CalendarDays, Info } from "lucide-react";
 import { decodeShare } from "@/lib/prescription-share";
 import { BrandMark } from "@/components/brand/BrandMark";
 
 /**
- * Public prescription-verification page. Opened by scanning the QR a patient
- * shows at the pharmacy. DEMO: the prescription data travels inside the QR
- * token (no server, zero-cost). In production this would resolve a short id to
- * a server-signed, revocable record (see README "modo real").
+ * Página pública que se abre al escanear el QR que el paciente enseña en la
+ * farmacia.
+ *
+ * **Esta pantalla NO verifica nada, y por eso no lo dice.** Antes se
+ * presentaba con un escudo y el titular «Receta verificada · Firmada en
+ * ReHub», pero los datos viajan dentro del propio código y el nombre del
+ * médico es un campo de texto que escribe el paciente: cualquiera podía
+ * fabricar un enlace y obtener un sello verde sobre una receta inventada.
+ * Afirmar autenticidad que no se puede respaldar es peor que no ofrecerla,
+ * sobre todo tratándose de medicamentos.
+ *
+ * Lo que sí hace —y es útil— es enseñar el tratamiento de forma legible, para
+ * que en la farmacia no tengan que descifrar letra manuscrita. Una
+ * verificación real exigiría que el médico emitiera la receta desde su propia
+ * cuenta, un registro firmado en el servidor, un identificador opaco en el QR
+ * y la posibilidad de anularla (ver README, «modo real»).
  */
 export default async function VerifyPage({
   searchParams,
@@ -35,21 +47,31 @@ export default async function VerifyPage({
 
         {payload ? (
           <div className="overflow-hidden rounded-2xl border border-rehub-100 bg-white shadow-card">
-            <div className="flex items-center gap-3 bg-brand-gradient px-5 py-4 text-white">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-                <ShieldCheck className="h-6 w-6" />
+            {/* Cabecera neutra: informa, no certifica. */}
+            <div className="flex items-center gap-3 border-b border-rehub-100 px-5 py-4">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-rehub-100 text-rehub-700">
+                <Pill className="h-5 w-5" />
               </span>
               <div>
-                <p className="text-sm font-bold">{t("verified")}</p>
-                <p className="text-xs text-white/80">{t("verifiedSub")}</p>
+                <p className="text-sm font-bold text-rehub-950">{t("verified")}</p>
+                <p className="text-xs text-rehub-900/55">{t("verifiedSub")}</p>
               </div>
+            </div>
+
+            {/* El límite, arriba y legible — no en letra pequeña al pie. */}
+            <div className="flex items-start gap-2.5 border-b border-amber-200 bg-amber-50/70 px-5 py-3.5">
+              <Info className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
+              <p className="text-xs leading-relaxed text-amber-900">{t("notice")}</p>
             </div>
 
             <div className="space-y-3 p-5">
               {payload.doctor && (
                 <div className="flex items-center gap-2 text-sm">
                   <Stethoscope className="h-4 w-4 shrink-0 text-rehub-600" />
-                  <span className="text-rehub-900/60">{t("approvedBy")}</span>
+                  <span className="text-rehub-900/60">
+                    {t("approvedBy")}{" "}
+                    <span className="text-rehub-900/45">({t("sourceNote")})</span>
+                  </span>
                   <span className="ml-auto font-semibold text-rehub-950">{payload.doctor}</span>
                 </div>
               )}
@@ -90,7 +112,7 @@ export default async function VerifyPage({
         ) : (
           <div className="rounded-2xl border border-amber-200 bg-white p-6 text-center shadow-card">
             <span className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700">
-              <AlertTriangle className="h-6 w-6" />
+              <TriangleAlert className="h-6 w-6" />
             </span>
             <p className="text-sm font-semibold text-rehub-950">{t("invalid")}</p>
             <p className="mt-1 text-xs text-rehub-900/55">{t("invalidSub")}</p>

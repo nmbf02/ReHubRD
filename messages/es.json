@@ -809,11 +809,11 @@
         "remindersHint": "Te avisamos a la hora de cada toma mientras la app esté abierta."
       },
       "share": {
-        "button": "Compartir receta (QR)",
-        "title": "Receta verificable",
-        "approvedBy": "Aprobada por {name}",
-        "noDoctor": "Sin médico — escribe su nombre en \"Mi lesión\" y aparecerá en el QR.",
-        "hint": "La farmacia escanea este QR con su celular y ve que tu receta es válida."
+        "button": "Compartir mi tratamiento (QR)",
+        "title": "Tu tratamiento en un QR",
+        "approvedBy": "Indicado por {name}",
+        "noDoctor": "Sin médico — escribe su nombre en «Mi lesión» y aparecerá en el resumen.",
+        "hint": "En la farmacia lo escanean y leen tu tratamiento sin descifrar letra. No sustituye tu receta: llévala también."
       }
     },
     "pharmacies": {
@@ -967,14 +967,16 @@
     }
   },
   "verify": {
-    "verified": "Receta verificada",
-    "verifiedSub": "Firmada en ReHub",
-    "approvedBy": "Aprobada por",
+    "verified": "Resumen de tratamiento",
+    "verifiedSub": "Compartido por el paciente desde ReHub",
+    "approvedBy": "Indicado por",
     "center": "Centro",
     "date": "Fecha",
     "meds": "Medicamentos",
-    "demoNote": "Verificación de demostración: los datos viajan dentro del código QR. En producción, la receta se verificaría en el servidor de ReHub y podría anularse.",
-    "invalid": "No pudimos verificar esta receta",
-    "invalidSub": "El código es inválido o está incompleto."
+    "demoNote": "Los datos viajan dentro del código QR. ReHub no los almacena ni certifica su origen.",
+    "invalid": "No pudimos leer este código",
+    "invalidSub": "El código es inválido o está incompleto.",
+    "notice": "Esto no es una receta médica ni la sustituye. Es el tratamiento que el paciente registró en su aplicación. Para dispensar, pide la receta original.",
+    "sourceNote": "según el paciente"
   }
 }

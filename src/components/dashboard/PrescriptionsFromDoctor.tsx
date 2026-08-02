@@ -105,9 +105,13 @@ export function PrescriptionsFromDoctor() {
                   </div>
                   <p className="mt-0.5 text-xs text-rehub-900/55">
                     {receta.doctorName} ·{" "}
+                    {/* Misma zona que la pantalla de verificación, que se
+                        renderiza en el servidor: si no, la misma receta sale
+                        con dos fechas distintas. */}
                     {new Date(receta.issuedAt).toLocaleDateString("es-DO", {
                       day: "numeric",
                       month: "long",
+                      timeZone: "America/Santo_Domingo",
                     })}
                   </p>
                 </div>

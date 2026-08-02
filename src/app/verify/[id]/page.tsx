@@ -53,11 +53,20 @@ const ESTILO: Record<
   },
 };
 
+/**
+ * Zona fija del país. Esta pantalla se renderiza en el SERVIDOR (Vercel, en
+ * UTC) mientras que la lista del paciente se pinta en su navegador: sin fijar
+ * la zona, la misma receta emitida de noche salía «2 de agosto» en la farmacia
+ * y «1 de agosto» en el móvil del paciente.
+ */
+const ZONA_RD = "America/Santo_Domingo";
+
 function formatearFecha(iso: string): string {
   return new Date(iso).toLocaleDateString("es-DO", {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: ZONA_RD,
   });
 }
 
@@ -66,6 +75,7 @@ export default async function VerificarRecetaPage({ params }: { params: { id: st
   const consultadoA = new Date().toLocaleTimeString("es-DO", {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: ZONA_RD,
   });
 
   const receta = resultado.ok ? resultado.value : null;

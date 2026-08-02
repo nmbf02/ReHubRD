@@ -128,10 +128,24 @@ Abre `http://localhost:3000` en el navegador.
 
 ## Credenciales de demo
 
-- Email: `demo@rehub.do`
-- Password: `demo123`
+Dos cuentas, porque **son dos permisos distintos**:
 
-Usa estas credenciales en la pantalla de login (ruta `/login`) para probar la sesión demo del proyecto.
+| Cuenta | Usuario / clave | Puede |
+|---|---|---|
+| Paciente | `nathaly` / `welcome` | Todo el recorrido; **ver** los tres paneles con el selector de rol |
+| Profesional de salud | `demo@rehub.do` / `demo123` | Lo anterior **y emitir recetas** |
+
+El selector «Estás viendo ReHub como» sirve para **ver** los tres productos con una sola sesión —es
+lo que hace demostrable el modelo B2B2C—, pero **no otorga permisos**: vive en `localStorage` y el
+navegador puede cambiarlo. Emitir una receta exige que la cuenta esté en `REHUB_DOCTOR_EMAILS`, lo
+que se comprueba en el servidor. Con la cuenta de paciente, la API responde `403` y la pantalla
+explica por qué.
+
+En producción esto sería una columna `role` en `users`, alimentada por un alta con verificación del
+exequátur profesional; la forma del control no cambiaría, solo su origen.
+
+> **Sin base de datos** (por ejemplo en local, donde `DATABASE_URL` puede no responder) el login cae
+> a la cuenta de demostración y las recetas emitidas no están disponibles: necesitan servidor.
 
 ---
 
